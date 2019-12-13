@@ -2,7 +2,6 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit;
 
-use AviationCode\Elasticsearch\Tests\Unit\Schema\IndexTest;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase

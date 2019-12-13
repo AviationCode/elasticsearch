@@ -31,7 +31,7 @@ class Builder
                 $this->getClient()->get(['index' => $this->model->getIndexName(), 'id' => $id])
             );
         } catch (Missing404Exception $exception) {
-            throw new ModelNotFoundException(get_class($this->model) . ' Not found');
+            throw new ModelNotFoundException(get_class($this->model).' Not found');
         }
     }
 

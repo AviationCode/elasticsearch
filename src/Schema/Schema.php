@@ -34,7 +34,7 @@ class Schema
      */
     protected function getIndex(?string $index): string
     {
-        if (!($index || $this->elasticsearch->model)) {
+        if (! ($index || $this->elasticsearch->model)) {
             throw new InvalidArgumentException('Either index parameter or model has to be provided.');
         }
 

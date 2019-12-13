@@ -6,7 +6,6 @@ use AviationCode\Elasticsearch\Elasticsearch;
 use AviationCode\Elasticsearch\Exceptions\BadRequestException;
 use AviationCode\Elasticsearch\Exceptions\IndexNotFoundException;
 use AviationCode\Elasticsearch\Model\ElasticsearchModel;
-use AviationCode\Elasticsearch\Schema\Index;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 use Elasticsearch\Client;
 use Elasticsearch\Common\Exceptions\BadRequest400Exception;
@@ -199,7 +198,6 @@ class IndexTest extends TestCase
                 'status' => 400,
             ])));
 
-
         $this->expectException(IndexNotFoundException::class);
         $this->getSchema()->delete('my_index');
     }
@@ -239,4 +237,6 @@ class IndexTest extends TestCase
     }
 }
 
-class ArticleTestModel extends ElasticsearchModel { }
+class ArticleTestModel extends ElasticsearchModel
+{
+}

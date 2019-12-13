@@ -1,0 +1,26 @@
+language: php
+
+php:
+  - 7.2
+  - 7.3
+  - 7.4
+
+matrix:
+    include:
+      - env: dependencies=lowest
+      - env: dependencies=latest
+
+
+before_script:
+  - travis_retry composer self-update --preview
+  - travis_retry composer install --prefer-dist --no-interaction
+  - if [ "$dependencies" = "lowest" ]; then composer update --prefer-lowest --prefer-stable -n; fi;
+
+script:
+  - vendor/bin/phpunit --coverage-clover=coverage.xml
+
+before_install:
+  - pip install --user codecov
+
+after_success:
+  - codecov

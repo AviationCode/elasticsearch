@@ -38,7 +38,7 @@ If you discover a security vulnerability within elasticsearch package, please se
 ## Credits
 
 - [Ken Andries][link-author]
-- All Contributors
+- [All Contributors][link-contributors]
 
 ## License
 
@@ -54,3 +54,4 @@ license. Please see the [license file](license.md) for more information.
 [link-travis]: https://travis-ci.org/aviationcode/elasticsearch
 [link-styleci]: https://styleci.io/repos/227918837
 [link-author]: https://github.com/douglasdc3
+[link-contributors]: ../../contributors

@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class ElasticsearchModel extends Model
 {
-   use ElasticSearchable;
+    use ElasticSearchable;
 }

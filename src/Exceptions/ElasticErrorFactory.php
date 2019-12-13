@@ -31,7 +31,6 @@ class ElasticErrorFactory
         $this->exception = $exception;
     }
 
-
     /**
      * Bind the exception.
      *
@@ -44,7 +43,7 @@ class ElasticErrorFactory
     }
 
     /**
-     * Map the exception and throw the correct error
+     * Map the exception and throw the correct error.
      *
      * @throws BaseElasticsearchException
      */
@@ -52,7 +51,7 @@ class ElasticErrorFactory
     {
         $type = Arr::get(json_decode($this->exception->getMessage(), true), 'error.type');
 
-        if (!isset(static::$types[$type])) {
+        if (! isset(static::$types[$type])) {
             throw new BaseElasticsearchException($this->exception);
         }
 

@@ -16,12 +16,12 @@ class Index extends Schema
     public function exists($index = null): bool
     {
         return $this->elasticsearch->getClient()->indices()->exists([
-            'index' => $this->getIndex($index)
+            'index' => $this->getIndex($index),
         ]);
     }
 
     /**
-     * Create an index
+     * Create an index.
      *
      * @param null $index
      * @return bool
@@ -44,7 +44,7 @@ class Index extends Schema
     }
 
     /**
-     * Delete an index and it's data
+     * Delete an index and it's data.
      *
      * @param null $index
      * @return void

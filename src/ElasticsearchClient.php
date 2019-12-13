@@ -22,4 +22,3 @@ trait ElasticsearchClient
         $this->client = $client;
     }
 }
-

@@ -12,12 +12,12 @@ trait ElasticSearchable
     public static function bootElasticSearchable()
     {
         static::created(function ($model) {
-            /** @var ElasticSearchable $model */
+            /* @var ElasticSearchable $model */
             $model->elastic()->add($model);
         });
 
         static::updated(function ($model) {
-            /** @var ElasticSearchable $model */
+            /* @var ElasticSearchable $model */
             $model->elastic()->update($model);
         });
     }
@@ -37,7 +37,7 @@ trait ElasticSearchable
         $attributes = $item['_source'];
 
         if (isset($item['_id'])) {
-            $attributes[$this->getKeyName()] = $this->getKeyType() === 'int' ? (int)$item['_id'] : $item['_id'];
+            $attributes[$this->getKeyName()] = $this->getKeyType() === 'int' ? (int) $item['_id'] : $item['_id'];
         }
 
         if (isset($item['fields'])) {

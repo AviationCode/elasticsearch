@@ -40,6 +40,7 @@ class ElasticSearchableTest extends TestCase
     }
 }
 
-class ArticleTestModel extends ElasticsearchModel {
+class ArticleTestModel extends ElasticsearchModel
+{
     protected $guarded = [];
 }

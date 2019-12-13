@@ -1,0 +1,45 @@
+{
+    "name": "aviationcode/elasticsearch",
+    "description": "Laravel elasticsearch and eloquent integration",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "author name",
+            "email": "ken.andries.1992@gmail.com",
+            "homepage": "https://github.com/douglasdc3"
+        }
+    ],
+    "homepage": "https://github.com/aviationcode/elasticsearch",
+    "keywords": ["Laravel", "Elasticsearch"],
+    "require": {
+        "ext-json": "*",
+        "illuminate/support": "~5|~6",
+        "elasticsearch/elasticsearch": "~6.0|~7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~8.0",
+        "mockery/mockery": "^1.1",
+        "orchestra/testbench": "~3.0",
+        "sempro/phpunit-pretty-print": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "AviationCode\\Elasticsearch\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AviationCode\\Elasticsearch\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AviationCode\\Elasticsearch\\ElasticsearchServiceProvider"
+            ],
+            "aliases": {
+                "Elasticsearch": "AviationCode\\Elasticsearch\\Facades\\Elasticsearch"
+            }
+        }
+    }
+}

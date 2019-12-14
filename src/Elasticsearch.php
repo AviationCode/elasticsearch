@@ -33,7 +33,7 @@ class Elasticsearch
      *
      * @var bool
      */
-    private static $fireEvents = false;
+    protected static $fireEvents = false;
 
     /**
      * Elasticsearch constructor.

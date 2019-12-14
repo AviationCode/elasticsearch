@@ -113,7 +113,6 @@ class Elasticsearch
             if ($response['result'] === 'updated') {
                 $this->event(new DocumentUpdatedEvent($model, $response));
             }
-
         } catch (\Exception $exception) {
             $this->handleException($exception);
         }

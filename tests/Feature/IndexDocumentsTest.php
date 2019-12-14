@@ -58,7 +58,7 @@ class IndexDocumentsTest extends TestCase
                 'id' => 456,
                 'index' => 'article',
                 'body' => [
-                    'id' => 456
+                    'id' => 456,
                 ],
             ])
             ->once()

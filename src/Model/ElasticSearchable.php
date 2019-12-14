@@ -53,6 +53,9 @@ trait ElasticSearchable
         return $instance;
     }
 
+    /**
+     * @return Elasticsearch
+     */
     public function elastic()
     {
         return Elasticsearch::forModel($this);

@@ -7,19 +7,16 @@ use AviationCode\Elasticsearch\Tests\Feature\TestModels\Article;
 
 class ManageIndexTest extends TestCase
 {
-    protected function elasticRequest($method)
-    {
-        Elasticsearch::fake()->indicesClient
-            ->shouldReceive($method)
-            ->once()
-            ->andReturn(['acknowledged' => true]);
-    }
-
     /** @test **/
     public function it_creates_index_from_model()
     {
-        Elasticsearch::fake()->indicesClient
+        $elastic = Elasticsearch::fake();
+        $elastic->indicesClient
             ->shouldReceive('create')
+            ->once()
+            ->andReturn(['acknowledged' => true]);
+        $elastic->indicesClient
+            ->shouldReceive('putMapping')
             ->once()
             ->andReturn(['acknowledged' => true]);
 

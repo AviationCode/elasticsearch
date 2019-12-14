@@ -6,4 +6,5 @@ use AviationCode\Elasticsearch\Model\ElasticsearchModel;
 
 class Article extends ElasticsearchModel
 {
+    protected $guarded = [];
 }

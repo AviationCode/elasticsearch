@@ -33,7 +33,7 @@ class IndexTest extends TestCase
     protected function getSchema($model = null)
     {
         $search = new Elasticsearch($model);
-        $search->setElasticClient($this->client);
+        $search->setClient($this->client);
 
         return $search->index();
     }
@@ -195,7 +195,7 @@ class IndexTest extends TestCase
                     'resource.id' => 'my_index',
                     'index' => 'my_index',
                 ],
-                'status' => 400,
+                'status' => 404,
             ])));
 
         $this->expectException(IndexNotFoundException::class);

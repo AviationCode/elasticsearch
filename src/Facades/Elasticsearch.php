@@ -6,8 +6,8 @@ use AviationCode\Elasticsearch\FakeElasticsearch;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \AviationCode\Elasticsearch\Elasticsearch
- * @see FakeElasticsearch
+ * @mixin  \AviationCode\Elasticsearch\Elasticsearch
+ * @mixin  FakeElasticsearch
  */
 class Elasticsearch extends Facade
 {

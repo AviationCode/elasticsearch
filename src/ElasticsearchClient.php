@@ -17,7 +17,7 @@ trait ElasticsearchClient
         return  $this->client;
     }
 
-    public function setElasticClient(Client $client): void
+    public function setClient(Client $client): void
     {
         $this->client = $client;
     }

@@ -19,10 +19,10 @@ class FakeElasticsearch extends Elasticsearch
     {
         parent::__construct(null);
 
-        $this->setElasticClient($this->client = \Mockery::spy(Client::class));
+        $this->setClient($this->client = \Mockery::mock(Client::class));
 
         $this->client
             ->shouldReceive('indices')
-            ->andReturn($this->indicesClient = \Mockery::spy(IndicesNamespace::class));
+            ->andReturn($this->indicesClient = \Mockery::mock(IndicesNamespace::class));
     }
 }

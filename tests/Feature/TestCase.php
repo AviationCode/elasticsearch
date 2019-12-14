@@ -8,6 +8,11 @@ use Orchestra\Testbench\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
+    /**
+     * @var \AviationCode\Elasticsearch\FakeElasticsearch
+     */
+    protected $elastic;
+
     protected function getPackageProviders($app)
     {
         return [
@@ -17,6 +22,7 @@ abstract class TestCase extends BaseTestCase
 
     protected function getEnvironmentSetUp($app)
     {
-        Elasticsearch::fake();
+        $this->elastic = Elasticsearch::fake();
+        Elasticsearch::enableEvents(false);
     }
 }

@@ -137,7 +137,7 @@ class Elasticsearch
     }
 
     /**
-     * Bulk index models
+     * Bulk index models.
      *
      * @todo untested.
      * @param Collection|ElasticSearchable[] $models
@@ -146,10 +146,10 @@ class Elasticsearch
     {
         $response = $this->getClient()->bulk([
             'body' => $models->map(function ($model) {
-                /** @var ElasticSearchable $model */
-                return json_encode(['index' => ['_index' => $model->getIndexName(), '_id' => $model->getKey()]]) . PHP_EOL
-                    . json_encode($model->toSearchable()) . PHP_EOL;
-            })->join('')
+                /* @var ElasticSearchable $model */
+                return json_encode(['index' => ['_index' => $model->getIndexName(), '_id' => $model->getKey()]]).PHP_EOL
+                    .json_encode($model->toSearchable()).PHP_EOL;
+            })->join(''),
         ]);
 
         if ($response['errors']) {

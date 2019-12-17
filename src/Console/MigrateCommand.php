@@ -5,10 +5,8 @@ namespace AviationCode\Elasticsearch\Console;
 use AviationCode\Elasticsearch\Elasticsearch;
 use AviationCode\Elasticsearch\Model\ElasticSearchable;
 use Illuminate\Console\Command;
-use Illuminate\Container\Container;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Log;
 use ReflectionException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
@@ -64,7 +62,7 @@ class MigrateCommand extends Command
                 $this->migrate($class);
             }
 
-            $class = config('elasticsearch.model_namespace') . $class;
+            $class = config('elasticsearch.model_namespace').$class;
 
             if ($this->isElasticModel($class)) {
                 $this->migrate($class);
@@ -77,11 +75,11 @@ class MigrateCommand extends Command
         $class = str_replace('\\', '/', config('elasticsearch.model_namespace'));
         $class = preg_replace("/[A-z0-9]*\//", '', $class, 1);
 
-        collect(File::files(app_path() . DIRECTORY_SEPARATOR . $class))
+        collect(File::files(app_path().DIRECTORY_SEPARATOR.$class))
             ->map(function (\SplFileInfo $file) {
-                $className = str_replace('.' . $file->getExtension(), '', $file->getFilename());
+                $className = str_replace('.'.$file->getExtension(), '', $file->getFilename());
 
-                return config('elasticsearch.model_namespace') . $className;
+                return config('elasticsearch.model_namespace').$className;
             })
             ->filter(function ($class) {
                 return $this->isElasticModel($class);
@@ -93,12 +91,11 @@ class MigrateCommand extends Command
 
     private function migrate(string $class): void
     {
-
         $elastic = $this->elastic->forModel($class);
         $index = $elastic->model->getIndexName();
         $force = $this->option('force');
 
-        if ($force && !$this->confirm("Are you sure you want to delete {$index}")) {
+        if ($force && ! $this->confirm("Are you sure you want to delete {$index}")) {
             return;
         }
 
@@ -131,9 +128,9 @@ class MigrateCommand extends Command
                 } else {
                     // Mapping has changed
                     $this->getOutput()->warning(
-                        "{$index}: $key has changed cannot automatically be updated\n" .
-                        'Expected: ' . json_encode($expectedMapping[$key]) . "\n" .
-                        'Actual: ' . json_encode($mapping)
+                        "{$index}: $key has changed cannot automatically be updated\n".
+                        'Expected: '.json_encode($expectedMapping[$key])."\n".
+                        'Actual: '.json_encode($mapping)
                     );
                 }
             } else {
@@ -153,7 +150,7 @@ class MigrateCommand extends Command
             });
 
         // Index data
-        $this->getOutput()->text('<info>Indexing data ' . $class . '</info>');
+        $this->getOutput()->text('<info>Indexing data '.$class.'</info>');
         $this->getOutput()->progressStart($elastic->model->newQuery()->count());
         $elastic->model->newQuery()->chunk(500, function ($models) {
             $this->elastic->add($models);

@@ -2,6 +2,7 @@
 
 namespace AviationCode\Elasticsearch;
 
+use AviationCode\Elasticsearch\Console\MigrateCommand;
 use Elasticsearch\ClientBuilder;
 use Illuminate\Support\ServiceProvider;
 
@@ -17,6 +18,12 @@ class ElasticsearchServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/config/elasticquent.php' => config_path('elasticquent.php'),
         ]);
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                MigrateCommand::class,
+            ]);
+        }
     }
 
     /**

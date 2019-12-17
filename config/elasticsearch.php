@@ -16,4 +16,15 @@ return [
         'hosts' => [env('ELASTICSEARCH_HOST', 'localhost').':'.env('ELASTICSEARCH_PORT', 9200)],
         'retries' => 1,
     ],
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Model classpath
+    |--------------------------------------------------------------------------
+    |
+    | The namespace containing all models.
+    |
+    */
+    'model_namespace' => 'App\\',
 ];

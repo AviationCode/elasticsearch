@@ -14,8 +14,37 @@ Via Composer
 ``` bash
 $ composer require aviationcode/elasticsearch
 ```
+## Configuration
+
+`.env` configuration
+
+```dotenv
+ELASTICSEARCH_HOST=localhost
+ELASTICSEARCH_PORT=9200
+```
 
 ## Usage
+
+Configure a model to use elasticsearch by using the `ElasticSearchable` trait.
+
+```php
+use AviationCode\Elasticsearch\Model\ElasticSearchable;
+use Illuminate\Database\Eloquent\Model;
+
+class Article extends Model
+{
+    use ElasticSearchable;
+}
+```
+
+This package can attempt migrate your elasticsearch index to it's desired state by running the artisan `elastic:migrate` command .
+By default it will check the `App\` namespace. You can either provide your model as argument or set the `models_namespace` param in the configuration file.
+
+```bash
+php artisan elastic:migrate
+php artisan elastic:migrate App/Article
+```
+In default setup the above three commands will execute in the same way if only model article exists and it uses the `ElasticSearchable` trait.
 
 ## Change log
 

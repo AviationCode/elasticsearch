@@ -12,6 +12,7 @@ use AviationCode\Elasticsearch\Schema\Index;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use InvalidArgumentException;
 
 class Elasticsearch
@@ -99,6 +100,10 @@ class Elasticsearch
     {
         $model = $this->getModel($model);
 
+        if ($model instanceof Collection) {
+            return $this->bulk($model);
+        }
+
         try {
             $response = $this->getClient()->index([
                 'id' => $model->getKey(),
@@ -129,6 +134,37 @@ class Elasticsearch
     public function update($model = null)
     {
         return $this->add($model);
+    }
+
+    /**
+     * Bulk index models
+     *
+     * @todo untested.
+     * @param Collection|ElasticSearchable[] $models
+     */
+    public function bulk(Collection $models)
+    {
+        $response = $this->getClient()->bulk([
+            'body' => $models->map(function ($model) {
+                /** @var ElasticSearchable $model */
+                return json_encode(['index' => ['_index' => $model->getIndexName(), '_id' => $model->getKey()]]) . PHP_EOL
+                    . json_encode($model->toSearchable()) . PHP_EOL;
+            })->join('')
+        ]);
+
+        if ($response['errors']) {
+            // errors found
+        }
+
+        foreach ($response['items'] as $item) {
+            if ($item['index']['result'] === 'created') {
+                $this->event(new DocumentCreatedEvent($models->firstWhere('id', $item['index']['_id']), $item['index']));
+            }
+
+            if ($item['index']['result'] === 'updated') {
+                $this->event(new DocumentUpdatedEvent($models->firstWhere('id', $item['index']['_id']), $item['index']));
+            }
+        }
     }
 
     /**

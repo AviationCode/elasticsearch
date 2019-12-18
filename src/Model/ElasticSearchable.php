@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 /**
- * Trait ElasticSearchable
+ * Trait ElasticSearchable.
  *
  * @mixin Model
  */
@@ -32,7 +32,7 @@ trait ElasticSearchable
         $index = $this->indexName ?? Str::snake(class_basename(static::class));
 
         if (isset($this->indexVersion)) {
-            $index .= '_v' . $this->indexVersion;
+            $index .= '_v'.$this->indexVersion;
         }
 
         return $index;

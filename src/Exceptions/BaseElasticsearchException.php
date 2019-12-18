@@ -23,6 +23,6 @@ class BaseElasticsearchException extends \Exception
             return;
         }
 
-        parent::__construct($exception['type'] . ': ' . $exception['reason']);
+        parent::__construct($exception['type'].': '.$exception['reason']);
     }
 }

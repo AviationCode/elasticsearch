@@ -125,7 +125,7 @@ class IndexTest extends TestCase
                         ],
                         'id' => [
                             'type' => 'integer',
-                        ]
+                        ],
                     ],
                 ],
             ])

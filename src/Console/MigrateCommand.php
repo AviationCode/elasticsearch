@@ -118,7 +118,7 @@ class MigrateCommand extends Command
             $elastic->index()->delete();
         }
 
-        if (!$elastic->index()->exists()) {
+        if (! $elastic->index()->exists()) {
             $this->getOutput()->text("<info>{$index}: Creating index</info>");
             $elastic->index()->create();
         }
@@ -136,7 +136,7 @@ class MigrateCommand extends Command
             $this->migrate($class);
         }
 
-        $class = config('elasticsearch.model_namespace') . $class;
+        $class = config('elasticsearch.model_namespace').$class;
 
         if ($this->isElasticModel($class)) {
             $this->migrate($class);
@@ -148,11 +148,11 @@ class MigrateCommand extends Command
         $class = str_replace('\\', '/', config('elasticsearch.model_namespace'));
         $class = preg_replace("/[A-z0-9]*\//", '', $class, 1);
 
-        collect(File::files(app_path() . DIRECTORY_SEPARATOR . $class))
+        collect(File::files(app_path().DIRECTORY_SEPARATOR.$class))
             ->map(function (\SplFileInfo $file) {
-                $className = str_replace('.' . $file->getExtension(), '', $file->getFilename());
+                $className = str_replace('.'.$file->getExtension(), '', $file->getFilename());
 
-                return config('elasticsearch.model_namespace') . $className;
+                return config('elasticsearch.model_namespace').$className;
             })
             ->filter(function ($class) {
                 return $this->isElasticModel($class);
@@ -172,7 +172,7 @@ class MigrateCommand extends Command
         $index = $elastic->model->getIndexName();
 
         foreach (Arr::get($indexInfo, 'mappings.properties', []) as $key => $mapping) {
-            if (!array_key_exists($key, $expectedMapping)) {
+            if (! array_key_exists($key, $expectedMapping)) {
                 $this->getOutput()->text("<comment>{$index}: $key mapping wasn't expected</comment>");
 
                 continue;
@@ -187,9 +187,9 @@ class MigrateCommand extends Command
                 $elastic->index()->putMapping([$key => $expectedMapping[$key]]);
             } catch (BaseElasticsearchException $exception) {
                 $this->getOutput()->warning(
-                    "{$index}: $key has changed cannot automatically be updated\n" .
-                    'Expected: ' . json_encode($expectedMapping[$key]) . "\n" .
-                    'Actual: ' . json_encode($mapping)
+                    "{$index}: $key has changed cannot automatically be updated\n".
+                    'Expected: '.json_encode($expectedMapping[$key])."\n".
+                    'Actual: '.json_encode($mapping)
                 );
             }
         }

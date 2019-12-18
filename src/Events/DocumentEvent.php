@@ -54,7 +54,7 @@ class DocumentEvent
         $this->index = $response['_index'];
 
         if (isset($response['error'])) {
-            $this->errorCode= $response['status'];
+            $this->errorCode = $response['status'];
             $this->exception = ElasticErrorFactory::from($response['error']);
 
             return;

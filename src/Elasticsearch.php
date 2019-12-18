@@ -238,7 +238,7 @@ class Elasticsearch
     }
 
     /**
-     * Convert the model to a index ndjson record
+     * Convert the model to a index ndjson record.
      *
      * @param ElasticSearchable|Model $model
      * @param array $meta
@@ -249,6 +249,6 @@ class Elasticsearch
         return implode(PHP_EOL, [
             json_encode($meta),
             json_encode($model->toSearchable()),
-        ]) . PHP_EOL;
+        ]).PHP_EOL;
     }
 }

@@ -2,10 +2,11 @@
 
 namespace AviationCode\Elasticsearch\Events;
 
+use AviationCode\Elasticsearch\Exceptions\ElasticErrorFactory;
 use AviationCode\Elasticsearch\Model\ElasticSearchable;
 use Illuminate\Database\Eloquent\Model;
 
-abstract class DocumentEvent
+class DocumentEvent
 {
     /**
      * @var array
@@ -25,15 +26,41 @@ abstract class DocumentEvent
     public $version;
 
     /**
+     * @var string
+     */
+    public $action;
+
+    /**
+     * @var \AviationCode\Elasticsearch\Exceptions\BaseElasticsearchException
+     */
+    public $exception;
+
+    /**
+     * @var int|null
+     */
+    public $errorCode;
+
+    /**
      * DocumentCreatedEvent constructor.
+     *
      * @param ElasticSearchable|Model $model
+     * @param string $action
      * @param array $response
      */
-    public function __construct($model, $response)
+    public function __construct($model, string $action, array $response)
     {
         $this->model = $model;
+        $this->action = $action;
+        $this->index = $response['_index'];
+
+        if (isset($response['error'])) {
+            $this->errorCode= $response['status'];
+            $this->exception = ElasticErrorFactory::from($response['error']);
+
+            return;
+        }
+
         $this->shards = $response['_shards'];
         $this->version = $response['_version'];
-        $this->index = $response['_index'];
     }
 }

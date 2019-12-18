@@ -123,6 +123,9 @@ class IndexTest extends TestCase
                             'ignore_malformed' => true,
                             'format' => 'yyyy-MM-dd HH:mm:ss||yyyy-MM-dd',
                         ],
+                        'id' => [
+                            'type' => 'integer',
+                        ]
                     ],
                 ],
             ])

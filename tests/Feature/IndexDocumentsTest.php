@@ -2,6 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Tests\Feature;
 
+use AviationCode\Elasticsearch\Events\BulkDocumentsEvent;
 use AviationCode\Elasticsearch\Events\DocumentCreatedEvent;
 use AviationCode\Elasticsearch\Exceptions\IndexNotFoundException;
 use AviationCode\Elasticsearch\Facades\Elasticsearch;
@@ -182,5 +183,61 @@ class IndexDocumentsTest extends TestCase
             ]);
 
         $this->assertTrue($article->elastic()->update());
+    }
+
+    /** @test */
+    public function it_bulk_indexes_models()
+    {
+        Event::fake();
+        Elasticsearch::enableEvents();
+
+        $articles = collect([
+            new Article([
+                'id' => 123,
+                'title' => 'My title Article A',
+                'body' => 'My body Article A',
+            ]),
+            new Article([
+                'id' => 456,
+                'title' => 'My title Article B',
+                'body' => 'My body Article B',
+            ])
+        ]);
+
+        $this->elastic->getClient()->shouldReceive('bulk')
+            ->with([
+                'refresh' => true,
+                'body' => implode(PHP_EOL, [
+                    json_encode(['index' => ['_index' => 'article', '_id' => 123]]),
+                    json_encode(['id' => 123, 'title' => 'My title Article A', 'body' => 'My body Article A']),
+                    json_encode(['index' => ['_index' => 'article', '_id' => 456]]),
+                    json_encode(['id' => 456, 'title' => 'My title Article B', 'body' => 'My body Article B']),
+                ]) . PHP_EOL,
+            ])
+            ->once()
+            ->andReturn([
+                'items' => [
+                    [
+                        'index' => [
+                            'result' => 'updated',
+                            '_shards' => ['success' => 1],
+                            '_version' => 1,
+                            '_index' => 'article',
+                        ]
+                    ],
+                    [
+                        'index' => [
+                            'result' => 'updated',
+                            '_shards' => ['success' => 1],
+                            '_version' => 1,
+                            '_index' => 'article',
+                        ]
+                    ]
+                ]
+            ]);
+
+        $this->assertTrue($this->elastic->add($articles));
+
+        Event::assertDispatchedTimes(BulkDocumentsEvent::class, 1);
     }
 }

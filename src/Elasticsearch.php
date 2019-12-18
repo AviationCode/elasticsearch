@@ -2,6 +2,7 @@
 
 namespace AviationCode\Elasticsearch;
 
+use AviationCode\Elasticsearch\Events\BulkDocumentsEvent;
 use AviationCode\Elasticsearch\Events\DocumentCreatedEvent;
 use AviationCode\Elasticsearch\Events\DocumentUpdatedEvent;
 use AviationCode\Elasticsearch\Exceptions\BaseElasticsearchException;
@@ -145,26 +146,23 @@ class Elasticsearch
     public function bulk(Collection $models)
     {
         $response = $this->getClient()->bulk([
+            'refresh' => true,
             'body' => $models->map(function ($model) {
                 /* @var ElasticSearchable $model */
-                return json_encode(['index' => ['_index' => $model->getIndexName(), '_id' => $model->getKey()]]).PHP_EOL
-                    .json_encode($model->toSearchable()).PHP_EOL;
+                return $this->toNdJson($model, [
+                    'index' => [
+                        '_index' => $model->getIndexName(),
+                        '_id' => $model->getKey(),
+                    ],
+                ]);
             })->join(''),
         ]);
 
-        if ($response['errors']) {
-            // errors found
-        }
+        $this->event(function () use ($response, $models) {
+            return new BulkDocumentsEvent($models, $response);
+        });
 
-        foreach ($response['items'] as $item) {
-            if ($item['index']['result'] === 'created') {
-                $this->event(new DocumentCreatedEvent($models->firstWhere('id', $item['index']['_id']), $item['index']));
-            }
-
-            if ($item['index']['result'] === 'updated') {
-                $this->event(new DocumentUpdatedEvent($models->firstWhere('id', $item['index']['_id']), $item['index']));
-            }
-        }
+        return true;
     }
 
     /**
@@ -193,11 +191,15 @@ class Elasticsearch
     /**
      * Fires events.
      *
-     * @param $event
+     * @param mixed $event
      */
     private function event($event)
     {
         if (static::shouldSentEvents()) {
+            if (is_callable($event)) {
+                $event = $event();
+            }
+
             event($event);
         }
     }
@@ -233,5 +235,20 @@ class Elasticsearch
         }
 
         ElasticErrorFactory::with($exception)->throw();
+    }
+
+    /**
+     * Convert the model to a index ndjson record
+     *
+     * @param ElasticSearchable|Model $model
+     * @param array $meta
+     * @return string
+     */
+    private function toNdJson($model, $meta = []): string
+    {
+        return implode(PHP_EOL, [
+            json_encode($meta),
+            json_encode($model->toSearchable()),
+        ]) . PHP_EOL;
     }
 }

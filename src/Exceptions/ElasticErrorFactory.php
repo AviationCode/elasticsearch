@@ -43,6 +43,21 @@ class ElasticErrorFactory
     }
 
     /**
+     * Return exception object from error array.
+     *
+     * @param array $response
+     * @return BaseElasticsearchException
+     */
+    public static function from(array $response): BaseElasticsearchException
+    {
+        if (! isset(static::$types[$response['type']])) {
+            return new BaseElasticsearchException($response);
+        }
+
+        return new static::$types[$response['type']]($response);
+    }
+
+    /**
      * Map the exception and throw the correct error.
      *
      * @throws BaseElasticsearchException

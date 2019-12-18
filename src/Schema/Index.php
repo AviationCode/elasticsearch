@@ -83,14 +83,19 @@ class Index extends Schema
      * @param array $mappings
      * @param null $index
      * @return void
+     * @throws BaseElasticsearchException
      */
     public function putMapping(?array $mappings = null, $index = null): void
     {
-        $this->elasticsearch->getClient()->indices()->putMapping([
-            'index' => $this->getIndex($index),
-            'body' => [
-                'properties' => $mappings ?? $this->elasticsearch->model->getSearchMapping(),
-            ],
-        ]);
+        try {
+            $this->elasticsearch->getClient()->indices()->putMapping([
+                'index' => $this->getIndex($index),
+                'body' => [
+                    'properties' => $mappings ?? $this->elasticsearch->model->getSearchMapping(),
+                ],
+            ]);
+        } catch (Exception $exception) {
+            $this->handleException($exception);
+        }
     }
 }

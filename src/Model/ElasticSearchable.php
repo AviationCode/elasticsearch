@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
+/**
+ * Trait ElasticSearchable
+ *
+ * @mixin Model
+ */
 trait ElasticSearchable
 {
     public static function bootElasticSearchable()
@@ -24,7 +29,13 @@ trait ElasticSearchable
 
     public function getIndexName(): string
     {
-        return $this->indexName ?? Str::snake(class_basename(static::class));
+        $index = $this->indexName ?? Str::snake(class_basename(static::class));
+
+        if (isset($this->indexVersion)) {
+            $index .= '_v' . $this->indexVersion;
+        }
+
+        return $index;
     }
 
     public function toSearchable()
@@ -65,12 +76,24 @@ trait ElasticSearchable
     {
         $properties = new Collection();
 
+        switch ($this->getKeyType()) {
+            case 'int':
+                $properties->put($this->getKeyName(), ['type' => 'integer']);
+                break;
+            default:
+                $properties->put($this->getKeyName(), ['type' => 'keyword']);
+        }
+
         foreach ($this->getDates() as $date) {
             $properties->put($date, [
                 'type' => 'date',
                 'ignore_malformed' => true,
                 'format' => 'yyyy-MM-dd HH:mm:ss||yyyy-MM-dd',
             ]);
+        }
+
+        foreach ($this->mapping ?? [] as $key => $mapping) {
+            $properties->put($key, is_string($mapping) ? ['type' => $mapping] : $mapping);
         }
 
         return $properties->toArray();

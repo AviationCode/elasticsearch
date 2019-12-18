@@ -9,14 +9,20 @@ class BaseElasticsearchException extends \Exception
 {
     /**
      * ElasticsearchException constructor.
-     * @param BaseElasticException $exception
+     * @param BaseElasticException|array $exception
      */
-    public function __construct(BaseElasticException $exception)
+    public function __construct($exception)
     {
-        parent::__construct(
-            Arr::get(json_decode($exception->getMessage(), true), 'error.reason'),
-            $exception->getCode(),
-            $exception
-        );
+        if ($exception instanceof BaseElasticException) {
+            parent::__construct(
+                Arr::get(json_decode($exception->getMessage(), true), 'error.reason'),
+                $exception->getCode(),
+                $exception
+            );
+
+            return;
+        }
+
+        parent::__construct($exception['type'] . ': ' . $exception['reason']);
     }
 }

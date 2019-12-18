@@ -201,7 +201,7 @@ class IndexDocumentsTest extends TestCase
                 'id' => 456,
                 'title' => 'My title Article B',
                 'body' => 'My body Article B',
-            ])
+            ]),
         ]);
 
         $this->elastic->getClient()->shouldReceive('bulk')
@@ -212,7 +212,7 @@ class IndexDocumentsTest extends TestCase
                     json_encode(['id' => 123, 'title' => 'My title Article A', 'body' => 'My body Article A']),
                     json_encode(['index' => ['_index' => 'article', '_id' => 456]]),
                     json_encode(['id' => 456, 'title' => 'My title Article B', 'body' => 'My body Article B']),
-                ]) . PHP_EOL,
+                ]).PHP_EOL,
             ])
             ->once()
             ->andReturn([
@@ -223,7 +223,7 @@ class IndexDocumentsTest extends TestCase
                             '_shards' => ['success' => 1],
                             '_version' => 1,
                             '_index' => 'article',
-                        ]
+                        ],
                     ],
                     [
                         'index' => [
@@ -231,9 +231,9 @@ class IndexDocumentsTest extends TestCase
                             '_shards' => ['success' => 1],
                             '_version' => 1,
                             '_index' => 'article',
-                        ]
-                    ]
-                ]
+                        ],
+                    ],
+                ],
             ]);
 
         $this->assertTrue($this->elastic->add($articles));

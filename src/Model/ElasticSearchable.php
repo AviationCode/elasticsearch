@@ -14,6 +14,13 @@ use Illuminate\Support\Str;
  */
 trait ElasticSearchable
 {
+    /**
+     * Meta information for the current document.
+     *
+     * @var array
+     */
+    protected $elastic = [];
+
     public static function bootElasticSearchable()
     {
         static::created(function ($model) {
@@ -61,6 +68,11 @@ trait ElasticSearchable
         $instance = $this->newInstance([], true);
         $instance->setRawAttributes($attributes, true);
 
+        $instance->elastic['score'] = $item['_score'] ?? 0.0;
+        $instance->elastic['type'] = $item['_type'] ?? null;
+        $instance->elastic['index'] = $item['_index'] ?? null;
+        $instance->elastic['id'] = $item['_id'] ?? null;
+
         return $instance;
     }
 
@@ -97,5 +109,14 @@ trait ElasticSearchable
         }
 
         return $properties->toArray();
+    }
+
+    public function getElasticAttribute($attribute)
+    {
+        if ($attribute === null) {
+            return $this->elastic;
+        }
+
+        return $this->elastic[$attribute] ?? null;
     }
 }

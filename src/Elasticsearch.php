@@ -155,7 +155,7 @@ class Elasticsearch
                         '_id' => $model->getKey(),
                     ],
                 ]);
-            })->join(''),
+            })->implode(''),
         ]);
 
         $this->event(function () use ($response, $models) {

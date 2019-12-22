@@ -13,8 +13,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
 /**
- * Class MigrateCommand
- * @package AviationCode\Elasticsearch\Console
+ * Class MigrateCommand.
  * @codeCoverageIgnore
  */
 class MigrateCommand extends Command

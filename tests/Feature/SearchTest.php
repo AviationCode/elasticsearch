@@ -2,7 +2,6 @@
 
 namespace AviationCode\Elasticsearch\Tests\Feature;
 
-use AviationCode\Elasticsearch\Facades\Elasticsearch;
 use AviationCode\Elasticsearch\Model\ElasticCollection;
 use AviationCode\Elasticsearch\Tests\Feature\TestModels\Article;
 use Carbon\Carbon;

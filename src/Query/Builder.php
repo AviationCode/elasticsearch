@@ -88,6 +88,13 @@ class Builder
         return $this->get()[0] ?? null;
     }
 
+    /**
+     * Perform a raw elastic query.
+     *
+     * @param array $query
+     * @param string|null $index
+     * @return array
+     */
     public function raw(array $query = [], ?string $index = null): array
     {
         return $this->getClient()->search([
@@ -96,18 +103,20 @@ class Builder
         ]);
     }
 
+    /**
+     * Execute query.
+     *
+     * @return ElasticCollection
+     */
     public function get()
     {
-        return ElasticCollection::parse($this->getClient()->search([
-            'index' => $this->model->getIndexName(),
-            'body' => [
-                'size' => $this->size,
-                'query' => [
-                    'bool' => $this->query,
-                ],
-                'sort' => $this->sort,
-                'aggs' => $this->aggregations,
+        return ElasticCollection::parse($this->raw([
+            'size' => $this->size,
+            'query' => [
+                'bool' => $this->query,
             ],
+            'sort' => $this->sort,
+            'aggs' => $this->aggregations,
         ]), $this->model);
     }
 }

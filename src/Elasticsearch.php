@@ -178,14 +178,15 @@ class Elasticsearch
     /**
      * Create a query builder.
      *
+     * @param $model
      * @return Builder
      * @throws \Throwable
      */
-    public function query(): Builder
+    public function query($model = null): Builder
     {
-        throw_unless($this->model, new \InvalidArgumentException('No model specified'));
+        throw_unless($this->model || $model, new \InvalidArgumentException('No model specified'));
 
-        return new Builder($this->model);
+        return new Builder($this->model ?? $model);
     }
 
     /**

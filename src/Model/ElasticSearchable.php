@@ -119,4 +119,9 @@ trait ElasticSearchable
 
         return $this->elastic[$attribute] ?? null;
     }
+
+    public function newCollection(array $models = [])
+    {
+        return new ElasticCollection($models);
+    }
 }

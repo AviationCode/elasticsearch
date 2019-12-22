@@ -2,6 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Model;
 
+use AviationCode\Elasticsearch\Model\ElasticCollection;
 use AviationCode\Elasticsearch\Model\ElasticsearchModel;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
@@ -37,6 +38,14 @@ class ElasticSearchableTest extends TestCase
             'title' => 'test title',
             'body' => 'test body',
         ], $article->toSearchable());
+    }
+
+    /** @test **/
+    public function it_uses_elasticcollection()
+    {
+        $collection = (new ArticleTestModel())->newCollection();
+
+        $this->assertInstanceOf(ElasticCollection::class, $collection);
     }
 }
 

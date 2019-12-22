@@ -3,6 +3,7 @@
 namespace AviationCode\Elasticsearch\Query;
 
 use AviationCode\Elasticsearch\ElasticsearchClient;
+use AviationCode\Elasticsearch\Model\ElasticCollection;
 use AviationCode\Elasticsearch\Model\ElasticSearchable;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
 use Illuminate\Database\Eloquent\Model;
@@ -16,12 +17,41 @@ class Builder
     /** @var ElasticSearchable|Model */
     private $model;
 
+    /**
+     * The maximum number of documents to return.
+     *
+     * @var int
+     */
     private $size = 100;
+
+    /**
+     * Sorting fields
+     *
+     * @var array
+     */
     private $sort = [];
+
+    /**
+     * Query context applied to this query.
+     *
+     * @var array
+     */
+    private $query = [];
+
+    /**
+     * Aggregations applied to the query.
+     *
+     * @var array
+     */
+    private $aggregations = [];
 
     public function __construct($model = null)
     {
         $this->model = $model;
+
+        if (is_string($this->model)) {
+            $this->model = new $this->model;
+        }
     }
 
     public function find($id)
@@ -35,7 +65,7 @@ class Builder
         }
     }
 
-    public function latest(string $field)
+    public function latest(string $field = 'created_at')
     {
         return $this->orderBy($field, 'desc');
     }
@@ -59,20 +89,26 @@ class Builder
         return $this->get()[0] ?? null;
     }
 
+    public function raw(array $query = [], ?string $index = null): array
+    {
+        return $this->getClient()->search([
+            'index' => $index ?? $this->model->getIndexName(),
+            'body' => $query,
+        ]);
+    }
+
     public function get()
     {
-        $response = $this->getClient()->search([
+        return ElasticCollection::parse($this->getClient()->search([
             'index' => $this->model->getIndexName(),
             'body' => [
                 'size' => $this->size,
+                'query' => [
+                    'bool' => $this->query,
+                ],
                 'sort' => $this->sort,
+                'aggs' => $this->aggregations,
             ],
-        ]);
-
-        $items = array_map(function ($item) {
-            return $this->model->newFromElasticBuilder($item);
-        }, $response['hits']['hits']);
-
-        return new Collection($items);
+        ]), $this->model);
     }
 }

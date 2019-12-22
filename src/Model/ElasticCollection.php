@@ -33,7 +33,7 @@ class ElasticCollection extends Collection
     }
 
     /**
-     * Set search meta from response
+     * Set search meta from response.
      *
      * @param array $response
      * @return ElasticCollection

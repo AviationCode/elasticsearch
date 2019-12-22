@@ -8,7 +8,6 @@ use AviationCode\Elasticsearch\Model\ElasticSearchable;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Collection;
 
 class Builder
 {
@@ -25,7 +24,7 @@ class Builder
     private $size = 100;
 
     /**
-     * Sorting fields
+     * Sorting fields.
      *
      * @var array
      */

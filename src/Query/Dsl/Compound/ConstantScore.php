@@ -13,7 +13,7 @@ class ConstantScore extends Compound
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function toArray()
     {

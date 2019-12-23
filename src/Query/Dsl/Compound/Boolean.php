@@ -27,11 +27,11 @@ class Boolean extends Compound
      *
      * @param \Closure $callback
      *
-     * @return Boolean
+     * @return bool
      */
     public function must(\Closure $callback): self
     {
-        if (!isset($this->clauses[Must::KEY])) {
+        if (! isset($this->clauses[Must::KEY])) {
             $this->clauses[Must::KEY] = new Must();
         }
 
@@ -42,11 +42,11 @@ class Boolean extends Compound
 
     /**
      * @param \Closure $callback
-     * @return Boolean
+     * @return bool
      */
     public function filter(\Closure $callback): self
     {
-        if (!isset($this->clauses[Filter::KEY])) {
+        if (! isset($this->clauses[Filter::KEY])) {
             $this->clauses[Filter::KEY] = new Filter();
         }
 
@@ -56,7 +56,7 @@ class Boolean extends Compound
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function toArray()
     {

@@ -13,7 +13,7 @@ class Boosting extends Compound
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function toArray()
     {

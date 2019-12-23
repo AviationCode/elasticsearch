@@ -13,7 +13,7 @@ class FunctionScore extends Compound
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function toArray()
     {

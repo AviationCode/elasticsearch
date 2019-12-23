@@ -13,7 +13,7 @@ class DisMax extends Compound
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function toArray()
     {

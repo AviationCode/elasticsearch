@@ -10,7 +10,7 @@ class Must implements Arrayable
     const KEY = 'must';
 
     /**
-     * List of must clauses to apply
+     * List of must clauses to apply.
      *
      * @var array
      */
@@ -33,7 +33,7 @@ class Must implements Arrayable
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function toArray()
     {

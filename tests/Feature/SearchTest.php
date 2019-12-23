@@ -143,7 +143,7 @@ class SearchTest extends TestCase
         $this->client->shouldReceive('get')
             ->with([
                 'index' => 'article',
-                'id' => 1
+                'id' => 1,
             ])
             ->andReturn([
                 '_index' => 'article',
@@ -159,7 +159,7 @@ class SearchTest extends TestCase
                     'body' => 'My first body',
                     'created_at' => '2019-12-20 12:00:00',
                     'updated_at' => '2019-12-20 12:00:00',
-                ]
+                ],
             ]);
 
         $qb = $this->elastic->query(Article::class);

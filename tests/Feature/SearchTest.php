@@ -3,6 +3,8 @@
 namespace AviationCode\Elasticsearch\Tests\Feature;
 
 use AviationCode\Elasticsearch\Model\ElasticCollection;
+use AviationCode\Elasticsearch\Query\Dsl\Boolean\Filter;
+use AviationCode\Elasticsearch\Query\Dsl\Boolean\Must;
 use AviationCode\Elasticsearch\Tests\Feature\TestModels\Article;
 use Carbon\Carbon;
 use Elasticsearch\Client;
@@ -229,5 +231,102 @@ class SearchTest extends TestCase
         $qb->findOrFail(0);
 
         $this->markSuccessfull();
+    }
+
+    /**
+     * This test case covers example described in
+     * https://www.elastic.co/guide/en/elasticsearch/reference/current/query-filter-context.html
+     *
+     * This example wraps match query search string in "query" object to make request consistent with other
+     * elasticsearch requests.
+     *
+     * @test
+     */
+    public function complex_query()
+    {
+        $this->client->shouldReceive('search')
+            ->once()
+            ->with([
+                'index' => 'article',
+                'body' => [
+                    'size' => 100,
+                    'query' => [
+                        'bool' => [
+                            'must' => [
+                                ['match' => ['title' => ['query' => 'Search']]],
+                                ['match' => ['content' => ['query' => 'Elasticsearch']]],
+                            ],
+                            'filter' => [
+                                ['term' => ['status' => ['value' => 'published']]],
+                                ['range' => ['publish_date' => ['gte' => '2015-01-01']]],
+                            ],
+                        ],
+                    ],
+                    'sort' => [],
+                    'aggs' => [],
+                ],
+            ])
+            ->andReturn($this->successResponse());
+
+        $qb = $this->elastic->query(Article::class);
+
+        $results = $qb->must(function (Must $must) {
+            return $must->match('title', 'Search')
+                ->match('content', 'Elasticsearch');
+        })->filter(function (Filter $filter) {
+            return $filter->term('status', 'published')
+                ->range('publish_date', '>=', '2015-01-01');
+        })->get();
+
+        $this->assertEquals(2, $results->count());
+    }
+
+    private function successResponse()
+    {
+        return [
+            'took' => 1,
+            'timed_out' => false,
+            '_shards' => [
+                'total' => 1,
+                'successful' => 1,
+                'skipped' => 0,
+                'failed' => 0,
+            ],
+            'hits' => [
+                'total' => [
+                    'value' => 10000,
+                    'relation' => 'gte',
+                ],
+                'max_score' => 1.0,
+                'hits' => [
+                    [
+                        '_index' => 'article',
+                        '_type' => '_doc',
+                        '_id' => 1,
+                        '_score' => 1.0,
+                        '_source' => [
+                            'id' => 1,
+                            'title' => 'My first title',
+                            'body' => 'My first body',
+                            'created_at' => '2019-12-20 12:00:00',
+                            'updated_at' => '2019-12-20 12:00:00',
+                        ],
+                    ],
+                    [
+                        '_index' => 'article',
+                        '_type' => '_doc',
+                        '_id' => 2,
+                        '_score' => 1.0,
+                        '_source' => [
+                            'id' => 2,
+                            'title' => 'My second title',
+                            'body' => 'My second body',
+                            'created_at' => '2019-12-21 12:00:00',
+                            'updated_at' => '2019-12-21 12:00:00',
+                        ],
+                    ],
+                ],
+            ],
+        ];
     }
 }

@@ -5,7 +5,6 @@ namespace AviationCode\Elasticsearch\Query;
 use AviationCode\Elasticsearch\ElasticsearchClient;
 use AviationCode\Elasticsearch\Model\ElasticCollection;
 use AviationCode\Elasticsearch\Model\ElasticSearchable;
-use Elasticsearch\Common\Exceptions\Missing404Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 

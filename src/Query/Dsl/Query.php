@@ -3,7 +3,6 @@
 namespace AviationCode\Elasticsearch\Query\Dsl;
 
 use AviationCode\Elasticsearch\Query\Dsl\Boolean\Must;
-use AviationCode\Elasticsearch\Query\Dsl\Compound;
 use Illuminate\Contracts\Support\Arrayable;
 
 class Query implements Arrayable
@@ -60,7 +59,6 @@ class Query implements Arrayable
         return $this;
     }
 
-
     /**
      * Filter clause (query) must appear in matching documents. However unlike must the score of
      * the query will be ignored. Filter clauses are executed in filter context, meaning that
@@ -77,7 +75,7 @@ class Query implements Arrayable
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function toArray()
     {

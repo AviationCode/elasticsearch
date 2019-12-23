@@ -235,7 +235,7 @@ class SearchTest extends TestCase
 
     /**
      * This test case covers example described in
-     * https://www.elastic.co/guide/en/elasticsearch/reference/current/query-filter-context.html
+     * https://www.elastic.co/guide/en/elasticsearch/reference/current/query-filter-context.html.
      *
      * This example wraps match query search string in "query" object to make request consistent with other
      * elasticsearch requests.

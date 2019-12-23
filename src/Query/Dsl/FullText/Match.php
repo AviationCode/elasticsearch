@@ -5,7 +5,7 @@ namespace AviationCode\Elasticsearch\Query\Dsl\FullText;
 use Illuminate\Contracts\Support\Arrayable;
 
 /**
- * Class Match
+ * Class Match.
  *
  * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html
  */
@@ -50,7 +50,7 @@ class Match implements Arrayable
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function toArray()
     {

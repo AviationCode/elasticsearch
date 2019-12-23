@@ -42,11 +42,11 @@ class Range implements Arrayable
 
         if ($operator === 'gte' || $operator === '>=') {
             $this->gte($date);
-        } else if ($operator === 'gt' || $operator === '>') {
+        } elseif ($operator === 'gt' || $operator === '>') {
             $this->gt($date);
-        } else if ($operator === 'lte' || $operator === '<=') {
+        } elseif ($operator === 'lte' || $operator === '<=') {
             $this->lte($date);
-        } else if ($operator === 'lt' || $operator === '<') {
+        } elseif ($operator === 'lt' || $operator === '<') {
             $this->lt($date);
         }
     }
@@ -64,7 +64,7 @@ class Range implements Arrayable
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function toArray()
     {

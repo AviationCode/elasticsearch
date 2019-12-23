@@ -25,4 +25,9 @@ abstract class TestCase extends BaseTestCase
         $this->elastic = Elasticsearch::fake();
         Elasticsearch::enableEvents(false);
     }
+
+    protected function markSuccessfull()
+    {
+        $this->assertTrue(true);
+    }
 }

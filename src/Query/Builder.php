@@ -53,15 +53,41 @@ class Builder
         }
     }
 
-    public function find($id)
+    /**
+     * Find model by id.
+     *
+     * @param $id
+     *
+     * @return Model|null
+     */
+    public function find($id):? Model
     {
-        try {
-            return $this->model->newFromElasticBuilder(
-                $this->getClient()->get(['index' => $this->model->getIndexName(), 'id' => $id])
-            );
-        } catch (Missing404Exception $exception) {
-            throw new ModelNotFoundException(get_class($this->model).' Not found');
+        $response = $this->getClient()->get(['index' => $this->model->getIndexName(), 'id' => $id]);
+
+        if (! $response['found']) {
+            return null;
         }
+
+        return $this->model->newFromElasticBuilder($response);
+    }
+
+    /**
+     * Find by id or throw model not found exception if missing.
+     *
+     * @param $id
+     * @return Model
+     *
+     * @throws ModelNotFoundException
+     */
+    public function findOrFail($id): Model
+    {
+        $model = $this->find($id);
+
+        if (! $model) {
+            throw new ModelNotFoundException("$id not found");
+        }
+
+        return $model;
     }
 
     public function latest(string $field = 'created_at')

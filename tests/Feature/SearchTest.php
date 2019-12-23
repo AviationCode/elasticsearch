@@ -6,6 +6,7 @@ use AviationCode\Elasticsearch\Model\ElasticCollection;
 use AviationCode\Elasticsearch\Tests\Feature\TestModels\Article;
 use Carbon\Carbon;
 use Elasticsearch\Client;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class SearchTest extends TestCase
 {
@@ -134,5 +135,99 @@ class SearchTest extends TestCase
             $this->assertEquals(2, $model->getElasticAttribute('id'));
             $this->assertEquals(2, $model->elastic['id']);
         });
+    }
+
+    /** @test */
+    public function it_finds_by_id()
+    {
+        $this->client->shouldReceive('get')
+            ->with([
+                'index' => 'article',
+                'id' => 1
+            ])
+            ->andReturn([
+                '_index' => 'article',
+                '_type' => '_doc',
+                '_id' => '1',
+                '_version' => 1,
+                '_seq_no' => 0,
+                '_primary_term' => 1,
+                'found' => true,
+                '_source' => [
+                    'id' => 1,
+                    'title' => 'My first title',
+                    'body' => 'My first body',
+                    'created_at' => '2019-12-20 12:00:00',
+                    'updated_at' => '2019-12-20 12:00:00',
+                ]
+            ]);
+
+        $qb = $this->elastic->query(Article::class);
+
+        $model = $qb->find(1);
+
+        $this->assertEquals(1, $model->getKey());
+        $this->assertEquals(1, $model->id);
+        $this->assertEquals('My first title', $model->title);
+        $this->assertEquals('My first body', $model->body);
+        $this->assertEquals(Carbon::create(2019, 12, 20, 12), $model->created_at);
+        $this->assertEquals(Carbon::create(2019, 12, 20, 12), $model->updated_at);
+
+        $this->assertEquals('_doc', $model->getElasticAttribute('type'));
+        $this->assertEquals('_doc', $model->elastic['type']);
+        $this->assertEquals('article', $model->getElasticAttribute('index'));
+        $this->assertEquals('article', $model->elastic['index']);
+        $this->assertEquals(1, $model->getElasticAttribute('id'));
+        $this->assertEquals(1, $model->elastic['id']);
+
+        $this->assertEquals($model, $qb->findOrFail(1));
+    }
+
+    /** @test **/
+    public function it_returns_null_when_find_does_not_return_result()
+    {
+        $this->client->shouldReceive('get')
+            ->once()
+            ->with([
+                'index' => 'article',
+                'id' => 0,
+            ])
+            ->andReturn([
+                '_index' => 'article',
+                '_type' => '_doc',
+                '_id' => '0',
+                'found' => false,
+            ]);
+
+        $qb = $this->elastic->query(Article::class);
+
+        $result = $qb->find(0);
+
+        $this->assertNull($result);
+    }
+
+    /** @test **/
+    public function it_throws_model_not_found_exception_when_findOrFail_does_not_yield_a_result()
+    {
+        $this->expectException(ModelNotFoundException::class);
+
+        $this->client->shouldReceive('get')
+            ->once()
+            ->with([
+                'index' => 'article',
+                'id' => 0,
+            ])
+            ->andReturn([
+                '_index' => 'article',
+                '_type' => '_doc',
+                '_id' => '0',
+                'found' => false,
+            ]);
+
+        $qb = $this->elastic->query(Article::class);
+
+        $qb->findOrFail(0);
+
+        $this->markSuccessfull();
     }
 }

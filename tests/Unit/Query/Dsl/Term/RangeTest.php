@@ -10,14 +10,14 @@ class RangeTest extends TestCase
     /** @test **/
     public function it_builds_a_simple_range()
     {
-        $range = new Range('age',  '>=', 20);
+        $range = new Range('age', '>=', 20);
 
         $this->assertEquals([
             'range' => [
                 'age' => [
                     'gte' => 20,
-                ]
-            ]
+                ],
+            ],
         ], $range->toArray());
     }
 
@@ -72,16 +72,16 @@ class RangeTest extends TestCase
     /** @test **/
     public function it_can_build_inclusive_range()
     {
-       $expected = ['range' => ['age' => [
+        $expected = ['range' => ['age' => [
            'gte' => 1,
            'lte' => 10,
        ]]];
 
-       $range = new Range('age', function (Range $range) {
-           return $range->gte(1)->lte(10);
-       });
+        $range = new Range('age', function (Range $range) {
+            return $range->gte(1)->lte(10);
+        });
 
-       $this->assertEquals($expected, $range->toArray());
+        $this->assertEquals($expected, $range->toArray());
     }
 
     /** @test **/
@@ -164,7 +164,8 @@ class RangeTest extends TestCase
             });
 
             $this->fail('Expected InvalidArgumentException non throw');
-        } catch (\InvalidArgumentException $exception) {}
+        } catch (\InvalidArgumentException $exception) {
+        }
 
         try {
             new Range('age', function (Range $range) {
@@ -172,7 +173,8 @@ class RangeTest extends TestCase
             });
 
             $this->fail('Expected InvalidArgumentException non throw');
-        } catch (\InvalidArgumentException $exception) {}
+        } catch (\InvalidArgumentException $exception) {
+        }
 
         $this->markSuccessfull();
     }
@@ -186,7 +188,8 @@ class RangeTest extends TestCase
             });
 
             $this->fail('Expected InvalidArgumentException non throw');
-        } catch (\InvalidArgumentException $exception) {}
+        } catch (\InvalidArgumentException $exception) {
+        }
 
         try {
             new Range('age', function (Range $range) {
@@ -194,7 +197,8 @@ class RangeTest extends TestCase
             });
 
             $this->fail('Expected InvalidArgumentException non throw');
-        } catch (\InvalidArgumentException $exception) {}
+        } catch (\InvalidArgumentException $exception) {
+        }
 
         $this->markSuccessfull();
     }

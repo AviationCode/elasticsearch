@@ -91,11 +91,24 @@ class Builder
         return $model;
     }
 
+    /**
+     * Order by latest.
+     *
+     * @param string $field
+     * @return $this
+     */
     public function latest(string $field = 'created_at')
     {
         return $this->orderBy($field, 'desc');
     }
 
+    /**
+     * Order by field and direction.
+     *
+     * @param string $field
+     * @param string $direction
+     * @return $this
+     */
     public function orderBy(string $field, $direction = 'asc')
     {
         $this->sort[] = [$field => $direction];
@@ -103,6 +116,12 @@ class Builder
         return $this;
     }
 
+    /**
+     * Limit the number of results returned.
+     *
+     * @param $size
+     * @return $this
+     */
     public function limit($size)
     {
         $this->size = $size;
@@ -110,9 +129,14 @@ class Builder
         return $this;
     }
 
+    /**
+     * Get first result.
+     *
+     * @return Model|null
+     */
     public function first()
     {
-        return $this->get()[0] ?? null;
+        return $this->limit(1)->get()[0] ?? null;
     }
 
     /**
@@ -129,6 +153,13 @@ class Builder
         return $this;
     }
 
+    /**
+     * Get the root filter clause.
+     *
+     * @param \Closure $callback
+     *
+     * @return $this
+     */
     public function filter(\Closure $callback): self
     {
         $this->query->filter($callback);

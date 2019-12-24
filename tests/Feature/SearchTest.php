@@ -233,6 +233,56 @@ class SearchTest extends TestCase
         $this->markSuccessfull();
     }
 
+    /** @test **/
+    public function it_orders_by_latest_created_at()
+    {
+        $this->client->shouldReceive('search')
+            ->once()
+            ->with([
+                'index' => 'article',
+                'body' => [
+                    'size' => 100,
+                    'query' => [
+                        'bool' => [],
+                    ],
+                    'sort' => [['created_at' => 'desc']],
+                    'aggs' => [],
+                ],
+            ])
+            ->andReturn($this->successResponse());
+
+        $qb = $this->elastic->query(Article::class);
+
+        $results = $qb->latest()->get();
+
+        $this->assertEquals(2, $results->count());
+    }
+
+    /** @test **/
+    public function it_gets_first_result()
+    {
+        $this->client->shouldReceive('search')
+            ->once()
+            ->with([
+                'index' => 'article',
+                'body' => [
+                    'size' => 1,
+                    'query' => [
+                        'bool' => [],
+                    ],
+                    'sort' => [],
+                    'aggs' => [],
+                ],
+            ])
+            ->andReturn($this->successResponse());
+
+        $qb = $this->elastic->query(Article::class);
+
+        $result = $qb->first();
+
+        $this->assertInstanceOf(Article::class, $result);
+    }
+
     /**
      * This test case covers example described in
      * https://www.elastic.co/guide/en/elasticsearch/reference/current/query-filter-context.html.

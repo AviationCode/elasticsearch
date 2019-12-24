@@ -28,7 +28,15 @@ class Range implements Arrayable
      */
     private $condition = [];
 
-    public function __construct($field, $operator = 'gte', $date = null, array $options = [])
+    /**
+     * Range constructor.
+     *
+     * @param string field
+     * @param string $operator
+     * @param null $value
+     * @param array $options
+     */
+    public function __construct(string $field, $operator = 'gte', $value = null, array $options = [])
     {
         $this->field = $field;
         $this->options = $options;
@@ -36,29 +44,90 @@ class Range implements Arrayable
         // Allows you to build up a fluent range.
         if (is_callable($operator)) {
             $operator($this);
+            $this->options = $value ?? $options;
 
             return;
         }
 
         if ($operator === 'gte' || $operator === '>=') {
-            $this->gte($date);
+            $this->gte($value);
         } elseif ($operator === 'gt' || $operator === '>') {
-            $this->gt($date);
+            $this->gt($value);
         } elseif ($operator === 'lte' || $operator === '<=') {
-            $this->lte($date);
+            $this->lte($value);
         } elseif ($operator === 'lt' || $operator === '<') {
-            $this->lt($date);
+            $this->lt($value);
         }
     }
 
     /**
-     * @param $date
+     * Greater than or equal.
+     *
+     * @param $value
      *
      * @return $this
      */
-    public function gte($date): self
+    public function gte($value): self
     {
-        $this->condition['gte'] = $date;
+        if (isset($this->condition['gt'])) {
+            throw new \InvalidArgumentException('Cannot combine gte while gt condition is already applied');
+        }
+
+        $this->condition['gte'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Greater than or equal.
+     *
+     * @param $value
+     *
+     * @return $this
+     */
+    public function gt($value): self
+    {
+        if (isset($this->condition['gte'])) {
+            throw new \InvalidArgumentException('Cannot combine gt while gte condition is already applied');
+        }
+
+        $this->condition['gt'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Greater than or equal.
+     *
+     * @param $value
+     *
+     * @return $this
+     */
+    public function lte($value): self
+    {
+        if (isset($this->condition['lt'])) {
+            throw new \InvalidArgumentException('Cannot combine lte while lt condition is already applied');
+        }
+
+        $this->condition['lte'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Greater than or equal.
+     *
+     * @param $value
+     *
+     * @return $this
+     */
+    public function lt($value): self
+    {
+        if (isset($this->condition['lte'])) {
+            throw new \InvalidArgumentException('Cannot combine lt while lte condition is already applied');
+        }
+
+        $this->condition['lt'] = $value;
 
         return $this;
     }

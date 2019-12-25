@@ -44,14 +44,14 @@ class Prefix implements Arrayable
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function toArray()
     {
         return [
             static::KEY => [
-                $this->field => array_merge(['value' => $this->value], array_filter(['rewrite' => $this->rewrite]))
-            ]
+                $this->field => array_merge(['value' => $this->value], array_filter(['rewrite' => $this->rewrite])),
+            ],
         ];
     }
 }

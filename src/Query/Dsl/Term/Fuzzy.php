@@ -47,7 +47,7 @@ class Fuzzy implements Arrayable
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function toArray()
     {

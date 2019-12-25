@@ -1,0 +1,39 @@
+<?php
+
+namespace AviationCode\Elasticsearch\Query\Dsl\Term;
+
+use Illuminate\Contracts\Support\Arrayable;
+
+class Ids implements Arrayable
+{
+    const KEY = 'ids';
+
+    /**
+     * Array of document ids.
+     *
+     * @var array
+     */
+    private $values;
+
+    /**
+     * Ids constructor.
+     *
+     * @param array $values
+     */
+    public function __construct(array $values)
+    {
+        $this->values = $values;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray()
+    {
+        return [
+            static::KEY => [
+                'values' => $this->values,
+            ],
+        ];
+    }
+}

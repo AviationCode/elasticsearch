@@ -29,14 +29,14 @@ class FilterTest extends TestCase
                     'language' => [
                         'value' => 'php',
                     ],
-                ]
+                ],
             ],
             [
                 'range' => [
                     'age' => [
                         'gte' => '20',
                     ],
-                ]
+                ],
             ],
         ], $filter->toArray());
     }

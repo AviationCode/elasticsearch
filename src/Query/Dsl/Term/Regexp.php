@@ -37,7 +37,7 @@ class Regexp implements Arrayable
      * @param $value
      * @param array $options
      */
-    public function __construct(string $field, $value, array $options =[])
+    public function __construct(string $field, $value, array $options = [])
     {
         $this->field = $field;
         $this->value = $value;
@@ -45,7 +45,7 @@ class Regexp implements Arrayable
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function toArray()
     {

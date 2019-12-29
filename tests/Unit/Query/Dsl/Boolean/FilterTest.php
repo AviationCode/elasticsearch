@@ -316,4 +316,41 @@ class FilterTest extends TestCase
             ],
         ], $filter->toArray());
     }
+
+    /** @test **/
+    public function it_adds_match_bool_prefix_query()
+    {
+        $filter = new Filter();
+
+        $filter->matchBoolPrefix('message', 'quick brown f');
+
+        $this->assertEquals([
+            [
+                'match_bool_prefix' => [
+                    'message' => [
+                        'query' => 'quick brown f',
+                    ],
+                ],
+            ],
+        ], $filter->toArray());
+    }
+
+    /** @test **/
+    public function it_adds_match_bool_prefix_query_with_options()
+    {
+        $filter = new Filter();
+
+        $filter->matchBoolPrefix('message', 'quick brown f', ['analyzer' => 'keyword']);
+
+        $this->assertEquals([
+            [
+                'match_bool_prefix' => [
+                    'message' => [
+                        'query' => 'quick brown f',
+                        'analyzer' => 'keyword',
+                    ],
+                ],
+            ],
+        ], $filter->toArray());
+    }
 }

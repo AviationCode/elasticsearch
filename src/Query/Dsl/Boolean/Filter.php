@@ -171,7 +171,7 @@ class Filter implements Arrayable
 
     /**
      * Creates a bool query that matches each term as a term query,
-     * except for the last term, which is matched as a prefix query
+     * except for the last term, which is matched as a prefix query.
      *
      * @param string $field
      * @param $value

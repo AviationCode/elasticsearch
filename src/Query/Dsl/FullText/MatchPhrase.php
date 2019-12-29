@@ -50,7 +50,7 @@ class MatchPhrase implements Arrayable
         return [
             static::KEY => [
                 $this->field => array_merge(['query' => $this->value], $this->options),
-            ]
+            ],
         ];
     }
 }

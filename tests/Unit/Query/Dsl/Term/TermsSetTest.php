@@ -33,7 +33,6 @@ class TermsSetTest extends TestCase
                 'programming_languages' => [
                     'terms' => ['php', 'java'],
                     'minimum_should_match_field' => 'required_matches',
-
                 ],
             ],
         ], $termsSet->toArray());

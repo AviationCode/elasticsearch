@@ -45,7 +45,7 @@ class Wildcard implements Arrayable
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function toArray()
     {

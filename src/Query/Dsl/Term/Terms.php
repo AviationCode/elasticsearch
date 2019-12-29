@@ -44,7 +44,7 @@ class Terms implements Arrayable
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function toArray()
     {

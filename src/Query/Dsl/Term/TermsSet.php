@@ -44,14 +44,14 @@ class TermsSet implements Arrayable
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function toArray()
     {
         return [
             static::KEY => [
                 $this->field => array_merge(['terms' => $this->values], $this->options),
-            ]
+            ],
         ];
     }
 }

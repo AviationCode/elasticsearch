@@ -4,6 +4,7 @@ namespace AviationCode\Elasticsearch\Query\Dsl\Boolean;
 
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchBoolPrefix;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchPhrase;
+use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchPhrasePrefix;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Exists;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Fuzzy;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Ids;
@@ -198,6 +199,22 @@ class Filter implements Arrayable
     public function matchPhrase(string $field, $value, array $options = []): self
     {
         $this->clauses[] = new MatchPhrase($field, $value, $options);
+
+        return $this;
+    }
+
+    /**
+     * Like the match_phrase query, but does a wildcard search on the final word.
+     *
+     * @param string $field
+     * @param $value
+     * @param array $options
+     *
+     * @return $this
+     */
+    public function matchPhrasePrefix(string $field, $value, array $options = []): self
+    {
+        $this->clauses[] = new MatchPhrasePrefix($field, $value, $options);
 
         return $this;
     }

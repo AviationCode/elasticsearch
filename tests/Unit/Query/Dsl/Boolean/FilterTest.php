@@ -353,4 +353,41 @@ class FilterTest extends TestCase
             ],
         ], $filter->toArray());
     }
+
+    /** @test **/
+    public function it_adds_match_phrase_query()
+    {
+        $filter = new Filter();
+
+        $filter->matchPhrase('message', 'this is a test');
+
+        $this->assertEquals([
+            [
+                'match_phrase' => [
+                    'message' => [
+                        'query' => 'this is a test',
+                    ],
+                ],
+            ],
+        ], $filter->toArray());
+    }
+
+    /** @test **/
+    public function it_adds_match_phrase_query_with_options()
+    {
+        $filter = new Filter();
+
+        $filter->matchPhrase('message', 'this is a test', ['analyzer' => 'my_analyzer']);
+
+        $this->assertEquals([
+            [
+                'match_phrase' => [
+                    'message' => [
+                        'query' => 'this is a test',
+                        'analyzer' => 'my_analyzer',
+                    ],
+                ],
+            ],
+        ], $filter->toArray());
+    }
 }

@@ -3,6 +3,7 @@
 namespace AviationCode\Elasticsearch\Query\Dsl\Boolean;
 
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchBoolPrefix;
+use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchPhrase;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Exists;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Fuzzy;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Ids;
@@ -181,6 +182,22 @@ class Filter implements Arrayable
     public function matchBoolPrefix(string $field, $value, array $options = []): self
     {
         $this->clauses[] = new MatchBoolPrefix($field, $value, $options);
+
+        return $this;
+    }
+
+    /**
+     * Like the match query but used for matching exact phrases or word proximity matches.
+     *
+     * @param string $field
+     * @param $value
+     * @param array $options
+     *
+     * @return $this
+     */
+    public function matchPhrase(string $field, $value, array $options = []): self
+    {
+        $this->clauses[] = new MatchPhrase($field, $value, $options);
 
         return $this;
     }

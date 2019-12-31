@@ -427,4 +427,39 @@ class FilterTest extends TestCase
             ],
         ], $filter->toArray());
     }
+
+    /** @test **/
+    public function it_adds_multi_match_query()
+    {
+        $filter = new Filter();
+
+        $filter->multiMatch(['title', 'message'], 'this is a test');
+
+        $this->assertEquals([
+            [
+                'multi_match' => [
+                    'query' => 'this is a test',
+                    'fields' => ['title', 'message'],
+                ],
+            ],
+        ], $filter->toArray());
+    }
+
+    /** @test **/
+    public function it_adds_multi_match_query_with_options()
+    {
+        $filter = new Filter();
+
+        $filter->multiMatch(['title', '*_name'], 'this is a test', ['type' => 'best_fields']);
+
+        $this->assertEquals([
+            [
+                'multi_match' => [
+                    'query' => 'this is a test',
+                    'fields' => ['title', '*_name'],
+                    'type' => 'best_fields',
+                ],
+            ],
+        ], $filter->toArray());
+    }
 }

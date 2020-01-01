@@ -291,8 +291,6 @@ class Filter implements Arrayable
     }
 
     /**
-     *
-     *
      * @param string $field
      * @param array $points
      * @param string|null $validationMethod

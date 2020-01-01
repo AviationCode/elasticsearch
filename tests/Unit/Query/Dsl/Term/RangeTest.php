@@ -73,9 +73,9 @@ class RangeTest extends TestCase
     public function it_can_build_inclusive_range()
     {
         $expected = ['range' => ['age' => [
-           'gte' => 1,
-           'lte' => 10,
-       ]]];
+            'gte' => 1,
+            'lte' => 10,
+        ]]];
 
         $range = new Range('age', function (Range $range) {
             return $range->gte(1)->lte(10);

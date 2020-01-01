@@ -51,7 +51,7 @@ class MultiMatch implements Arrayable
             static::KEY => array_merge([
                 'query' => $this->value,
                 'fields' => $this->fields,
-            ], $this->options)
+            ], $this->options),
         ];
     }
 }

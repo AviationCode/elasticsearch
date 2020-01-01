@@ -15,7 +15,7 @@ class WildcardTest extends TestCase
         $this->assertEquals([
             'wildcard' => [
                 'user' => [
-                     'value' => 'ki.*y',
+                    'value' => 'ki.*y',
                 ],
             ],
         ], $wildcard->toArray());

@@ -6,6 +6,7 @@ use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchBoolPrefix;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchPhrase;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchPhrasePrefix;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MultiMatch;
+use AviationCode\Elasticsearch\Query\Dsl\FullText\QueryString;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Exists;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Fuzzy;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Ids;
@@ -232,6 +233,23 @@ class Filter implements Arrayable
     public function multiMatch(array $fields, $value, array $options = []): self
     {
         $this->clauses[] = new MultiMatch($fields, $value, $options);
+
+        return $this;
+    }
+
+    /**
+     * Supports the compact Lucene query string syntax, allowing you to specify AND|OR|NOT
+     * conditions and multi-field search within a single query string.
+     * For expert users only.
+     *
+     * @param $value
+     * @param array $options
+     *
+     * @return $this
+     */
+    public function queryString($value, array $options = []): self
+    {
+        $this->clauses[] = new QueryString($value, $options);
 
         return $this;
     }

@@ -462,4 +462,37 @@ class FilterTest extends TestCase
             ],
         ], $filter->toArray());
     }
+
+    /** @test **/
+    public function it_adds_query_string_query()
+    {
+        $filter = new Filter();
+
+        $filter->queryString('this is a test');
+
+        $this->assertEquals([
+            [
+                'query_string' => [
+                    'query' => 'this is a test',
+                ],
+            ],
+        ], $filter->toArray());
+    }
+
+    /** @test **/
+    public function it_adds_query_string_query_with_options()
+    {
+        $filter = new Filter();
+
+        $filter->queryString('this is a test', ['default_field' => 'body']);
+
+        $this->assertEquals([
+            [
+                'query_string' => [
+                    'query' => 'this is a test',
+                    'default_field' => 'body',
+                ],
+            ],
+        ], $filter->toArray());
+    }
 }

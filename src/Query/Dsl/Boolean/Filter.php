@@ -8,6 +8,7 @@ use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchPhrasePrefix;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MultiMatch;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\QueryString;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\SimpleQueryString;
+use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoShape;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Exists;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Fuzzy;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Ids;
@@ -266,6 +267,24 @@ class Filter implements Arrayable
     public function simpleQueryString($value, array $options = []): self
     {
         $this->clauses[] = new SimpleQueryString($value, $options);
+
+        return $this;
+    }
+
+    /**
+     * Finds documents with geo-shapes which either intersect, are contained by,
+     * or do not intersect with the specified geo-shape.
+     *
+     * @param string $field
+     * @param array $shape
+     * @param string|null $relation
+     * @param bool $unmapped
+     *
+     * @return $this
+     */
+    public function geoShape(string $field, array $shape, ?string $relation = null, bool $unmapped = false): self
+    {
+        $this->clauses[] = new GeoShape($field, $shape, $relation, $unmapped);
 
         return $this;
     }

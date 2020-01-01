@@ -3,6 +3,7 @@
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Dsl\Boolean;
 
 use AviationCode\Elasticsearch\Query\Dsl\Boolean\Filter;
+use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoShape;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class FilterTest extends TestCase
@@ -524,6 +525,25 @@ class FilterTest extends TestCase
                 'simple_query_string' => [
                     'query' => 'this is a test',
                     'fields' => ['title', 'body'],
+                ],
+            ],
+        ], $filter->toArray());
+    }
+
+    /** @test **/
+    public function it_adds_geo_shape()
+    {
+        $filter = new Filter();
+
+        $filter->geoShape('location', ['index' => 'shapes', 'id' => 'abc', 'path' => 'location'], GeoShape::INDEXED_SHAPE, true);
+
+        $this->assertEquals([
+            [
+                'geo_shape' => [
+                    'location' => [
+                        'indexed_shape' => ['index' => 'shapes', 'id' => 'abc', 'path' => 'location'],
+                        'ignored_unmapped' => true,
+                    ],
                 ],
             ],
         ], $filter->toArray());

@@ -7,6 +7,7 @@ use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchPhrase;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchPhrasePrefix;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MultiMatch;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\QueryString;
+use AviationCode\Elasticsearch\Query\Dsl\FullText\SimpleQueryString;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Exists;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Fuzzy;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Ids;
@@ -250,6 +251,21 @@ class Filter implements Arrayable
     public function queryString($value, array $options = []): self
     {
         $this->clauses[] = new QueryString($value, $options);
+
+        return $this;
+    }
+
+    /**
+     * A simpler, more robust version of the query_string syntax suitable for exposing directly to users.
+     *
+     * @param $value
+     * @param array $options
+     *
+     * @return $this
+     */
+    public function simpleQueryString($value, array $options = []): self
+    {
+        $this->clauses[] = new SimpleQueryString($value, $options);
 
         return $this;
     }

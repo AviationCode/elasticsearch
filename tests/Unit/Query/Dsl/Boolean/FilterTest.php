@@ -3,6 +3,7 @@
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Dsl\Boolean;
 
 use AviationCode\Elasticsearch\Query\Dsl\Boolean\Filter;
+use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoPolygon;
 use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoShape;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
@@ -543,6 +544,34 @@ class FilterTest extends TestCase
                     'location' => [
                         'indexed_shape' => ['index' => 'shapes', 'id' => 'abc', 'path' => 'location'],
                         'ignored_unmapped' => true,
+                    ],
+                ],
+            ],
+        ], $filter->toArray());
+    }
+
+    /** @test **/
+    public function it_adds_geo_polygon()
+    {
+        $filter = new Filter();
+
+        $filter->geoPolygon('location', [
+            ['lat' => 51.1, 'lon' => 4.1],
+            ['lat' => 52.2, 'lon' => 5.2],
+            ['lat' => 53.3, 'lon' => 6.3],
+        ], GeoPolygon::STRICT, true);
+
+        $this->assertEquals([
+            [
+                'geo_polygon' => [
+                    'location' => [
+                        'points' => [
+                            ['lat' => 51.1, 'lon' => 4.1],
+                            ['lat' => 52.2, 'lon' => 5.2],
+                            ['lat' => 53.3, 'lon' => 6.3],
+                        ],
+                        'validation_method' => 'strict',
+                        'ignore_unmapped' => true,
                     ],
                 ],
             ],

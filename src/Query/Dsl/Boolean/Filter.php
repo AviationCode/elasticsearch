@@ -8,6 +8,7 @@ use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchPhrasePrefix;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MultiMatch;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\QueryString;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\SimpleQueryString;
+use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoPolygon;
 use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoShape;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Exists;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Fuzzy;
@@ -285,6 +286,23 @@ class Filter implements Arrayable
     public function geoShape(string $field, array $shape, ?string $relation = null, bool $unmapped = false): self
     {
         $this->clauses[] = new GeoShape($field, $shape, $relation, $unmapped);
+
+        return $this;
+    }
+
+    /**
+     *
+     *
+     * @param string $field
+     * @param array $points
+     * @param string|null $validationMethod
+     * @param bool $unmapped
+     *
+     * @return $this
+     */
+    public function geoPolygon(string $field, array $points, ?string $validationMethod, bool $unmapped): self
+    {
+        $this->clauses[] = new GeoPolygon($field, $points, $validationMethod, $unmapped);
 
         return $this;
     }

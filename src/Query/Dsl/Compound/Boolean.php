@@ -4,15 +4,47 @@ namespace AviationCode\Elasticsearch\Query\Dsl\Compound;
 
 use AviationCode\Elasticsearch\Query\Dsl\Boolean\Filter;
 use AviationCode\Elasticsearch\Query\Dsl\Boolean\Must;
+use AviationCode\Elasticsearch\Query\Dsl\Boolean\MustNot;
+use AviationCode\Elasticsearch\Query\Dsl\Boolean\Should;
+use BadMethodCallException;
 
+/**
+ * Class Boolean
+ *
+ * @method $this must(\Closure $callback)
+ * @method $this filter(\Closure $callback)
+ * @method $this should(\Closure $callback)
+ * @method $this mustNot(\Closure $callback)
+ */
 class Boolean extends Compound
 {
-    /**
-     * @var Must
-     */
-    private $must;
-
     private $clauses = [];
+
+    /**
+     * Available boolean query drivers.
+     *
+     * @var array
+     */
+    private $drivers = [
+        'must' => Must::class,
+        'filter' => Filter::class,
+        'should' => Should::class,
+        'mustNot' => MustNot::class,
+    ];
+
+    /**
+     * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html#bool-min-should-match
+     *
+     * @var null|int|float
+     */
+    private $minimumShouldMatch = null;
+
+    /**
+     * Bost this boolean query result by given factor.
+     *
+     * @var null|float
+     */
+    private $boost = null;
 
     /**
      * Boolean constructor.
@@ -23,36 +55,38 @@ class Boolean extends Compound
     }
 
     /**
-     * Build up a must clause.
+     * Add a new clause.
      *
+     * @param string $method
      * @param \Closure $callback
      *
-     * @return bool
+     * @return $this
      */
-    public function must(\Closure $callback): self
+    protected function query(string $method, \Closure $callback): self
     {
-        if (! isset($this->clauses[Must::KEY])) {
-            $this->clauses[Must::KEY] = new Must();
+        $class = $this->drivers[$method];
+
+        if (! isset($this->clauses[$class::KEY])) {
+            $this->clauses[$class::KEY] = new $class;
         }
 
-        $callback($this->clauses[Must::KEY]);
+        $callback($this->clauses[$class::KEY]);
 
         return $this;
     }
 
     /**
-     * @param \Closure $callback
-     * @return bool
+     * {@inheritDoc}
      */
-    public function filter(\Closure $callback): self
+    public function __call($method, $arguments)
     {
-        if (! isset($this->clauses[Filter::KEY])) {
-            $this->clauses[Filter::KEY] = new Filter();
+        if (isset($this->drivers[$method]) && isset($arguments[0])) {
+            return $this->query($method, $arguments[0]);
         }
 
-        $callback($this->clauses[Filter::KEY]);
-
-        return $this;
+        throw new BadMethodCallException(sprintf(
+            'Method %s::%s does not exist.', static::class, $method
+        ));
     }
 
     /**

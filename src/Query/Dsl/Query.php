@@ -2,7 +2,6 @@
 
 namespace AviationCode\Elasticsearch\Query\Dsl;
 
-use AviationCode\Elasticsearch\Query\Dsl\Boolean\Must;
 use Illuminate\Contracts\Support\Arrayable;
 
 class Query implements Arrayable
@@ -70,6 +69,34 @@ class Query implements Arrayable
     public function filter(\Closure $callback): self
     {
         $this->boolean->filter($callback);
+
+        return $this;
+    }
+
+    /**
+     * The clause (query) should appear in the matching document.
+     *
+     * @param \Closure $callback
+     * @return $this
+     */
+    public function should(\Closure $callback): self
+    {
+        $this->boolean->should($callback);
+
+        return $this;
+    }
+
+    /**
+     * The clause (query) must not appear in the matching documents.
+     * Clauses are executed in filter context meaning that scoring is ignored and clauses are considered for caching.
+     * Because scoring is ignored, a score of 0 for all documents is returned.
+     *
+     * @param \Closure $callback
+     * @return $this
+     */
+    public function mustNot(\Closure $callback): self
+    {
+        $this->boolean->mustNot($callback);
 
         return $this;
     }

@@ -23,7 +23,7 @@ use AviationCode\Elasticsearch\Query\Dsl\Term\Term;
 use AviationCode\Elasticsearch\Query\Dsl\Term\TermsSet;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Wildcard;
 
-class Boolean
+abstract class Boolean
 {
     /**
      * Clauses to apply.

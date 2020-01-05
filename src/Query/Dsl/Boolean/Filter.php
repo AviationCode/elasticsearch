@@ -8,6 +8,7 @@ use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchPhrasePrefix;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MultiMatch;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\QueryString;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\SimpleQueryString;
+use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoDistance;
 use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoPolygon;
 use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoShape;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Exists;
@@ -291,6 +292,8 @@ class Filter implements Arrayable
     }
 
     /**
+     * Find documents with geo-points within the specified polygon.
+     *
      * @param string $field
      * @param array $points
      * @param string|null $validationMethod
@@ -301,6 +304,25 @@ class Filter implements Arrayable
     public function geoPolygon(string $field, array $points, ?string $validationMethod, bool $unmapped): self
     {
         $this->clauses[] = new GeoPolygon($field, $points, $validationMethod, $unmapped);
+
+        return $this;
+    }
+
+    /**
+     * Finds documents with geo-points within the specified distance of a central point.
+     *
+     * @param string $field
+     * @param $lat
+     * @param $lon
+     * @param null $distance
+     * @param null $unit
+     * @param array|null $options
+     *
+     * @return Filter
+     */
+    public function geoDistance(string $field, $lat, $lon, $distance = null, $unit = null, ?array $options = null): self
+    {
+        $this->clauses[] = new GeoDistance($field, $lat, $lon, $distance, $unit, $options);
 
         return $this;
     }

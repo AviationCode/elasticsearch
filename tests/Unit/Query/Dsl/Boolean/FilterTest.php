@@ -3,6 +3,7 @@
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Dsl\Boolean;
 
 use AviationCode\Elasticsearch\Query\Dsl\Boolean\Filter;
+use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoDistance;
 use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoPolygon;
 use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoShape;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
@@ -573,6 +574,24 @@ class FilterTest extends TestCase
                         'validation_method' => 'strict',
                         'ignore_unmapped' => true,
                     ],
+                ],
+            ],
+        ], $filter->toArray());
+    }
+
+    /** @test **/
+    public function it_adds_distance()
+    {
+        $filter = new Filter();
+
+        $filter->geoDistance('location', 40, -70, 123, GeoDistance::M, ['distance_type' => GeoDistance::ARC]);
+
+        $this->assertEquals([
+            [
+                'geo_distance' => [
+                    'distance' => '123m',
+                    'location' => ['lat' => 40, 'lon' => -70],
+                    'distance_type' => 'arc',
                 ],
             ],
         ], $filter->toArray());

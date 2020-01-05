@@ -88,7 +88,7 @@ class ElasticCollection extends Collection
      */
     public function mapModels(array $response, ?Model $model = null): self
     {
-        if (!$model) {
+        if (! $model) {
             return $this;
         }
 

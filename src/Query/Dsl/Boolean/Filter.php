@@ -2,6 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Query\Dsl\Boolean;
 
+use AviationCode\Elasticsearch\Query\Dsl\FullText\Match;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchBoolPrefix;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchPhrase;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchPhrasePrefix;
@@ -173,6 +174,22 @@ class Filter implements Arrayable
     public function wildcard(string $field, $value, array $options = []): self
     {
         $this->clauses[] = new Wildcard($field, $value, $options);
+
+        return $this;
+    }
+
+    /**
+     * Returns documents that match a provided text, number, date or boolean value.
+     * The provided text is analyzed before matching.
+     *
+     * @param string $key
+     * @param $query
+     * @param array $options
+     * @return $this
+     */
+    public function match(string $key, $query, array $options = []): self
+    {
+        $this->clauses[] = new Match($key, $query, $options);
 
         return $this;
     }

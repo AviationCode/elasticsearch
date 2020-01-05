@@ -322,6 +322,24 @@ class FilterTest extends TestCase
     }
 
     /** @test **/
+    public function it_adds_match_query()
+    {
+        $filter = new Filter();
+
+        $filter->match('message', 'quick brown f');
+
+        $this->assertEquals([
+            [
+                'match' => [
+                    'message' => [
+                        'query' => 'quick brown f',
+                    ],
+                ],
+            ],
+        ], $filter->toArray());
+    }
+
+    /** @test **/
     public function it_adds_match_bool_prefix_query()
     {
         $filter = new Filter();

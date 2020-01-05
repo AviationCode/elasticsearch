@@ -4,7 +4,6 @@ namespace AviationCode\Elasticsearch\Tests\Unit\Model;
 
 use AviationCode\Elasticsearch\Model\ElasticCollection;
 use AviationCode\Elasticsearch\Query\Builder;
-use AviationCode\Elasticsearch\Query\Dsl\Query;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class ElasticCollectionTest extends TestCase
@@ -105,12 +104,12 @@ class ElasticCollectionTest extends TestCase
                                     [
                                         'key_as_string' => '2019-12-08 00:00:00',
                                         'key' => 1575763200000,
-                                        'doc_count' => 13
+                                        'doc_count' => 13,
                                     ],
                                     [
                                         'key_as_string' => '2019-12-09 00:00:00',
                                         'key' => 1575849600000,
-                                        'doc_count' => 37
+                                        'doc_count' => 37,
                                     ],
                                 ],
                             ],
@@ -123,19 +122,19 @@ class ElasticCollectionTest extends TestCase
                                     [
                                         'key_as_string' => '2019-12-08 00:00:00',
                                         'key' => 1575763200000,
-                                        'doc_count' => 12
+                                        'doc_count' => 12,
                                     ],
                                     [
                                         'key_as_string' => '2019-12-09 00:00:00',
                                         'key' => 1575849600000,
-                                        'doc_count' => 13
+                                        'doc_count' => 13,
                                     ],
                                 ],
                             ],
                         ],
                     ],
-                ]
-            ]
+                ],
+            ],
         ];
 
         $builder = new Builder();

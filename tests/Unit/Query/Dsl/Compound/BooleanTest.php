@@ -52,7 +52,8 @@ class BooleanTest extends TestCase
         $this->expectException(\BadMethodCallException::class);
 
         $boolean = new Boolean();
-        $boolean->foobar(function () {});
+        $boolean->foobar(function () {
+        });
 
         $this->markSuccessfull();
     }
@@ -106,7 +107,7 @@ class BooleanTest extends TestCase
                                 ],
                             ],
                         ],
-                    ]
+                    ],
                 ],
             ],
         ], $boolean->toArray());

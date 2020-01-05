@@ -3,7 +3,6 @@
 namespace AviationCode\Elasticsearch\Query\Dsl;
 
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Support\Arr;
 
 class Query implements Arrayable
 {
@@ -114,7 +113,7 @@ class Query implements Arrayable
             $this->disMax->toArray(),
             $this->functionScore->toArray(),
         ])->mapWithKeys(function ($value, $key) {
-            if (!$value) {
+            if (! $value) {
                 return [$key => $value];
             }
 

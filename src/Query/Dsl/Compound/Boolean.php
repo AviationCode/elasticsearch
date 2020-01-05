@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Query\Dsl\Boolean\Should;
 use BadMethodCallException;
 
 /**
- * Class Boolean
+ * Class Boolean.
  *
  * @method $this must(\Closure $callback)
  * @method $this filter(\Closure $callback)
@@ -76,7 +76,7 @@ class Boolean extends Compound
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function __call($method, $arguments)
     {

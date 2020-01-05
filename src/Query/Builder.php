@@ -63,7 +63,7 @@ class Builder
      *
      * @return Model|null
      */
-    public function find($id):?Model
+    public function find($id): ?Model
     {
         $response = $this->getClient()->get(['index' => $this->model->getIndexName(), 'id' => $id]);
 

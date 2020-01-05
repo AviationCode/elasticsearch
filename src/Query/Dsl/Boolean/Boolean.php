@@ -34,7 +34,7 @@ abstract class Boolean implements Arrayable
     protected $clauses = [];
 
     /**
-     * Created a nested boolean clause
+     * Created a nested boolean clause.
      *
      * @param \Closure $callback
      *

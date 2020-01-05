@@ -3,7 +3,6 @@
 namespace AviationCode\Elasticsearch\Tests\Unit\Model;
 
 use AviationCode\Elasticsearch\Model\ElasticCollection;
-use AviationCode\Elasticsearch\Model\ElasticsearchModel;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class ElasticSearchableTest extends TestCase
@@ -47,9 +46,4 @@ class ElasticSearchableTest extends TestCase
 
         $this->assertInstanceOf(ElasticCollection::class, $collection);
     }
-}
-
-class ArticleTestModel extends ElasticsearchModel
-{
-    protected $guarded = [];
 }

@@ -5,6 +5,7 @@ namespace AviationCode\Elasticsearch\Query;
 use AviationCode\Elasticsearch\ElasticsearchClient;
 use AviationCode\Elasticsearch\Model\ElasticCollection;
 use AviationCode\Elasticsearch\Model\ElasticSearchable;
+use AviationCode\Elasticsearch\Query\Aggregations\Aggregation;
 use AviationCode\Elasticsearch\Query\Dsl\Query;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -40,14 +41,15 @@ class Builder
     /**
      * Aggregations applied to the query.
      *
-     * @var array
+     * @var Aggregation
      */
-    private $aggregations = [];
+    private $aggregations;
 
     public function __construct($model = null)
     {
         $this->model = $model;
         $this->query = new Query();
+        $this->aggregations = new Aggregation();
 
         if (is_string($this->model)) {
             $this->model = new $this->model;
@@ -168,6 +170,16 @@ class Builder
     }
 
     /**
+     * Start building aggregations.
+     *
+     * @return Aggregation
+     */
+    public function aggregations(): Aggregation
+    {
+        return $this->aggregations;
+    }
+
+    /**
      * Perform a raw elastic query.
      *
      * @param array $query
@@ -193,7 +205,7 @@ class Builder
             'size' => $this->size,
             'query' => $this->query->toArray(),
             'sort' => $this->sort,
-            'aggs' => $this->aggregations,
-        ]), $this->model);
+            'aggs' => $this->aggregations->toArray(),
+        ]), $this, $this->model);
     }
 }

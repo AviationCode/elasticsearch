@@ -2,6 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Dsl\Boolean;
 
+use AviationCode\Elasticsearch\Query\Dsl\Boolean\Boolean;
 use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoBoundingBox;
 use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoDistance;
 use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoPolygon;
@@ -10,7 +11,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 abstract class BoolTest extends TestCase
 {
-    abstract protected function newBooleanClass();
+    abstract protected function newBooleanClass(): Boolean;
 
     /** @test **/
     public function empty_filter_clause()

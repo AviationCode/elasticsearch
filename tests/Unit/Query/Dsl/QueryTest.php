@@ -82,4 +82,12 @@ class QueryTest extends TestCase
             ],
         ], $query->toArray());
     }
+
+    /** @test **/
+    public function it_can_build_empty_query()
+    {
+        $query = new Query();
+
+        $this->assertEquals(['bool' => []], $query->toArray());
+    }
 }

@@ -22,8 +22,9 @@ use AviationCode\Elasticsearch\Query\Dsl\Term\Regexp;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Term;
 use AviationCode\Elasticsearch\Query\Dsl\Term\TermsSet;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Wildcard;
+use Illuminate\Contracts\Support\Arrayable;
 
-abstract class Boolean
+abstract class Boolean implements Arrayable
 {
     /**
      * Clauses to apply.
@@ -31,6 +32,24 @@ abstract class Boolean
      * @var array
      */
     protected $clauses = [];
+
+    /**
+     * Created a nested boolean clause
+     *
+     * @param \Closure $callback
+     *
+     * @return $this
+     */
+    public function boolean(\Closure $callback): self
+    {
+        $boolean = new \AviationCode\Elasticsearch\Query\Dsl\Compound\Boolean();
+
+        $callback($boolean);
+
+        $this->clauses[] = $boolean;
+
+        return $this;
+    }
 
     /**
      * Returns documents that contain any indexed value for a field.

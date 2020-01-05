@@ -94,8 +94,8 @@ class Boolean extends Compound
      */
     public function toArray()
     {
-        return array_map(function ($clause) {
+        return [$this->getKey() => array_map(function ($clause) {
             return $clause->toArray();
-        }, $this->clauses);
+        }, $this->clauses)];
     }
 }

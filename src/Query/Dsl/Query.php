@@ -3,6 +3,7 @@
 namespace AviationCode\Elasticsearch\Query\Dsl;
 
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\Arr;
 
 class Query implements Arrayable
 {
@@ -106,13 +107,21 @@ class Query implements Arrayable
      */
     public function toArray()
     {
-        $query = array_filter([
-            $this->boolean->getKey() => $this->boolean->toArray(),
-            $this->boosting->getKey() => $this->boosting->toArray(),
-            $this->constantScore->getKey() => $this->constantScore->toArray(),
-            $this->disMax->getKey() => $this->disMax->toArray(),
-            $this->functionScore->getKey() => $this->functionScore->toArray(),
-        ]);
+        $query = collect([
+            $this->boolean->toArray(),
+            $this->boosting->toArray(),
+            $this->constantScore->toArray(),
+            $this->disMax->toArray(),
+            $this->functionScore->toArray(),
+        ])->mapWithKeys(function ($value, $key) {
+            if (!$value) {
+                return [$key => $value];
+            }
+
+            $key = array_key_first($value);
+
+            return [$key => $value[$key]];
+        })->filter()->toArray();
 
         // When no query is given assume we display everything by forcing boolean query to empty response.
         if (empty($query)) {

@@ -2,12 +2,12 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Dsl\Boolean;
 
-use AviationCode\Elasticsearch\Query\Dsl\Boolean\Filter;
+use AviationCode\Elasticsearch\Query\Dsl\Boolean\Must;
 
-class FilterTest extends BoolTest
+class MustTest extends BoolTest
 {
     protected function newBooleanClass()
     {
-        return new Filter();
+        return new Must();
     }
 }

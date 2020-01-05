@@ -3,6 +3,7 @@
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Dsl\Boolean;
 
 use AviationCode\Elasticsearch\Query\Dsl\Boolean\Filter;
+use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoBoundingBox;
 use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoDistance;
 use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoPolygon;
 use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoShape;
@@ -580,7 +581,7 @@ class FilterTest extends TestCase
     }
 
     /** @test **/
-    public function it_adds_distance()
+    public function it_adds_geo_distance()
     {
         $filter = new Filter();
 
@@ -592,6 +593,32 @@ class FilterTest extends TestCase
                     'distance' => '123m',
                     'location' => ['lat' => 40, 'lon' => -70],
                     'distance_type' => 'arc',
+                ],
+            ],
+        ], $filter->toArray());
+    }
+
+    /** @test **/
+    public function it_adds_geo_bounding_box()
+    {
+        $filter = new Filter();
+
+        $filter->geoBoundingBox('location', ['lat' => 40.73, 'lon' => -74.1], ['lat' => 40.01, 'lon' => -71.12], [
+            'validation_method' => GeoboundingBox::IGNORE_MALFORMED,
+            'type' => GeoBoundingBox::MEMORY,
+            'ignore_unmapped' => true,
+        ]);
+
+        $this->assertEquals([
+            [
+                'geo_bounding_box' => [
+                    'location' => [
+                        'top_left' => ['lat' => 40.73, 'lon' => -74.1],
+                        'bottom_right' => ['lat' => 40.01, 'lon' => -71.12],
+                    ],
+                    'validation_method' => 'ignore_malformed',
+                    'type' => 'memory',
+                    'ignore_unmapped' => true,
                 ],
             ],
         ], $filter->toArray());

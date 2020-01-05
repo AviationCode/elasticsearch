@@ -93,6 +93,19 @@ class GeoDistanceTest extends TestCase
     }
 
     /** @test **/
+    public function it_builds_geo_distance_query_json()
+    {
+        $geo = new GeoDistance('pin.location', ['lat' => 40, 'lon' => -70], 200, GeoDistance::KM);
+
+        $this->assertEquals([
+            'geo_distance' => [
+                'distance' => '200km',
+                'pin.location' => ['lat' => 40, 'lon' => -70],
+            ],
+        ], $geo->toArray());
+    }
+
+    /** @test **/
     public function it_builds_geo_distance_query_minimal()
     {
         $geo = new GeoDistance('pin.location', '40, -70', 100);

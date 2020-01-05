@@ -8,6 +8,7 @@ use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchPhrasePrefix;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MultiMatch;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\QueryString;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\SimpleQueryString;
+use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoBoundingBox;
 use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoDistance;
 use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoPolygon;
 use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoShape;
@@ -318,11 +319,28 @@ class Filter implements Arrayable
      * @param null $unit
      * @param array|null $options
      *
-     * @return Filter
+     * @return $this
      */
     public function geoDistance(string $field, $lat, $lon, $distance = null, $unit = null, ?array $options = null): self
     {
         $this->clauses[] = new GeoDistance($field, $lat, $lon, $distance, $unit, $options);
+
+        return $this;
+    }
+
+    /**
+     * Finds documents with geo-points that fall into the specified rectangle.
+     *
+     * @param string $field
+     * @param $topLeft
+     * @param null $bottomRight
+     * @param array|null $options
+     *
+     * @return $this
+     */
+    public function geoBoundingBox(string $field, $topLeft, $bottomRight = null, ?array $options = null): self
+    {
+        $this->clauses[] = new GeoBoundingBox($field, $topLeft, $bottomRight, $options);
 
         return $this;
     }

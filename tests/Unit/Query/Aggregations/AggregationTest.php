@@ -13,7 +13,7 @@ class AggregationTest extends TestCase
         $aggs = new Aggregation();
 
         $aggs->terms('users', 'users')
-            ->dateHistorygram('users.tweets_per_day', 'created_at', '1d');
+            ->dateHistogram('users.tweets_per_day', 'created_at', '1d');
 
         $this->assertEquals([
             'users' => [
@@ -35,9 +35,43 @@ class AggregationTest extends TestCase
         $aggs->valueCount('types_count', 'type');
 
         $this->assertEquals([
-            'aggs' => [
-                'types_count' => ['value_count' => ['field' => 'type']],
-            ],
+            'types_count' => ['value_count' => ['field' => 'type']],
         ], $aggs->toArray());
+    }
+
+    /** @test **/
+    public function it_throws_exception_when_aggregation_does_not_exist()
+    {
+        $this->expectException(\BadMethodCallException::class);
+
+        $aggs = new Aggregation();
+
+        $aggs->foobar('types_count', 'foo');
+
+        $this->markSuccessfull();
+    }
+
+    /** @test **/
+    public function it_throws_exception_when_using_nested_aggregation_before_it_is_defined()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $aggs = new Aggregation();
+
+        $aggs->dateHistogram('users.tweets_per_day', 'created_at', '1d')
+            ->terms('users', 'users');
+
+        $this->markSuccessfull();
+    }
+    /** @test **/
+    public function it_throws_exception_when_key_is_not_set()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $aggs = new Aggregation();
+
+        $aggs->dateHistogram();
+
+        $this->markSuccessfull();
     }
 }

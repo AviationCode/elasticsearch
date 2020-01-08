@@ -2,6 +2,8 @@
 
 namespace AviationCode\Elasticsearch\Model;
 
+use AviationCode\Elasticsearch\Model\Aggregations\Aggregation;
+use AviationCode\Elasticsearch\Query\Aggregations\HasAggregations;
 use AviationCode\Elasticsearch\Query\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
@@ -76,6 +78,8 @@ class ElasticCollection extends Collection
      */
     public function mapAggregations(array $response): self
     {
+        $this->aggregations = new Aggregation($response['aggregations'] ?? [], $this->query->aggregations());
+
         return $this;
     }
 

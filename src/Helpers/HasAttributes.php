@@ -16,7 +16,5 @@ trait HasAttributes
         if (isset($this->attributes[$property])) {
             return $this->attributes[$property];
         }
-
-        return null;
     }
 }

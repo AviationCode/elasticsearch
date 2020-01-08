@@ -48,7 +48,7 @@ class DateHistogram extends Bucket
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     protected function toElastic(): array
     {

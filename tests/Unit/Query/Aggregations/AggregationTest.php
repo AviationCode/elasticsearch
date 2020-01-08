@@ -63,6 +63,7 @@ class AggregationTest extends TestCase
 
         $this->markSuccessfull();
     }
+
     /** @test **/
     public function it_throws_exception_when_key_is_not_set()
     {

@@ -19,7 +19,7 @@ class ValueCount extends Metric
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     protected function toElastic(): array
     {

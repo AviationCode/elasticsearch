@@ -31,11 +31,10 @@ class Terms extends Bucket
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     protected function toElastic(): array
     {
         return array_merge(['field' => $this->field], $this->options);
     }
 }
-

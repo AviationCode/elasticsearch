@@ -25,7 +25,10 @@
     "autoload": {
         "psr-4": {
             "AviationCode\\Elasticsearch\\": "src/"
-        }
+        },
+        "files": [
+            "src/polyfill.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

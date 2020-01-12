@@ -50,7 +50,7 @@ class Aggregation extends Collection
                 throw new \InvalidArgumentException('Cannot define nested aggregation before defining parent aggregation.');
             }
 
-            $this->get($parts->first())->$method($parts->except(0)->join('.'), ...$arguments);
+            $this->get($parts->first())->$method(implode('.', $parts->except(0)->toArray()), ...$arguments);
 
             return $this;
         }

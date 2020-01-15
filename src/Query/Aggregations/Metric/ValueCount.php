@@ -2,7 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Query\Aggregations\Metric;
 
-use AviationCode\Elasticsearch\Model\Aggregations\Model\ValueCount as ValueCountModel;
+use AviationCode\Elasticsearch\Model\Aggregations\Metric\ValueCount as ValueCountModel;
 
 class ValueCount extends Metric
 {

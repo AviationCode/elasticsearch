@@ -4,6 +4,11 @@ namespace AviationCode\Elasticsearch\Query\Aggregations;
 
 use Illuminate\Support\Traits\ForwardsCalls;
 
+/**
+ * Trait HasAggregations
+ *
+ * @mixin Aggregation
+ */
 trait HasAggregations
 {
     use ForwardsCalls;

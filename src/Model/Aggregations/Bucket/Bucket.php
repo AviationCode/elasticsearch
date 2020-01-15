@@ -13,18 +13,27 @@ abstract class Bucket extends Collection
      * @param array $value
      * @param HasAggregations $query
      */
-    public function __construct(array $value, $query)
+    public function __construct(array $value, $query = null)
     {
+        if (!$query) {
+            return parent::__construct($value);
+        }
+
         $nestedBuckets = $query->aggregations()->keys();
 
         parent::__construct(array_map(function ($item) use ($query, $nestedBuckets) {
             foreach ($nestedBuckets as $key) {
                 $qb = $query->aggregations()->get($key);
 
-                $item[$key] = $qb->newModel($item[$key], $qb, $key);
+                $item[$key] = $qb->newModel($item[$key], $qb);
             }
 
-            return new BucketItem($item);
+            return $this->newBucketItem($item);
         }, $value['buckets'] ?? []));
+    }
+
+    protected function newBucketItem($item): BucketItem
+    {
+        return new BucketItem($item);
     }
 }

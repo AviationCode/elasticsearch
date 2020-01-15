@@ -5,7 +5,7 @@ namespace AviationCode\Elasticsearch\Query\Aggregations;
 use Illuminate\Support\Traits\ForwardsCalls;
 
 /**
- * Trait HasAggregations
+ * Trait HasAggregations.
  *
  * @mixin Aggregation
  */

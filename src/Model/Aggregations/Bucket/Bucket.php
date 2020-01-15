@@ -15,7 +15,7 @@ abstract class Bucket extends Collection
      */
     public function __construct(array $value, $query = null)
     {
-        if (!$query) {
+        if (! $query) {
             return parent::__construct($value);
         }
 

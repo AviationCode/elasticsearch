@@ -140,8 +140,8 @@ class Elasticsearch
     /**
      * Bulk index models.
      *
-     * @todo untested.
      * @param Collection|ElasticSearchable[] $models
+     * @return bool
      */
     public function bulk(Collection $models)
     {

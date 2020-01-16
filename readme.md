@@ -34,6 +34,10 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     use ElasticSearchable;
+    
+    protected $mapping = [
+        'body' => ['type' => 'text'],
+    ];
 }
 ```
 
@@ -45,6 +49,61 @@ php artisan elastic:migrate
 php artisan elastic:migrate App/Article
 ```
 In default setup the above three commands will execute in the same way if only model article exists and it uses the `ElasticSearchable` trait.
+
+### Query
+
+```php
+namespace App\Http\Controllers;
+
+use App\Article;
+use AviationCode\Elasticsearch\Facades\Elasticsearch;
+use AviationCode\Elasticsearch\Query\Dsl\Boolean\Filter;
+use AviationCode\Elasticsearch\Query\Dsl\Boolean\Must;
+use Illuminate\Http\Request;
+
+class ArticleController 
+{
+    public function index(Request $request)
+    {
+        return Elasticsearch::forModel(Article::class)
+            ->query()
+            ->filter(function (Filter $filter) use ($request) {
+                if ($user = $request->query('user')) {
+                    $filter->term('user', $user); 
+                }
+            })
+            ->must(function (Must $must) use ($request) {
+                if ($query = $request->query('q')) {
+                    $must->queryString($query); 
+                }        
+            })
+            ->get();
+    }
+}
+```
+
+### Aggregations
+
+```php
+namespace App\Http\Controllers;
+
+use App\Article;
+use AviationCode\Elasticsearch\Facades\Elasticsearch;
+
+class ArticlesPerUserPerDayController 
+{
+    public function index()
+    {
+        $qb = Elasticsearch::forModel(Article::class)->query();
+
+        $qb->aggregations()
+            ->dateHistogram('date', 'created_at', '1d')
+            ->terms('date.users', 'user');
+
+        return $qb->get()->aggregations;
+    }
+}
+```
 
 ## Change log
 

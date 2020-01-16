@@ -57,7 +57,7 @@ class ElasticCollectionTest extends TestCase
             ],
         ];
 
-        $result = ElasticCollection::parse($response, new Builder(), new ArticleTestModel);
+        $result = ElasticCollection::parse($response, new ArticleTestModel);
 
         $this->assertEquals(1, $result->took);
         $this->assertEquals(1.0, $result->max_score);
@@ -89,17 +89,17 @@ class ElasticCollectionTest extends TestCase
                 ],
             ],
             'aggregations' => [
-                'total' => [
+                'value_count#total' => [
                     'value' => 75,
                 ],
-                'users' => [
+                'terms#users' => [
                     'doc_count_error_upper_bound' => 0,
                     'sum_other_doc_count' => 75,
                     'buckets' => [
                         [
                             'key' => 'jeffreyway',
                             'doc_count' => 50,
-                            'tweets_per_day' => [
+                            'date_histogram#tweets_per_day' => [
                                 'buckets' => [
                                     [
                                         'key_as_string' => '2019-12-08 00:00:00',
@@ -117,7 +117,7 @@ class ElasticCollectionTest extends TestCase
                         [
                             'key' => 'adamwatham',
                             'doc_count' => 25,
-                            'tweets_per_day' => [
+                            'date_histogram#tweets_per_day' => [
                                 'buckets' => [
                                     [
                                         'key_as_string' => '2019-12-08 00:00:00',
@@ -143,7 +143,7 @@ class ElasticCollectionTest extends TestCase
             ->terms('users', 'user')
             ->dateHistogram('users.tweets_per_day', 'created_at', '1d');
 
-        $result = ElasticCollection::parse($response, $builder);
+        $result = ElasticCollection::parse($response);
         $this->assertEquals(75, $result->aggregations->total->value());
         $this->assertEquals(2, $result->aggregations->users->count());
         $this->assertEquals(2, $result->aggregations->users->first()->tweets_per_day->count());

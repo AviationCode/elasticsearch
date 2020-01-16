@@ -2,8 +2,6 @@
 
 namespace AviationCode\Elasticsearch\Model\Aggregations\Metric;
 
-use AviationCode\Elasticsearch\Query\Aggregations\HasAggregations;
-
 class ValueCount
 {
     /**
@@ -15,9 +13,8 @@ class ValueCount
      * ValueCount constructor.
      *
      * @param array $value
-     * @param HasAggregations $query
      */
-    public function __construct(array $value, $query)
+    public function __construct(array $value)
     {
         $this->value = $value['value'];
     }

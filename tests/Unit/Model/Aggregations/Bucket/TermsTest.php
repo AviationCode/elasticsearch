@@ -21,7 +21,7 @@ class TermsTest extends TestCase
                 [
                     'key' => 'jeffreyway',
                     'doc_count' => 50,
-                    'tweets_per_day' => [
+                    'date_histogram#tweets_per_day' => [
                         'buckets' => [
                             [
                                 'key_as_string' => '2019-12-08 00:00:00',
@@ -39,7 +39,7 @@ class TermsTest extends TestCase
                 [
                     'key' => 'adamwatham',
                     'doc_count' => 25,
-                    'tweets_per_day' => [
+                    'date_histogram#tweets_per_day' => [
                         'buckets' => [
                             [
                                 'key_as_string' => '2019-12-08 00:00:00',

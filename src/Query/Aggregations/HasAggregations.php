@@ -29,18 +29,6 @@ trait HasAggregations
     protected $model;
 
     /**
-     * @param $content
-     *
-     * @param HasAggregations $query
-     * @param string|null $key
-     * @return mixed
-     */
-    public function newModel($content, $query, ?string $key = null)
-    {
-        return new $this->model($content, $query, $key);
-    }
-
-    /**
      * @return Aggregation
      */
     public function aggregations(): Aggregation

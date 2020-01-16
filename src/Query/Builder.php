@@ -184,14 +184,15 @@ class Builder
      *
      * @param array $query
      * @param string|null $index
+     * @param array $params
      * @return array
      */
-    public function raw(array $query = [], ?string $index = null): array
+    public function raw(array $query = [], ?string $index = null, array $params = []): array
     {
-        return $this->getClient()->search([
+        return $this->getClient()->search(array_merge([
             'index' => $index ?? $this->model->getIndexName(),
             'body' => $query,
-        ]);
+        ], $params));
     }
 
     /**
@@ -206,6 +207,6 @@ class Builder
             'query' => $this->query->toArray(),
             'sort' => $this->sort,
             'aggs' => $this->aggregations->toArray(),
-        ]), $this, $this->model);
+        ], $this->model->getIndexName(), ['typed_keys' => true]), $this->model);
     }
 }

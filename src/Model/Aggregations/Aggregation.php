@@ -3,28 +3,56 @@
 namespace AviationCode\Elasticsearch\Model\Aggregations;
 
 use AviationCode\Elasticsearch\Helpers\HasAttributes;
-use AviationCode\Elasticsearch\Query\Aggregations\Aggregation as AggregationQuery;
-use AviationCode\Elasticsearch\Query\Aggregations\HasAggregations;
+use Illuminate\Support\Str;
 
 class Aggregation
 {
     use HasAttributes;
 
+    public static $namespaces = [
+        '\AviationCode\Elasticsearch\Model\Aggregations\Metric',
+        '\AviationCode\Elasticsearch\Model\Aggregations\Bucket',
+        '\AviationCode\Elasticsearch\Model\Aggregations\Pipeline',
+        '\AviationCode\Elasticsearch\Model\Aggregations\Matrix',
+    ];
+
     /**
      * Aggregation constructor.
      * @param array $aggregations
-     * @param AggregationQuery|HasAggregations $query
      */
-    public function __construct(array $aggregations, $query)
+    public function __construct(array $aggregations)
     {
-        if ($query instanceof AggregationQuery) {
-            foreach ($aggregations as $key => $value) {
-                $qb = $query->get($key);
+        foreach ($aggregations as $typedKey => $value) {
+            list($key, $instance) = static::aggregationModel($typedKey, $value);
 
-                $this->$key = $qb->newModel($value, $qb, $key);
+            $this->$key = $instance;
+        }
+    }
+
+    /**
+     * Find and return instance of an aggregation model based on a typed elastic key
+     *
+     * @param $typedKey
+     * @param $value
+     *
+     * @return array list($key, $instance)
+     */
+    public static function aggregationModel($typedKey, $value): array
+    {
+        list($type, $key) = explode('#', $typedKey);
+
+        $class = Str::studly($type);
+
+        foreach (static::$namespaces as $namespace) {
+            $fqn = "$namespace\\$class";
+
+            if (! class_exists($fqn)) {
+                continue;
             }
 
-            return;
+            return [$key, new $fqn($value)];
         }
+
+        throw new \InvalidArgumentException("$class does not exist in any of the \AviationCode\Elasticsearch\Model\Aggregations");
     }
 }

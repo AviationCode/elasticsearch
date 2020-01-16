@@ -29,6 +29,7 @@ class SearchTest extends TestCase
         $this->client->shouldReceive('search')
             ->with([
                 'index' => 'article',
+                'typed_keys' => true,
                 'body' => [
                     'size' => 2,
                     'query' => [
@@ -240,6 +241,7 @@ class SearchTest extends TestCase
             ->once()
             ->with([
                 'index' => 'article',
+                'typed_keys' => true,
                 'body' => [
                     'size' => 100,
                     'query' => [
@@ -265,6 +267,7 @@ class SearchTest extends TestCase
             ->once()
             ->with([
                 'index' => 'article',
+                'typed_keys' => true,
                 'body' => [
                     'size' => 1,
                     'query' => [
@@ -298,6 +301,7 @@ class SearchTest extends TestCase
             ->once()
             ->with([
                 'index' => 'article',
+                'typed_keys' => true,
                 'body' => [
                     'size' => 100,
                     'query' => [

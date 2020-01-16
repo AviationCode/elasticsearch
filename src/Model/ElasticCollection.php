@@ -3,7 +3,6 @@
 namespace AviationCode\Elasticsearch\Model;
 
 use AviationCode\Elasticsearch\Model\Aggregations\Aggregation;
-use AviationCode\Elasticsearch\Query\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -23,11 +22,6 @@ class ElasticCollection extends Collection
     public $total_relation;
 
     public $aggregations;
-
-    /**
-     * @var Builder
-     */
-    private $query;
 
     /**
      * ElasticCollection constructor.
@@ -77,7 +71,7 @@ class ElasticCollection extends Collection
      */
     public function mapAggregations(array $response): self
     {
-        $this->aggregations = new Aggregation($response['aggregations'] ?? [], $this->query->aggregations());
+        $this->aggregations = new Aggregation($response['aggregations'] ?? []);
 
         return $this;
     }
@@ -106,15 +100,12 @@ class ElasticCollection extends Collection
      * Parse an elasticsearch response onto eloquent collection class.
      *
      * @param array $response
-     * @param Builder $query
      * @param Model|null $model
      * @return $this
      */
-    public static function parse(array $response, Builder $query, ?Model $model = null): self
+    public static function parse(array $response, ?Model $model = null): self
     {
         $collection = new static;
-
-        $collection->query = $query;
 
         // Map the meta information such as time taken, total number or results and success
         // Meta block contains useful information about the performance of the elastic

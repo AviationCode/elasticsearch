@@ -3,6 +3,7 @@
 namespace AviationCode\Elasticsearch\Model\Aggregations\Bucket;
 
 use AviationCode\Elasticsearch\Helpers\HasAttributes;
+use AviationCode\Elasticsearch\Model\Aggregations\Aggregation;
 
 class BucketItem
 {
@@ -10,6 +11,16 @@ class BucketItem
 
     public function __construct($attributes)
     {
-        $this->attributes = $attributes;
+        foreach ($attributes as $key => $value) {
+            if (strpos($key, '#')) {
+                list($key, $instance) = Aggregation::aggregationModel($key, $value);
+
+                $this->$key = $instance;
+
+                continue;
+            }
+
+            $this->$key = $value;
+        }
     }
 }

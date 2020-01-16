@@ -2,34 +2,31 @@
 
 namespace AviationCode\Elasticsearch\Model\Aggregations\Bucket;
 
-use AviationCode\Elasticsearch\Query\Aggregations\HasAggregations;
+use AviationCode\Elasticsearch\Helpers\HasAttributes;
 use Illuminate\Support\Collection;
 
 abstract class Bucket extends Collection
 {
+    use HasAttributes;
+
     /**
      * Bucket constructor.
      *
-     * @param array $value
-     * @param HasAggregations $query
+     * @param array $aggregation
      */
-    public function __construct(array $value, $query = null)
+    public function __construct(array $aggregation)
     {
-        if (! $query) {
-            return parent::__construct($value);
+        foreach ($aggregation as $key => $value) {
+            if ($key !== 'buckets') {
+                $this->$key = $value;
+
+                continue;
+            }
         }
 
-        $nestedBuckets = $query->aggregations()->keys();
-
-        parent::__construct(array_map(function ($item) use ($query, $nestedBuckets) {
-            foreach ($nestedBuckets as $key) {
-                $qb = $query->aggregations()->get($key);
-
-                $item[$key] = $qb->newModel($item[$key], $qb);
-            }
-
-            return $this->newBucketItem($item);
-        }, $value['buckets'] ?? []));
+        parent::__construct(array_map(function ($bucket) {
+            return $this->newBucketItem($bucket);
+        }, $aggregation['buckets']));
     }
 
     protected function newBucketItem($item): BucketItem

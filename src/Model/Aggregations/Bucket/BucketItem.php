@@ -13,7 +13,7 @@ class BucketItem
     {
         foreach ($attributes as $key => $value) {
             if (strpos($key, '#')) {
-                list($key, $instance) = Aggregation::aggregationModel($key, $value);
+                [$key, $instance] = Aggregation::aggregationModel($key, $value);
 
                 $this->$key = $instance;
 

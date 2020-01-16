@@ -23,14 +23,14 @@ class Aggregation
     public function __construct(array $aggregations)
     {
         foreach ($aggregations as $typedKey => $value) {
-            list($key, $instance) = static::aggregationModel($typedKey, $value);
+            [$key, $instance] = static::aggregationModel($typedKey, $value);
 
             $this->$key = $instance;
         }
     }
 
     /**
-     * Find and return instance of an aggregation model based on a typed elastic key
+     * Find and return instance of an aggregation model based on a typed elastic key.
      *
      * @param $typedKey
      * @param $value
@@ -39,7 +39,7 @@ class Aggregation
      */
     public static function aggregationModel($typedKey, $value): array
     {
-        list($type, $key) = explode('#', $typedKey);
+        [$type, $key] = explode('#', $typedKey);
 
         $class = Str::studly($type);
 

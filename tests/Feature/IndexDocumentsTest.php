@@ -69,7 +69,6 @@ class IndexDocumentsTest extends TestCase
                 '_index' => 'article',
             ]);
 
-
         $result = $this->elastic->add('article', $data);
 
         $this->assertTrue($result);
@@ -90,7 +89,7 @@ class IndexDocumentsTest extends TestCase
             ->with([
                 'id' => 123,
                 'index' => 'article',
-                'body' => (array)$data,
+                'body' => (array) $data,
             ])
             ->once()
             ->andReturn([
@@ -99,7 +98,6 @@ class IndexDocumentsTest extends TestCase
                 '_version' => 1,
                 '_index' => 'article',
             ]);
-
 
         $result = $this->elastic->add('article', $data);
 
@@ -129,11 +127,11 @@ class IndexDocumentsTest extends TestCase
             ->with([
                 'refresh' => true,
                 'body' => implode(PHP_EOL, [
-                        json_encode(['index' => ['_index' => 'article', '_id' => 123]]),
-                        json_encode(['id' => 123, 'title' => 'My title Article A', 'body' => 'My body Article A']),
-                        json_encode(['index' => ['_index' => 'article', '_id' => 456]]),
-                        json_encode(['id' => 456, 'title' => 'My title Article B', 'body' => 'My body Article B']),
-                    ]).PHP_EOL,
+                    json_encode(['index' => ['_index' => 'article', '_id' => 123]]),
+                    json_encode(['id' => 123, 'title' => 'My title Article A', 'body' => 'My body Article A']),
+                    json_encode(['index' => ['_index' => 'article', '_id' => 456]]),
+                    json_encode(['id' => 456, 'title' => 'My title Article B', 'body' => 'My body Article B']),
+                ]).PHP_EOL,
             ])
             ->once()
             ->andReturn([
@@ -161,6 +159,7 @@ class IndexDocumentsTest extends TestCase
 
         Event::assertDispatchedTimes(BulkDocumentsEvent::class, 1);
     }
+
     /** @test **/
     public function it_indexes_multiple_classes_in_bulk()
     {
@@ -184,11 +183,11 @@ class IndexDocumentsTest extends TestCase
             ->with([
                 'refresh' => true,
                 'body' => implode(PHP_EOL, [
-                        json_encode(['index' => ['_index' => 'article', '_id' => 123]]),
-                        json_encode(['id' => 123, 'title' => 'My title Article A', 'body' => 'My body Article A']),
-                        json_encode(['index' => ['_index' => 'article', '_id' => 456]]),
-                        json_encode(['id' => 456, 'title' => 'My title Article B', 'body' => 'My body Article B']),
-                    ]).PHP_EOL,
+                    json_encode(['index' => ['_index' => 'article', '_id' => 123]]),
+                    json_encode(['id' => 123, 'title' => 'My title Article A', 'body' => 'My body Article A']),
+                    json_encode(['index' => ['_index' => 'article', '_id' => 456]]),
+                    json_encode(['id' => 456, 'title' => 'My title Article B', 'body' => 'My body Article B']),
+                ]).PHP_EOL,
             ])
             ->once()
             ->andReturn([

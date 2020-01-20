@@ -145,9 +145,9 @@ class Elasticsearch
      */
     private function addRaw(string $index, $data, $key = 'id')
     {
-        $data = (array)$data;
+        $data = (array) $data;
 
-        if (!Arr::isAssoc($data)) {
+        if (! Arr::isAssoc($data)) {
             return $this->bulkRaw($index, $data, $key);
         }
 
@@ -232,12 +232,12 @@ class Elasticsearch
         $response = $this->getClient()->bulk([
             'refresh' => true,
             'body' => implode(array_map(function ($item) use ($index, $key) {
-                $item = (array)$item;
+                $item = (array) $item;
 
                 return implode(PHP_EOL, [
-                        json_encode(['index' => ['_index' => $index, '_id' => $item[$key]]]),
-                        json_encode($item),
-                    ]).PHP_EOL;
+                    json_encode(['index' => ['_index' => $index, '_id' => $item[$key]]]),
+                    json_encode($item),
+                ]).PHP_EOL;
             }, $data)),
         ]);
 

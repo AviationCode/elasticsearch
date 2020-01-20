@@ -4,6 +4,7 @@ namespace AviationCode\Elasticsearch\Query;
 
 use AviationCode\Elasticsearch\ElasticsearchClient;
 use AviationCode\Elasticsearch\Model\ElasticCollection;
+use AviationCode\Elasticsearch\Model\ElasticHit;
 use AviationCode\Elasticsearch\Model\ElasticSearchable;
 use AviationCode\Elasticsearch\Query\Aggregations\Aggregation;
 use AviationCode\Elasticsearch\Query\Dsl\Query;
@@ -51,8 +52,10 @@ class Builder
         $this->query = new Query();
         $this->aggregations = new Aggregation();
 
-        if (is_string($this->model)) {
+        if (is_string($this->model) && class_exists($this->model)) {
             $this->model = new $this->model;
+        } else {
+            $this->model = ElasticHit::onIndex($model);
         }
     }
 

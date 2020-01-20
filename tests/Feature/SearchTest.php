@@ -140,7 +140,6 @@ class SearchTest extends TestCase
         });
     }
 
-
     /** @test **/
     public function it_performs_search_without_eloquent_model()
     {

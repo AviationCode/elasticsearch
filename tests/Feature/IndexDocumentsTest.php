@@ -155,7 +155,7 @@ class IndexDocumentsTest extends TestCase
                 ],
             ]);
 
-        $this->assertTrue($this->elastic->add('article', $articles));
+        $this->assertTrue($this->elastic->bulk('article', $articles));
 
         Event::assertDispatchedTimes(BulkDocumentsEvent::class, 1);
     }

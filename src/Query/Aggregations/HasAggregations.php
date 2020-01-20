@@ -29,14 +29,6 @@ trait HasAggregations
     protected $model;
 
     /**
-     * @return Aggregation
-     */
-    public function aggregations(): Aggregation
-    {
-        return $this->aggregations;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function toArray()

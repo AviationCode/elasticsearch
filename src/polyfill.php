@@ -1,4 +1,5 @@
 <?php
+
 // @codeCoverageIgnoreStart
 
 if (! function_exists('array_key_first')) {

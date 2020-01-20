@@ -13,6 +13,7 @@ use AviationCode\Elasticsearch\Schema\Index;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use InvalidArgumentException;
 
@@ -93,12 +94,18 @@ class Elasticsearch
      * Index a model into elastic search.
      *
      * @param null|ElasticSearchable|Model $model
+     * @param null $data
+     * @param string $key
      * @return bool
      *
      * @throws BaseElasticsearchException
      */
-    public function add($model = null)
+    public function add($model = null, $data = null, $key = 'id')
     {
+        if ($data !== null) {
+            return $this->addRaw($model, $data, $key);
+        }
+
         $model = $this->getModel($model);
 
         if ($model instanceof Collection) {
@@ -127,24 +134,71 @@ class Elasticsearch
     }
 
     /**
+     * Index native php objects / arrays.
+     *
+     * @param string $index
+     * @param array|\stdClass|\stdClass[] $data
+     * @param string $key
+     *
+     * @return bool
+     * @throws BaseElasticsearchException
+     */
+    private function addRaw(string $index, $data, $key = 'id')
+    {
+        $data = (array)$data;
+
+        if (!Arr::isAssoc($data)) {
+            return $this->bulkRaw($index, $data, $key);
+        }
+
+        try {
+            $response = $this->getClient()->index([
+                'id' => $data[$key],
+                'index' => $index,
+                'body' => $data,
+            ]);
+
+            if ($response['result'] === 'created') {
+                $this->event(new DocumentCreatedEvent($data, $response));
+            }
+
+            if ($response['result'] === 'updated') {
+                $this->event(new DocumentUpdatedEvent($data, $response));
+            }
+        } catch (Exception $exception) {
+            $this->handleException($exception);
+        }
+
+        return true;
+    }
+
+    /**
      * @param null|ElasticSearchable|Model $model
+     * @param null $data
+     * @param string $key
      * @return bool
      *
      * @throws BaseElasticsearchException
      */
-    public function update($model = null)
+    public function update($model = null, $data = null, $key = 'id')
     {
-        return $this->add($model);
+        return $this->add($model, $data, $key);
     }
 
     /**
      * Bulk index models.
      *
      * @param Collection|ElasticSearchable[] $models
+     * @param null $data
+     * @param string $key
      * @return bool
      */
-    public function bulk(Collection $models)
+    public function bulk($models, $data = null, $key = 'id')
     {
+        if ($data !== null) {
+            return $this->bulkRaw($models, $data, $key);
+        }
+
         $response = $this->getClient()->bulk([
             'refresh' => true,
             'body' => $models->map(function ($model) {
@@ -160,6 +214,35 @@ class Elasticsearch
 
         $this->event(function () use ($response, $models) {
             return new BulkDocumentsEvent($models, $response);
+        });
+
+        return true;
+    }
+
+    /**
+     * Bulk index raw php objects.
+     *
+     * @param string $index
+     * @param array|\stdClass[] $data
+     * @param string $key
+     * @return bool
+     */
+    private function bulkRaw(string $index, $data, $key = 'id')
+    {
+        $response = $this->getClient()->bulk([
+            'refresh' => true,
+            'body' => implode(array_map(function ($item) use ($index, $key) {
+                $item = (array)$item;
+
+                return implode(PHP_EOL, [
+                        json_encode(['index' => ['_index' => $index, '_id' => $item[$key]]]),
+                        json_encode($item),
+                    ]).PHP_EOL;
+            }, $data)),
+        ]);
+
+        $this->event(function () use ($response, $data) {
+            return new BulkDocumentsEvent($data, $response);
         });
 
         return true;

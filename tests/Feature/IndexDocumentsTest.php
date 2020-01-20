@@ -45,6 +45,179 @@ class IndexDocumentsTest extends TestCase
     }
 
     /** @test **/
+    public function it_indexes_a_php_array()
+    {
+        Event::fake();
+
+        $data = [
+            'id' => 123,
+            'title' => 'My title',
+            'body' => 'My body',
+        ];
+
+        $this->elastic->getClient()->shouldReceive('index')
+            ->with([
+                'id' => 123,
+                'index' => 'article',
+                'body' => $data,
+            ])
+            ->once()
+            ->andReturn([
+                'result' => 'created',
+                '_shards' => ['success' => 1],
+                '_version' => 1,
+                '_index' => 'article',
+            ]);
+
+
+        $result = $this->elastic->add('article', $data);
+
+        $this->assertTrue($result);
+        Event::assertNotDispatched(DocumentCreatedEvent::class);
+    }
+
+    /** @test **/
+    public function it_indexes_a_stdClass()
+    {
+        Event::fake();
+
+        $data = new \stdClass();
+        $data->id = 123;
+        $data->title = 'My title';
+        $data->body = 'My body';
+
+        $this->elastic->getClient()->shouldReceive('index')
+            ->with([
+                'id' => 123,
+                'index' => 'article',
+                'body' => (array)$data,
+            ])
+            ->once()
+            ->andReturn([
+                'result' => 'created',
+                '_shards' => ['success' => 1],
+                '_version' => 1,
+                '_index' => 'article',
+            ]);
+
+
+        $result = $this->elastic->add('article', $data);
+
+        $this->assertTrue($result);
+        Event::assertNotDispatched(DocumentCreatedEvent::class);
+    }
+
+    /** @test **/
+    public function it_indexes_multiple_php_arrays_in_bulk()
+    {
+        Event::fake();
+        Elasticsearch::enableEvents();
+
+        $articles = [
+            [
+                'id' => 123,
+                'title' => 'My title Article A',
+                'body' => 'My body Article A',
+            ], [
+                'id' => 456,
+                'title' => 'My title Article B',
+                'body' => 'My body Article B',
+            ],
+        ];
+
+        $this->elastic->getClient()->shouldReceive('bulk')
+            ->with([
+                'refresh' => true,
+                'body' => implode(PHP_EOL, [
+                        json_encode(['index' => ['_index' => 'article', '_id' => 123]]),
+                        json_encode(['id' => 123, 'title' => 'My title Article A', 'body' => 'My body Article A']),
+                        json_encode(['index' => ['_index' => 'article', '_id' => 456]]),
+                        json_encode(['id' => 456, 'title' => 'My title Article B', 'body' => 'My body Article B']),
+                    ]).PHP_EOL,
+            ])
+            ->once()
+            ->andReturn([
+                'items' => [
+                    [
+                        'index' => [
+                            'result' => 'updated',
+                            '_shards' => ['success' => 1],
+                            '_version' => 1,
+                            '_index' => 'article',
+                        ],
+                    ],
+                    [
+                        'index' => [
+                            'result' => 'updated',
+                            '_shards' => ['success' => 1],
+                            '_version' => 1,
+                            '_index' => 'article',
+                        ],
+                    ],
+                ],
+            ]);
+
+        $this->assertTrue($this->elastic->add('article', $articles));
+
+        Event::assertDispatchedTimes(BulkDocumentsEvent::class, 1);
+    }
+    /** @test **/
+    public function it_indexes_multiple_classes_in_bulk()
+    {
+        Event::fake();
+        Elasticsearch::enableEvents();
+
+        $articles = [
+            new class {
+                public $id = 123;
+                public $title = 'My title Article A';
+                public $body = 'My body Article A';
+            },
+            new class {
+                public $id = 456;
+                public $title = 'My title Article B';
+                public $body = 'My body Article B';
+            },
+        ];
+
+        $this->elastic->getClient()->shouldReceive('bulk')
+            ->with([
+                'refresh' => true,
+                'body' => implode(PHP_EOL, [
+                        json_encode(['index' => ['_index' => 'article', '_id' => 123]]),
+                        json_encode(['id' => 123, 'title' => 'My title Article A', 'body' => 'My body Article A']),
+                        json_encode(['index' => ['_index' => 'article', '_id' => 456]]),
+                        json_encode(['id' => 456, 'title' => 'My title Article B', 'body' => 'My body Article B']),
+                    ]).PHP_EOL,
+            ])
+            ->once()
+            ->andReturn([
+                'items' => [
+                    [
+                        'index' => [
+                            'result' => 'updated',
+                            '_shards' => ['success' => 1],
+                            '_version' => 1,
+                            '_index' => 'article',
+                        ],
+                    ],
+                    [
+                        'index' => [
+                            'result' => 'updated',
+                            '_shards' => ['success' => 1],
+                            '_version' => 1,
+                            '_index' => 'article',
+                        ],
+                    ],
+                ],
+            ]);
+
+        $this->assertTrue($this->elastic->add('article', $articles));
+
+        Event::assertDispatchedTimes(BulkDocumentsEvent::class, 1);
+    }
+
+    /** @test **/
     public function it_can_index_a_model_given_as_param()
     {
         Event::fake();

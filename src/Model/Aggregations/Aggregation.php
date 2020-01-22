@@ -58,7 +58,7 @@ class Aggregation implements \JsonSerializable, Arrayable
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function toArray()
     {

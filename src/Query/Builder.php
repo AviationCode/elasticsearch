@@ -54,7 +54,7 @@ class Builder
 
         if (is_string($model) && class_exists($model)) {
             $this->model = new $model;
-        } else if (! is_object($model)) {
+        } elseif (! is_object($model)) {
             $this->model = ElasticHit::onIndex($model);
         }
     }
@@ -195,7 +195,7 @@ class Builder
         return $this->getClient()->search(array_merge([
             'index' => $index ?? $this->model->getIndexName(),
             'body' => array_filter($query, function ($value) {
-                return  !empty($value) || ($value === 0);
+                return  ! empty($value) || ($value === 0);
             }),
         ], $params));
     }

@@ -2,10 +2,28 @@
 
 All notable changes to `Elasticsearch` will be documented in this file.
 
-## Version x.x
+## Version 0.x.x
+### Added
 
-Changelog will be update after the first release.
+### Fixes
+
+
+## Version 0.4.0
 
 ### Added
+
+* Add `elastic:create-index` command to interactively create index
+* Serialize aggregations to array / json. 
+
+### Fixes
+* Fix search threw exception when requesting empty filter
+* Fix zero size ignored in query
+* Fix incorrect index name taken from eloquent models
+
+## Version 0.3.0
+
+### Added
+* Use new extended config format (support https, basic auth...)
+
 ### Fixes
 

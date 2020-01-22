@@ -5,9 +5,9 @@ namespace AviationCode\Elasticsearch\Model\Aggregations\Bucket;
 use AviationCode\Elasticsearch\Helpers\HasAttributes;
 use Illuminate\Support\Collection;
 
-abstract class Bucket extends Collection
+abstract class Bucket extends Collection implements \JsonSerializable
 {
-    use HasAttributes;
+    use HasAttributes { jsonSerialize as jsonSerializeAttributes; }
 
     /**
      * Bucket constructor.
@@ -32,5 +32,13 @@ abstract class Bucket extends Collection
     protected function newBucketItem($item): BucketItem
     {
         return new BucketItem($item);
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'meta' => $this->jsonSerializeAttributes(),
+            'data' => parent::jsonSerialize(),
+        ];
     }
 }

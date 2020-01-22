@@ -17,4 +17,18 @@ trait HasAttributes
             return $this->attributes[$property];
         }
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function jsonSerialize()
+    {
+        return array_map(function ($value) {
+            if ($value instanceof \JsonSerializable) {
+                return $value->jsonSerialize();
+            }
+            return $value;
+        }, $this->attributes);
+        return $this->attributes;
+    }
 }

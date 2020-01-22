@@ -3,9 +3,10 @@
 namespace AviationCode\Elasticsearch\Model\Aggregations;
 
 use AviationCode\Elasticsearch\Helpers\HasAttributes;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Str;
 
-class Aggregation
+class Aggregation implements \JsonSerializable, Arrayable
 {
     use HasAttributes;
 
@@ -54,5 +55,13 @@ class Aggregation
         }
 
         throw new \InvalidArgumentException("$class does not exist in any of the \AviationCode\Elasticsearch\Model\Aggregations");
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray()
+    {
+        return $this->jsonSerialize();
     }
 }

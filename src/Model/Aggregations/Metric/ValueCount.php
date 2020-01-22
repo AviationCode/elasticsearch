@@ -2,12 +2,11 @@
 
 namespace AviationCode\Elasticsearch\Model\Aggregations\Metric;
 
-class ValueCount
+use AviationCode\Elasticsearch\Helpers\HasAttributes;
+
+class ValueCount implements \JsonSerializable
 {
-    /**
-     * @var int|float
-     */
-    protected $value;
+    use HasAttributes;
 
     /**
      * ValueCount constructor.

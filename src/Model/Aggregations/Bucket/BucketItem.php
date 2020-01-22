@@ -5,7 +5,7 @@ namespace AviationCode\Elasticsearch\Model\Aggregations\Bucket;
 use AviationCode\Elasticsearch\Helpers\HasAttributes;
 use AviationCode\Elasticsearch\Model\Aggregations\Aggregation;
 
-class BucketItem
+class BucketItem implements \JsonSerializable
 {
     use HasAttributes;
 

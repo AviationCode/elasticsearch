@@ -13,7 +13,15 @@ return [
     */
 
     'config' => [
-        'hosts' => [env('ELASTICSEARCH_HOST', 'localhost').':'.env('ELASTICSEARCH_PORT', 9200)],
+        'hosts' => [
+            [
+                'host' => env('ELASTIC_HOST', 'localhost'),
+                'port' => env('ELASTIC_PORT', 9200),
+                'scheme' => env('ELASTIC_SCHEME', 'http'),
+                'user' => env('ELASTIC_USER'),
+                'pass' => env('ELASTIC_PASSWORD'),
+            ],
+        ],
         'retries' => 1,
     ],
 

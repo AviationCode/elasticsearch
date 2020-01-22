@@ -19,8 +19,8 @@ $ composer require aviationcode/elasticsearch
 `.env` configuration
 
 ```dotenv
-ELASTICSEARCH_HOST=localhost
-ELASTICSEARCH_PORT=9200
+ELASTIC_HOST=localhost
+ELASTIC_PORT=9200
 ```
 
 ## Usage

@@ -77,7 +77,7 @@ trait ElasticSearchable
     }
 
     /**
-     * @return Elasticsearch
+     * @return \AviationCode\Elasticsearch\Elasticsearch|Elasticsearch
      */
     public function elastic()
     {

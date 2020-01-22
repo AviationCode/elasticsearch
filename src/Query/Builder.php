@@ -52,9 +52,9 @@ class Builder
         $this->query = new Query();
         $this->aggregations = new Aggregation();
 
-        if (is_string($this->model) && class_exists($this->model)) {
-            $this->model = new $this->model;
-        } else {
+        if (is_string($model) && class_exists($model)) {
+            $this->model = new $model;
+        } else if (! is_object($model)) {
             $this->model = ElasticHit::onIndex($model);
         }
     }
@@ -194,7 +194,7 @@ class Builder
     {
         return $this->getClient()->search(array_merge([
             'index' => $index ?? $this->model->getIndexName(),
-            'body' => $query,
+            'body' => array_filter($query),
         ], $params));
     }
 

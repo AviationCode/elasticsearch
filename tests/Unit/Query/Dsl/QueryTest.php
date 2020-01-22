@@ -88,6 +88,6 @@ class QueryTest extends TestCase
     {
         $query = new Query();
 
-        $this->assertEquals(['bool' => []], $query->toArray());
+        $this->assertEquals([], $query->toArray());
     }
 }

@@ -5,7 +5,6 @@ namespace AviationCode\Elasticsearch\Console;
 use AviationCode\Elasticsearch\Facades\Elasticsearch;
 use AviationCode\Elasticsearch\Model\ElasticSearchable;
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
 
 /** @codeCoverageIgnore  */
 class CreateIndexCommand extends Command
@@ -14,23 +13,12 @@ class CreateIndexCommand extends Command
 
     protected $description = 'Create index inside for the given model/idex.';
 
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->addArgument('index', InputArgument::OPTIONAL, 'Eloquent model or index name');
-    }
-
     public function handle()
     {
-        $index = $this->argument('index');
+        $index = $this->ask('Provide full classpath to an eloquent model (Hit enter to skip):');
 
-        if (! $index) {
-            $index = $this->ask('Provide full classpath to an eloquent model (Hit enter to skip):');
-
-            if ($index) {
-                $this->createIndexFromClass($index);
-            }
+        if ($index) {
+            $this->createIndexFromClass($index);
         }
 
         if (! $index) {

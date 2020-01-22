@@ -32,11 +32,6 @@ class SearchTest extends TestCase
                 'typed_keys' => true,
                 'body' => [
                     'size' => 2,
-                    'query' => [
-                        'bool' => [],
-                    ],
-                    'sort' => [],
-                    'aggs' => [],
                 ],
             ])
             ->andReturn([
@@ -149,11 +144,6 @@ class SearchTest extends TestCase
                 'typed_keys' => true,
                 'body' => [
                     'size' => 2,
-                    'query' => [
-                        'bool' => [],
-                    ],
-                    'sort' => [],
-                    'aggs' => [],
                 ],
             ])
             ->andReturn([
@@ -335,18 +325,18 @@ class SearchTest extends TestCase
             ->once()
             ->with([
                 'index' => 'article',
-                'id' => 0,
+                'id' => 1,
             ])
             ->andReturn([
                 '_index' => 'article',
                 '_type' => '_doc',
-                '_id' => '0',
+                '_id' => '1',
                 'found' => false,
             ]);
 
         $qb = $this->elastic->query(Article::class);
 
-        $qb->findOrFail(0);
+        $qb->findOrFail(1);
 
         $this->markSuccessfull();
     }
@@ -361,11 +351,7 @@ class SearchTest extends TestCase
                 'typed_keys' => true,
                 'body' => [
                     'size' => 100,
-                    'query' => [
-                        'bool' => [],
-                    ],
                     'sort' => [['created_at' => 'desc']],
-                    'aggs' => [],
                 ],
             ])
             ->andReturn($this->successResponse());
@@ -387,11 +373,6 @@ class SearchTest extends TestCase
                 'typed_keys' => true,
                 'body' => [
                     'size' => 1,
-                    'query' => [
-                        'bool' => [],
-                    ],
-                    'sort' => [],
-                    'aggs' => [],
                 ],
             ])
             ->andReturn($this->successResponse());
@@ -433,8 +414,6 @@ class SearchTest extends TestCase
                             ],
                         ],
                     ],
-                    'sort' => [],
-                    'aggs' => [],
                 ],
             ])
             ->andReturn($this->successResponse());

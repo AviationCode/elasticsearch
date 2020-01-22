@@ -106,7 +106,7 @@ class Query implements Arrayable
      */
     public function toArray()
     {
-        $query = collect([
+        return collect([
             $this->boolean->toArray(),
             $this->boosting->toArray(),
             $this->constantScore->toArray(),
@@ -121,12 +121,5 @@ class Query implements Arrayable
 
             return [$key => $value[$key]];
         })->filter()->toArray();
-
-        // When no query is given assume we display everything by forcing boolean query to empty response.
-        if (empty($query)) {
-            return [$this->boolean->getKey() => []];
-        }
-
-        return $query;
     }
 }

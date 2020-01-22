@@ -21,7 +21,6 @@ class CreateIndexCommand extends Command
         $this->addArgument('index', InputArgument::OPTIONAL, 'Eloquent model or index name');
     }
 
-
     public function handle()
     {
         $index = $this->argument('index');
@@ -46,7 +45,7 @@ class CreateIndexCommand extends Command
         /** @var ElasticSearchable $model */
         $model = new $class;
 
-        $this->info(class_basename($model) . ' found with elastic index "' . $model->getIndexName() . '"');
+        $this->info(class_basename($model).' found with elastic index "'.$model->getIndexName().'"');
 
         $this->deleteExistingIndex($model->getIndexName());
 
@@ -99,7 +98,7 @@ class CreateIndexCommand extends Command
             if ($options['type'] === 'date') {
                 $options['ignore_malformed'] = true;
                 $options['format'] = 'yyyy-MM-dd HH:mm:ss||yyyy-MM-dd';
-            } else if ($options['type'] === 'object') {
+            } elseif ($options['type'] === 'object') {
                 $options['dynamic'] = $this->confirm('Dynamic properties?', 'yes');
             }
 

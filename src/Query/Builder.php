@@ -194,7 +194,9 @@ class Builder
     {
         return $this->getClient()->search(array_merge([
             'index' => $index ?? $this->model->getIndexName(),
-            'body' => array_filter($query),
+            'body' => array_filter($query, function ($value) {
+                return  !empty($value) || ($value === 0);
+            }),
         ], $params));
     }
 

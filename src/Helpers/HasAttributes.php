@@ -19,7 +19,7 @@ trait HasAttributes
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function jsonSerialize()
     {
@@ -27,8 +27,10 @@ trait HasAttributes
             if ($value instanceof \JsonSerializable) {
                 return $value->jsonSerialize();
             }
+
             return $value;
         }, $this->attributes);
+
         return $this->attributes;
     }
 }

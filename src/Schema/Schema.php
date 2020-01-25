@@ -3,7 +3,6 @@
 namespace AviationCode\Elasticsearch\Schema;
 
 use AviationCode\Elasticsearch\Elasticsearch;
-use AviationCode\Elasticsearch\Exceptions\BaseElasticsearchException;
 use AviationCode\Elasticsearch\Exceptions\ElasticErrorFactory;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
 use InvalidArgumentException;

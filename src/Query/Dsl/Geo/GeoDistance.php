@@ -49,8 +49,8 @@ class GeoDistance implements Arrayable
      * GeoDistance constructor.
      *
      * @param string $field
-     * @param $lat
-     * @param $lon
+     * @param array|string|double|float$lat
+     * @param array|string|double|float $lon
      * @param null $distance
      * @param null $unit
      * @param array|null $options

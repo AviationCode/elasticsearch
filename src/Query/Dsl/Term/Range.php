@@ -31,9 +31,9 @@ class Range implements Arrayable
     /**
      * Range constructor.
      *
-     * @param string field
+     * @param string $field
      * @param string $operator
-     * @param null $value
+     * @param mixed|null $value
      * @param array $options
      */
     public function __construct(string $field, $operator = 'gte', $value = null, array $options = [])
@@ -63,7 +63,7 @@ class Range implements Arrayable
     /**
      * Greater than or equal.
      *
-     * @param $value
+     * @param mixed $value
      *
      * @return $this
      */
@@ -81,7 +81,7 @@ class Range implements Arrayable
     /**
      * Greater than or equal.
      *
-     * @param $value
+     * @param mixed $value
      *
      * @return $this
      */
@@ -99,7 +99,7 @@ class Range implements Arrayable
     /**
      * Greater than or equal.
      *
-     * @param $value
+     * @param mixed $value
      *
      * @return $this
      */
@@ -117,7 +117,7 @@ class Range implements Arrayable
     /**
      * Greater than or equal.
      *
-     * @param $value
+     * @param mixed $value
      *
      * @return $this
      */

@@ -23,13 +23,13 @@ class Aggregation extends Collection
     /**
      * Add an aggregation.
      *
-     * @param $class
+     * @param string $class
      * @param string $method
-     * @param $arguments
+     * @param array $arguments
      *
      * @return $this
      */
-    private function addAggregation($class, string $method, $arguments): self
+    private function addAggregation(string $class, string $method, array $arguments): self
     {
         if (! isset($arguments[0])) {
             throw new \InvalidArgumentException('Missing argument $key.');

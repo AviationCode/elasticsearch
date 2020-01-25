@@ -33,7 +33,7 @@ class Prefix implements Arrayable
      * Prefix constructor.
      *
      * @param string $field
-     * @param $value
+     * @param mixed $value
      * @param string|null $rewrite
      */
     public function __construct(string $field, $value, ?string $rewrite = null)

@@ -70,7 +70,7 @@ abstract class Boolean implements Arrayable
      * Elasticsearch measures similarity, or fuzziness, using a Levenshtein edit distance.
      *
      * @param string $field
-     * @param $value
+     * @param mixed $value
      * @param array $options
      *
      * @return $this
@@ -100,7 +100,7 @@ abstract class Boolean implements Arrayable
      * Returns documents that contain a specific prefix in a provided field.
      *
      * @param string $field
-     * @param $value
+     * @param mixed $value
      * @param string|null $rewrite
      *
      * @return $this
@@ -115,14 +115,14 @@ abstract class Boolean implements Arrayable
     /**
      * Returns documents that contain terms within a provided range.
      *
-     * @param $field
+     * @param string $field
      * @param string $operator
      * @param null $date
      * @param array $options
      *
      * @return $this
      */
-    public function range($field, $operator = 'gte', $date = null, array $options = []): self
+    public function range(string $field, $operator = 'gte', $date = null, array $options = []): self
     {
         $this->clauses[] = new Range($field, $operator, $date, $options);
 
@@ -133,7 +133,7 @@ abstract class Boolean implements Arrayable
      * Returns documents that contain terms matching a regular expression.
      *
      * @param string $field
-     * @param $value
+     * @param mixed $value
      * @param array $options
      *
      * @return $this
@@ -166,7 +166,7 @@ abstract class Boolean implements Arrayable
      * You can define the minimum number of matching terms using a field or script.
      *
      * @param string $field
-     * @param $value
+     * @param mixed $value
      * @param array $options
      *
      * @return $this
@@ -182,7 +182,7 @@ abstract class Boolean implements Arrayable
      * Returns documents that contain terms matching a wildcard pattern.
      *
      * @param string $field
-     * @param $value
+     * @param mixed $value
      * @param array $options
      *
      * @return $this
@@ -199,7 +199,7 @@ abstract class Boolean implements Arrayable
      * The provided text is analyzed before matching.
      *
      * @param string $key
-     * @param $query
+     * @param mixed $query
      * @param array $options
      * @return $this
      */
@@ -215,7 +215,7 @@ abstract class Boolean implements Arrayable
      * except for the last term, which is matched as a prefix query.
      *
      * @param string $field
-     * @param $value
+     * @param mixed $value
      * @param array $options
      *
      * @return $this
@@ -231,7 +231,7 @@ abstract class Boolean implements Arrayable
      * Like the match query but used for matching exact phrases or word proximity matches.
      *
      * @param string $field
-     * @param $value
+     * @param mixed $value
      * @param array $options
      *
      * @return $this
@@ -247,7 +247,7 @@ abstract class Boolean implements Arrayable
      * Like the match_phrase query, but does a wildcard search on the final word.
      *
      * @param string $field
-     * @param $value
+     * @param mixed $value
      * @param array $options
      *
      * @return $this
@@ -263,7 +263,7 @@ abstract class Boolean implements Arrayable
      * The multi-field version of the match query.
      *
      * @param array $fields
-     * @param $value
+     * @param mixed $value
      * @param array $options
      *
      * @return $this
@@ -280,7 +280,7 @@ abstract class Boolean implements Arrayable
      * conditions and multi-field search within a single query string.
      * For expert users only.
      *
-     * @param $value
+     * @param mixed $value
      * @param array $options
      *
      * @return $this
@@ -295,7 +295,7 @@ abstract class Boolean implements Arrayable
     /**
      * A simpler, more robust version of the query_string syntax suitable for exposing directly to users.
      *
-     * @param $value
+     * @param mixed $value
      * @param array $options
      *
      * @return $this
@@ -346,8 +346,8 @@ abstract class Boolean implements Arrayable
      * Finds documents with geo-points within the specified distance of a central point.
      *
      * @param string $field
-     * @param $lat
-     * @param $lon
+     * @param array|string|double|float$lat
+     * @param array|string|double|float $lon
      * @param null $distance
      * @param null $unit
      * @param array|null $options
@@ -365,7 +365,7 @@ abstract class Boolean implements Arrayable
      * Finds documents with geo-points that fall into the specified rectangle.
      *
      * @param string $field
-     * @param $topLeft
+     * @param string|array $topLeft
      * @param null $bottomRight
      * @param array|null $options
      *

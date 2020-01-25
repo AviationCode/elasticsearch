@@ -38,7 +38,7 @@ class GeoBoundingBox implements Arrayable
      * GeoBoundingBox constructor.
      *
      * @param string $field
-     * @param $topLeft
+     * @param string|array $topLeft
      * @param null $bottomRight
      * @param array|null $options
      */

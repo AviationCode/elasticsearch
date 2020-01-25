@@ -6,7 +6,7 @@ use Elasticsearch\Common\Exceptions\ElasticsearchException;
 use Exception;
 use Illuminate\Support\Arr;
 
-class ElasticErrorFactory
+final class ElasticErrorFactory
 {
     /**
      * @var array Error type mapping
@@ -62,14 +62,14 @@ class ElasticErrorFactory
      *
      * @throws BaseElasticsearchException
      */
-    public function throw(): void
+    public function create(): BaseElasticsearchException
     {
         $type = Arr::get(json_decode($this->exception->getMessage(), true), 'error.type');
 
         if (! isset(static::$types[$type])) {
-            throw new BaseElasticsearchException($this->exception);
+            return new BaseElasticsearchException($this->exception);
         }
 
-        throw new static::$types[$type]($this->exception);
+        return new static::$types[$type]($this->exception);
     }
 }

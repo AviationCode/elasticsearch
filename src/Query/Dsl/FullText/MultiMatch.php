@@ -32,7 +32,7 @@ class MultiMatch implements Arrayable
      * MatchPhrase constructor.
      *
      * @param array $fields
-     * @param $value
+     * @param mixed $value
      * @param array $options
      */
     public function __construct(array $fields, $value, array $options = [])

@@ -11,6 +11,9 @@ use Illuminate\Support\Str;
  * Trait ElasticSearchable.
  *
  * @mixin Model
+ * @property string|null $indexName
+ * @property int|null $indexVersion
+ * @property array|null $mapping
  */
 trait ElasticSearchable
 {
@@ -64,7 +67,7 @@ trait ElasticSearchable
             }
         }
 
-        /** @var Model $instance */
+        /** @var static $instance */
         $instance = $this->newInstance([], true);
         $instance->setRawAttributes($attributes, true);
 

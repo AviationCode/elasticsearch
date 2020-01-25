@@ -34,7 +34,7 @@ class MatchBoolPrefix implements Arrayable
      * MatchBoolPrefix constructor.
      *
      * @param string $field
-     * @param $value
+     * @param mixed $value
      * @param array $options
      */
     public function __construct(string $field, $value, array $options = [])

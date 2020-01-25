@@ -15,7 +15,9 @@ class Builder
 {
     use ElasticsearchClient;
 
-    /** @var ElasticSearchable|Model */
+    /**
+     * @var ElasticSearchable|mixed
+     */
     private $model;
 
     /**
@@ -46,9 +48,12 @@ class Builder
      */
     private $aggregations;
 
+    /**
+     * Builder constructor.
+     * @param ElasticSearchable|mixed|string|null $model
+     */
     public function __construct($model = null)
     {
-        $this->model = $model;
         $this->query = new Query();
         $this->aggregations = new Aggregation();
 
@@ -56,13 +61,15 @@ class Builder
             $this->model = new $model;
         } elseif (! is_object($model)) {
             $this->model = ElasticHit::onIndex($model);
+        } else {
+            $this->model = $model;
         }
     }
 
     /**
      * Find model by id.
      *
-     * @param $id
+     * @param string|int $id
      *
      * @return Model|null
      */
@@ -80,7 +87,7 @@ class Builder
     /**
      * Find by id or throw model not found exception if missing.
      *
-     * @param $id
+     * @param string|int $id
      * @return Model
      *
      * @throws ModelNotFoundException
@@ -124,10 +131,10 @@ class Builder
     /**
      * Limit the number of results returned.
      *
-     * @param $size
+     * @param int $size
      * @return $this
      */
-    public function limit($size)
+    public function limit(int $size)
     {
         $this->size = $size;
 

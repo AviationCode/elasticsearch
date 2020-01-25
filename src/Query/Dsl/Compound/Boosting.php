@@ -18,5 +18,6 @@ class Boosting extends Compound
     public function toArray()
     {
         // TODO: Implement toArray() method.
+        return [];
     }
 }

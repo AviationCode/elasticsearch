@@ -22,7 +22,7 @@ class Elasticsearch
     use ElasticsearchClient;
 
     /**
-     * @var ElasticSearchable|Model
+     * @var ElasticSearchable|null
      */
     public $model;
 
@@ -93,12 +93,13 @@ class Elasticsearch
     /**
      * Index a model into elastic search.
      *
-     * @param null|ElasticSearchable|Model $model
+     * @param null|ElasticSearchable $model
      * @param null $data
      * @param string $key
      * @return bool
      *
      * @throws BaseElasticsearchException
+     * @throws \Throwable
      */
     public function add($model = null, $data = null, $key = 'id')
     {
@@ -127,7 +128,7 @@ class Elasticsearch
                 $this->event(new DocumentUpdatedEvent($model, $response));
             }
         } catch (\Exception $exception) {
-            $this->handleException($exception);
+            throw $this->handleException($exception);
         }
 
         return true;
@@ -141,7 +142,9 @@ class Elasticsearch
      * @param string $key
      *
      * @return bool
+     *
      * @throws BaseElasticsearchException
+     * @throws \Throwable
      */
     private function addRaw(string $index, $data, $key = 'id')
     {
@@ -166,19 +169,20 @@ class Elasticsearch
                 $this->event(new DocumentUpdatedEvent($data, $response));
             }
         } catch (Exception $exception) {
-            $this->handleException($exception);
+            throw $this->handleException($exception);
         }
 
         return true;
     }
 
     /**
-     * @param null|ElasticSearchable|Model $model
+     * @param null|ElasticSearchable $model
      * @param null $data
      * @param string $key
      * @return bool
      *
      * @throws BaseElasticsearchException
+     * @throws \Throwable
      */
     public function update($model = null, $data = null, $key = 'id')
     {
@@ -291,7 +295,7 @@ class Elasticsearch
     /**
      * If index is provided use it as param or use the model.
      *
-     * @param null|ElasticSearchable|Model $model
+     * @param null|ElasticSearchable $model
      * @return ElasticSearchable|Model
      * @throws InvalidArgumentException
      */
@@ -307,24 +311,23 @@ class Elasticsearch
     /**
      * Handle erorr / exceptions.
      *
-     * @param Exception $exception
+     * @param \Throwable $exception
      *
-     * @throws BaseElasticsearchException
-     * @throws Exception
+     * @return \Throwable
      */
-    protected function handleException(Exception $exception): void
+    protected function handleException(\Throwable $exception): \Throwable
     {
         if (! $exception instanceof ElasticsearchException) {
-            throw $exception;
+            return $exception;
         }
 
-        ElasticErrorFactory::with($exception)->throw();
+        return ElasticErrorFactory::with($exception)->create();
     }
 
     /**
      * Convert the model to a index ndjson record.
      *
-     * @param ElasticSearchable|Model $model
+     * @param ElasticSearchable $model
      * @param array $meta
      * @return string
      */

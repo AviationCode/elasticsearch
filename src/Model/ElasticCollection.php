@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
-class ElasticCollection extends Collection
+final class ElasticCollection extends Collection
 {
     public $took = -1;
 
@@ -22,16 +22,6 @@ class ElasticCollection extends Collection
     public $total_relation;
 
     public $aggregations;
-
-    /**
-     * ElasticCollection constructor.
-     *
-     * @param array $models
-     */
-    public function __construct(array $models = [])
-    {
-        parent::__construct($models);
-    }
 
     /**
      * Set search meta from response.
@@ -90,6 +80,7 @@ class ElasticCollection extends Collection
         }
 
         $this->items = array_map(function ($item) use ($model) {
+            /** @var ElasticSearchable $model */
             return $model->newFromElasticBuilder($item);
         }, $response['hits']['hits']);
 

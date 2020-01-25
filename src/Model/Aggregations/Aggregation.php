@@ -33,12 +33,12 @@ class Aggregation implements \JsonSerializable, Arrayable
     /**
      * Find and return instance of an aggregation model based on a typed elastic key.
      *
-     * @param $typedKey
-     * @param $value
+     * @param string $typedKey
+     * @param mixed $value
      *
      * @return array list($key, $instance)
      */
-    public static function aggregationModel($typedKey, $value): array
+    public static function aggregationModel(string $typedKey, $value): array
     {
         [$type, $key] = explode('#', $typedKey);
 

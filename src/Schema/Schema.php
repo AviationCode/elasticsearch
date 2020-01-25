@@ -46,14 +46,14 @@ class Schema
      *
      * @param \Exception $exception
      *
-     * @throws BaseElasticsearchException
+     * @return \Throwable
      */
-    protected function handleException(\Exception $exception): void
+    protected function handleException(\Throwable $exception): \Throwable
     {
         if (! $exception instanceof ElasticsearchException) {
-            throw $exception;
+            return $exception;
         }
 
-        ElasticErrorFactory::with($exception)->throw();
+        return ElasticErrorFactory::with($exception)->create();
     }
 }

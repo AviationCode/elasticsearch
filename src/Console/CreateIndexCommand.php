@@ -13,7 +13,7 @@ class CreateIndexCommand extends Command
 
     protected $description = 'Create index inside for the given model/idex.';
 
-    public function handle()
+    public function handle(): int
     {
         $index = $this->ask('Provide full classpath to an eloquent model (Hit enter to skip):');
 
@@ -28,7 +28,7 @@ class CreateIndexCommand extends Command
         return 0;
     }
 
-    private function createIndexFromClass($class)
+    private function createIndexFromClass(string $class): void
     {
         /** @var ElasticSearchable $model */
         $model = new $class;
@@ -68,7 +68,7 @@ class CreateIndexCommand extends Command
         }
     }
 
-    private function createIndex($index)
+    private function createIndex(string $index): void
     {
         $this->deleteExistingIndex($index);
 
@@ -87,7 +87,7 @@ class CreateIndexCommand extends Command
                 $options['ignore_malformed'] = true;
                 $options['format'] = 'yyyy-MM-dd HH:mm:ss||yyyy-MM-dd';
             } elseif ($options['type'] === 'object') {
-                $options['dynamic'] = $this->confirm('Dynamic properties?', 'yes');
+                $options['dynamic'] = $this->confirm('Dynamic properties?', true);
             }
 
             $options = array_merge($options, json_decode($this->ask('Any extra options (json)?', '[]'), true));
@@ -106,7 +106,7 @@ class CreateIndexCommand extends Command
         Elasticsearch::index()->putMapping($mapping, $index);
     }
 
-    private function deleteExistingIndex($index): void
+    private function deleteExistingIndex(string $index): void
     {
         if (Elasticsearch::index()->exists($index)) {
             $this->warn("Index '$index' already exists");

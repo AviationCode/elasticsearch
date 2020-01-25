@@ -2,7 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Model;
 
-class ElasticHit extends ElasticsearchModel
+final class ElasticHit extends ElasticsearchModel
 {
     /**
      * Create a generic model bound to specific index.

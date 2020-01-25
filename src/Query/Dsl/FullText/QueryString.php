@@ -27,7 +27,7 @@ class QueryString implements Arrayable
     /**
      * QueryString constructor.
      *
-     * @param $value
+     * @param mixed $value
      * @param array $options
      */
     public function __construct($value, array $options = [])

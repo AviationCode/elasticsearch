@@ -39,7 +39,7 @@ class Match implements Arrayable
      * Match constructor.
      *
      * @param string $field
-     * @param $query
+     * @param mixed $query
      * @param array $options
      */
     public function __construct(string $field, $query, array $options = [])

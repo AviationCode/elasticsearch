@@ -5,9 +5,9 @@ namespace AviationCode\Elasticsearch\Model\Aggregations\Metric;
 use AviationCode\Elasticsearch\Helpers\HasAttributes;
 
 /**
- * Class ValueCount
+ * Class ValueCount.
  *
- * @property int|float|double $value;
+ * @property int|float|float $value;
  */
 class ValueCount implements \JsonSerializable
 {

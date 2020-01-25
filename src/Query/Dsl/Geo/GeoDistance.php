@@ -50,7 +50,7 @@ class GeoDistance implements Arrayable
      *
      * @param string $field
      * @param array|string|double|float$lat
-     * @param array|string|double|float $lon
+     * @param array|string|float|float $lon
      * @param null $distance
      * @param null $unit
      * @param array|null $options

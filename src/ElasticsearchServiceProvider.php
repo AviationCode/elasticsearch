@@ -3,7 +3,6 @@
 namespace AviationCode\Elasticsearch;
 
 use AviationCode\Elasticsearch\Console\CreateIndexCommand;
-use AviationCode\Elasticsearch\Console\MigrateCommand;
 use Elasticsearch\ClientBuilder;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,7 +22,6 @@ class ElasticsearchServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 CreateIndexCommand::class,
-                MigrateCommand::class,
             ]);
         }
     }

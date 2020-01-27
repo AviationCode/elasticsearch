@@ -83,9 +83,6 @@ class Aggregation
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function __call($method, $arguments)
     {
         $class = Str::studly($method);

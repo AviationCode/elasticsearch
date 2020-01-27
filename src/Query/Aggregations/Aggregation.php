@@ -10,8 +10,15 @@ use Illuminate\Support\Str;
  * @method self terms(string $key, string $field, array $options = [])
  * @method self dateHistogram(string $key, string $field, string $interval, string $intervalType = DateHistogram::FIXED, array $options = [])
  * @method self valueCount(string $key, string $field)
+ *
+ * @method mixed get(string $key, $default = null)
+ * @method mixed first(string $key, $default = null)
+ * @method bool has(string $key)
+ * @method void put(string $key, $value)
+ * @method int count()
+ * @method array toArray()
  */
-class Aggregation extends Collection
+class Aggregation
 {
     private static $namespaces = [
         '\AviationCode\Elasticsearch\Query\Aggregations\Metric',
@@ -19,6 +26,21 @@ class Aggregation extends Collection
         '\AviationCode\Elasticsearch\Query\Aggregations\Pipeline',
         '\AviationCode\Elasticsearch\Query\Aggregations\Matrix',
     ];
+
+    /**
+     * Internal list of aggregations.
+     *
+     * @var Collection
+     */
+    protected $aggregations;
+
+    /**
+     * Aggregation constructor.
+     */
+    public function __construct()
+    {
+        $this->aggregations = new Collection();
+    }
 
     /**
      * Add an aggregation.
@@ -75,6 +97,6 @@ class Aggregation extends Collection
             }
         }
 
-        return parent::__call($method, $arguments);
+        return $this->aggregations->$method(...$arguments);
     }
 }

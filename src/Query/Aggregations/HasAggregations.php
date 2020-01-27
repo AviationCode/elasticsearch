@@ -35,7 +35,7 @@ trait HasAggregations
     {
         $params = [$this->key => $this->toElastic()];
 
-        if (count($this->aggregations)) {
+        if ($this->aggregations->count()) {
             $params['aggs'] = $this->aggregations->toArray();
         }
 

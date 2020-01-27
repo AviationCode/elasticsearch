@@ -148,8 +148,39 @@ class ArticleController
 }
 ```
 
+Without an eloquent model.
+```php
+namespace App\Http\Controllers;
+
+use App\Article;
+use AviationCode\Elasticsearch\Facades\Elasticsearch;
+use AviationCode\Elasticsearch\Query\Dsl\Boolean\Filter;
+use AviationCode\Elasticsearch\Query\Dsl\Boolean\Must;
+use Illuminate\Http\Request;
+
+class ArticleController 
+{
+    public function index(Request $request)
+    {
+        return Elasticsearch::query('article')
+            ->filter(function (Filter $filter) use ($request) {
+                if ($user = $request->query('user')) {
+                    $filter->term('user', $user); 
+                }
+            })
+            ->must(function (Must $must) use ($request) {
+                if ($query = $request->query('q')) {
+                    $must->queryString($query); 
+                }        
+            })
+            ->get();
+    }
+}
+```
+
 ### Aggregations
 
+Using aggregations with model.
 ```php
 namespace App\Http\Controllers;
 
@@ -161,6 +192,28 @@ class ArticlesPerUserPerDayController
     public function index()
     {
         $qb = Elasticsearch::forModel(Article::class)->query();
+
+        $qb->aggregations()
+            ->dateHistogram('date', 'created_at', '1d')
+            ->terms('date.users', 'user');
+
+        return $qb->get()->aggregations;
+    }
+}
+```
+
+Using aggregations without an eloquent model.
+```php
+namespace App\Http\Controllers;
+
+use App\Article;
+use AviationCode\Elasticsearch\Facades\Elasticsearch;
+
+class ArticlesPerUserPerDayController 
+{
+    public function index()
+    {
+        $qb = Elasticsearch::query('article');
 
         $qb->aggregations()
             ->dateHistogram('date', 'created_at', '1d')

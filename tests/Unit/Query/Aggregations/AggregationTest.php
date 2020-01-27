@@ -40,6 +40,18 @@ class AggregationTest extends TestCase
     }
 
     /** @test **/
+    public function it_builds_a_cardinality_aggregation()
+    {
+        $aggs = new Aggregation();
+
+        $aggs->cardinality('type_count', 'type');
+
+        $this->assertEquals([
+            'type_count' => ['cardinality' => ['field' => 'type']],
+        ], $aggs->toArray());
+    }
+
+    /** @test **/
     public function it_throws_exception_when_aggregation_does_not_exist()
     {
         $this->expectException(\BadMethodCallException::class);

@@ -5,7 +5,8 @@
 [![Build Status][ico-travis]][link-travis]
 [![StyleCI][ico-styleci]][link-styleci]
 
-This is where your description should go. Take a look at [contributing.md](contributing.md) to see a to do list.
+This package wraps the `elasticsearch/elasticsearch` composer package with laravel integration.
+Adding support to easily use your eloquent models with elastic search.  
 
 ## Installation
 
@@ -16,16 +17,36 @@ $ composer require aviationcode/elasticsearch
 ```
 ## Configuration
 
-`.env` configuration
+By default we use `localhost:9200` to search your elasticsearch instance. If this is the case noc configuration is required at all.
+You can use the following `.env` settings to configure how we connect to your elasticsearch instance.
 
-```dotenv
-ELASTIC_HOST=localhost
-ELASTIC_PORT=9200
-```
+| Name             | Type      | Default     | Description
+|------------------|:---------:|-------------|------------
+| ELASTIC_HOST     | `string`  | `localhost` | The IP or host to connect to 
+| ELASTIC_PORT     | `integer` | 9200        | The port used to connect
+| ELASTIC_SCHEME   | `string`  | `http`      | Use of HTTP or HTTPS 
+| ELASTIC_USER     | `string`  | `null`      | The Basic auth username
+| ELASTIC_PASSWORD | `string`  | `null`      | The Basic auth password
 
 ## Usage
 
-Configure a model to use elasticsearch by using the `ElasticSearchable` trait.
+Configure a model to use elasticsearch by using the `ElasticSearchable` trait or extend using `ElasticsearchModel`. 
+
+```php
+use AviationCode\Elasticsearch\Model\ElasticSearchable;
+use Illuminate\Database\Eloquent\Model;
+
+class Article extends Model
+{
+    use ElasticSearchable;
+}
+```
+
+### Custom mapping properties
+
+We attempt to detect the [elasticsearch mapping](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html) fields from your `$dates` array and primary key. We are unable to correctly detect other fields. 
+
+Elasticsearch will in this case attempt to guess the mapping field automatically however it is recommended to explicitly define these fields as the correct type.
 
 ```php
 use AviationCode\Elasticsearch\Model\ElasticSearchable;
@@ -35,20 +56,65 @@ class Article extends Model
 {
     use ElasticSearchable;
     
-    protected $mapping = [
-        'body' => ['type' => 'text'],
+    public $mapping = [
+        'category' => ['type' => 'keyword'],
+        'properties' => ['type' => 'object', 'dynamic' => true],
+        'ip' => ['type' => 'ip'],
     ];
 }
 ```
 
-This package can attempt migrate your elasticsearch index to it's desired state by running the artisan `elastic:migrate` command .
-By default it will check the `App\` namespace. You can either provide your model as argument or set the `models_namespace` param in the configuration file.
+Use the elasticsearch documentation to find all options available.
 
-```bash
-php artisan elastic:migrate
-php artisan elastic:migrate App/Article
+### Non numeric keys
+
+When using UUID's or other non numeric keys make sure you configure your model correctly.
+This will make sure we use the correct mapping inside your model mapping. 
+
+```php
+use AviationCode\Elasticsearch\Model\ElasticSearchable;
+use Illuminate\Database\Eloquent\Model;
+
+class Article extends Model
+{
+    use ElasticSearchable;
+
+    protected $keyType = 'string';    
+}
 ```
-In default setup the above three commands will execute in the same way if only model article exists and it uses the `ElasticSearchable` trait.
+
+### Custom index name
+
+You may want to use a custom name or use existing index name with your eloquent model. Just like you can define the database table used you can also define the index named used
+
+```php
+use AviationCode\Elasticsearch\Model\ElasticSearchable;
+use Illuminate\Database\Eloquent\Model;
+
+class Article extends Model
+{
+    use ElasticSearchable;
+    
+    public $indexName = 'my_custom_index_name';
+}
+```
+
+**Note**: You can still use `$indexVersion` to add `vX` at the end of your index.
+
+### Versioned index
+
+If you like to version your index names you can use the `$indexVersion` name. This will add `_vX` at the end of your index name where X is the index version.
+```php
+use AviationCode\Elasticsearch\Model\ElasticSearchable;
+use Illuminate\Database\Eloquent\Model;
+
+class Article extends Model
+{
+    use ElasticSearchable;
+    
+    public $indexVersion = 2;
+}
+```
 
 ### Query
 
@@ -104,6 +170,10 @@ class ArticlesPerUserPerDayController
     }
 }
 ```
+
+## Console Commands 
+
+### `elastic:create-index` Creating elasticsearch index
 
 ## Change log
 

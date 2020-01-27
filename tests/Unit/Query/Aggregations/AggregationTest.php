@@ -47,7 +47,7 @@ class AggregationTest extends TestCase
         $aggs->cardinality('type_count', 'type');
 
         $this->assertEquals([
-            'type_count' => ['cardinality' => ['field' => 'type']]
+            'type_count' => ['cardinality' => ['field' => 'type']],
         ], $aggs->toArray());
     }
 

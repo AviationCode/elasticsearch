@@ -2,8 +2,8 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Model\Aggregations\Metric;
 
-use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 use AviationCode\Elasticsearch\Model\Aggregations\Metric\Cardinality;
+use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class CardinalityTest extends TestCase
 {

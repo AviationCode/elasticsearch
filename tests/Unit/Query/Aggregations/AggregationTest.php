@@ -52,6 +52,18 @@ class AggregationTest extends TestCase
     }
 
     /** @test **/
+    public function it_builds_a_min_aggregation()
+    {
+        $aggs = new Aggregation();
+
+        $aggs->min('min_price', 'price');
+
+        $this->assertEquals([
+            'min_price' => ['min' => ['field' => 'price']],
+        ], $aggs->toArray());
+    }
+
+    /** @test **/
     public function it_throws_exception_when_aggregation_does_not_exist()
     {
         $this->expectException(\BadMethodCallException::class);

@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
  * @method self terms(string $key, string $field, array $options = [])
  * @method self dateHistogram(string $key, string $field, string $interval, string $intervalType = DateHistogram::FIXED, array $options = [])
  * @method self cardinality(string $key, string $field)
+ * @method self min(string $key, string $field)
  * @method self valueCount(string $key, string $field)
  *
  * @method mixed get(string $key, $default = null)

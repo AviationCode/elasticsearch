@@ -11,11 +11,18 @@ class Max extends Metric
      */
     private $field;
 
-    public function __construct(string $field)
+    /**
+     * @var array
+     */
+    private $options;
+
+    public function __construct(string $field, array $options = [])
     {
         parent::__construct('max', MaxModel::class);
 
         $this->field = $field;
+
+        $this->options = $options;
     }
 
     /**
@@ -23,6 +30,6 @@ class Max extends Metric
      */
     protected function toElastic(): array
     {
-        return ['field' => $this->field];
+        return array_merge(['field' => $this->field], $this->options);
     }
 }

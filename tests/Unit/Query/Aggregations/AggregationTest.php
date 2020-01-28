@@ -3,6 +3,7 @@
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations;
 
 use AviationCode\Elasticsearch\Query\Aggregations\Aggregation;
+use AviationCode\Elasticsearch\Query\Aggregations\Metric\Cardinality;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class AggregationTest extends TestCase
@@ -45,9 +46,15 @@ class AggregationTest extends TestCase
         $aggs = new Aggregation();
 
         $aggs->cardinality('type_count', 'type');
+        /** With Custom 'precision_threshold' */
+        $aggs->cardinality('grade_count', 'grade', ['precision_threshold' => 4000]);
+        /**  With 'missing' option */
+        $aggs->cardinality('tag_cardinality', 'tag', ['missing' => 'N/A']);
 
         $this->assertEquals([
-            'type_count' => ['cardinality' => ['field' => 'type']],
+            'type_count' => ['cardinality' => ['field' => 'type', 'precision_threshold' => Cardinality::DEFAULT_PRECISION_THRESHOLD]],
+            'grade_count' => ['cardinality' => ['field' => 'grade', 'precision_threshold' => 4000]],
+            'tag_cardinality' => ['cardinality' => ['field' => 'tag', 'precision_threshold' => Cardinality::DEFAULT_PRECISION_THRESHOLD, 'missing' => 'N/A']],
         ], $aggs->toArray());
     }
 
@@ -57,9 +64,11 @@ class AggregationTest extends TestCase
         $aggs = new Aggregation();
 
         $aggs->min('min_price', 'price');
+        $aggs->min('min_grade', 'grade', ['missing' => 60]);
 
         $this->assertEquals([
             'min_price' => ['min' => ['field' => 'price']],
+            'min_grade' => ['min' => ['field' => 'grade', 'missing' => 60]],
         ], $aggs->toArray());
     }
 
@@ -69,9 +78,11 @@ class AggregationTest extends TestCase
         $aggs = new Aggregation();
 
         $aggs->max('max_price', 'price');
+        $aggs->max('max_grade', 'grade', ['missing' => 75]); // With passing $missing optional parameter
 
         $this->assertEquals([
             'max_price' => ['max' => ['field' => 'price']],
+            'max_grade' => ['max' => ['field' => 'grade', 'missing' => 75]],
         ], $aggs->toArray());
     }
 

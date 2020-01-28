@@ -11,11 +11,18 @@ class Min extends Metric
      */
     protected $field;
 
-    public function __construct(string $field)
+    /**
+     * @var array
+     */
+    protected $options;
+
+    public function __construct(string $field, array $options = [])
     {
         parent::__construct('min', MinModel::class);
 
         $this->field = $field;
+
+        $this->options = $options;
     }
 
     /**
@@ -23,6 +30,6 @@ class Min extends Metric
      */
     protected function toElastic(): array
     {
-        return ['field' => $this->field];
+        return array_merge(['field' => $this->field], $this->options);
     }
 }

@@ -6,16 +6,25 @@ use AviationCode\Elasticsearch\Model\Aggregations\Metric\Cardinality as Cardinal
 
 class Cardinality extends Metric
 {
+    const DEFAULT_PRECISION_THRESHOLD = 3000;
+
     /**
      * @var string
      */
     private $field;
 
-    public function __construct(string $field)
+    /**
+     * @var array
+     */
+    private $options;
+
+    public function __construct(string $field, array $options = [])
     {
         parent::__construct('cardinality', CardinalityModel::class);
 
         $this->field = $field;
+
+        $this->options = $options;
     }
 
     /**
@@ -23,6 +32,9 @@ class Cardinality extends Metric
      */
     protected function toElastic(): array
     {
-        return ['field' => $this->field];
+        return array_merge([
+            'field' => $this->field,
+            'precision_threshold' => self::DEFAULT_PRECISION_THRESHOLD,
+        ], $this->options);
     }
 }

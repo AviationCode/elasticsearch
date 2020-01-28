@@ -9,7 +9,7 @@ class Max extends Metric
     /**
      * @var string
      */
-    protected $field;
+    private $field;
 
     public function __construct(string $field)
     {

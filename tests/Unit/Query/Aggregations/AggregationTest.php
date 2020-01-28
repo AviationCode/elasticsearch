@@ -64,6 +64,18 @@ class AggregationTest extends TestCase
     }
 
     /** @test **/
+    public function it_builds_a_max_aggregation()
+    {
+        $aggs = new Aggregation();
+
+        $aggs->max('max_price', 'price');
+
+        $this->assertEquals([
+            'max_price' => ['max' => ['field' => 'price']],
+        ], $aggs->toArray());
+    }
+
+    /** @test **/
     public function it_throws_exception_when_aggregation_does_not_exist()
     {
         $this->expectException(\BadMethodCallException::class);

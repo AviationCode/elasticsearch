@@ -3,6 +3,7 @@
 namespace AviationCode\Elasticsearch\Query\Aggregations\Metric;
 
 use AviationCode\Elasticsearch\Model\Aggregations\Metric\Max as MaxModel;
+use Illuminate\Support\Arr;
 
 class Max extends Metric
 {
@@ -16,6 +17,11 @@ class Max extends Metric
      */
     private $options;
 
+    /**
+     * @var array
+     */
+    private $allowedOptions;
+
     public function __construct(string $field, array $options = [])
     {
         parent::__construct('max', MaxModel::class);
@@ -23,6 +29,8 @@ class Max extends Metric
         $this->field = $field;
 
         $this->options = $options;
+
+        $this->allowedOptions = ['script', 'missing'];
     }
 
     /**
@@ -30,6 +38,8 @@ class Max extends Metric
      */
     protected function toElastic(): array
     {
-        return array_merge(['field' => $this->field], $this->options);
+        $options = Arr::only($this->options, $this->allowedOptions);
+
+        return array_merge(['field' => $this->field], $options);
     }
 }

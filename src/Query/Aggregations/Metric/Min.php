@@ -3,18 +3,24 @@
 namespace AviationCode\Elasticsearch\Query\Aggregations\Metric;
 
 use AviationCode\Elasticsearch\Model\Aggregations\Metric\Min as MinModel;
+use Illuminate\Support\Arr;
 
 class Min extends Metric
 {
     /**
      * @var string
      */
-    protected $field;
+    private $field;
 
     /**
      * @var array
      */
-    protected $options;
+    private $options;
+
+    /**
+     * @var array
+     */
+    private $allowedOptions;
 
     public function __construct(string $field, array $options = [])
     {
@@ -23,6 +29,8 @@ class Min extends Metric
         $this->field = $field;
 
         $this->options = $options;
+
+        $this->allowedOptions = ['script', 'missing'];
     }
 
     /**
@@ -30,6 +38,8 @@ class Min extends Metric
      */
     protected function toElastic(): array
     {
-        return array_merge(['field' => $this->field], $this->options);
+        $options = Arr::only($this->options, $this->allowedOptions);
+
+        return array_merge(['field' => $this->field], $options);
     }
 }

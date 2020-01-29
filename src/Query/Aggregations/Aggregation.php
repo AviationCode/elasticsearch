@@ -14,6 +14,8 @@ use Illuminate\Support\Str;
  * @method self max(string $key, string $field, array $options = [])
  * @method self stats(string $key, string $field, array $options = [])
  * @method self extendedStats(string $key, string $field, array $options = [])
+ * @method self avg(string $key, string $field, array $options = [])
+ * @method self weightedAvg(string $key, array $value, array $weight)
  * @method self valueCount(string $key, string $field)
  *
  * @method mixed get(string $key, $default = null)

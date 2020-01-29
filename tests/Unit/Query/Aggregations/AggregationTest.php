@@ -116,6 +116,34 @@ class AggregationTest extends TestCase
     }
 
     /** @test **/
+    public function it_builds_an_avg_aggregation()
+    {
+        $aggs = new Aggregation();
+
+        $aggs->avg('avg_grade', 'grade');
+        $aggs->avg('avg_price', 'price', ['missing' => 10]);
+
+        $this->assertEquals([
+            'avg_grade' => ['avg' => ['field' => 'grade']],
+            'avg_price' => ['avg' => ['field' => 'price', 'missing' => 10]],
+        ], $aggs->toArray());
+    }
+
+    /** @test **/
+    public function it_builds_a_weighted_avg_aggregation()
+    {
+        $aggs = new Aggregation();
+
+        $value = ['field' => 'price', 'missing' => 10];
+        $weight = ['field' => 'sales_percentage', 'missing' => 0.10];
+        $aggs->weightedAvg('weighted_price', $value, $weight);
+
+        $this->assertEquals([
+            'weighted_price' => ['weighted_avg' => ['value' => $value, 'weight' => $weight]],
+        ], $aggs->toArray());
+    }
+
+    /** @test **/
     public function it_throws_exception_when_aggregation_does_not_exist()
     {
         $this->expectException(\BadMethodCallException::class);

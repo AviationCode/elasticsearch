@@ -7,8 +7,6 @@ use Illuminate\Support\Arr;
 
 class Cardinality extends Metric
 {
-    const DEFAULT_PRECISION_THRESHOLD = 3000;
-
     /**
      * @var string
      */
@@ -22,7 +20,7 @@ class Cardinality extends Metric
     /**
      * @var array
      */
-    private $allowedOptions;
+    protected $allowedOptions = ['precision_threshold', 'missing'];
 
     public function __construct(string $field, array $options = [])
     {
@@ -31,8 +29,6 @@ class Cardinality extends Metric
         $this->field = $field;
 
         $this->options = $options;
-
-        $this->allowedOptions = ['precision_threshold', 'script', 'missing'];
     }
 
     /**
@@ -40,11 +36,6 @@ class Cardinality extends Metric
      */
     protected function toElastic(): array
     {
-        $options = Arr::only($this->options, $this->allowedOptions);
-
-        return array_merge([
-            'field' => $this->field,
-            'precision_threshold' => self::DEFAULT_PRECISION_THRESHOLD,
-        ], $options);
+        return array_merge(['field' => $this->field], $this->allowedOptions($this->options));
     }
 }

@@ -20,7 +20,7 @@ class Min extends Metric
     /**
      * @var array
      */
-    private $allowedOptions;
+    protected $allowedOptions = ['missing'];
 
     public function __construct(string $field, array $options = [])
     {
@@ -29,8 +29,6 @@ class Min extends Metric
         $this->field = $field;
 
         $this->options = $options;
-
-        $this->allowedOptions = ['script', 'missing'];
     }
 
     /**
@@ -38,8 +36,6 @@ class Min extends Metric
      */
     protected function toElastic(): array
     {
-        $options = Arr::only($this->options, $this->allowedOptions);
-
-        return array_merge(['field' => $this->field], $options);
+        return array_merge(['field' => $this->field], $this->allowedOptions($this->options));
     }
 }

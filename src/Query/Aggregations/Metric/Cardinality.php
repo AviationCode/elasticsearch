@@ -3,7 +3,6 @@
 namespace AviationCode\Elasticsearch\Query\Aggregations\Metric;
 
 use AviationCode\Elasticsearch\Model\Aggregations\Metric\Cardinality as CardinalityModel;
-use Illuminate\Support\Arr;
 
 class Cardinality extends Metric
 {

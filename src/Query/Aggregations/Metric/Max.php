@@ -3,7 +3,6 @@
 namespace AviationCode\Elasticsearch\Query\Aggregations\Metric;
 
 use AviationCode\Elasticsearch\Model\Aggregations\Metric\Max as MaxModel;
-use Illuminate\Support\Arr;
 
 class Max extends Metric
 {

@@ -3,7 +3,6 @@
 namespace AviationCode\Elasticsearch\Query\Aggregations\Metric;
 
 use AviationCode\Elasticsearch\Model\Aggregations\Metric\Min as MinModel;
-use Illuminate\Support\Arr;
 
 class Min extends Metric
 {

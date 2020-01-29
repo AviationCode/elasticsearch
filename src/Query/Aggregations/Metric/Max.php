@@ -2,10 +2,10 @@
 
 namespace AviationCode\Elasticsearch\Query\Aggregations\Metric;
 
-use AviationCode\Elasticsearch\Model\Aggregations\Metric\Min as MinModel;
+use AviationCode\Elasticsearch\Model\Aggregations\Metric\Max as MaxModel;
 use Illuminate\Support\Arr;
 
-class Min extends Metric
+class Max extends Metric
 {
     /**
      * @var string
@@ -24,7 +24,7 @@ class Min extends Metric
 
     public function __construct(string $field, array $options = [])
     {
-        parent::__construct('min', MinModel::class);
+        parent::__construct('max', MaxModel::class);
 
         $this->field = $field;
 

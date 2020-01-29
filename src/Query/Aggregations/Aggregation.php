@@ -12,6 +12,8 @@ use Illuminate\Support\Str;
  * @method self cardinality(string $key, string $field, array $options = [])
  * @method self min(string $key, string $field, array $options = [])
  * @method self max(string $key, string $field, array $options = [])
+ * @method self stats(string $key, string $field, array $options = [])
+ * @method self extendedStats(string $key, string $field, array $options = [])
  * @method self valueCount(string $key, string $field)
  *
  * @method mixed get(string $key, $default = null)

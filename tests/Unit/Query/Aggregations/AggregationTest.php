@@ -86,6 +86,36 @@ class AggregationTest extends TestCase
     }
 
     /** @test **/
+    public function it_builds_a_stats_aggregation()
+    {
+        $aggs = new Aggregation();
+
+        $aggs->stats('grades_stats', 'grade');
+        $aggs->stats('quantities_stats', 'quantity', ['missing' => 1]);
+
+        $this->assertEquals([
+            'grades_stats' => ['stats' => ['field' => 'grade']],
+            'quantities_stats' => ['stats' => ['field' => 'quantity', 'missing' => 1]],
+        ], $aggs->toArray());
+    }
+
+    /** @test **/
+    public function it_builds_an_extended_stats_aggregation()
+    {
+        $aggs = new Aggregation();
+
+        $aggs->extendedStats('prices_stats', 'price');
+        $aggs->extendedStats('grades_stats', 'grade', ['sigma' => 3]);
+        $aggs->extendedStats('quantities_stats', 'quantity', ['missing' => 1]);
+
+        $this->assertEquals([
+            'prices_stats' => ['extended_stats' => ['field' => 'price']],
+            'grades_stats' => ['extended_stats' => ['field' => 'grade', 'sigma' => 3]],
+            'quantities_stats' => ['extended_stats' => ['field' => 'quantity', 'missing' => 1]],
+        ], $aggs->toArray());
+    }
+
+    /** @test **/
     public function it_throws_exception_when_aggregation_does_not_exist()
     {
         $this->expectException(\BadMethodCallException::class);

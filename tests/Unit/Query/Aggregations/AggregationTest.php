@@ -3,7 +3,6 @@
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations;
 
 use AviationCode\Elasticsearch\Query\Aggregations\Aggregation;
-use AviationCode\Elasticsearch\Query\Aggregations\Metric\Cardinality;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class AggregationTest extends TestCase

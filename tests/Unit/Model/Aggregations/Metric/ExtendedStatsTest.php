@@ -21,7 +21,7 @@ class ExtendedStatsTest extends TestCase
             'std_deviation' => 25.0,
             'std_deviation_bounds' => [
                 'upper' => 125.0,
-                'lower' => 25.0
+                'lower' => 25.0,
             ],
         ];
 

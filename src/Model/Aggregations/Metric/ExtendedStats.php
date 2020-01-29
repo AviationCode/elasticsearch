@@ -24,7 +24,7 @@ class ExtendedStats implements \JsonSerializable
     }
 
     /**
-     * Returns an array of numeric stats
+     * Returns an array of numeric stats.
      *
      * @return array
      */

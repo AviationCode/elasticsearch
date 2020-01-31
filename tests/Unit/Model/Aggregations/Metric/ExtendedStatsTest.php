@@ -29,7 +29,7 @@ class ExtendedStatsTest extends TestCase
 
         $extendedStats = new ExtendedStats($values);
 
-        foreach(Arr::except($values, 'std_deviation_bounds') as $attribute => $value) {
+        foreach (Arr::except($values, 'std_deviation_bounds') as $attribute => $value) {
             $this->assertEquals($value, $extendedStats->{Str::camel($attribute)});
         }
 

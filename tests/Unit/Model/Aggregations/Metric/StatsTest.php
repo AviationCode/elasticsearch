@@ -20,7 +20,7 @@ class StatsTest extends TestCase
 
         $stats = new Stats($values);
 
-        foreach($values as $attribute => $value) {
+        foreach ($values as $attribute => $value) {
             $this->assertEquals($value, $stats->{$attribute});
         }
     }

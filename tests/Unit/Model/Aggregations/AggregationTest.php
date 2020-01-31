@@ -17,18 +17,18 @@ class AggregationTest extends TestCase
                 'buckets' => [
                     [
                         'key' => 'electronic',
-                        'doc_count' => 6
+                        'doc_count' => 6,
                     ],
                     [
                         'key' => 'rock',
-                        'doc_count' => 3
+                        'doc_count' => 3,
                     ],
                     [
                         'key' => 'jazz',
-                        'doc_count' => 2
-                    ]
-                ]
-            ]
+                        'doc_count' => 2,
+                    ],
+                ],
+            ],
         ]);
 
         $this->assertSame(0, $aggregations->genres->doc_count_error_upper_bound);
@@ -51,18 +51,18 @@ class AggregationTest extends TestCase
                 'buckets' => [
                     [
                         'key' => 1,
-                        'doc_count' => 6
+                        'doc_count' => 6,
                     ],
                     [
                         'key' => 2,
-                        'doc_count' => 3
+                        'doc_count' => 3,
                     ],
                     [
                         'key' => 3,
-                        'doc_count' => 2
-                    ]
-                ]
-            ]
+                        'doc_count' => 2,
+                    ],
+                ],
+            ],
         ]);
 
         $this->assertSame(0, $aggregations->genres->doc_count_error_upper_bound);

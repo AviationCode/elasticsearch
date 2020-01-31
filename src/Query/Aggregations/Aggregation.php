@@ -18,6 +18,7 @@ use Illuminate\Support\Str;
  * @method self weightedAvg(string $key, array $value, array $weight)
  * @method self geoBounds(string $key, string $field, array $options = [])
  * @method self geoCentroid(string $key, string $field)
+ * @method self sum(string $key, string $field, array $options = [])
  * @method self valueCount(string $key, string $field)
  *
  * @method mixed get(string $key, $default = null)

@@ -3,6 +3,8 @@
 namespace AviationCode\Elasticsearch\Model\Aggregations\Metric;
 
 use AviationCode\Elasticsearch\Helpers\HasAttributes;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Fluent;
 
 /**
  * Class GeoBounds.
@@ -20,17 +22,8 @@ class GeoBounds implements \JsonSerializable
      */
     public function __construct(array $value)
     {
-        $this->value = $value['value'];
-    }
+        $this->topLeft = new Fluent(Arr::get($value, 'bounds.top_left'));
 
-    /**
-     * Returns an array of bounds
-     * with lat, lon fields.
-     *
-     * @return array
-     */
-    public function value(): array
-    {
-        return $this->value;
+        $this->bottomRight = new Fluent(Arr::get($value, 'bounds.bottom_right'));
     }
 }

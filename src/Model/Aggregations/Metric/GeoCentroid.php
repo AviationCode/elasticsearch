@@ -3,6 +3,7 @@
 namespace AviationCode\Elasticsearch\Model\Aggregations\Metric;
 
 use AviationCode\Elasticsearch\Helpers\HasAttributes;
+use Illuminate\Support\Fluent;
 
 /**
  * Class GeoCentroid.
@@ -20,17 +21,8 @@ class GeoCentroid implements \JsonSerializable
      */
     public function __construct(array $value)
     {
-        $this->value = $value['value'];
-    }
+        $this->location = new Fluent($value['location']);
 
-    /**
-     * Returns an array of fields
-     * location (lat, lon) and count.
-     *
-     * @return array
-     */
-    public function value(): array
-    {
-        return $this->value;
+        $this->count = $value['count'];
     }
 }

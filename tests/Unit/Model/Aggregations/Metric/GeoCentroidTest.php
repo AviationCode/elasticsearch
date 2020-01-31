@@ -18,8 +18,10 @@ class GeoCentroidTest extends TestCase
             'count' => 6,
         ];
 
-        $geoCentroid = new GeoCentroid(['value' => $value]);
+        $geoCentroid = new GeoCentroid($value);
 
-        $this->assertEquals($value, $geoCentroid->value());
+        $this->assertEquals(6, $geoCentroid->count);
+        $this->assertEquals(51.00982965203002, $geoCentroid->location->lat);
+        $this->assertEquals(3.9662131341174245, $geoCentroid->location->lon);
     }
 }

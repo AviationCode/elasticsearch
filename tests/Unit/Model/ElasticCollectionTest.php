@@ -92,7 +92,7 @@ class ElasticCollectionTest extends TestCase
                 'value_count#total' => [
                     'value' => 75,
                 ],
-                'terms#users' => [
+                'sterms#users' => [
                     'doc_count_error_upper_bound' => 0,
                     'sum_other_doc_count' => 75,
                     'buckets' => [

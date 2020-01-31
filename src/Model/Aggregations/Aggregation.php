@@ -17,6 +17,11 @@ class Aggregation implements \JsonSerializable, Arrayable
         '\AviationCode\Elasticsearch\Model\Aggregations\Matrix',
     ];
 
+    public static $specialTypes = [
+        'sterms' => 'terms',
+        'lterms' => 'terms',
+    ];
+
     /**
      * Aggregation constructor.
      * @param array $aggregations
@@ -42,6 +47,8 @@ class Aggregation implements \JsonSerializable, Arrayable
     {
         [$type, $key] = explode('#', $typedKey);
 
+        $type = static::convertSpecialTypes($type);
+
         $class = Str::studly($type);
 
         foreach (static::$namespaces as $namespace) {
@@ -55,6 +62,15 @@ class Aggregation implements \JsonSerializable, Arrayable
         }
 
         throw new \InvalidArgumentException("$class does not exist in any of the \AviationCode\Elasticsearch\Model\Aggregations");
+    }
+
+    private static function convertSpecialTypes(string $type)
+    {
+        if (isset(static::$specialTypes[$type])) {
+            return static::$specialTypes[$type];
+        }
+
+        return $type;
     }
 
     /**

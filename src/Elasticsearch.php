@@ -271,9 +271,9 @@ class Elasticsearch
      */
     public function query($model = null): Builder
     {
-        throw_unless($this->model || $model, new \InvalidArgumentException('No model specified'));
+        throw_unless($model || $this->model, new \InvalidArgumentException('No model specified'));
 
-        return new Builder($this->model ?? $model);
+        return new Builder($model ?? $this->model);
     }
 
     /**

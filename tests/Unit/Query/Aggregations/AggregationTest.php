@@ -168,6 +168,20 @@ class AggregationTest extends TestCase
     }
 
     /** @test **/
+    public function it_builds_a_sum_aggregation()
+    {
+        $aggs = new Aggregation();
+
+        $aggs->sum('hat_prices', 'price');
+        $aggs->sum('watch_prices', 'price', ['missing' => 100]);
+
+        $this->assertEquals([
+            'hat_prices' => ['sum' => ['field' => 'price']],
+            'watch_prices' => ['sum' => ['field' => 'price', 'missing' => 100]],
+        ], $aggs->toArray());
+    }
+
+    /** @test **/
     public function it_throws_exception_when_aggregation_does_not_exist()
     {
         $this->expectException(\BadMethodCallException::class);

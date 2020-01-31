@@ -5,7 +5,6 @@ namespace AviationCode\Elasticsearch\Tests\Unit\Model\Aggregations\Metric;
 use AviationCode\Elasticsearch\Model\Aggregations\Metric\ExtendedStats;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 
 class ExtendedStatsTest extends TestCase
 {

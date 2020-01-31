@@ -2,14 +2,12 @@
 
 namespace AviationCode\Elasticsearch\Model\Aggregations;
 
-use AviationCode\Elasticsearch\Helpers\HasAttributes;
-use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
 
-class Aggregation implements \JsonSerializable, Arrayable
+class Aggregation extends Fluent
 {
-    use HasAttributes;
-
     public static $namespaces = [
         '\AviationCode\Elasticsearch\Model\Aggregations\Metric',
         '\AviationCode\Elasticsearch\Model\Aggregations\Bucket',
@@ -26,13 +24,11 @@ class Aggregation implements \JsonSerializable, Arrayable
      * Aggregation constructor.
      * @param array $aggregations
      */
-    public function __construct(array $aggregations)
+    public function __construct(array $aggregations = [])
     {
-        foreach ($aggregations as $typedKey => $value) {
-            [$key, $instance] = static::aggregationModel($typedKey, $value);
-
-            $this->$key = $instance;
-        }
+        parent::__construct((new Collection($aggregations))->mapWithKeys(function ($value, $typedKey) {
+            return static::aggregationModel($typedKey, $value);
+        }));
     }
 
     /**
@@ -58,7 +54,7 @@ class Aggregation implements \JsonSerializable, Arrayable
                 continue;
             }
 
-            return [$key, new $fqn($value)];
+            return [$key => new $fqn($value)];
         }
 
         throw new \InvalidArgumentException("$class does not exist in any of the \AviationCode\Elasticsearch\Model\Aggregations");
@@ -71,13 +67,5 @@ class Aggregation implements \JsonSerializable, Arrayable
         }
 
         return $type;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function toArray()
-    {
-        return $this->jsonSerialize();
     }
 }

@@ -2,27 +2,15 @@
 
 namespace AviationCode\Elasticsearch\Model\Aggregations\Metric;
 
-use AviationCode\Elasticsearch\Helpers\HasAttributes;
+use Illuminate\Support\Fluent;
 
 /**
  * Class Cardinality.
  *
  * @property int|float|float $value;
  */
-class Cardinality implements \JsonSerializable
+class Cardinality extends Fluent
 {
-    use HasAttributes;
-
-    /**
-     * Cardinality constructor.
-     *
-     * @param array $value
-     */
-    public function __construct(array $value)
-    {
-        $this->value = $value['value'];
-    }
-
     /**
      * @return float|int
      */

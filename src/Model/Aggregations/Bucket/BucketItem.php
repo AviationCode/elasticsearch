@@ -2,25 +2,20 @@
 
 namespace AviationCode\Elasticsearch\Model\Aggregations\Bucket;
 
-use AviationCode\Elasticsearch\Helpers\HasAttributes;
 use AviationCode\Elasticsearch\Model\Aggregations\Aggregation;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Fluent;
 
-class BucketItem implements \JsonSerializable
+class BucketItem extends Fluent
 {
-    use HasAttributes;
-
-    public function __construct($attributes)
+    public function __construct($attributes = [])
     {
-        foreach ($attributes as $key => $value) {
+        parent::__construct((new Collection($attributes))->mapWithKeys(function ($value, $key) {
             if (strpos($key, '#')) {
-                [$key, $instance] = Aggregation::aggregationModel($key, $value);
-
-                $this->$key = $instance;
-
-                continue;
+                return Aggregation::aggregationModel($key, $value);
             }
 
-            $this->$key = $value;
-        }
+            return [$key => $value];
+        }));
     }
 }

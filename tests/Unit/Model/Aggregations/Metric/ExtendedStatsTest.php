@@ -30,10 +30,10 @@ class ExtendedStatsTest extends TestCase
         $extendedStats = new ExtendedStats($values);
 
         foreach (Arr::except($values, 'std_deviation_bounds') as $attribute => $value) {
-            $this->assertEquals($value, $extendedStats->{Str::camel($attribute)});
+            $this->assertEquals($value, $extendedStats->$attribute);
         }
 
-        $this->assertEquals(125.0, $extendedStats->stdDeviationBounds->upper);
-        $this->assertEquals(25.0, $extendedStats->stdDeviationBounds->lower);
+        $this->assertEquals(125.0, $extendedStats->std_deviation_bounds->upper);
+        $this->assertEquals(25.0, $extendedStats->std_deviation_bounds->lower);
     }
 }

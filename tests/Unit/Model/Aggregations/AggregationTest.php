@@ -74,4 +74,12 @@ class AggregationTest extends TestCase
         $this->assertSame(3, $aggregations->genres[2]->key);
         $this->assertSame(2, $aggregations->genres[2]->doc_count);
     }
+
+    /** @test **/
+    public function it_throws_exception_when_aggregation_does_not_exist()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        new Aggregation(['does_not_exist_aggregation_type#error_test' => []]);
+    }
 }

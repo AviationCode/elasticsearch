@@ -2,32 +2,17 @@
 
 namespace AviationCode\Elasticsearch\Model\Aggregations\Metric;
 
-use AviationCode\Elasticsearch\Helpers\HasAttributes;
+use Illuminate\Support\Fluent;
 
 /**
  * Class Stats.
  *
- * @property array $value;
+ * @property int|float $count;
+ * @property int|float $min;
+ * @property int|float $max;
+ * @property int|float $avg;
+ * @property int|float $sum;
  */
-class Stats implements \JsonSerializable
+class Stats extends Fluent
 {
-    use HasAttributes;
-
-    /**
-     * Stats Aggregation constructor.
-     *
-     * @param array $value
-     */
-    public function __construct(array $value)
-    {
-        $this->count = $value['count'];
-
-        $this->min = $value['min'];
-
-        $this->max = $value['max'];
-
-        $this->avg = $value['avg'];
-
-        $this->sum = $value['sum'];
-    }
 }

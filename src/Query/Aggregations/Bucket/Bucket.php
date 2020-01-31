@@ -5,10 +5,16 @@ namespace AviationCode\Elasticsearch\Query\Aggregations\Bucket;
 use AviationCode\Elasticsearch\Query\Aggregations\Aggregation;
 use AviationCode\Elasticsearch\Query\Aggregations\HasAggregations;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\Arr;
 
 abstract class Bucket implements Arrayable
 {
     use HasAggregations;
+
+    /**
+     * @var array
+     */
+    protected $allowedOptions = [];
 
     /**
      * Bucket constructor.
@@ -21,6 +27,17 @@ abstract class Bucket implements Arrayable
         $this->key = $key;
         $this->model = $model;
         $this->aggregations = new Aggregation();
+    }
+
+    /**
+     * Only return the options which are allowed.
+     *
+     * @param array $options
+     * @return array
+     */
+    protected function allowedOptions(array $options): array
+    {
+        return Arr::only($options, $this->allowedOptions);
     }
 
     /**

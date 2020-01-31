@@ -4,13 +4,15 @@ namespace AviationCode\Elasticsearch\Tests\Unit\Model\Aggregations\Metric;
 
 use AviationCode\Elasticsearch\Model\Aggregations\Metric\ExtendedStats;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class ExtendedStatsTest extends TestCase
 {
     /** @test **/
     public function it_translates_extended_stats_aggregation()
     {
-        $value = [
+        $values = [
             'count' => 2,
             'min' => 50.0,
             'max' => 100.0,
@@ -25,8 +27,13 @@ class ExtendedStatsTest extends TestCase
             ],
         ];
 
-        $extendedStats = new ExtendedStats(['value' => $value]);
+        $extendedStats = new ExtendedStats($values);
 
-        $this->assertEquals($value, $extendedStats->value());
+        foreach(Arr::except($values, 'std_deviation_bounds') as $attribute => $value) {
+            $this->assertEquals($value, $extendedStats->{Str::camel($attribute)});
+        }
+
+        $this->assertEquals(125.0, $extendedStats->stdDeviationBounds->upper);
+        $this->assertEquals(25.0, $extendedStats->stdDeviationBounds->lower);
     }
 }

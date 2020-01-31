@@ -20,16 +20,14 @@ class Stats implements \JsonSerializable
      */
     public function __construct(array $value)
     {
-        $this->value = $value['value'];
-    }
+        $this->count = $value['count'];
 
-    /**
-     * Returns an array of numeric stats.
-     *
-     * @return array
-     */
-    public function value(): array
-    {
-        return $this->value;
+        $this->min = $value['min'];
+
+        $this->max = $value['max'];
+
+        $this->avg = $value['avg'];
+
+        $this->sum = $value['sum'];
     }
 }

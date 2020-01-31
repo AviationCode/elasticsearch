@@ -15,7 +15,7 @@ class DateRange extends Bucket
          * Use Carbon to map/parse timestamp(s) of milliseconds
          * stored in 'to', 'from' fields within bucket items.
          */
-        foreach(Arr::only($bucketItem->toArray(), ['from', 'to']) as $key => $timestampInMillis) {
+        foreach (Arr::only($bucketItem->toArray(), ['from', 'to']) as $key => $timestampInMillis) {
             $bucketItem->{$key} = Carbon::createFromTimestampMs($timestampInMillis);
         }
 

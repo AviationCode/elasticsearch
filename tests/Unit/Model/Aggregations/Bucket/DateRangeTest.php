@@ -3,7 +3,6 @@
 namespace AviationCode\Elasticsearch\Tests\Unit\Model\Aggregations\Bucket;
 
 use AviationCode\Elasticsearch\Model\Aggregations\Bucket\DateRange;
-use AviationCode\Elasticsearch\Query\Aggregations\Bucket\DateRange as DateRangeQuery;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 use Carbon\Carbon;
 

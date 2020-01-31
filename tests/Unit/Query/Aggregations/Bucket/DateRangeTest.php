@@ -32,6 +32,5 @@ class DateRangeTest extends TestCase
             'deleted_at_range' => ['date_range' => ['field' => 'deleted_at', 'ranges' => $ranges, 'time_zone' => 'CET']],
             'created_at_range' => ['date_range' => ['field' => 'created_at', 'ranges' => $ranges, 'keyed' => true]],
         ], $aggs->toArray());
-
     }
 }

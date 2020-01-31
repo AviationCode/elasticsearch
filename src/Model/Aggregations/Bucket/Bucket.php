@@ -49,12 +49,10 @@ abstract class Bucket extends Collection implements \JsonSerializable
         if (isset($this->attributes[$key])) {
             return $this->attributes[$key];
         }
-
-        return null;
     }
 
     /**
-     * Set meta information into attributes array
+     * Set meta information into attributes array.
      *
      * @param $key
      * @param $value

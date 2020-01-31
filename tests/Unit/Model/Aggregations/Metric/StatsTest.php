@@ -10,7 +10,7 @@ class StatsTest extends TestCase
     /** @test **/
     public function it_translates_stats_aggregation()
     {
-        $value = [
+        $values = [
             'count' => 2,
             'min' => 50.0,
             'max' => 100.0,
@@ -18,8 +18,10 @@ class StatsTest extends TestCase
             'sum' => 150.0,
         ];
 
-        $stats = new Stats(['value' => $value]);
+        $stats = new Stats($values);
 
-        $this->assertEquals($value, $stats->value());
+        foreach ($values as $attribute => $value) {
+            $this->assertEquals($value, $stats->{$attribute});
+        }
     }
 }

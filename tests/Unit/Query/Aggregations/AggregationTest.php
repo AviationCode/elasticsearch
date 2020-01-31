@@ -144,6 +144,30 @@ class AggregationTest extends TestCase
     }
 
     /** @test **/
+    public function it_builds_a_geo_bounds_aggregation()
+    {
+        $aggs = new Aggregation();
+
+        $aggs->geoBounds('viewport', 'location', ['wrap_longitude' => true]);
+
+        $this->assertEquals([
+            'viewport' => ['geo_bounds' => ['field' => 'location', 'wrap_longitude' => true]],
+        ], $aggs->toArray());
+    }
+
+    /** @test **/
+    public function it_builds_a_geo_centroid_aggregation()
+    {
+        $aggs = new Aggregation();
+
+        $aggs->geoCentroid('centroid', 'location');
+
+        $this->assertEquals([
+            'centroid' => ['geo_centroid' => ['field' => 'location']],
+        ], $aggs->toArray());
+    }
+
+    /** @test **/
     public function it_throws_exception_when_aggregation_does_not_exist()
     {
         $this->expectException(\BadMethodCallException::class);

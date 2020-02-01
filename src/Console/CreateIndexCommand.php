@@ -21,7 +21,7 @@ class CreateIndexCommand extends Command
             $this->createIndexFromClass($index);
         }
 
-        if (!$index) {
+        if (! $index) {
             $this->createIndex($this->ask('Which index would you like to create?'));
         }
 
@@ -33,7 +33,7 @@ class CreateIndexCommand extends Command
         /** @var ElasticSearchable $model */
         $model = new $class();
 
-        $this->info(class_basename($model) . ' found with elastic index "' . $model->getIndexName() . '"');
+        $this->info(class_basename($model).' found with elastic index "'.$model->getIndexName().'"');
 
         $this->deleteExistingIndex($model->getIndexName());
 
@@ -77,7 +77,7 @@ class CreateIndexCommand extends Command
 
         Elasticsearch::index()->create($index);
 
-        if (!$this->confirm('Interactively define mapping?')) {
+        if (! $this->confirm('Interactively define mapping?')) {
             return;
         }
 

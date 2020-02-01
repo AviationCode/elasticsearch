@@ -64,7 +64,7 @@ class Aggregation
      */
     private function addAggregation(string $class, string $method, array $arguments): self
     {
-        if (!isset($arguments[0])) {
+        if (! isset($arguments[0])) {
             throw new \InvalidArgumentException('Missing argument $key.');
         }
 
@@ -79,7 +79,7 @@ class Aggregation
 
         // When we have multiple key elements we have to delegate to next aggregation level.
         if ($parts->count() > 1) {
-            if (!$this->has($parts->first())) {
+            if (! $this->has($parts->first())) {
                 throw new \InvalidArgumentException(
                     'Cannot define nested aggregation before defining parent aggregation.'
                 );

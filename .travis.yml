@@ -17,6 +17,7 @@ before_script:
   - if [ "$dependencies" = "lowest" ]; then composer update --prefer-lowest --prefer-stable -n; fi;
 
 script:
+  - vendor/bin/phpcs
   - vendor/bin/phpunit --coverage-clover=coverage.xml
 
 before_install:

@@ -3,7 +3,6 @@
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
 [![Build Status][ico-travis]][link-travis]
-[![StyleCI][ico-styleci]][link-styleci]
 
 This package wraps the `elasticsearch/elasticsearch` composer package with laravel integration.
 Adding support to easily use your eloquent models with elastic search.  
@@ -17,7 +16,7 @@ $ composer require aviationcode/elasticsearch
 ```
 ## Configuration
 
-By default we use `localhost:9200` to search your elasticsearch instance. If this is the case noc configuration is required at all.
+By default we use `localhost:9200` to search your elasticsearch instance. If this is the case no configuration is required at all.
 You can use the following `.env` settings to configure how we connect to your elasticsearch instance.
 
 | Name             | Type      | Default     | Description
@@ -258,7 +257,6 @@ license. Please see the [license file](license.md) for more information.
 [ico-version]: https://img.shields.io/packagist/v/aviationcode/elasticsearch.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/aviationcode/elasticsearch.svg?style=flat-square
 [ico-travis]: https://img.shields.io/travis/aviationcode/elasticsearch/master.svg?style=flat-square
-[ico-styleci]: https://styleci.io/repos/12345678/shield
 
 [link-packagist]: https://packagist.org/packages/aviationcode/elasticsearch
 [link-downloads]: https://packagist.org/packages/aviationcode/elasticsearch

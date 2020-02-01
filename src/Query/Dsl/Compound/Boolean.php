@@ -66,7 +66,7 @@ class Boolean extends Compound
     {
         $class = $this->drivers[$method];
 
-        if (!isset($this->clauses[$class::KEY])) {
+        if (! isset($this->clauses[$class::KEY])) {
             $this->clauses[$class::KEY] = new $class();
         }
 

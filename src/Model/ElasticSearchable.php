@@ -42,7 +42,7 @@ trait ElasticSearchable
         $index = $this->indexName ?? Str::snake(class_basename(static::class));
 
         if (isset($this->indexVersion)) {
-            $index .= '_v' . $this->indexVersion;
+            $index .= '_v'.$this->indexVersion;
         }
 
         return $index;
@@ -58,7 +58,7 @@ trait ElasticSearchable
         $attributes = $item['_source'];
 
         if (isset($item['_id'])) {
-            $attributes[$this->getKeyName()] = $this->getKeyType() === 'int' ? (int)$item['_id'] : $item['_id'];
+            $attributes[$this->getKeyName()] = $this->getKeyType() === 'int' ? (int) $item['_id'] : $item['_id'];
         }
 
         if (isset($item['fields'])) {

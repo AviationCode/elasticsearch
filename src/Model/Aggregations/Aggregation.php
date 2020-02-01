@@ -50,7 +50,7 @@ class Aggregation extends Fluent
         foreach (static::$namespaces as $namespace) {
             $fqn = "$namespace\\$class";
 
-            if (!class_exists($fqn)) {
+            if (! class_exists($fqn)) {
                 continue;
             }
 

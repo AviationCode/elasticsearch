@@ -6,7 +6,7 @@ use AviationCode\Elasticsearch\Facades\Elasticsearch;
 use AviationCode\Elasticsearch\Model\ElasticSearchable;
 use Illuminate\Console\Command;
 
-/** @codeCoverageIgnore  */
+/** @codeCoverageIgnore */
 class CreateIndexCommand extends Command
 {
     protected $signature = 'elastic:create-index';
@@ -21,7 +21,7 @@ class CreateIndexCommand extends Command
             $this->createIndexFromClass($index);
         }
 
-        if (! $index) {
+        if (!$index) {
             $this->createIndex($this->ask('Which index would you like to create?'));
         }
 
@@ -31,19 +31,22 @@ class CreateIndexCommand extends Command
     private function createIndexFromClass(string $class): void
     {
         /** @var ElasticSearchable $model */
-        $model = new $class;
+        $model = new $class();
 
-        $this->info(class_basename($model).' found with elastic index "'.$model->getIndexName().'"');
+        $this->info(class_basename($model) . ' found with elastic index "' . $model->getIndexName() . '"');
 
         $this->deleteExistingIndex($model->getIndexName());
 
         $this->info("Attempting to create '{$model->getIndexName()}' with mapping");
-        $this->table(['Field', 'Type', 'Options'], collect($model->getSearchMapping())->map(function ($mapping, $field) {
-            $type = $mapping['type'];
-            unset($mapping['type']);
+        $this->table(
+            ['Field', 'Type', 'Options'],
+            collect($model->getSearchMapping())->map(function ($mapping, $field) {
+                $type = $mapping['type'];
+                unset($mapping['type']);
 
-            return [$field, $type, json_encode($mapping)];
-        }));
+                return [$field, $type, json_encode($mapping)];
+            })
+        );
         $model->elastic()->index()->create();
 
         $this->info('Index created');
@@ -74,14 +77,18 @@ class CreateIndexCommand extends Command
 
         Elasticsearch::index()->create($index);
 
-        if (! $this->confirm('Interactively define mapping?')) {
+        if (!$this->confirm('Interactively define mapping?')) {
             return;
         }
 
         $mapping = [];
         while ($field = $this->ask('Field name?')) {
             $options = [];
-            $options['type'] = $this->askWithCompletion('Of which type?', ['text', 'keyword', 'object', 'date'], 'text');
+            $options['type'] = $this->askWithCompletion(
+                'Of which type?',
+                ['text', 'keyword', 'object', 'date'],
+                'text'
+            );
 
             if ($options['type'] === 'date') {
                 $options['ignore_malformed'] = true;

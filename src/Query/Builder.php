@@ -58,8 +58,8 @@ class Builder
         $this->aggregations = new Aggregation();
 
         if (is_string($model) && class_exists($model)) {
-            $this->model = new $model;
-        } elseif (! is_object($model)) {
+            $this->model = new $model();
+        } elseif (!is_object($model)) {
             $this->model = ElasticHit::onIndex($model);
         } else {
             $this->model = $model;
@@ -77,7 +77,7 @@ class Builder
     {
         $response = $this->getClient()->get(['index' => $this->model->getIndexName(), 'id' => $id]);
 
-        if (! $response['found']) {
+        if (!$response['found']) {
             return null;
         }
 
@@ -96,7 +96,7 @@ class Builder
     {
         $model = $this->find($id);
 
-        if (! $model) {
+        if (!$model) {
             throw new ModelNotFoundException("$id not found");
         }
 
@@ -202,7 +202,7 @@ class Builder
         return $this->getClient()->search(array_merge([
             'index' => $index ?? $this->model->getIndexName(),
             'body' => array_filter($query, function ($value) {
-                return  ! empty($value) || ($value === 0);
+                return !empty($value) || ($value === 0);
             }),
         ], $params));
     }

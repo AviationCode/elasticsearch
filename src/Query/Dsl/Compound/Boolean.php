@@ -66,8 +66,8 @@ class Boolean extends Compound
     {
         $class = $this->drivers[$method];
 
-        if (! isset($this->clauses[$class::KEY])) {
-            $this->clauses[$class::KEY] = new $class;
+        if (!isset($this->clauses[$class::KEY])) {
+            $this->clauses[$class::KEY] = new $class();
         }
 
         $callback($this->clauses[$class::KEY]);
@@ -84,9 +84,9 @@ class Boolean extends Compound
             return $this->query($method, $arguments[0]);
         }
 
-        throw new BadMethodCallException(sprintf(
-            'Method %s::%s does not exist.', static::class, $method
-        ));
+        throw new BadMethodCallException(
+            sprintf('Method %s::%s does not exist.', static::class, $method)
+        );
     }
 
     /**

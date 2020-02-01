@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Arrayable;
 
 class Wildcard implements Arrayable
 {
-    const KEY = 'wildcard';
+    public const KEY = 'wildcard';
 
     /**
      * Field you wish to search.

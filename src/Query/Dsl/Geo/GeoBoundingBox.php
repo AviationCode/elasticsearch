@@ -8,11 +8,11 @@ class GeoBoundingBox implements Arrayable
 {
     private const KEY = 'geo_bounding_box';
 
-    const IGNORE_MALFORMED = 'ignore_malformed';
-    const STRICT = 'strict';
+    public const IGNORE_MALFORMED = 'ignore_malformed';
+    public const STRICT = 'strict';
 
-    const INDEXED = 'indexed';
-    const MEMORY = 'memory';
+    public const INDEXED = 'indexed';
+    public const MEMORY = 'memory';
 
     /**
      * @var string

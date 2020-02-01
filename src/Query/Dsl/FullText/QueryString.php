@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Arrayable;
 
 class QueryString implements Arrayable
 {
-    const KEY = 'query_string';
+    public const KEY = 'query_string';
 
     /**
      * Query string you wish to parse and use for search.

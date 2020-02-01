@@ -6,8 +6,8 @@ use AviationCode\Elasticsearch\Model\Aggregations\Bucket\DateHistogram as DateHi
 
 class DateHistogram extends Bucket
 {
-    const CALENDAR = 'calendar_interval';
-    const FIXED = 'fixed_interval';
+    public const CALENDAR = 'calendar_interval';
+    public const FIXED = 'fixed_interval';
 
     /**
      * @var string

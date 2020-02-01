@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Arrayable;
 
 class MultiMatch implements Arrayable
 {
-    const KEY = 'multi_match';
+    public const KEY = 'multi_match';
 
     /**
      * The fields to be queried.

@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Arrayable;
 
 class TermsSet implements Arrayable
 {
-    const KEY = 'terms_set';
+    public const KEY = 'terms_set';
 
     /**
      * Field you wish to search for.

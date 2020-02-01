@@ -6,8 +6,8 @@ use AviationCode\Elasticsearch\Model\Aggregations\Bucket\DateHistogram as DateHi
 
 class DateHistogram extends Bucket
 {
-    const CALENDAR = 'calendar_interval';
-    const FIXED = 'fixed_interval';
+    public const CALENDAR = 'calendar_interval';
+    public const FIXED = 'fixed_interval';
 
     /**
      * @var string
@@ -37,8 +37,12 @@ class DateHistogram extends Bucket
      * @param string $intervalType
      * @param array $options
      */
-    public function __construct(string $field, string $interval, string $intervalType = self::FIXED, array $options = [])
-    {
+    public function __construct(
+        string $field,
+        string $interval,
+        string $intervalType = self::FIXED,
+        array $options = []
+    ) {
         parent::__construct('date_histogram', DateHistogramModel::class);
 
         $this->field = $field;

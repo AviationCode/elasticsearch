@@ -8,12 +8,12 @@ class GeoShape implements Arrayable
 {
     private const KEY = 'geo_shape';
 
-    const INTERSECTS = 'intersects';
-    const DISJOINT = 'disjoint';
-    const WITHIN = 'within';
-    const CONTAINS = 'contains';
+    public const INTERSECTS = 'intersects';
+    public const DISJOINT = 'disjoint';
+    public const WITHIN = 'within';
+    public const CONTAINS = 'contains';
 
-    const INDEXED_SHAPE = 'indexed_shape';
+    public const INDEXED_SHAPE = 'indexed_shape';
 
     /**
      * @var string

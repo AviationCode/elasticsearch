@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Arrayable;
 
 class Exists implements Arrayable
 {
-    const KEY = 'exists';
+    public const KEY = 'exists';
 
     /**
      * Name of the field you wish to search.

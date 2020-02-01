@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Arrayable;
 
 class MatchPhrasePrefix implements Arrayable
 {
-    const KEY = 'match_phrase_prefix';
+    public const KEY = 'match_phrase_prefix';
 
     /**
      * The field you wish to search.

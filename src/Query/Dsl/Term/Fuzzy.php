@@ -6,10 +6,10 @@ use Illuminate\Contracts\Support\Arrayable;
 
 class Fuzzy implements Arrayable
 {
-    const KEY = 'fuzzy';
+    public const KEY = 'fuzzy';
 
-    const FUZZINESS_AUTO = 'AUTO';
-    const REWRITE_CONSTANT = 'constant_score';
+    public const FUZZINESS_AUTO = 'AUTO';
+    public const REWRITE_CONSTANT = 'constant_score';
 
     /**
      * Field you wish to search.

@@ -50,14 +50,16 @@ class Aggregation extends Fluent
         foreach (static::$namespaces as $namespace) {
             $fqn = "$namespace\\$class";
 
-            if (! class_exists($fqn)) {
+            if (!class_exists($fqn)) {
                 continue;
             }
 
             return [$key => new $fqn($value)];
         }
 
-        throw new \InvalidArgumentException("$class does not exist in any of the \AviationCode\Elasticsearch\Model\Aggregations");
+        throw new \InvalidArgumentException(
+            "$class does not exist in any of the \AviationCode\Elasticsearch\Model\Aggregations"
+        );
     }
 
     private static function convertSpecialTypes(string $type)

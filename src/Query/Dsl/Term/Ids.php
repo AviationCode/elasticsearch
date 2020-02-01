@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Arrayable;
 
 class Ids implements Arrayable
 {
-    const KEY = 'ids';
+    public const KEY = 'ids';
 
     /**
      * Array of document ids.

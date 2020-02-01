@@ -33,11 +33,15 @@ class Schema
      */
     protected function getIndex(?string $index): string
     {
-        if (! ($index || $this->elasticsearch->model)) {
-            throw new InvalidArgumentException('Either index parameter or model has to be provided.');
+        if ($index) {
+            return $index;
         }
 
-        return $index ?? $this->elasticsearch->model->getIndexName();
+        if ($this->elasticsearch->model !== null) {
+            return $this->elasticsearch->model->getIndexName();
+        }
+
+        throw new InvalidArgumentException('Either index parameter or model has to be provided.');
     }
 
     /**

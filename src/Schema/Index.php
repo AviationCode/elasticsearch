@@ -40,7 +40,7 @@ class Index extends Schema
     /**
      * Create an index.
      *
-     * @param null $index
+     * @param null|string $index
      * @return bool
      *
      * @throws BaseElasticsearchException
@@ -48,6 +48,10 @@ class Index extends Schema
      */
     public function create($index = null)
     {
+        if ($this->elasticsearch->model && $index !== null) {
+            throw new \InvalidArgumentException('Expected either a model or index received both.');
+        }
+
         try {
             $this->elasticsearch->getClient()->indices()->create(['index' => $this->getIndex($index)]);
         } catch (Exception $exception) {
@@ -55,7 +59,7 @@ class Index extends Schema
         }
 
         if ($this->elasticsearch->model) {
-            $this->putMapping($this->elasticsearch->model->getSearchMapping(), $index);
+            $this->putMapping();
         }
 
         return true;
@@ -90,12 +94,14 @@ class Index extends Schema
      */
     public function putMapping(?array $mappings = null, $index = null): void
     {
+        if (!$mappings && $this->elasticsearch->model !== null) {
+            $mappings = $this->elasticsearch->model->getSearchMapping();
+        }
+
         try {
             $this->elasticsearch->getClient()->indices()->putMapping([
                 'index' => $this->getIndex($index),
-                'body' => [
-                    'properties' => $mappings ?? $this->elasticsearch->model->getSearchMapping(),
-                ],
+                'body' => ['properties' => $mappings],
             ]);
         } catch (Exception $exception) {
             throw $this->handleException($exception);

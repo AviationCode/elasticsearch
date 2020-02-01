@@ -4,6 +4,7 @@ namespace AviationCode\Elasticsearch\Tests\Unit\Schema;
 
 use AviationCode\Elasticsearch\Elasticsearch;
 use AviationCode\Elasticsearch\Exceptions\BadRequestException;
+use AviationCode\Elasticsearch\Exceptions\BaseElasticsearchException;
 use AviationCode\Elasticsearch\Exceptions\IndexNotFoundException;
 use AviationCode\Elasticsearch\Model\ElasticsearchModel;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
@@ -100,7 +101,7 @@ class IndexTest extends TestCase
     public function it_creates_index_using_model_and_configures_known_fields()
     {
         $this->indices->shouldReceive('create')
-            ->with(['index' => 'my_index'])
+            ->with(['index' => 'article_test_model'])
             ->once()
             ->andReturn([
                 'acknowledged' => true,
@@ -110,7 +111,7 @@ class IndexTest extends TestCase
 
         $this->indices->shouldReceive('putMapping')
             ->with([
-                'index' => 'my_index',
+                'index' => 'article_test_model',
                 'body' => [
                     'properties' => [
                         'created_at' => [
@@ -132,9 +133,17 @@ class IndexTest extends TestCase
             ->once()
             ->andReturn(['acknowledged' => true]);
 
-        $this->getSchema(ArticleTestModel::class)->create('my_index');
+        $this->getSchema(ArticleTestModel::class)->create();
 
         $this->markSuccessfull();
+    }
+
+    /** @test **/
+    public function it_throws_exceptions_when_creating_index_when_model_is_already_provided()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->getSchema(ArticleTestModel::class)->create('my_index');
     }
 
     /** @test **/
@@ -221,9 +230,7 @@ class IndexTest extends TestCase
                 'index' => 'my-index',
                 'body' => [
                     'properties' => [
-                        'field1' => [
-                            'type' => 'keyword',
-                        ],
+                        'field1' => ['type' => 'keyword'],
                     ],
                 ],
             ])
@@ -237,6 +244,107 @@ class IndexTest extends TestCase
         ], 'my-index');
 
         $this->markSuccessfull();
+    }
+
+    /** @test **/
+    public function it_puts_invalid_mapping()
+    {
+        $this->expectException(BaseElasticsearchException::class);
+
+        $this->indices->shouldReceive('putMapping')
+            ->with([
+                'index' => 'my-index',
+                'body' => [
+                    'properties' => [
+                        'field1' => ['type' => 'invalid-type'],
+                    ],
+                ],
+            ])
+            ->once()
+            ->andThrows(new BadRequest400Exception('Parsing Exception'));
+
+        $this->getSchema()->putMapping([
+            'field1' => [
+                'type' => 'invalid-type',
+            ],
+        ], 'my-index');
+    }
+
+    /** @test **/
+    public function it_can_request_index_info()
+    {
+        $info = [
+            'mappings' => ['properties' => ['city' => ['type' => 'keyword']]],
+            'settings' => [
+                'index' => [
+                    'creation_date' => '1580500912933',
+                    'number_of_shards' => '1',
+                    'number_of_replicas' => '1',
+                ]
+            ]
+        ];
+
+        $this->indices->shouldReceive('get')
+            ->with(['index' => 'my-index'])
+            ->once()
+            ->andReturn(['my-index' => $info]);
+
+        $result = $this->getSchema()->info('my-index');
+
+        $this->assertEquals($info, $result);
+    }
+
+    /** @test **/
+    public function it_can_request_index_info_from_a_model()
+    {
+        $info = [
+            'mappings' => ['properties' => ['city' => ['type' => 'keyword']]],
+            'settings' => [
+                'index' => [
+                    'creation_date' => '1580500912933',
+                    'number_of_shards' => '1',
+                    'number_of_replicas' => '1',
+                ]
+            ]
+        ];
+
+        $this->indices->shouldReceive('get')
+            ->with(['index' => 'article_test_model'])
+            ->once()
+            ->andReturn(['article_test_model' => $info]);
+
+        $result = $this->getSchema(ArticleTestModel::class)->info();
+
+        $this->assertEquals($info, $result);
+    }
+
+    /** @test **/
+    public function it_can_request_index_info_handle_exceptions()
+    {
+        $this->indices->shouldReceive('get')
+            ->with(['index' => 'my_index'])
+            ->once()
+            ->andThrow(new Missing404Exception(json_encode([
+                'error' => [
+                    'root_cause' => [
+                        'type' => 'index_not_found_exception',
+                        'reason' => 'no such index [my_index]',
+                        'resource.type' => 'index_or_alias',
+                        'resource.id' => 'my_index',
+                        'index' => 'my_index',
+                    ],
+                    'type' => 'index_not_found_exception',
+                    'reason' => 'no such index [my_index]',
+                    'resource.type' => 'index_or_alias',
+                    'resource.id' => 'my_index',
+                    'index' => 'my_index',
+                ],
+                'status' => 404,
+            ])));
+
+        $this->expectException(IndexNotFoundException::class);
+
+        $this->getSchema()->info('my_index');
     }
 }
 

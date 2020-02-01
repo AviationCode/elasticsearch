@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static \AviationCode\Elasticsearch\Elasticsearch forModel($model)
  * @method static bool add($model)
  * @method static bool update($model)
- * @method static ElasticCollection bulk(Collection $models)
+ * @method static ElasticCollection bulk($models, $data = null, $key = 'id')
  * @method static Index index()
  * @method static Builder query($model = null)
  *

@@ -239,7 +239,7 @@ class Elasticsearch
                 $item = (array)$item;
 
                 return implode(PHP_EOL, [
-                        json_encode(['index' => ['_index' => $index, '_id' => $item[$key]]]),
+                        json_encode(['index' => ['_index' => $index, '_id' => $key !== null ? $item[$key] : null]]),
                         json_encode($item),
                     ]) . PHP_EOL;
             }, $data)),

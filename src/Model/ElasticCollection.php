@@ -75,7 +75,7 @@ final class ElasticCollection extends Collection
      */
     public function mapModels(array $response, ?Model $model = null): self
     {
-        if (! $model) {
+        if (!$model) {
             return $this;
         }
 
@@ -96,7 +96,7 @@ final class ElasticCollection extends Collection
      */
     public static function parse(array $response, ?Model $model = null): self
     {
-        $collection = new static;
+        $collection = new static();
 
         // Map the meta information such as time taken, total number or results and success
         // Meta block contains useful information about the performance of the elastic

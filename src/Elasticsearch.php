@@ -60,7 +60,7 @@ class Elasticsearch
     public function forModel($model)
     {
         if (is_string($model)) {
-            $model = new $model;
+            $model = new $model();
         }
 
         $this->model = $model;
@@ -148,9 +148,9 @@ class Elasticsearch
      */
     private function addRaw(string $index, $data, $key = 'id')
     {
-        $data = (array) $data;
+        $data = (array)$data;
 
-        if (! Arr::isAssoc($data)) {
+        if (!Arr::isAssoc($data)) {
             return $this->bulkRaw($index, $data, $key);
         }
 
@@ -236,12 +236,12 @@ class Elasticsearch
         $response = $this->getClient()->bulk([
             'refresh' => true,
             'body' => implode(array_map(function ($item) use ($index, $key) {
-                $item = (array) $item;
+                $item = (array)$item;
 
                 return implode(PHP_EOL, [
-                    json_encode(['index' => ['_index' => $index, '_id' => $item[$key]]]),
-                    json_encode($item),
-                ]).PHP_EOL;
+                        json_encode(['index' => ['_index' => $index, '_id' => $item[$key]]]),
+                        json_encode($item),
+                    ]) . PHP_EOL;
             }, $data)),
         ]);
 
@@ -301,7 +301,7 @@ class Elasticsearch
      */
     protected function getModel($model = null)
     {
-        if (! ($model || $this->model)) {
+        if (!($model || $this->model)) {
             throw new InvalidArgumentException('No model provided.');
         }
 
@@ -317,7 +317,7 @@ class Elasticsearch
      */
     protected function handleException(\Throwable $exception): \Throwable
     {
-        if (! $exception instanceof ElasticsearchException) {
+        if (!$exception instanceof ElasticsearchException) {
             return $exception;
         }
 
@@ -334,8 +334,8 @@ class Elasticsearch
     private function toNdJson($model, $meta = []): string
     {
         return implode(PHP_EOL, [
-            json_encode($meta),
-            json_encode($model->toSearchable()),
-        ]).PHP_EOL;
+                json_encode($meta),
+                json_encode($model->toSearchable()),
+            ]) . PHP_EOL;
     }
 }

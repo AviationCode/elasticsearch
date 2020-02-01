@@ -37,8 +37,12 @@ class DateHistogram extends Bucket
      * @param string $intervalType
      * @param array $options
      */
-    public function __construct(string $field, string $interval, string $intervalType = self::FIXED, array $options = [])
-    {
+    public function __construct(
+        string $field,
+        string $interval,
+        string $intervalType = self::FIXED,
+        array $options = []
+    ) {
         parent::__construct('date_histogram', DateHistogramModel::class);
 
         $this->field = $field;

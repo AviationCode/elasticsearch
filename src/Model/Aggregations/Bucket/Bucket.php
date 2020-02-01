@@ -7,7 +7,9 @@ use Illuminate\Support\Collection;
 
 abstract class Bucket extends Collection implements \JsonSerializable
 {
-    use HasAttributes { jsonSerialize as jsonSerializeAttributes; }
+    use HasAttributes {
+        jsonSerialize as jsonSerializeAttributes;
+    }
 
     /**
      * Bucket constructor.

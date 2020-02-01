@@ -31,6 +31,11 @@ use Illuminate\Support\Str;
  */
 class Aggregation
 {
+    /**
+     * List of namespaces to search aggregations in.
+     *
+     * @var array
+     */
     private static $namespaces = [
         '\AviationCode\Elasticsearch\Query\Aggregations\Metric',
         '\AviationCode\Elasticsearch\Query\Aggregations\Bucket',
@@ -95,6 +100,12 @@ class Aggregation
         return $this;
     }
 
+    /**
+     * @param string $method
+     * @param array $arguments
+     *
+     * @return $this
+     */
     public function __call($method, $arguments)
     {
         $class = Str::studly($method);

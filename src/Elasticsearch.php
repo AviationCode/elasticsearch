@@ -8,6 +8,7 @@ use AviationCode\Elasticsearch\Events\DocumentUpdatedEvent;
 use AviationCode\Elasticsearch\Exceptions\BaseElasticsearchException;
 use AviationCode\Elasticsearch\Exceptions\ElasticErrorFactory;
 use AviationCode\Elasticsearch\Model\ElasticSearchable;
+use AviationCode\Elasticsearch\Model\ElasticsearchModel;
 use AviationCode\Elasticsearch\Query\Builder;
 use AviationCode\Elasticsearch\Schema\Index;
 use Elasticsearch\Common\Exceptions\ElasticsearchException;
@@ -327,7 +328,7 @@ class Elasticsearch
     /**
      * Convert the model to a index ndjson record.
      *
-     * @param ElasticSearchable $model
+     * @param ElasticsearchModel $model
      * @param array $meta
      * @return string
      */

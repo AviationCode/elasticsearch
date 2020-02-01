@@ -9,18 +9,39 @@ use Illuminate\Support\Collection;
 
 final class ElasticCollection extends Collection
 {
+    /**
+     * @var int
+     */
     public $took = -1;
 
+    /**
+     * @var bool
+     */
     public $timed_out = false;
 
+    /**
+     * @var array
+     */
     public $shards = [];
 
+    /**
+     * @var float|null
+     */
     public $max_score = null;
 
+    /**
+     * @var int
+     */
     public $total;
 
+    /**
+     * @var string
+     */
     public $total_relation;
 
+    /**
+     * @var Aggregation
+     */
     public $aggregations;
 
     /**
@@ -92,7 +113,7 @@ final class ElasticCollection extends Collection
      *
      * @param array $response
      * @param Model|null $model
-     * @return $this
+     * @return static
      */
     public static function parse(array $response, ?Model $model = null): self
     {

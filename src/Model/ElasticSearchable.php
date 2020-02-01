@@ -24,7 +24,7 @@ trait ElasticSearchable
      */
     protected $elastic = [];
 
-    public static function bootElasticSearchable()
+    public static function bootElasticSearchable(): void
     {
         static::created(function ($model) {
             /* @var ElasticSearchable $model */
@@ -37,6 +37,12 @@ trait ElasticSearchable
         });
     }
 
+    /**
+     * Build up index name. defined it uses the indexName, by default it uses class name to snake case.
+     * If versioning is enabled it adds version tag to the index.
+     *
+     * @return string
+     */
     public function getIndexName(): string
     {
         $index = $this->indexName ?? Str::snake(class_basename(static::class));
@@ -48,12 +54,22 @@ trait ElasticSearchable
         return $index;
     }
 
-    public function toSearchable()
+    /**
+     * Casting model to elasticsearch format.
+     *
+     * @return array
+     */
+    public function toSearchable(): array
     {
         return $this->toArray();
     }
 
-    public function newFromElasticBuilder($item)
+    /**
+     * @param array $item
+     *
+     * @return static
+     */
+    public function newFromElasticBuilder($item): self
     {
         $attributes = $item['_source'];
 
@@ -87,7 +103,12 @@ trait ElasticSearchable
         return Elasticsearch::forModel($this);
     }
 
-    public function getSearchMapping()
+    /**
+     * Get the mapping for the given model.
+     *
+     * @return array
+     */
+    public function getSearchMapping(): array
     {
         $properties = new Collection();
 
@@ -114,6 +135,12 @@ trait ElasticSearchable
         return $properties->toArray();
     }
 
+    /**
+     * Get a meta field out of the model.
+     *
+     * @param string|int|null $attribute
+     * @return mixed
+     */
     public function getElasticAttribute($attribute)
     {
         if ($attribute === null) {
@@ -123,7 +150,13 @@ trait ElasticSearchable
         return $this->elastic[$attribute] ?? null;
     }
 
-    public function newCollection(array $models = [])
+    /**
+     * Collection object used.
+     *
+     * @param array $models
+     * @return Collection
+     */
+    public function newCollection(array $models = []): Collection
     {
         return new ElasticCollection($models);
     }

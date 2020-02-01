@@ -43,7 +43,10 @@ trait HasAggregations
     }
 
     /**
-     * {@inheritdoc}
+     * @param string $name
+     * @param array $arguments
+     *
+     * @return mixed
      */
     public function __call($name, $arguments)
     {

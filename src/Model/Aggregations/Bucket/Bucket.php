@@ -33,6 +33,12 @@ abstract class Bucket extends Collection implements \JsonSerializable
         }, $aggregation['buckets']));
     }
 
+    /**
+     * Create a new bucket item.
+     *
+     * @param array $item
+     * @return BucketItem
+     */
     protected function newBucketItem($item): BucketItem
     {
         return new BucketItem($item);
@@ -54,10 +60,11 @@ abstract class Bucket extends Collection implements \JsonSerializable
     /**
      * Set meta information into attributes array.
      *
-     * @param $key
-     * @param $value
+     * @param string $key
+     * @param mixed $value
+     * @return void
      */
-    public function __set($key, $value)
+    public function __set($key, $value): void
     {
         $this->attributes[$key] = $value;
     }

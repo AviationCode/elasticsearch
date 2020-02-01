@@ -7,6 +7,9 @@ use Illuminate\Support\Arr;
 
 class DateRange extends Bucket
 {
+    /**
+     * {@inheritDoc}
+     */
     protected function newBucketItem($item): BucketItem
     {
         $bucketItem = parent::newBucketItem($item);

@@ -26,7 +26,7 @@ class GeoShape implements Arrayable
     private $shape;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $relation;
 

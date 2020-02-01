@@ -51,8 +51,8 @@ class GeoDistance implements Arrayable
      * @param string $field
      * @param array|string|double|float $lat
      * @param array|string|float|float $lon
-     * @param null $distance
-     * @param null $unit
+     * @param array|string|null $distance
+     * @param array|null $unit
      * @param array|null $options
      */
     public function __construct(string $field, $lat, $lon, $distance = null, $unit = null, ?array $options = null)
@@ -69,7 +69,9 @@ class GeoDistance implements Arrayable
                 $unit = $distance;
             }
 
-            $distance = $lon;
+            if (is_string($lon) || is_numeric($lon)) {
+                $distance = (string)$lon;
+            }
         } else {
             $this->point = ['lat' => $lat, 'lon' => $lon];
 
@@ -78,7 +80,7 @@ class GeoDistance implements Arrayable
             }
         }
 
-        if ($distance === null) {
+        if ($distance === null || is_array($distance)) {
             throw new InvalidArgumentException('Distance is required');
         }
 

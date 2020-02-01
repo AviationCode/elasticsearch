@@ -6,6 +6,9 @@ use Elasticsearch\Client;
 
 trait ElasticsearchClient
 {
+    /**
+     * @var Client
+     */
     protected $client;
 
     public function getClient(): Client
@@ -17,7 +20,10 @@ trait ElasticsearchClient
         return  $this->client;
     }
 
-    public function setClient(Client $client): void
+    /**
+     * @param Client $client
+     */
+    public function setClient($client): void
     {
         $this->client = $client;
     }

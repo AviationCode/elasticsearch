@@ -4,6 +4,7 @@ namespace AviationCode\Elasticsearch\Events;
 
 use AviationCode\Elasticsearch\Exceptions\ElasticErrorFactory;
 use AviationCode\Elasticsearch\Model\ElasticSearchable;
+use AviationCode\Elasticsearch\Model\ElasticsearchModel;
 
 class DocumentEvent
 {
@@ -16,7 +17,7 @@ class DocumentEvent
      */
     public $index;
     /**
-     * @var ElasticSearchable
+     * @var mixed|ElasticSearchable
      */
     public $model;
     /**
@@ -42,7 +43,7 @@ class DocumentEvent
     /**
      * DocumentCreatedEvent constructor.
      *
-     * @param ElasticSearchable $model
+     * @param mixed $model
      * @param string $action
      * @param array $response
      */

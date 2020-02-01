@@ -18,6 +18,11 @@ use BadMethodCallException;
  */
 class Boolean extends Compound
 {
+    /**
+     * List of all compound clauses applied.
+     *
+     * @var array
+     */
     private $clauses = [];
 
     /**
@@ -76,7 +81,10 @@ class Boolean extends Compound
     }
 
     /**
-     * {@inheritdoc}
+     * @param string $method
+     * @param array $arguments
+     *
+     * @return mixed
      */
     public function __call($method, $arguments)
     {

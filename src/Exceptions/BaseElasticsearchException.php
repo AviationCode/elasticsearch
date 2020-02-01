@@ -9,7 +9,7 @@ class BaseElasticsearchException extends \RuntimeException
 {
     /**
      * ElasticsearchException constructor.
-     * @param BaseElasticException|array $exception
+     * @param BaseElasticException|\Exception|array $exception
      */
     public function __construct($exception)
     {
@@ -21,8 +21,8 @@ class BaseElasticsearchException extends \RuntimeException
             $message = Arr::get(json_decode($exception->getMessage(), true), 'error.reason');
             $code = $exception->getCode();
             $previous = $exception;
-        } else {
-            $message = "{$message['type']}: {$exception['reason']}";
+        } else if (is_array($exception)) {
+            $message = "{$exception['type']}: {$exception['reason']}";
         }
 
         parent::__construct($message, $code, $previous);

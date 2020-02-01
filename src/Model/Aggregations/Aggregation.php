@@ -8,6 +8,11 @@ use Illuminate\Support\Str;
 
 class Aggregation extends Fluent
 {
+    /**
+     * List of namespaces to search Aggregations in.
+     *
+     * @var array
+     */
     public static $namespaces = [
         '\AviationCode\Elasticsearch\Model\Aggregations\Metric',
         '\AviationCode\Elasticsearch\Model\Aggregations\Bucket',
@@ -15,6 +20,11 @@ class Aggregation extends Fluent
         '\AviationCode\Elasticsearch\Model\Aggregations\Matrix',
     ];
 
+    /**
+     * List of special typed keys which do not directly related to their aggregation type.
+     *
+     * @var array
+     */
     public static $specialTypes = [
         'sterms' => 'terms',
         'lterms' => 'terms',
@@ -62,7 +72,7 @@ class Aggregation extends Fluent
         );
     }
 
-    private static function convertSpecialTypes(string $type)
+    private static function convertSpecialTypes(string $type): string
     {
         if (isset(static::$specialTypes[$type])) {
             return static::$specialTypes[$type];

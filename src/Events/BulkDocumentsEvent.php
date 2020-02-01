@@ -17,7 +17,7 @@ class BulkDocumentsEvent
     /**
      * BulkDocumentEvent constructor.
      *
-     * @param Collection|ElasticSearchable[]|Model $models
+     * @param Collection|Model[] $models
      * @param array $respone
      */
     public function __construct($models, $respone)

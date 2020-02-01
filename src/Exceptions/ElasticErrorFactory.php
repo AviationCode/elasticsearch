@@ -35,7 +35,7 @@ final class ElasticErrorFactory
      * Bind the exception.
      *
      * @param ElasticsearchException $exception
-     * @return $this
+     * @return static
      */
     public static function with(ElasticsearchException $exception): self
     {

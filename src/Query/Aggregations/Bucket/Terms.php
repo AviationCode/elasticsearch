@@ -17,6 +17,19 @@ class Terms extends Bucket
     private $options = [];
 
     /**
+     * @var array
+     */
+    protected $allowedOptions = [
+        'size',
+        'missing',
+        'include',
+        'exclude',
+        'order',
+        'min_doc_count',
+        'show_term_doc_count_error',
+    ];
+
+    /**
      * Terms constructor.
      *
      * @param string $field
@@ -35,6 +48,6 @@ class Terms extends Bucket
      */
     protected function toElastic(): array
     {
-        return array_merge(['field' => $this->field], $this->options);
+        return array_merge(['field' => $this->field], $this->allowedOptions($this->options));
     }
 }

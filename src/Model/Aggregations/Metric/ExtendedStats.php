@@ -2,41 +2,32 @@
 
 namespace AviationCode\Elasticsearch\Model\Aggregations\Metric;
 
-use AviationCode\Elasticsearch\Helpers\HasAttributes;
 use Illuminate\Support\Fluent;
 
 /**
  * Class ExtendedStats.
  *
- * @property array $value;
+ * @property int $count;
+ * @property int|float $min;
+ * @property int|float $max;
+ * @property int|float $avg;
+ * @property int|float $sum;
+ * @property int|float $sum_of_squares;
+ * @property int|float $variance;
+ * @property int|float $std_deviation;
+ * @property Fluent $std_deviation_bounds;
  */
-class ExtendedStats implements \JsonSerializable
+class ExtendedStats extends Fluent
 {
-    use HasAttributes;
-
     /**
      * ExtendedStats Aggregation constructor.
      *
-     * @param array $value
+     * @param array $attributes
      */
-    public function __construct(array $value)
+    public function __construct(array $attributes)
     {
-        $this->count = $value['count'];
+        $attributes['std_deviation_bounds'] = new Fluent($attributes['std_deviation_bounds']);
 
-        $this->min = $value['min'];
-
-        $this->max = $value['max'];
-
-        $this->avg = $value['avg'];
-
-        $this->sum = $value['sum'];
-
-        $this->sumOfSquares = $value['sum_of_squares'];
-
-        $this->variance = $value['variance'];
-
-        $this->stdDeviation = $value['std_deviation'];
-
-        $this->stdDeviationBounds = new Fluent($value['std_deviation_bounds']);
+        parent::__construct($attributes);
     }
 }

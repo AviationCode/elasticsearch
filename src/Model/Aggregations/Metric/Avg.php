@@ -2,27 +2,15 @@
 
 namespace AviationCode\Elasticsearch\Model\Aggregations\Metric;
 
-use AviationCode\Elasticsearch\Helpers\HasAttributes;
+use Illuminate\Support\Fluent;
 
 /**
  * Class Avg.
  *
  * @property int|float $value;
  */
-class Avg implements \JsonSerializable
+class Avg extends Fluent
 {
-    use HasAttributes;
-
-    /**
-     * Avg Aggregation constructor.
-     *
-     * @param array $value
-     */
-    public function __construct(array $value)
-    {
-        $this->value = $value['value'];
-    }
-
     /**
      * @return float|int
      */

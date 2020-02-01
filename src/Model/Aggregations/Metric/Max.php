@@ -2,27 +2,15 @@
 
 namespace AviationCode\Elasticsearch\Model\Aggregations\Metric;
 
-use AviationCode\Elasticsearch\Helpers\HasAttributes;
+use Illuminate\Support\Fluent;
 
 /**
  * Class Max.
  *
  * @property int|float $value;
  */
-class Max implements \JsonSerializable
+class Max extends Fluent
 {
-    use HasAttributes;
-
-    /**
-     * Max Aggregation constructor.
-     *
-     * @param array $value
-     */
-    public function __construct(array $value)
-    {
-        $this->value = $value['value'];
-    }
-
     /**
      * @return float|int
      */

@@ -57,6 +57,10 @@ class TermsTest extends TestCase
             ],
         ], $query);
 
+        $this->assertSame(0, $terms->doc_count_error_upper_bound);
+        $this->assertSame(75, $terms->sum_other_doc_count);
+        $this->assertNull($terms->non_existing_key);
+
         $this->assertCount(2, $terms);
         $this->assertEquals('jeffreyway', $terms->get(0)->key);
         $this->assertEquals(50, $terms->get(0)->doc_count);
@@ -65,5 +69,10 @@ class TermsTest extends TestCase
         $this->assertEquals('adamwatham', $terms->get(1)->key);
         $this->assertEquals(25, $terms->get(1)->doc_count);
         $this->assertCount(2, $terms->get(1)->tweets_per_day);
+
+        $jsonData = json_decode($terms->toJson(), true);
+        $this->assertEquals(0, $jsonData['meta']['doc_count_error_upper_bound']);
+        $this->assertEquals(75, $jsonData['meta']['sum_other_doc_count']);
+        $this->assertCount(2, $jsonData['data']);
     }
 }

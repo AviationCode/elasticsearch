@@ -2,7 +2,6 @@
 
 namespace AviationCode\Elasticsearch\Model\Aggregations\Metric;
 
-use AviationCode\Elasticsearch\Helpers\HasAttributes;
 use Illuminate\Support\Fluent;
 
 /**
@@ -10,19 +9,17 @@ use Illuminate\Support\Fluent;
  *
  * @property array $value;
  */
-class GeoCentroid implements \JsonSerializable
+class GeoCentroid extends Fluent
 {
-    use HasAttributes;
-
     /**
      * GeoCentroid Aggregation constructor.
      *
-     * @param array $value
+     * @param array $attributes
      */
-    public function __construct(array $value)
+    public function __construct(array $attributes = [])
     {
-        $this->location = new Fluent($value['location']);
+        $attributes['location'] = new Fluent($attributes['location']);
 
-        $this->count = $value['count'];
+        parent::__construct($attributes);
     }
 }

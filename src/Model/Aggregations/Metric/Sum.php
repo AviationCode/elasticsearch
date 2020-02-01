@@ -2,27 +2,15 @@
 
 namespace AviationCode\Elasticsearch\Model\Aggregations\Metric;
 
-use AviationCode\Elasticsearch\Helpers\HasAttributes;
+use Illuminate\Support\Fluent;
 
 /**
  * Class Sum.
  *
  * @property int|float $value;
  */
-class Sum implements \JsonSerializable
+class Sum extends Fluent
 {
-    use HasAttributes;
-
-    /**
-     * Sum Aggregation constructor.
-     *
-     * @param array $value
-     */
-    public function __construct(array $value)
-    {
-        $this->value = $value['value'];
-    }
-
     /**
      * @return float|int
      */

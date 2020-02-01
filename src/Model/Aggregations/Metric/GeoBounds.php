@@ -2,28 +2,27 @@
 
 namespace AviationCode\Elasticsearch\Model\Aggregations\Metric;
 
-use AviationCode\Elasticsearch\Helpers\HasAttributes;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Fluent;
 
 /**
  * Class GeoBounds.
  *
- * @property array $value;
+ * @property Fluent $topLeft;
+ * @property Fluent $bottomRight;
  */
-class GeoBounds implements \JsonSerializable
+class GeoBounds extends Fluent
 {
-    use HasAttributes;
-
     /**
      * GeoBounds Aggregation constructor.
      *
-     * @param array $value
+     * @param array $attributes
      */
-    public function __construct(array $value)
+    public function __construct(array $attributes = [])
     {
-        $this->topLeft = new Fluent(Arr::get($value, 'bounds.top_left'));
-
-        $this->bottomRight = new Fluent(Arr::get($value, 'bounds.bottom_right'));
+        parent::__construct([
+            'topLeft' => new Fluent(Arr::get($attributes, 'bounds.top_left')),
+            'bottomRight' => new Fluent(Arr::get($attributes, 'bounds.bottom_right')),
+        ]);
     }
 }

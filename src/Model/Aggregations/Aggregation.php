@@ -2,14 +2,12 @@
 
 namespace AviationCode\Elasticsearch\Model\Aggregations;
 
-use AviationCode\Elasticsearch\Helpers\HasAttributes;
-use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
 
-class Aggregation implements \JsonSerializable, Arrayable
+class Aggregation extends Fluent
 {
-    use HasAttributes;
-
     public static $namespaces = [
         '\AviationCode\Elasticsearch\Model\Aggregations\Metric',
         '\AviationCode\Elasticsearch\Model\Aggregations\Bucket',
@@ -17,17 +15,20 @@ class Aggregation implements \JsonSerializable, Arrayable
         '\AviationCode\Elasticsearch\Model\Aggregations\Matrix',
     ];
 
+    public static $specialTypes = [
+        'sterms' => 'terms',
+        'lterms' => 'terms',
+    ];
+
     /**
      * Aggregation constructor.
      * @param array $aggregations
      */
-    public function __construct(array $aggregations)
+    public function __construct(array $aggregations = [])
     {
-        foreach ($aggregations as $typedKey => $value) {
-            [$key, $instance] = static::aggregationModel($typedKey, $value);
-
-            $this->$key = $instance;
-        }
+        parent::__construct((new Collection($aggregations))->mapWithKeys(function ($value, $typedKey) {
+            return static::aggregationModel($typedKey, $value);
+        }));
     }
 
     /**
@@ -42,6 +43,8 @@ class Aggregation implements \JsonSerializable, Arrayable
     {
         [$type, $key] = explode('#', $typedKey);
 
+        $type = static::convertSpecialTypes($type);
+
         $class = Str::studly($type);
 
         foreach (static::$namespaces as $namespace) {
@@ -51,7 +54,7 @@ class Aggregation implements \JsonSerializable, Arrayable
                 continue;
             }
 
-            return [$key, new $fqn($value)];
+            return [$key => new $fqn($value)];
         }
 
         throw new \InvalidArgumentException(
@@ -59,11 +62,12 @@ class Aggregation implements \JsonSerializable, Arrayable
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function toArray()
+    private static function convertSpecialTypes(string $type)
     {
-        return $this->jsonSerialize();
+        if (isset(static::$specialTypes[$type])) {
+            return static::$specialTypes[$type];
+        }
+
+        return $type;
     }
 }

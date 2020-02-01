@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 /**
  * @method self terms(string $key, string $field, array $options = [])
  * @method self dateHistogram(string $key, string $field, string $interval, string $intervalType = DateHistogram::FIXED, array $options = [])
+ * @method self dateRange(string $key, string $field, array $ranges, array $options = [])
  * @method self cardinality(string $key, string $field, array $options = [])
  * @method self min(string $key, string $field, array $options = [])
  * @method self max(string $key, string $field, array $options = [])

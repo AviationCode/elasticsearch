@@ -2,27 +2,15 @@
 
 namespace AviationCode\Elasticsearch\Model\Aggregations\Metric;
 
-use AviationCode\Elasticsearch\Helpers\HasAttributes;
+use Illuminate\Support\Fluent;
 
 /**
  * Class Min.
  *
  * @property int|float|float $value;
  */
-class Min implements \JsonSerializable
+class Min extends Fluent
 {
-    use HasAttributes;
-
-    /**
-     * Min Aggregation constructor.
-     *
-     * @param array $value
-     */
-    public function __construct(array $value)
-    {
-        $this->value = $value['value'];
-    }
-
     /**
      * @return float|int
      */

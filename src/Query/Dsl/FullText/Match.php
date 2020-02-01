@@ -11,7 +11,7 @@ use Illuminate\Contracts\Support\Arrayable;
  */
 class Match implements Arrayable
 {
-    const KEY = 'match';
+    public const KEY = 'match';
 
     /**
      * Field you wish to search.

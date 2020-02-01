@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Arrayable;
 
 class Range implements Arrayable
 {
-    const KEY = 'range';
+    public const KEY = 'range';
 
     /**
      * Field you wish to search.

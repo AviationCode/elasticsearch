@@ -9,21 +9,21 @@ class GeoDistance implements Arrayable
 {
     private const KEY = 'geo_distance';
 
-    const MI = 'mi';
-    const YD = 'yd';
-    const FT = 'ft';
-    const IN = 'in';
-    const KM = 'km';
-    const M = 'm';
-    const CM = 'cm';
-    const MM = 'mm';
-    const NM = 'NM';
+    public const MI = 'mi';
+    public const YD = 'yd';
+    public const FT = 'ft';
+    public const IN = 'in';
+    public const KM = 'km';
+    public const M = 'm';
+    public const CM = 'cm';
+    public const MM = 'mm';
+    public const NM = 'NM';
 
-    const PLANE = 'plane';
-    const ARC = 'arc';
+    public const PLANE = 'plane';
+    public const ARC = 'arc';
 
-    const IGNORE_MALFORMED = 'ignore_malformed';
-    const STRICT = 'strict';
+    public const IGNORE_MALFORMED = 'ignore_malformed';
+    public const STRICT = 'strict';
 
     /**
      * @var string
@@ -49,7 +49,7 @@ class GeoDistance implements Arrayable
      * GeoDistance constructor.
      *
      * @param string $field
-     * @param array|string|double|float$lat
+     * @param array|string|double|float $lat
      * @param array|string|float|float $lon
      * @param null $distance
      * @param null $unit

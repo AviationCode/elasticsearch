@@ -8,9 +8,9 @@ class GeoPolygon implements Arrayable
 {
     private const KEY = 'geo_polygon';
 
-    const STRICT = 'strict';
-    const IGNORE_MALFORMED = 'ignore_malformed';
-    const COERCE = 'coerce';
+    public const STRICT = 'strict';
+    public const IGNORE_MALFORMED = 'ignore_malformed';
+    public const COERCE = 'coerce';
 
     /**
      * @var string

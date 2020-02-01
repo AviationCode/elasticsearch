@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Arrayable;
 
 class Regexp implements Arrayable
 {
-    const KEY = 'regexp';
+    public const KEY = 'regexp';
 
     /**
      * Field you wish to search for.

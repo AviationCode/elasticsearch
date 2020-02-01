@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Arrayable;
 
 class MatchBoolPrefix implements Arrayable
 {
-    const KEY = 'match_bool_prefix';
+    public const KEY = 'match_bool_prefix';
 
     /**
      * The field to search for.

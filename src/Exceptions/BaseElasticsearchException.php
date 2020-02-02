@@ -18,10 +18,10 @@ class BaseElasticsearchException extends \RuntimeException
         $previous = null;
 
         if ($exception instanceof BaseElasticException) {
-            $message = Arr::get(json_decode($exception->getMessage(), true), 'error.reason');
+            $message = Arr::get(json_decode($exception->getMessage(), true), 'error.reason') ?? $exception->getMessage();
             $code = $exception->getCode();
             $previous = $exception;
-        } else if (is_array($exception)) {
+        } elseif (is_array($exception)) {
             $message = "{$exception['type']}: {$exception['reason']}";
         }
 

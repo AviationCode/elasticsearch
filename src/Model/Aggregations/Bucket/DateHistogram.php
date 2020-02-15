@@ -13,7 +13,7 @@ class DateHistogram extends Bucket
     {
         $bucketItem = parent::newBucketItem($item);
 
-        $bucketItem->date = Carbon::createFromTimestamp($bucketItem->key);
+        $bucketItem->date = Carbon::createFromTimestampMs($bucketItem->key);
 
         return $bucketItem;
     }

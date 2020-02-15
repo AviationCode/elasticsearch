@@ -3,10 +3,24 @@
 namespace AviationCode\Elasticsearch\Schema;
 
 use AviationCode\Elasticsearch\Exceptions\BaseElasticsearchException;
+use AviationCode\Elasticsearch\Model\Index as IndexModel;
 use Exception;
+use Illuminate\Support\Collection;
 
 class Index extends Schema
 {
+    /**
+     * List all indices.
+     *
+     * @return Collection
+     */
+    public function list()
+    {
+        $response = $this->elasticsearch->getClient()->cat()->indices();
+
+        return (new Collection($response))->mapInto(IndexModel::class);
+    }
+
     /**
      * Check if the given index exists.
      *

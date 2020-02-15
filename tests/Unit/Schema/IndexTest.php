@@ -7,10 +7,12 @@ use AviationCode\Elasticsearch\Exceptions\BadRequestException;
 use AviationCode\Elasticsearch\Exceptions\BaseElasticsearchException;
 use AviationCode\Elasticsearch\Exceptions\IndexNotFoundException;
 use AviationCode\Elasticsearch\Model\ElasticsearchModel;
+use AviationCode\Elasticsearch\Model\Index;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 use Elasticsearch\Client;
 use Elasticsearch\Common\Exceptions\BadRequest400Exception;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
+use Elasticsearch\Namespaces\CatNamespace;
 use Elasticsearch\Namespaces\IndicesNamespace;
 use InvalidArgumentException;
 
@@ -22,13 +24,18 @@ class IndexTest extends TestCase
     /** @var IndicesNamespace|\Mockery\LegacyMockInterface|\Mockery\MockInterface */
     protected $indices;
 
+    /** @var CatNamespace|\Mockery\LegacyMockInterface|\Mockery\MockInterface */
+    protected $cat;
+
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->client = \Mockery::mock(Client::class);
         $this->indices = \Mockery::mock(IndicesNamespace::class);
+        $this->cat = \Mockery::mock(CatNamespace::class);
         $this->client->shouldReceive('indices')->andReturn($this->indices);
+        $this->client->shouldReceive('cat')->andReturn($this->cat);
     }
 
     protected function getSchema($model = null)
@@ -345,6 +352,43 @@ class IndexTest extends TestCase
         $this->expectException(IndexNotFoundException::class);
 
         $this->getSchema()->info('my_index');
+    }
+
+    /** @test */
+    public function it_can_request_a_list_of_indices()
+    {
+        $this->cat->shouldReceive('indices')->andReturn([
+            [
+                'health' => 'yellow',
+                'status' => 'open',
+                'index' => 'addresses',
+                'uuid' => 'Kv0cga10RiCSCXg8BXQgjA',
+                'pri' => '1',
+                'rep' => '1',
+                'docs.count' => '56516672',
+                'docs.deleted' => '0',
+                'store.size' => '7.5gb',
+                'pri.store.size' => '7.5gb',
+            ],
+            [
+                'health' => 'green',
+                'status' => 'open',
+                'index' => '.kibana_task_manager_1',
+                'uuid' => 'tz5cJ_20S_-Q18WCKc10aw',
+                'pri' => '1',
+                'rep' => '0',
+                'docs.count' => '2',
+                'docs.deleted' => '0',
+                'store.size' => '12.4kb',
+                'pri.store.size' => '12.4kb',
+          ],
+        ]);
+
+        $indices = $this->getSchema()->list();
+
+        $this->assertCount(2, $indices);
+        $this->assertInstanceOf(Index::class, $indices[0]);
+        $this->assertInstanceOf(Index::class, $indices[1]);
     }
 }
 

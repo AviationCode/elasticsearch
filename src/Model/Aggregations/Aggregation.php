@@ -32,6 +32,7 @@ class Aggregation extends Fluent
 
     /**
      * Aggregation constructor.
+     *
      * @param array $aggregations
      */
     public function __construct(array $aggregations = [])
@@ -45,7 +46,7 @@ class Aggregation extends Fluent
      * Find and return instance of an aggregation model based on a typed elastic key.
      *
      * @param string $typedKey
-     * @param mixed $value
+     * @param mixed  $value
      *
      * @return array list($key, $instance)
      */

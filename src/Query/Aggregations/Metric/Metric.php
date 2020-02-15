@@ -40,6 +40,7 @@ abstract class Metric implements Arrayable
      * Only return the options which are allowed.
      *
      * @param array $options
+     *
      * @return array
      */
     protected function allowedOptions(array $options): array

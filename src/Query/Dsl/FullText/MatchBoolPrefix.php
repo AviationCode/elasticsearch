@@ -24,6 +24,7 @@ class MatchBoolPrefix implements Arrayable
 
     /**
      * Extra options.
+     *
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-bool-prefix-query.html#_parameters_3
      *
      * @var array
@@ -34,8 +35,8 @@ class MatchBoolPrefix implements Arrayable
      * MatchBoolPrefix constructor.
      *
      * @param string $field
-     * @param mixed $value
-     * @param array $options
+     * @param mixed  $value
+     * @param array  $options
      */
     public function __construct(string $field, $value, array $options = [])
     {

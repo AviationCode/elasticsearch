@@ -25,6 +25,7 @@ class Index extends Schema
      * Check if the given index exists.
      *
      * @param string|null $index
+     *
      * @return bool
      */
     public function exists($index = null): bool
@@ -36,9 +37,10 @@ class Index extends Schema
 
     /**
      * @param null|string $index
-     * @return array
      *
      * @throws \Throwable
+     *
+     * @return array
      */
     public function info($index = null)
     {
@@ -55,10 +57,11 @@ class Index extends Schema
      * Create an index.
      *
      * @param null|string $index
-     * @return bool
      *
      * @throws BaseElasticsearchException
      * @throws \Throwable
+     *
+     * @return bool
      */
     public function create($index = null)
     {
@@ -83,10 +86,11 @@ class Index extends Schema
      * Delete an index and it's data.
      *
      * @param null|string $index
-     * @return void
      *
      * @throws BaseElasticsearchException
      * @throws \Throwable
+     *
+     * @return void
      */
     public function delete($index = null): void
     {
@@ -101,10 +105,12 @@ class Index extends Schema
      * Create or update index mapping.
      *
      * @param array $mappings
-     * @param null $index
-     * @return void
+     * @param null  $index
+     *
      * @throws BaseElasticsearchException
      * @throws \Throwable
+     *
+     * @return void
      */
     public function putMapping(?array $mappings = null, $index = null): void
     {
@@ -115,7 +121,7 @@ class Index extends Schema
         try {
             $this->elasticsearch->getClient()->indices()->putMapping([
                 'index' => $this->getIndex($index),
-                'body' => ['properties' => $mappings],
+                'body'  => ['properties' => $mappings],
             ]);
         } catch (Exception $exception) {
             throw $this->handleException($exception);

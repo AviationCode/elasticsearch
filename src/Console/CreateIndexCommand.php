@@ -33,7 +33,7 @@ class CreateIndexCommand extends Command
         /** @var ElasticSearchable $model */
         $model = new $class();
 
-        $this->info(class_basename($model) . ' found with elastic index "' . $model->getIndexName() . '"');
+        $this->info(class_basename($model).' found with elastic index "'.$model->getIndexName().'"');
 
         $this->deleteExistingIndex($model->getIndexName());
 

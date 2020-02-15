@@ -27,7 +27,9 @@ class Fuzzy implements Arrayable
 
     /**
      * extra options defined in.
+     *
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-fuzzy-query.html#fuzzy-query-field-params
+     *
      * @var array
      */
     private $options;
@@ -36,8 +38,8 @@ class Fuzzy implements Arrayable
      * Fuzzy constructor.
      *
      * @param string $field
-     * @param mixed $value
-     * @param array $options
+     * @param mixed  $value
+     * @param array  $options
      */
     public function __construct(string $field, $value, array $options = [])
     {

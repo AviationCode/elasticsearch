@@ -31,9 +31,9 @@ class Boolean extends Compound
      * @var array
      */
     private $drivers = [
-        'must' => Must::class,
-        'filter' => Filter::class,
-        'should' => Should::class,
+        'must'    => Must::class,
+        'filter'  => Filter::class,
+        'should'  => Should::class,
         'mustNot' => MustNot::class,
     ];
 
@@ -62,7 +62,7 @@ class Boolean extends Compound
     /**
      * Add a new clause.
      *
-     * @param string $method
+     * @param string   $method
      * @param \Closure $callback
      *
      * @return $this
@@ -82,7 +82,7 @@ class Boolean extends Compound
 
     /**
      * @param string $method
-     * @param array $arguments
+     * @param array  $arguments
      *
      * @return mixed
      */

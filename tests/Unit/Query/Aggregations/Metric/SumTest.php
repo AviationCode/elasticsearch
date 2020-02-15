@@ -16,7 +16,7 @@ class SumTest extends TestCase
         $aggs->sum('watch_prices', 'price', ['missing' => 100]);
 
         $this->assertEquals([
-            'hat_prices' => ['sum' => ['field' => 'price']],
+            'hat_prices'   => ['sum' => ['field' => 'price']],
             'watch_prices' => ['sum' => ['field' => 'price', 'missing' => 100]],
         ], $aggs->toArray());
     }

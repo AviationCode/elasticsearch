@@ -5,18 +5,18 @@ namespace AviationCode\Elasticsearch\Model;
 use Illuminate\Support\Fluent;
 
 /**
- * Class Index
+ * Class Index.
  *
  * @property-read string $index
  * @property-read string $status
  * @property-read string $health
- * @property-read integer $docs_count
- * @property-read integer $docs_deleted
+ * @property-read int $docs_count
+ * @property-read int $docs_deleted
  * @property-read string $store_size
  * @property-read string $pri_store_size
  * @property-read string $uuid
- * @property-read integer $pri
- * @property-read integer $rep
+ * @property-read int $pri
+ * @property-read int $rep
  */
 class Index extends Fluent
 {

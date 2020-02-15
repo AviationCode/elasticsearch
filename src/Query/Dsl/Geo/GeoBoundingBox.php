@@ -37,10 +37,10 @@ class GeoBoundingBox implements Arrayable
     /**
      * GeoBoundingBox constructor.
      *
-     * @param string $field
-     * @param string|array $topLeft
+     * @param string            $field
+     * @param string|array      $topLeft
      * @param string|array|null $bottomRight
-     * @param array|null $options
+     * @param array|null        $options
      */
     public function __construct(string $field, $topLeft, $bottomRight = null, ?array $options = null)
     {
@@ -54,7 +54,7 @@ class GeoBoundingBox implements Arrayable
         }
 
         $this->boundingBox = [
-            'top_left' => $topLeft,
+            'top_left'     => $topLeft,
             'bottom_right' => $bottomRight,
         ];
         $this->options = $options ?? [];

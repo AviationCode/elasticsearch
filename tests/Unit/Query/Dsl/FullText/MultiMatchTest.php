@@ -14,7 +14,7 @@ class MultiMatchTest extends TestCase
 
         $this->assertEquals([
             'multi_match' => [
-                'query' => 'this is a test',
+                'query'  => 'this is a test',
                 'fields' => ['title', 'message'],
             ],
         ], $match->toArray());
@@ -27,9 +27,9 @@ class MultiMatchTest extends TestCase
 
         $this->assertEquals([
             'multi_match' => [
-                'query' => 'Will Smith',
+                'query'  => 'Will Smith',
                 'fields' => ['title', '*_name'],
-                'type' => 'best_fields',
+                'type'   => 'best_fields',
             ],
         ], $match->toArray());
     }

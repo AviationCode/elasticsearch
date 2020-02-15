@@ -19,17 +19,17 @@ class RegexpTest extends TestCase
     public function it_builds_advanced_regexp()
     {
         $regexp = new Regexp('user', 'k.*y', [
-            'flags' => 'ALL',
+            'flags'                   => 'ALL',
             'max_determinized_states' => 10000,
-            'rewrite' => 'constant_score',
+            'rewrite'                 => 'constant_score',
         ]);
 
         $this->assertEquals(['regexp' => [
             'user' => [
-                'value' => 'k.*y',
-                'flags' => 'ALL',
+                'value'                   => 'k.*y',
+                'flags'                   => 'ALL',
                 'max_determinized_states' => 10000,
-                'rewrite' => 'constant_score',
+                'rewrite'                 => 'constant_score',
             ],
         ]], $regexp->toArray());
     }

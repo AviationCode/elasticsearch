@@ -70,8 +70,8 @@ abstract class Boolean implements Arrayable
      * Elasticsearch measures similarity, or fuzziness, using a Levenshtein edit distance.
      *
      * @param string $field
-     * @param mixed $value
-     * @param array $options
+     * @param mixed  $value
+     * @param array  $options
      *
      * @return $this
      */
@@ -99,8 +99,8 @@ abstract class Boolean implements Arrayable
     /**
      * Returns documents that contain a specific prefix in a provided field.
      *
-     * @param string $field
-     * @param mixed $value
+     * @param string      $field
+     * @param mixed       $value
      * @param string|null $rewrite
      *
      * @return $this
@@ -117,8 +117,8 @@ abstract class Boolean implements Arrayable
      *
      * @param string $field
      * @param string $operator
-     * @param null $date
-     * @param array $options
+     * @param null   $date
+     * @param array  $options
      *
      * @return $this
      */
@@ -133,8 +133,8 @@ abstract class Boolean implements Arrayable
      * Returns documents that contain terms matching a regular expression.
      *
      * @param string $field
-     * @param mixed $value
-     * @param array $options
+     * @param mixed  $value
+     * @param array  $options
      *
      * @return $this
      */
@@ -148,8 +148,8 @@ abstract class Boolean implements Arrayable
     /**
      * Returns documents that contain an exact term in a provided field.
      *
-     * @param string $field
-     * @param string $value
+     * @param string     $field
+     * @param string     $value
      * @param float|null $boost
      *
      * @return $this
@@ -166,8 +166,8 @@ abstract class Boolean implements Arrayable
      * You can define the minimum number of matching terms using a field or script.
      *
      * @param string $field
-     * @param mixed $value
-     * @param array $options
+     * @param mixed  $value
+     * @param array  $options
      *
      * @return $this
      */
@@ -182,8 +182,8 @@ abstract class Boolean implements Arrayable
      * Returns documents that contain terms matching a wildcard pattern.
      *
      * @param string $field
-     * @param mixed $value
-     * @param array $options
+     * @param mixed  $value
+     * @param array  $options
      *
      * @return $this
      */
@@ -199,8 +199,9 @@ abstract class Boolean implements Arrayable
      * The provided text is analyzed before matching.
      *
      * @param string $key
-     * @param mixed $query
-     * @param array $options
+     * @param mixed  $query
+     * @param array  $options
+     *
      * @return $this
      */
     public function match(string $key, $query, array $options = []): self
@@ -215,8 +216,8 @@ abstract class Boolean implements Arrayable
      * except for the last term, which is matched as a prefix query.
      *
      * @param string $field
-     * @param mixed $value
-     * @param array $options
+     * @param mixed  $value
+     * @param array  $options
      *
      * @return $this
      */
@@ -231,8 +232,8 @@ abstract class Boolean implements Arrayable
      * Like the match query but used for matching exact phrases or word proximity matches.
      *
      * @param string $field
-     * @param mixed $value
-     * @param array $options
+     * @param mixed  $value
+     * @param array  $options
      *
      * @return $this
      */
@@ -247,8 +248,8 @@ abstract class Boolean implements Arrayable
      * Like the match_phrase query, but does a wildcard search on the final word.
      *
      * @param string $field
-     * @param mixed $value
-     * @param array $options
+     * @param mixed  $value
+     * @param array  $options
      *
      * @return $this
      */
@@ -311,10 +312,10 @@ abstract class Boolean implements Arrayable
      * Finds documents with geo-shapes which either intersect, are contained by,
      * or do not intersect with the specified geo-shape.
      *
-     * @param string $field
-     * @param array $shape
+     * @param string      $field
+     * @param array       $shape
      * @param string|null $relation
-     * @param bool $unmapped
+     * @param bool        $unmapped
      *
      * @return $this
      */
@@ -328,10 +329,10 @@ abstract class Boolean implements Arrayable
     /**
      * Find documents with geo-points within the specified polygon.
      *
-     * @param string $field
-     * @param array $points
+     * @param string      $field
+     * @param array       $points
      * @param string|null $validationMethod
-     * @param bool $unmapped
+     * @param bool        $unmapped
      *
      * @return $this
      */
@@ -348,9 +349,9 @@ abstract class Boolean implements Arrayable
      * @param string $field
      * @param array|string|double|float$lat
      * @param array|string|float|float $lon
-     * @param null $distance
-     * @param null $unit
-     * @param array|null $options
+     * @param null                     $distance
+     * @param null                     $unit
+     * @param array|null               $options
      *
      * @return $this
      */
@@ -364,10 +365,10 @@ abstract class Boolean implements Arrayable
     /**
      * Finds documents with geo-points that fall into the specified rectangle.
      *
-     * @param string $field
+     * @param string       $field
      * @param string|array $topLeft
-     * @param null $bottomRight
-     * @param array|null $options
+     * @param null         $bottomRight
+     * @param array|null   $options
      *
      * @return $this
      */

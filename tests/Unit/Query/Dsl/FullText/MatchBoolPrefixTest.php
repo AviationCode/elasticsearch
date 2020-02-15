@@ -29,7 +29,7 @@ class MatchBoolPrefixTest extends TestCase
         $this->assertEquals([
             'match_bool_prefix' => [
                 'message' => [
-                    'query' => 'quick brown f',
+                    'query'    => 'quick brown f',
                     'analyzer' => 'keyword',
                 ],
             ],

@@ -11,15 +11,15 @@ class IndexTest extends TestCase
     public function it_builds_index()
     {
         $elasticResult = [
-            'health' => 'yellow',
-            'status' => 'open',
-            'index' => 'addresses',
-            'uuid' => 'Kv0cga10RiCSCXg8BXQgjA',
-            'pri' => '1',
-            'rep' => '1',
-            'docs.count' => '56516672',
-            'docs.deleted' => '0',
-            'store.size' => '7.5gb',
+            'health'         => 'yellow',
+            'status'         => 'open',
+            'index'          => 'addresses',
+            'uuid'           => 'Kv0cga10RiCSCXg8BXQgjA',
+            'pri'            => '1',
+            'rep'            => '1',
+            'docs.count'     => '56516672',
+            'docs.deleted'   => '0',
+            'store.size'     => '7.5gb',
             'pri.store.size' => '7.5gb',
         ];
 

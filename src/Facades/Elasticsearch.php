@@ -6,7 +6,6 @@ use AviationCode\Elasticsearch\FakeElasticsearch;
 use AviationCode\Elasticsearch\Model\ElasticCollection;
 use AviationCode\Elasticsearch\Query\Builder;
 use AviationCode\Elasticsearch\Schema\Index;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Facade;
 
 /**

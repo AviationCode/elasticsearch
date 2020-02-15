@@ -19,22 +19,22 @@ class FuzzyTest extends TestCase
     public function it_builds_advanced_fuzzy_clause()
     {
         $fuzzy = new Fuzzy('user', 'ki', [
-            'fuzziness' => Fuzzy::FUZZINESS_AUTO,
+            'fuzziness'      => Fuzzy::FUZZINESS_AUTO,
             'max_expansions' => 50,
-            'prefix_length' => 0,
-            'transposition' => true,
-            'rewrite' => Fuzzy::REWRITE_CONSTANT,
+            'prefix_length'  => 0,
+            'transposition'  => true,
+            'rewrite'        => Fuzzy::REWRITE_CONSTANT,
         ]);
 
         $this->assertEquals([
             'fuzzy' => [
                 'user' => [
-                    'value' => 'ki',
-                    'fuzziness' => 'AUTO',
+                    'value'          => 'ki',
+                    'fuzziness'      => 'AUTO',
                     'max_expansions' => 50,
-                    'prefix_length' => 0,
-                    'transposition' => true,
-                    'rewrite' => 'constant_score',
+                    'prefix_length'  => 0,
+                    'transposition'  => true,
+                    'rewrite'        => 'constant_score',
                 ],
             ],
         ], $fuzzy->toArray());

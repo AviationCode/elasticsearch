@@ -24,15 +24,15 @@ class TermsTest extends TestCase
         $agg->terms('test_11', 'user', ['invalid_key' => 'others']);
 
         $this->assertEquals([
-            'test_1' => ['terms' => ['field' => 'user']],
-            'test_2' => ['terms' => ['field' => 'user', 'size' => 5]],
-            'test_3' => ['terms' => ['field' => 'user', 'show_term_doc_count_error' => true]],
-            'test_4' => ['terms' => ['field' => 'user', 'order' => ['_key' => 'desc']]],
-            'test_5' => ['terms' => ['field' => 'user', 'min_doc_count' => 5]],
-            'test_6' => ['terms' => ['field' => 'user', 'include' => '.*sport.*']],
-            'test_7' => ['terms' => ['field' => 'user', 'include' => ['elonmusk', 'jeffreyway']]],
-            'test_8' => ['terms' => ['field' => 'user', 'exclude' => 'water_.*']],
-            'test_9' => ['terms' => ['field' => 'user', 'exclude' => ['elonmusk', 'jeffreyway']]],
+            'test_1'  => ['terms' => ['field' => 'user']],
+            'test_2'  => ['terms' => ['field' => 'user', 'size' => 5]],
+            'test_3'  => ['terms' => ['field' => 'user', 'show_term_doc_count_error' => true]],
+            'test_4'  => ['terms' => ['field' => 'user', 'order' => ['_key' => 'desc']]],
+            'test_5'  => ['terms' => ['field' => 'user', 'min_doc_count' => 5]],
+            'test_6'  => ['terms' => ['field' => 'user', 'include' => '.*sport.*']],
+            'test_7'  => ['terms' => ['field' => 'user', 'include' => ['elonmusk', 'jeffreyway']]],
+            'test_8'  => ['terms' => ['field' => 'user', 'exclude' => 'water_.*']],
+            'test_9'  => ['terms' => ['field' => 'user', 'exclude' => ['elonmusk', 'jeffreyway']]],
             'test_10' => ['terms' => ['field' => 'user', 'missing' => 'others']],
             'test_11' => ['terms' => ['field' => 'user']],
         ], $agg->toArray());

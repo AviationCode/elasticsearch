@@ -17,8 +17,8 @@ class ExtendedStatsTest extends TestCase
         $aggs->extendedStats('quantities_stats', 'quantity', ['missing' => 1]);
 
         $this->assertEquals([
-            'prices_stats' => ['extended_stats' => ['field' => 'price']],
-            'grades_stats' => ['extended_stats' => ['field' => 'grade', 'sigma' => 3]],
+            'prices_stats'     => ['extended_stats' => ['field' => 'price']],
+            'grades_stats'     => ['extended_stats' => ['field' => 'grade', 'sigma' => 3]],
             'quantities_stats' => ['extended_stats' => ['field' => 'quantity', 'missing' => 1]],
         ], $aggs->toArray());
     }

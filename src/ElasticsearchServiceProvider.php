@@ -18,7 +18,7 @@ class ElasticsearchServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/config/elasticquent.php' => config_path('elasticquent.php'),
+            __DIR__.'/config/elasticquent.php' => config_path('elasticquent.php'),
         ]);
 
         if ($this->app->runningInConsole()) {
@@ -37,7 +37,7 @@ class ElasticsearchServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/elasticsearch.php', 'elasticsearch');
+        $this->mergeConfigFrom(__DIR__.'/../config/elasticsearch.php', 'elasticsearch');
 
         $this->app->singleton('elasticsearch', function ($app) {
             return new Elasticsearch();

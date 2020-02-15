@@ -2,7 +2,6 @@
 
 namespace AviationCode\Elasticsearch\Events;
 
-use AviationCode\Elasticsearch\Model\ElasticSearchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
@@ -18,7 +17,7 @@ class BulkDocumentsEvent
      * BulkDocumentEvent constructor.
      *
      * @param Collection|Model[] $models
-     * @param array $respone
+     * @param array              $respone
      */
     public function __construct($models, $respone)
     {

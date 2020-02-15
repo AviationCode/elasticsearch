@@ -22,13 +22,13 @@ class DeleteIndexCommand extends Command
     {
         $index = $this->argument('index');
 
-        if (! $index) {
+        if (!$index) {
             $indices = $elastic->index()->list()->pluck('index');
 
             $index = $this->askWithCompletion('Which index do you want to delete?', $indices->toArray());
         }
 
-        if (! $this->confirmToProceed($index . ' - Ensure you have a backup!')) {
+        if (!$this->confirmToProceed($index.' - Ensure you have a backup!')) {
             return;
         }
 

@@ -31,7 +31,7 @@ class TermsSetTest extends TestCase
         $this->assertEquals([
             'terms_set' => [
                 'programming_languages' => [
-                    'terms' => ['php', 'java'],
+                    'terms'                      => ['php', 'java'],
                     'minimum_should_match_field' => 'required_matches',
                 ],
             ],

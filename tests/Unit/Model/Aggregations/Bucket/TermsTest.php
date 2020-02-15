@@ -16,40 +16,40 @@ class TermsTest extends TestCase
 
         $terms = new Terms([
             'doc_count_error_upper_bound' => 0,
-            'sum_other_doc_count' => 75,
-            'buckets' => [
+            'sum_other_doc_count'         => 75,
+            'buckets'                     => [
                 [
-                    'key' => 'jeffreyway',
-                    'doc_count' => 50,
+                    'key'                           => 'jeffreyway',
+                    'doc_count'                     => 50,
                     'date_histogram#tweets_per_day' => [
                         'buckets' => [
                             [
                                 'key_as_string' => '2019-12-08 00:00:00',
-                                'key' => 1575763200000,
-                                'doc_count' => 13,
+                                'key'           => 1575763200000,
+                                'doc_count'     => 13,
                             ],
                             [
                                 'key_as_string' => '2019-12-09 00:00:00',
-                                'key' => 1575849600000,
-                                'doc_count' => 37,
+                                'key'           => 1575849600000,
+                                'doc_count'     => 37,
                             ],
                         ],
                     ],
                 ],
                 [
-                    'key' => 'adamwatham',
-                    'doc_count' => 25,
+                    'key'                           => 'adamwatham',
+                    'doc_count'                     => 25,
                     'date_histogram#tweets_per_day' => [
                         'buckets' => [
                             [
                                 'key_as_string' => '2019-12-08 00:00:00',
-                                'key' => 1575763200000,
-                                'doc_count' => 12,
+                                'key'           => 1575763200000,
+                                'doc_count'     => 12,
                             ],
                             [
                                 'key_as_string' => '2019-12-09 00:00:00',
-                                'key' => 1575849600000,
-                                'doc_count' => 13,
+                                'key'           => 1575849600000,
+                                'doc_count'     => 13,
                             ],
                         ],
                     ],

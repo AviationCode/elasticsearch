@@ -26,7 +26,7 @@ class TermsTest extends TestCase
 
         $this->assertEquals([
             'terms' => [
-                'user' => ['kimchy', 'elasticsearch'],
+                'user'  => ['kimchy', 'elasticsearch'],
                 'boost' => 2.0,
             ],
         ], $terms->toArray());

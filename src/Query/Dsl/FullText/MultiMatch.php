@@ -22,6 +22,7 @@ class MultiMatch implements Arrayable
 
     /**
      * Extra options.
+     *
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-multi-match-query.html
      *
      * @var array
@@ -49,7 +50,7 @@ class MultiMatch implements Arrayable
     {
         return [
             static::KEY => array_merge([
-                'query' => $this->value,
+                'query'  => $this->value,
                 'fields' => $this->fields,
             ], $this->options),
         ];

@@ -13,18 +13,18 @@ class AggregationTest extends TestCase
         $aggregations = new Aggregation([
             'sterms#genres' => [
                 'doc_count_error_upper_bound' => 0,
-                'sum_other_doc_count' => 0,
-                'buckets' => [
+                'sum_other_doc_count'         => 0,
+                'buckets'                     => [
                     [
-                        'key' => 'electronic',
+                        'key'       => 'electronic',
                         'doc_count' => 6,
                     ],
                     [
-                        'key' => 'rock',
+                        'key'       => 'rock',
                         'doc_count' => 3,
                     ],
                     [
-                        'key' => 'jazz',
+                        'key'       => 'jazz',
                         'doc_count' => 2,
                     ],
                 ],
@@ -47,18 +47,18 @@ class AggregationTest extends TestCase
         $aggregations = new Aggregation([
             'lterms#genres' => [
                 'doc_count_error_upper_bound' => 0,
-                'sum_other_doc_count' => 0,
-                'buckets' => [
+                'sum_other_doc_count'         => 0,
+                'buckets'                     => [
                     [
-                        'key' => 1,
+                        'key'       => 1,
                         'doc_count' => 6,
                     ],
                     [
-                        'key' => 2,
+                        'key'       => 2,
                         'doc_count' => 3,
                     ],
                     [
-                        'key' => 3,
+                        'key'       => 3,
                         'doc_count' => 2,
                     ],
                 ],

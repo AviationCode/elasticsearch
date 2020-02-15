@@ -28,50 +28,50 @@ class SearchTest extends TestCase
     {
         $this->client->shouldReceive('search')
             ->with([
-                'index' => 'article',
+                'index'      => 'article',
                 'typed_keys' => true,
-                'body' => [
+                'body'       => [
                     'size' => 2,
                 ],
             ])
             ->andReturn([
-                'took' => 1,
+                'took'      => 1,
                 'timed_out' => false,
-                '_shards' => [
-                    'total' => 1,
+                '_shards'   => [
+                    'total'      => 1,
                     'successful' => 1,
-                    'skipped' => 0,
-                    'failed' => 0,
+                    'skipped'    => 0,
+                    'failed'     => 0,
                 ],
                 'hits' => [
                     'total' => [
-                        'value' => 10000,
+                        'value'    => 10000,
                         'relation' => 'gte',
                     ],
                     'max_score' => 1.0,
-                    'hits' => [
+                    'hits'      => [
                         [
-                            '_index' => 'article',
-                            '_type' => '_doc',
-                            '_id' => 1,
-                            '_score' => 1.0,
+                            '_index'  => 'article',
+                            '_type'   => '_doc',
+                            '_id'     => 1,
+                            '_score'  => 1.0,
                             '_source' => [
-                                'id' => 1,
-                                'title' => 'My first title',
-                                'body' => 'My first body',
+                                'id'         => 1,
+                                'title'      => 'My first title',
+                                'body'       => 'My first body',
                                 'created_at' => '2019-12-20 12:00:00',
                                 'updated_at' => '2019-12-20 12:00:00',
                             ],
                         ],
                         [
-                            '_index' => 'article',
-                            '_type' => '_doc',
-                            '_id' => 2,
-                            '_score' => 1.0,
+                            '_index'  => 'article',
+                            '_type'   => '_doc',
+                            '_id'     => 2,
+                            '_score'  => 1.0,
                             '_source' => [
-                                'id' => 2,
-                                'title' => 'My second title',
-                                'body' => 'My second body',
+                                'id'         => 2,
+                                'title'      => 'My second title',
+                                'body'       => 'My second body',
                                 'created_at' => '2019-12-21 12:00:00',
                                 'updated_at' => '2019-12-21 12:00:00',
                             ],
@@ -140,50 +140,50 @@ class SearchTest extends TestCase
     {
         $this->client->shouldReceive('search')
             ->with([
-                'index' => 'article',
+                'index'      => 'article',
                 'typed_keys' => true,
-                'body' => [
+                'body'       => [
                     'size' => 2,
                 ],
             ])
             ->andReturn([
-                'took' => 1,
+                'took'      => 1,
                 'timed_out' => false,
-                '_shards' => [
-                    'total' => 1,
+                '_shards'   => [
+                    'total'      => 1,
                     'successful' => 1,
-                    'skipped' => 0,
-                    'failed' => 0,
+                    'skipped'    => 0,
+                    'failed'     => 0,
                 ],
                 'hits' => [
                     'total' => [
-                        'value' => 10000,
+                        'value'    => 10000,
                         'relation' => 'gte',
                     ],
                     'max_score' => 1.0,
-                    'hits' => [
+                    'hits'      => [
                         [
-                            '_index' => 'article',
-                            '_type' => '_doc',
-                            '_id' => 1,
-                            '_score' => 1.0,
+                            '_index'  => 'article',
+                            '_type'   => '_doc',
+                            '_id'     => 1,
+                            '_score'  => 1.0,
                             '_source' => [
-                                'id' => 1,
-                                'title' => 'My first title',
-                                'body' => 'My first body',
+                                'id'         => 1,
+                                'title'      => 'My first title',
+                                'body'       => 'My first body',
                                 'created_at' => '2019-12-20 12:00:00',
                                 'updated_at' => '2019-12-20 12:00:00',
                             ],
                         ],
                         [
-                            '_index' => 'article',
-                            '_type' => '_doc',
-                            '_id' => 2,
-                            '_score' => 1.0,
+                            '_index'  => 'article',
+                            '_type'   => '_doc',
+                            '_id'     => 2,
+                            '_score'  => 1.0,
                             '_source' => [
-                                'id' => 2,
-                                'title' => 'My second title',
-                                'body' => 'My second body',
+                                'id'         => 2,
+                                'title'      => 'My second title',
+                                'body'       => 'My second body',
                                 'created_at' => '2019-12-21 12:00:00',
                                 'updated_at' => '2019-12-21 12:00:00',
                             ],
@@ -253,20 +253,20 @@ class SearchTest extends TestCase
         $this->client->shouldReceive('get')
             ->with([
                 'index' => 'article',
-                'id' => 1,
+                'id'    => 1,
             ])
             ->andReturn([
-                '_index' => 'article',
-                '_type' => '_doc',
-                '_id' => '1',
-                '_version' => 1,
-                '_seq_no' => 0,
+                '_index'        => 'article',
+                '_type'         => '_doc',
+                '_id'           => '1',
+                '_version'      => 1,
+                '_seq_no'       => 0,
                 '_primary_term' => 1,
-                'found' => true,
-                '_source' => [
-                    'id' => 1,
-                    'title' => 'My first title',
-                    'body' => 'My first body',
+                'found'         => true,
+                '_source'       => [
+                    'id'         => 1,
+                    'title'      => 'My first title',
+                    'body'       => 'My first body',
                     'created_at' => '2019-12-20 12:00:00',
                     'updated_at' => '2019-12-20 12:00:00',
                 ],
@@ -300,13 +300,13 @@ class SearchTest extends TestCase
             ->once()
             ->with([
                 'index' => 'article',
-                'id' => 0,
+                'id'    => 0,
             ])
             ->andReturn([
                 '_index' => 'article',
-                '_type' => '_doc',
-                '_id' => '0',
-                'found' => false,
+                '_type'  => '_doc',
+                '_id'    => '0',
+                'found'  => false,
             ]);
 
         $qb = $this->elastic->query(Article::class);
@@ -325,13 +325,13 @@ class SearchTest extends TestCase
             ->once()
             ->with([
                 'index' => 'article',
-                'id' => 1,
+                'id'    => 1,
             ])
             ->andReturn([
                 '_index' => 'article',
-                '_type' => '_doc',
-                '_id' => '1',
-                'found' => false,
+                '_type'  => '_doc',
+                '_id'    => '1',
+                'found'  => false,
             ]);
 
         $qb = $this->elastic->query(Article::class);
@@ -347,9 +347,9 @@ class SearchTest extends TestCase
         $this->client->shouldReceive('search')
             ->once()
             ->with([
-                'index' => 'article',
+                'index'      => 'article',
                 'typed_keys' => true,
-                'body' => [
+                'body'       => [
                     'size' => 100,
                     'sort' => [['created_at' => 'desc']],
                 ],
@@ -369,9 +369,9 @@ class SearchTest extends TestCase
         $this->client->shouldReceive('search')
             ->once()
             ->with([
-                'index' => 'article',
+                'index'      => 'article',
                 'typed_keys' => true,
-                'body' => [
+                'body'       => [
                     'size' => 1,
                 ],
             ])
@@ -398,10 +398,10 @@ class SearchTest extends TestCase
         $this->client->shouldReceive('search')
             ->once()
             ->with([
-                'index' => 'article',
+                'index'      => 'article',
                 'typed_keys' => true,
-                'body' => [
-                    'size' => 100,
+                'body'       => [
+                    'size'  => 100,
                     'query' => [
                         'bool' => [
                             'must' => [
@@ -434,43 +434,43 @@ class SearchTest extends TestCase
     private function successResponse()
     {
         return [
-            'took' => 1,
+            'took'      => 1,
             'timed_out' => false,
-            '_shards' => [
-                'total' => 1,
+            '_shards'   => [
+                'total'      => 1,
                 'successful' => 1,
-                'skipped' => 0,
-                'failed' => 0,
+                'skipped'    => 0,
+                'failed'     => 0,
             ],
             'hits' => [
                 'total' => [
-                    'value' => 10000,
+                    'value'    => 10000,
                     'relation' => 'gte',
                 ],
                 'max_score' => 1.0,
-                'hits' => [
+                'hits'      => [
                     [
-                        '_index' => 'article',
-                        '_type' => '_doc',
-                        '_id' => 1,
-                        '_score' => 1.0,
+                        '_index'  => 'article',
+                        '_type'   => '_doc',
+                        '_id'     => 1,
+                        '_score'  => 1.0,
                         '_source' => [
-                            'id' => 1,
-                            'title' => 'My first title',
-                            'body' => 'My first body',
+                            'id'         => 1,
+                            'title'      => 'My first title',
+                            'body'       => 'My first body',
                             'created_at' => '2019-12-20 12:00:00',
                             'updated_at' => '2019-12-20 12:00:00',
                         ],
                     ],
                     [
-                        '_index' => 'article',
-                        '_type' => '_doc',
-                        '_id' => 2,
-                        '_score' => 1.0,
+                        '_index'  => 'article',
+                        '_type'   => '_doc',
+                        '_id'     => 2,
+                        '_score'  => 1.0,
                         '_source' => [
-                            'id' => 2,
-                            'title' => 'My second title',
-                            'body' => 'My second body',
+                            'id'         => 2,
+                            'title'      => 'My second title',
+                            'body'       => 'My second body',
                             'created_at' => '2019-12-21 12:00:00',
                             'updated_at' => '2019-12-21 12:00:00',
                         ],

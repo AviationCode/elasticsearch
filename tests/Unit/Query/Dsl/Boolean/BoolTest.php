@@ -93,7 +93,7 @@ abstract class BoolTest extends TestCase
             [
                 'fuzzy' => [
                     'user' => [
-                        'value' => 'ki',
+                        'value'         => 'ki',
                         'transposition' => true,
                     ],
                 ],
@@ -139,7 +139,7 @@ abstract class BoolTest extends TestCase
             [
                 'prefix' => [
                     'user' => [
-                        'value' => 'ki',
+                        'value'   => 'ki',
                         'rewrite' => 'constant_score',
                     ],
                 ],
@@ -159,7 +159,7 @@ abstract class BoolTest extends TestCase
             [
                 'range' => [
                     'created_at' => [
-                        'lte' => '2019-12-20',
+                        'lte'   => '2019-12-20',
                         'boost' => 2.0,
                     ],
                 ],
@@ -199,7 +199,7 @@ abstract class BoolTest extends TestCase
                 'regexp' => [
                     'user' => [
                         'value' => 'ki.*',
-                        'flag' => 'ALL',
+                        'flag'  => 'ALL',
                     ],
                 ],
             ],
@@ -237,7 +237,7 @@ abstract class BoolTest extends TestCase
             [
                 'terms_set' => [
                     'languages' => [
-                        'terms' => ['php', 'java'],
+                        'terms'                      => ['php', 'java'],
                         'minimum_should_match_field' => 'required_matches',
                     ],
                 ],
@@ -370,7 +370,7 @@ abstract class BoolTest extends TestCase
             [
                 'match_bool_prefix' => [
                     'message' => [
-                        'query' => 'quick brown f',
+                        'query'    => 'quick brown f',
                         'analyzer' => 'keyword',
                     ],
                 ],
@@ -407,7 +407,7 @@ abstract class BoolTest extends TestCase
             [
                 'match_phrase' => [
                     'message' => [
-                        'query' => 'this is a test',
+                        'query'    => 'this is a test',
                         'analyzer' => 'my_analyzer',
                     ],
                 ],
@@ -444,7 +444,7 @@ abstract class BoolTest extends TestCase
             [
                 'match_phrase_prefix' => [
                     'message' => [
-                        'query' => 'this is a test',
+                        'query'    => 'this is a test',
                         'analyzer' => 'my_analyzer',
                     ],
                 ],
@@ -462,7 +462,7 @@ abstract class BoolTest extends TestCase
         $this->assertEquals([
             [
                 'multi_match' => [
-                    'query' => 'this is a test',
+                    'query'  => 'this is a test',
                     'fields' => ['title', 'message'],
                 ],
             ],
@@ -479,9 +479,9 @@ abstract class BoolTest extends TestCase
         $this->assertEquals([
             [
                 'multi_match' => [
-                    'query' => 'this is a test',
+                    'query'  => 'this is a test',
                     'fields' => ['title', '*_name'],
-                    'type' => 'best_fields',
+                    'type'   => 'best_fields',
                 ],
             ],
         ], $boolean->toArray());
@@ -513,7 +513,7 @@ abstract class BoolTest extends TestCase
         $this->assertEquals([
             [
                 'query_string' => [
-                    'query' => 'this is a test',
+                    'query'         => 'this is a test',
                     'default_field' => 'body',
                 ],
             ],
@@ -546,7 +546,7 @@ abstract class BoolTest extends TestCase
         $this->assertEquals([
             [
                 'simple_query_string' => [
-                    'query' => 'this is a test',
+                    'query'  => 'this is a test',
                     'fields' => ['title', 'body'],
                 ],
             ],
@@ -564,7 +564,7 @@ abstract class BoolTest extends TestCase
             [
                 'geo_shape' => [
                     'location' => [
-                        'indexed_shape' => ['index' => 'shapes', 'id' => 'abc', 'path' => 'location'],
+                        'indexed_shape'    => ['index' => 'shapes', 'id' => 'abc', 'path' => 'location'],
                         'ignored_unmapped' => true,
                     ],
                 ],
@@ -593,7 +593,7 @@ abstract class BoolTest extends TestCase
                             ['lat' => 53.3, 'lon' => 6.3],
                         ],
                         'validation_method' => 'strict',
-                        'ignore_unmapped' => true,
+                        'ignore_unmapped'   => true,
                     ],
                 ],
             ],
@@ -610,8 +610,8 @@ abstract class BoolTest extends TestCase
         $this->assertEquals([
             [
                 'geo_distance' => [
-                    'distance' => '123m',
-                    'location' => ['lat' => 40, 'lon' => -70],
+                    'distance'      => '123m',
+                    'location'      => ['lat' => 40, 'lon' => -70],
                     'distance_type' => 'arc',
                 ],
             ],
@@ -625,20 +625,20 @@ abstract class BoolTest extends TestCase
 
         $boolean->geoBoundingBox('location', ['lat' => 40.73, 'lon' => -74.1], ['lat' => 40.01, 'lon' => -71.12], [
             'validation_method' => GeoboundingBox::IGNORE_MALFORMED,
-            'type' => GeoBoundingBox::MEMORY,
-            'ignore_unmapped' => true,
+            'type'              => GeoBoundingBox::MEMORY,
+            'ignore_unmapped'   => true,
         ]);
 
         $this->assertEquals([
             [
                 'geo_bounding_box' => [
                     'location' => [
-                        'top_left' => ['lat' => 40.73, 'lon' => -74.1],
+                        'top_left'     => ['lat' => 40.73, 'lon' => -74.1],
                         'bottom_right' => ['lat' => 40.01, 'lon' => -71.12],
                     ],
                     'validation_method' => 'ignore_malformed',
-                    'type' => 'memory',
-                    'ignore_unmapped' => true,
+                    'type'              => 'memory',
+                    'ignore_unmapped'   => true,
                 ],
             ],
         ], $boolean->toArray());

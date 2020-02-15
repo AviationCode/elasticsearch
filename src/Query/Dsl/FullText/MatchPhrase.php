@@ -22,6 +22,7 @@ class MatchPhrase implements Arrayable
 
     /**
      * Extra options.
+     *
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query-phrase.html
      *
      * @var array
@@ -32,8 +33,8 @@ class MatchPhrase implements Arrayable
      * MatchPhrase constructor.
      *
      * @param string $field
-     * @param mixed $value
-     * @param array $options
+     * @param mixed  $value
+     * @param array  $options
      */
     public function __construct(string $field, $value, array $options = [])
     {

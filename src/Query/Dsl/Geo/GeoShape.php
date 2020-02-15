@@ -38,10 +38,10 @@ class GeoShape implements Arrayable
     /**
      * GeoShape constructor.
      *
-     * @param string $field
-     * @param array $shape
+     * @param string      $field
+     * @param array       $shape
      * @param string|null $relation
-     * @param bool $unmapped
+     * @param bool        $unmapped
      */
     public function __construct(string $field, array $shape, ?string $relation = null, bool $unmapped = false)
     {

@@ -48,6 +48,7 @@ final class ElasticCollection extends Collection
      * Set search meta from response.
      *
      * @param array $response
+     *
      * @return ElasticCollection
      */
     public function mapMeta(array $response): self
@@ -78,6 +79,7 @@ final class ElasticCollection extends Collection
      * Map aggregation data onto collection instance.
      *
      * @param array $response
+     *
      * @return $this
      */
     public function mapAggregations(array $response): self
@@ -92,6 +94,7 @@ final class ElasticCollection extends Collection
      *
      * @param array $response
      * @param Model $model
+     *
      * @return $this
      */
     public function mapModels(array $response, ?Model $model = null): self
@@ -111,8 +114,9 @@ final class ElasticCollection extends Collection
     /**
      * Parse an elasticsearch response onto eloquent collection class.
      *
-     * @param array $response
+     * @param array      $response
      * @param Model|null $model
+     *
      * @return static
      */
     public static function parse(array $response, ?Model $model = null): self

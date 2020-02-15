@@ -14,7 +14,7 @@ class GeoDistanceTest extends TestCase
 
         $this->assertEquals([
             'geo_distance' => [
-                'distance' => '200km',
+                'distance'     => '200km',
                 'pin.location' => [
                     'lat' => 40,
                     'lon' => -70,
@@ -30,7 +30,7 @@ class GeoDistanceTest extends TestCase
 
         $this->assertEquals([
             'geo_distance' => [
-                'distance' => '200m',
+                'distance'     => '200m',
                 'pin.location' => [
                     'lat' => 40,
                     'lon' => -70,
@@ -60,7 +60,7 @@ class GeoDistanceTest extends TestCase
 
         $this->assertEquals([
             'geo_distance' => [
-                'distance' => '200km',
+                'distance'     => '200km',
                 'pin.location' => [-70, 40],
             ],
         ], $geo->toArray());
@@ -73,7 +73,7 @@ class GeoDistanceTest extends TestCase
 
         $this->assertEquals([
             'geo_distance' => [
-                'distance' => '200km',
+                'distance'     => '200km',
                 'pin.location' => '40, -70',
             ],
         ], $geo->toArray());
@@ -86,7 +86,7 @@ class GeoDistanceTest extends TestCase
 
         $this->assertEquals([
             'geo_distance' => [
-                'distance' => '200km',
+                'distance'     => '200km',
                 'pin.location' => 'drm3btev3e86',
             ],
         ], $geo->toArray());
@@ -99,7 +99,7 @@ class GeoDistanceTest extends TestCase
 
         $this->assertEquals([
             'geo_distance' => [
-                'distance' => '200km',
+                'distance'     => '200km',
                 'pin.location' => ['lat' => 40, 'lon' => -70],
             ],
         ], $geo->toArray());
@@ -112,7 +112,7 @@ class GeoDistanceTest extends TestCase
 
         $this->assertEquals([
             'geo_distance' => [
-                'distance' => 100,
+                'distance'     => 100,
                 'pin.location' => '40, -70',
             ],
         ], $geo->toArray());
@@ -125,8 +125,8 @@ class GeoDistanceTest extends TestCase
 
         $this->assertEquals([
             'geo_distance' => [
-                'distance' => 100,
-                'pin.location' => '40, -70',
+                'distance'      => 100,
+                'pin.location'  => '40, -70',
                 'distance_type' => 'arc',
             ],
         ], $geo->toArray());
@@ -135,8 +135,8 @@ class GeoDistanceTest extends TestCase
 
         $this->assertEquals([
             'geo_distance' => [
-                'distance' => 100,
-                'pin.location' => ['lat' => 40, 'lon' => -70],
+                'distance'      => 100,
+                'pin.location'  => ['lat' => 40, 'lon' => -70],
                 'distance_type' => 'arc',
             ],
         ], $geo->toArray());
@@ -146,18 +146,18 @@ class GeoDistanceTest extends TestCase
     public function it_builds_geo_distance_query_with_options()
     {
         $geo = new GeoDistance('pin.location', '40, -70', 200, GeoDistance::KM, [
-            'distance_type' => GeoDistance::PLANE,
+            'distance_type'     => GeoDistance::PLANE,
             'validation_method' => GeoDistance::IGNORE_MALFORMED,
-            'ignore_unmapped' => true,
+            'ignore_unmapped'   => true,
         ]);
 
         $this->assertEquals([
             'geo_distance' => [
-                'distance' => '200km',
-                'pin.location' => '40, -70',
-                'distance_type' => 'plane',
+                'distance'          => '200km',
+                'pin.location'      => '40, -70',
+                'distance_type'     => 'plane',
                 'validation_method' => 'ignore_malformed',
-                'ignore_unmapped' => true,
+                'ignore_unmapped'   => true,
             ],
         ], $geo->toArray());
     }

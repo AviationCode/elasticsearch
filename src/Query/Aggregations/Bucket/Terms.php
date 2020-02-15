@@ -33,7 +33,7 @@ class Terms extends Bucket
      * Terms constructor.
      *
      * @param string $field
-     * @param array $options
+     * @param array  $options
      */
     public function __construct(string $field, array $options = [])
     {

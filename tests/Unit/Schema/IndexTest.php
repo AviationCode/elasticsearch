@@ -94,9 +94,9 @@ class IndexTest extends TestCase
             ->with(['index' => 'my_index'])
             ->once()
             ->andReturn([
-                'acknowledged' => true,
+                'acknowledged'        => true,
                 'shards_acknowledged' => true,
-                'index' => 'my_index',
+                'index'               => 'my_index',
             ]);
 
         $this->getSchema()->create('my_index');
@@ -111,25 +111,25 @@ class IndexTest extends TestCase
             ->with(['index' => 'article_test_model'])
             ->once()
             ->andReturn([
-                'acknowledged' => true,
+                'acknowledged'        => true,
                 'shards_acknowledged' => true,
-                'index' => 'my_index',
+                'index'               => 'my_index',
             ]);
 
         $this->indices->shouldReceive('putMapping')
             ->with([
                 'index' => 'article_test_model',
-                'body' => [
+                'body'  => [
                     'properties' => [
                         'created_at' => [
-                            'type' => 'date',
+                            'type'             => 'date',
                             'ignore_malformed' => true,
-                            'format' => 'yyyy-MM-dd HH:mm:ss||yyyy-MM-dd',
+                            'format'           => 'yyyy-MM-dd HH:mm:ss||yyyy-MM-dd',
                         ],
                         'updated_at' => [
-                            'type' => 'date',
+                            'type'             => 'date',
                             'ignore_malformed' => true,
-                            'format' => 'yyyy-MM-dd HH:mm:ss||yyyy-MM-dd',
+                            'format'           => 'yyyy-MM-dd HH:mm:ss||yyyy-MM-dd',
                         ],
                         'id' => [
                             'type' => 'integer',
@@ -162,15 +162,15 @@ class IndexTest extends TestCase
             ->andThrow(new BadRequest400Exception(json_encode([
                 'error' => [
                     'root_cause' => [
-                        'type' => 'resource_already_exists_exception',
-                        'reason' => 'index [my_index/1A-w2u9mT3KJUEdoSBH6GA] already exists',
+                        'type'       => 'resource_already_exists_exception',
+                        'reason'     => 'index [my_index/1A-w2u9mT3KJUEdoSBH6GA] already exists',
                         'index_uuid' => 'w2u9mT3KJUEdoSBH6GA',
-                        'index' => 'my_index',
+                        'index'      => 'my_index',
                     ],
-                    'type' => 'resource_already_exists_exception',
-                    'reason' => 'index [my_index/1A-w2u9mT3KJUEdoSBH6GA] already exists',
+                    'type'       => 'resource_already_exists_exception',
+                    'reason'     => 'index [my_index/1A-w2u9mT3KJUEdoSBH6GA] already exists',
                     'index_uuid' => 'w2u9mT3KJUEdoSBH6GA',
-                    'index' => 'my_index',
+                    'index'      => 'my_index',
                 ],
                 'status' => 400,
             ])));
@@ -202,17 +202,17 @@ class IndexTest extends TestCase
             ->andThrow(new Missing404Exception(json_encode([
                 'error' => [
                     'root_cause' => [
-                        'type' => 'index_not_found_exception',
-                        'reason' => 'no such index [my_index]',
+                        'type'          => 'index_not_found_exception',
+                        'reason'        => 'no such index [my_index]',
                         'resource.type' => 'index_or_alias',
-                        'resource.id' => 'my_index',
-                        'index' => 'my_index',
+                        'resource.id'   => 'my_index',
+                        'index'         => 'my_index',
                     ],
-                    'type' => 'index_not_found_exception',
-                    'reason' => 'no such index [my_index]',
+                    'type'          => 'index_not_found_exception',
+                    'reason'        => 'no such index [my_index]',
                     'resource.type' => 'index_or_alias',
-                    'resource.id' => 'my_index',
-                    'index' => 'my_index',
+                    'resource.id'   => 'my_index',
+                    'index'         => 'my_index',
                 ],
                 'status' => 404,
             ])));
@@ -235,7 +235,7 @@ class IndexTest extends TestCase
         $this->indices->shouldReceive('putMapping')
             ->with([
                 'index' => 'my-index',
-                'body' => [
+                'body'  => [
                     'properties' => [
                         'field1' => ['type' => 'keyword'],
                     ],
@@ -261,7 +261,7 @@ class IndexTest extends TestCase
         $this->indices->shouldReceive('putMapping')
             ->with([
                 'index' => 'my-index',
-                'body' => [
+                'body'  => [
                     'properties' => [
                         'field1' => ['type' => 'invalid-type'],
                     ],
@@ -284,11 +284,11 @@ class IndexTest extends TestCase
             'mappings' => ['properties' => ['city' => ['type' => 'keyword']]],
             'settings' => [
                 'index' => [
-                    'creation_date' => '1580500912933',
-                    'number_of_shards' => '1',
+                    'creation_date'      => '1580500912933',
+                    'number_of_shards'   => '1',
                     'number_of_replicas' => '1',
-                ]
-            ]
+                ],
+            ],
         ];
 
         $this->indices->shouldReceive('get')
@@ -308,11 +308,11 @@ class IndexTest extends TestCase
             'mappings' => ['properties' => ['city' => ['type' => 'keyword']]],
             'settings' => [
                 'index' => [
-                    'creation_date' => '1580500912933',
-                    'number_of_shards' => '1',
+                    'creation_date'      => '1580500912933',
+                    'number_of_shards'   => '1',
                     'number_of_replicas' => '1',
-                ]
-            ]
+                ],
+            ],
         ];
 
         $this->indices->shouldReceive('get')
@@ -334,17 +334,17 @@ class IndexTest extends TestCase
             ->andThrow(new Missing404Exception(json_encode([
                 'error' => [
                     'root_cause' => [
-                        'type' => 'index_not_found_exception',
-                        'reason' => 'no such index [my_index]',
+                        'type'          => 'index_not_found_exception',
+                        'reason'        => 'no such index [my_index]',
                         'resource.type' => 'index_or_alias',
-                        'resource.id' => 'my_index',
-                        'index' => 'my_index',
+                        'resource.id'   => 'my_index',
+                        'index'         => 'my_index',
                     ],
-                    'type' => 'index_not_found_exception',
-                    'reason' => 'no such index [my_index]',
+                    'type'          => 'index_not_found_exception',
+                    'reason'        => 'no such index [my_index]',
                     'resource.type' => 'index_or_alias',
-                    'resource.id' => 'my_index',
-                    'index' => 'my_index',
+                    'resource.id'   => 'my_index',
+                    'index'         => 'my_index',
                 ],
                 'status' => 404,
             ])));
@@ -359,29 +359,29 @@ class IndexTest extends TestCase
     {
         $this->cat->shouldReceive('indices')->andReturn([
             [
-                'health' => 'yellow',
-                'status' => 'open',
-                'index' => 'addresses',
-                'uuid' => 'Kv0cga10RiCSCXg8BXQgjA',
-                'pri' => '1',
-                'rep' => '1',
-                'docs.count' => '56516672',
-                'docs.deleted' => '0',
-                'store.size' => '7.5gb',
+                'health'         => 'yellow',
+                'status'         => 'open',
+                'index'          => 'addresses',
+                'uuid'           => 'Kv0cga10RiCSCXg8BXQgjA',
+                'pri'            => '1',
+                'rep'            => '1',
+                'docs.count'     => '56516672',
+                'docs.deleted'   => '0',
+                'store.size'     => '7.5gb',
                 'pri.store.size' => '7.5gb',
             ],
             [
-                'health' => 'green',
-                'status' => 'open',
-                'index' => '.kibana_task_manager_1',
-                'uuid' => 'tz5cJ_20S_-Q18WCKc10aw',
-                'pri' => '1',
-                'rep' => '0',
-                'docs.count' => '2',
-                'docs.deleted' => '0',
-                'store.size' => '12.4kb',
+                'health'         => 'green',
+                'status'         => 'open',
+                'index'          => '.kibana_task_manager_1',
+                'uuid'           => 'tz5cJ_20S_-Q18WCKc10aw',
+                'pri'            => '1',
+                'rep'            => '0',
+                'docs.count'     => '2',
+                'docs.deleted'   => '0',
+                'store.size'     => '12.4kb',
                 'pri.store.size' => '12.4kb',
-          ],
+            ],
         ]);
 
         $indices = $this->getSchema()->list();

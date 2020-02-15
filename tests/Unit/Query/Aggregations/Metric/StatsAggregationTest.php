@@ -16,7 +16,7 @@ class StatsAggregationTest extends TestCase
         $aggs->stats('quantities_stats', 'quantity', ['missing' => 1]);
 
         $this->assertEquals([
-            'grades_stats' => ['stats' => ['field' => 'grade']],
+            'grades_stats'     => ['stats' => ['field' => 'grade']],
             'quantities_stats' => ['stats' => ['field' => 'quantity', 'missing' => 1]],
         ], $aggs->toArray());
     }

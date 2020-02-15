@@ -24,6 +24,7 @@ class Wildcard implements Arrayable
 
     /**
      * Extra search params.
+     *
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-wildcard-query.html#wildcard-query-field-params
      *
      * @var array
@@ -34,8 +35,8 @@ class Wildcard implements Arrayable
      * Wildcard constructor.
      *
      * @param string $field
-     * @param mixed $value
-     * @param array $options
+     * @param mixed  $value
+     * @param array  $options
      */
     public function __construct(string $field, $value, array $options = [])
     {

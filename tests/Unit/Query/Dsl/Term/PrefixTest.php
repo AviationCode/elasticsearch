@@ -21,7 +21,7 @@ class PrefixTest extends TestCase
         $prefix = new Prefix('user', 'ki', 'constant_score');
 
         $this->assertEquals(['prefix' => ['user' => [
-            'value' => 'ki',
+            'value'   => 'ki',
             'rewrite' => 'constant_score',
         ]]], $prefix->toArray());
     }

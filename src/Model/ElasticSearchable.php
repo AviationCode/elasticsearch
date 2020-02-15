@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
  * Trait ElasticSearchable.
  *
  * @mixin Model
+ *
  * @property string|null $indexName
  * @property int|null $indexVersion
  * @property array|null $mapping
@@ -48,7 +49,7 @@ trait ElasticSearchable
         $index = $this->indexName ?? Str::snake(class_basename(static::class));
 
         if (isset($this->indexVersion)) {
-            $index .= '_v' . $this->indexVersion;
+            $index .= '_v'.$this->indexVersion;
         }
 
         return $index;
@@ -74,7 +75,7 @@ trait ElasticSearchable
         $attributes = $item['_source'];
 
         if (isset($item['_id'])) {
-            $attributes[$this->getKeyName()] = $this->getKeyType() === 'int' ? (int)$item['_id'] : $item['_id'];
+            $attributes[$this->getKeyName()] = $this->getKeyType() === 'int' ? (int) $item['_id'] : $item['_id'];
         }
 
         if (isset($item['fields'])) {
@@ -122,9 +123,9 @@ trait ElasticSearchable
 
         foreach ($this->getDates() as $date) {
             $properties->put($date, [
-                'type' => 'date',
+                'type'             => 'date',
                 'ignore_malformed' => true,
-                'format' => 'yyyy-MM-dd HH:mm:ss||yyyy-MM-dd',
+                'format'           => 'yyyy-MM-dd HH:mm:ss||yyyy-MM-dd',
             ]);
         }
 
@@ -139,6 +140,7 @@ trait ElasticSearchable
      * Get a meta field out of the model.
      *
      * @param string|int|null $attribute
+     *
      * @return mixed
      */
     public function getElasticAttribute($attribute)
@@ -154,6 +156,7 @@ trait ElasticSearchable
      * Collection object used.
      *
      * @param array $models
+     *
      * @return Collection
      */
     public function newCollection(array $models = []): Collection

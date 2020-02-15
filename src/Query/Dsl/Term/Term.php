@@ -33,8 +33,8 @@ class Term implements Arrayable
     /**
      * Term constructor.
      *
-     * @param string $field
-     * @param mixed $value
+     * @param string     $field
+     * @param mixed      $value
      * @param float|null $boost
      */
     public function __construct(string $field, $value, ?float $boost = null)

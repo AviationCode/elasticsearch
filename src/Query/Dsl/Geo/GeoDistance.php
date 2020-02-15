@@ -48,12 +48,12 @@ class GeoDistance implements Arrayable
     /**
      * GeoDistance constructor.
      *
-     * @param string $field
-     * @param array|string|double|float $lat
+     * @param string                   $field
+     * @param array|string|float|float $lat
      * @param array|string|float|float $lon
-     * @param array|string|null $distance
-     * @param array|null $unit
-     * @param array|null $options
+     * @param array|string|null        $distance
+     * @param array|null               $unit
+     * @param array|null               $options
      */
     public function __construct(string $field, $lat, $lon, $distance = null, $unit = null, ?array $options = null)
     {
@@ -70,7 +70,7 @@ class GeoDistance implements Arrayable
             }
 
             if (is_string($lon) || is_numeric($lon)) {
-                $distance = (string)$lon;
+                $distance = (string) $lon;
             }
         } else {
             $this->point = ['lat' => $lat, 'lon' => $lon];
@@ -100,7 +100,7 @@ class GeoDistance implements Arrayable
     {
         return [
             static::KEY => array_merge([
-                'distance' => $this->distance,
+                'distance'   => $this->distance,
                 $this->field => $this->point,
             ], $this->options),
         ];

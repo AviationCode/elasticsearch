@@ -11,10 +11,10 @@ class ElasticSearchableTest extends TestCase
     public function it_builds_eloquent_model_from_elastic_results()
     {
         $article = (new ArticleTestModel())->newFromElasticBuilder([
-            '_id' => 123,
+            '_id'     => 123,
             '_source' => [
                 'title' => 'article title',
-                'body' => 'Article body',
+                'body'  => 'Article body',
             ],
         ]);
 
@@ -30,12 +30,12 @@ class ElasticSearchableTest extends TestCase
         $article = new ArticleTestModel();
         $article->fill([
             'title' => 'test title',
-            'body' => 'test body',
+            'body'  => 'test body',
         ]);
 
         $this->assertEquals([
             'title' => 'test title',
-            'body' => 'test body',
+            'body'  => 'test body',
         ], $article->toSearchable());
     }
 

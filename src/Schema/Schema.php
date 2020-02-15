@@ -28,8 +28,10 @@ class Schema
      * If index is provided use it as param or use the model.
      *
      * @param string $index
-     * @return string
+     *
      * @throws InvalidArgumentException
+     *
+     * @return string
      */
     protected function getIndex(?string $index): string
     {
@@ -53,7 +55,7 @@ class Schema
      */
     protected function handleException(\Throwable $exception): \Throwable
     {
-        if (! $exception instanceof ElasticsearchException) {
+        if (!$exception instanceof ElasticsearchException) {
             return $exception;
         }
 

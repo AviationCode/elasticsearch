@@ -43,7 +43,7 @@ class DateRange extends Bucket
     protected function toElastic(): array
     {
         return array_merge([
-            'field' => $this->field,
+            'field'  => $this->field,
             'ranges' => $this->ranges,
         ], $this->allowedOptions($this->options));
     }

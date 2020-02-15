@@ -35,10 +35,10 @@ class GeoPolygon implements Arrayable
     /**
      * GeoPolygon constructor.
      *
-     * @param string $field
-     * @param array $points
+     * @param string      $field
+     * @param array       $points
      * @param string|null $validationMethod
-     * @param bool $unmapped
+     * @param bool        $unmapped
      */
     public function __construct(string $field, array $points, ?string $validationMethod = null, bool $unmapped = false)
     {

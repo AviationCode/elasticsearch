@@ -13,7 +13,7 @@ final class ElasticErrorFactory
      */
     private static $types = [
         'resource_already_exists_exception' => BadRequestException::class,
-        'index_not_found_exception' => IndexNotFoundException::class,
+        'index_not_found_exception'         => IndexNotFoundException::class,
     ];
 
     /**
@@ -35,6 +35,7 @@ final class ElasticErrorFactory
      * Bind the exception.
      *
      * @param ElasticsearchException $exception
+     *
      * @return static
      */
     public static function with(ElasticsearchException $exception): self
@@ -46,11 +47,12 @@ final class ElasticErrorFactory
      * Return exception object from error array.
      *
      * @param array $response
+     *
      * @return BaseElasticsearchException
      */
     public static function from(array $response): BaseElasticsearchException
     {
-        if (! isset(static::$types[$response['type']])) {
+        if (!isset(static::$types[$response['type']])) {
             return new BaseElasticsearchException($response);
         }
 
@@ -66,7 +68,7 @@ final class ElasticErrorFactory
     {
         $type = Arr::get(json_decode($this->exception->getMessage(), true), 'error.type');
 
-        if (! isset(static::$types[$type])) {
+        if (!isset(static::$types[$type])) {
             return new BaseElasticsearchException($this->exception);
         }
 

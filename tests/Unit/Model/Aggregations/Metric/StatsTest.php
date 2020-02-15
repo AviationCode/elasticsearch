@@ -12,10 +12,10 @@ class StatsTest extends TestCase
     {
         $values = [
             'count' => 2,
-            'min' => 50.0,
-            'max' => 100.0,
-            'avg' => 75.0,
-            'sum' => 150.0,
+            'min'   => 50.0,
+            'max'   => 100.0,
+            'avg'   => 75.0,
+            'sum'   => 150.0,
         ];
 
         $stats = new Stats($values);

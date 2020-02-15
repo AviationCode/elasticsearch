@@ -48,7 +48,7 @@ class WildcardTest extends TestCase
         $this->assertEquals([
             'wildcard' => [
                 'user' => [
-                    'value' => 'ki.*y',
+                    'value'   => 'ki.*y',
                     'rewrite' => 'constant_score',
                 ],
             ],

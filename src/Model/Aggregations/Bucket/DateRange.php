@@ -8,7 +8,7 @@ use Illuminate\Support\Arr;
 class DateRange extends Bucket
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function newBucketItem($item): BucketItem
     {

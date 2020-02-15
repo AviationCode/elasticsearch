@@ -29,7 +29,7 @@ class MatchPhrasePrefixTest extends TestCase
         $this->assertEquals([
             'match_phrase_prefix' => [
                 'message' => [
-                    'query' => 'quick brown f',
+                    'query'          => 'quick brown f',
                     'max_expansions' => 10,
                 ],
             ],

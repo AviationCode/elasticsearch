@@ -38,9 +38,9 @@ class BooleanTest extends TestCase
 
         $this->assertEquals([
             'bool' => [
-                'must' => [['simple_query_string' => ['query' => 'test must']]],
-                'should' => [['simple_query_string' => ['query' => 'test should']]],
-                'filter' => [['simple_query_string' => ['query' => 'test filter']]],
+                'must'     => [['simple_query_string' => ['query' => 'test must']]],
+                'should'   => [['simple_query_string' => ['query' => 'test should']]],
+                'filter'   => [['simple_query_string' => ['query' => 'test filter']]],
                 'must_not' => [['simple_query_string' => ['query' => 'test must_not']]],
             ],
         ], $boolean->toArray());

@@ -64,6 +64,7 @@ class Query implements Arrayable
      * scoring is ignored and clauses are considered for caching.
      *
      * @param \Closure $callback
+     *
      * @return $this
      */
     public function filter(\Closure $callback): self
@@ -77,6 +78,7 @@ class Query implements Arrayable
      * The clause (query) should appear in the matching document.
      *
      * @param \Closure $callback
+     *
      * @return $this
      */
     public function should(\Closure $callback): self
@@ -92,6 +94,7 @@ class Query implements Arrayable
      * Because scoring is ignored, a score of 0 for all documents is returned.
      *
      * @param \Closure $callback
+     *
      * @return $this
      */
     public function mustNot(\Closure $callback): self
@@ -113,7 +116,7 @@ class Query implements Arrayable
             $this->disMax->toArray(),
             $this->functionScore->toArray(),
         ])->mapWithKeys(function ($value, $key) {
-            if (! $value) {
+            if (!$value) {
                 return [$key => $value];
             }
 

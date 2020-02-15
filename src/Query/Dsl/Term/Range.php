@@ -17,6 +17,7 @@ class Range implements Arrayable
 
     /**
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-range-query.html#range-query-field-params
+     *
      * @var array
      */
     private $options = [];
@@ -31,10 +32,10 @@ class Range implements Arrayable
     /**
      * Range constructor.
      *
-     * @param string $field
-     * @param string $operator
+     * @param string     $field
+     * @param string     $operator
      * @param mixed|null $value
-     * @param array $options
+     * @param array      $options
      */
     public function __construct(string $field, $operator = 'gte', $value = null, array $options = [])
     {

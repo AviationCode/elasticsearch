@@ -37,6 +37,7 @@ abstract class Bucket extends Collection implements \JsonSerializable
      * Create a new bucket item.
      *
      * @param array $item
+     *
      * @return BucketItem
      */
     protected function newBucketItem($item): BucketItem
@@ -48,6 +49,7 @@ abstract class Bucket extends Collection implements \JsonSerializable
      * Get meta key out of the attributes array.
      *
      * @param string $key
+     *
      * @return mixed
      */
     public function __get($key)
@@ -61,7 +63,8 @@ abstract class Bucket extends Collection implements \JsonSerializable
      * Set meta information into attributes array.
      *
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
+     *
      * @return void
      */
     public function __set($key, $value): void

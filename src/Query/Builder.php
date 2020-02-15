@@ -50,6 +50,7 @@ class Builder
 
     /**
      * Builder constructor.
+     *
      * @param ElasticSearchable|mixed|string|null $model
      */
     public function __construct($model = null)
@@ -88,9 +89,10 @@ class Builder
      * Find by id or throw model not found exception if missing.
      *
      * @param string|int $id
-     * @return Model
      *
      * @throws ModelNotFoundException
+     *
+     * @return Model
      */
     public function findOrFail($id): Model
     {
@@ -107,6 +109,7 @@ class Builder
      * Order by latest.
      *
      * @param string $field
+     *
      * @return $this
      */
     public function latest(string $field = 'created_at')
@@ -119,6 +122,7 @@ class Builder
      *
      * @param string $field
      * @param string $direction
+     *
      * @return $this
      */
     public function orderBy(string $field, $direction = 'asc')
@@ -132,6 +136,7 @@ class Builder
      * Limit the number of results returned.
      *
      * @param int $size
+     *
      * @return $this
      */
     public function limit(int $size)
@@ -192,16 +197,17 @@ class Builder
     /**
      * Perform a raw elastic query.
      *
-     * @param array $query
+     * @param array       $query
      * @param string|null $index
-     * @param array $params
+     * @param array       $params
+     *
      * @return array
      */
     public function raw(array $query = [], ?string $index = null, array $params = []): array
     {
         return $this->getClient()->search(array_merge([
             'index' => $index ?? $this->model->getIndexName(),
-            'body' => array_filter($query, function ($value) {
+            'body'  => array_filter($query, function ($value) {
                 return !empty($value) || ($value === 0);
             }),
         ], $params));
@@ -215,10 +221,10 @@ class Builder
     public function get()
     {
         return ElasticCollection::parse($this->raw([
-            'size' => $this->size,
+            'size'  => $this->size,
             'query' => $this->query->toArray(),
-            'sort' => $this->sort,
-            'aggs' => $this->aggregations->toArray(),
+            'sort'  => $this->sort,
+            'aggs'  => $this->aggregations->toArray(),
         ], $this->model->getIndexName(), ['typed_keys' => true]), $this->model);
     }
 }

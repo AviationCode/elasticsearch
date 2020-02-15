@@ -31,7 +31,7 @@ class WeightedAvg extends Metric
     protected function toElastic(): array
     {
         return [
-            'value' => $this->value,
+            'value'  => $this->value,
             'weight' => $this->weight,
         ];
     }

@@ -29,7 +29,7 @@ class MatchPhraseTest extends TestCase
         $this->assertEquals([
             'match_phrase' => [
                 'message' => [
-                    'query' => 'this is a test',
+                    'query'    => 'this is a test',
                     'analyzer' => 'my_analyzer',
                 ],
             ],

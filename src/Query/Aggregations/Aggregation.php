@@ -21,7 +21,6 @@ use Illuminate\Support\Str;
  * @method self geoCentroid(string $key, string $field)
  * @method self sum(string $key, string $field, array $options = [])
  * @method self valueCount(string $key, string $field)
- *
  * @method mixed get(string $key, $default = null)
  * @method mixed first(string $key, $default = null)
  * @method bool has(string $key)
@@ -63,7 +62,7 @@ class Aggregation
      *
      * @param string $class
      * @param string $method
-     * @param array $arguments
+     * @param array  $arguments
      *
      * @return $this
      */
@@ -102,7 +101,7 @@ class Aggregation
 
     /**
      * @param string $method
-     * @param array $arguments
+     * @param array  $arguments
      *
      * @return $this
      */

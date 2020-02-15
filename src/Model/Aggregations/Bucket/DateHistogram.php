@@ -7,7 +7,7 @@ use Carbon\Carbon;
 class DateHistogram extends Bucket
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function newBucketItem($item): BucketItem
     {

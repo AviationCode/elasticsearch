@@ -35,7 +35,7 @@ class DateHistogram extends Bucket
      * @param string $field
      * @param string $interval
      * @param string $intervalType
-     * @param array $options
+     * @param array  $options
      */
     public function __construct(
         string $field,
@@ -57,7 +57,7 @@ class DateHistogram extends Bucket
     protected function toElastic(): array
     {
         return array_merge([
-            'field' => $this->field,
+            'field'             => $this->field,
             $this->intervalType => $this->interval,
         ], $this->options);
     }

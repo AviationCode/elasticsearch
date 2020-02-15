@@ -18,13 +18,13 @@ class DateHistogramTest extends TestCase
             'buckets' => [
                 [
                     'key_as_string' => '2019-12-08 00:00:00',
-                    'key' => 1575763200000,
-                    'doc_count' => 13,
+                    'key'           => 1575763200000,
+                    'doc_count'     => 13,
                 ],
                 [
                     'key_as_string' => '2019-12-09 00:00:00',
-                    'key' => 1575849600000,
-                    'doc_count' => 37,
+                    'key'           => 1575849600000,
+                    'doc_count'     => 37,
                 ],
             ],
         ], $query);

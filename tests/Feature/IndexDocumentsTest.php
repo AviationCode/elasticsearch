@@ -18,9 +18,9 @@ class IndexDocumentsTest extends TestCase
         Event::fake();
 
         $data = [
-            'id' => 123,
+            'id'    => 123,
             'title' => 'My title',
-            'body' => 'My body',
+            'body'  => 'My body',
         ];
 
         $article = new Article();
@@ -28,16 +28,16 @@ class IndexDocumentsTest extends TestCase
 
         $this->elastic->getClient()->shouldReceive('index')
             ->with([
-                'id' => 123,
+                'id'    => 123,
                 'index' => 'article',
-                'body' => $data,
+                'body'  => $data,
             ])
             ->once()
             ->andReturn([
-                'result' => 'created',
-                '_shards' => ['success' => 1],
+                'result'   => 'created',
+                '_shards'  => ['success' => 1],
                 '_version' => 1,
-                '_index' => 'article',
+                '_index'   => 'article',
             ]);
 
         $this->assertTrue($article->elastic()->add());
@@ -50,23 +50,23 @@ class IndexDocumentsTest extends TestCase
         Event::fake();
 
         $data = [
-            'id' => 123,
+            'id'    => 123,
             'title' => 'My title',
-            'body' => 'My body',
+            'body'  => 'My body',
         ];
 
         $this->elastic->getClient()->shouldReceive('index')
             ->with([
-                'id' => 123,
+                'id'    => 123,
                 'index' => 'article',
-                'body' => $data,
+                'body'  => $data,
             ])
             ->once()
             ->andReturn([
-                'result' => 'created',
-                '_shards' => ['success' => 1],
+                'result'   => 'created',
+                '_shards'  => ['success' => 1],
                 '_version' => 1,
-                '_index' => 'article',
+                '_index'   => 'article',
             ]);
 
         $result = $this->elastic->add('article', $data);
@@ -87,16 +87,16 @@ class IndexDocumentsTest extends TestCase
 
         $this->elastic->getClient()->shouldReceive('index')
             ->with([
-                'id' => 123,
+                'id'    => 123,
                 'index' => 'article',
-                'body' => (array) $data,
+                'body'  => (array) $data,
             ])
             ->once()
             ->andReturn([
-                'result' => 'created',
-                '_shards' => ['success' => 1],
+                'result'   => 'created',
+                '_shards'  => ['success' => 1],
                 '_version' => 1,
-                '_index' => 'article',
+                '_index'   => 'article',
             ]);
 
         $result = $this->elastic->add('article', $data);
@@ -113,20 +113,20 @@ class IndexDocumentsTest extends TestCase
 
         $articles = [
             [
-                'id' => 123,
+                'id'    => 123,
                 'title' => 'My title Article A',
-                'body' => 'My body Article A',
+                'body'  => 'My body Article A',
             ], [
-                'id' => 456,
+                'id'    => 456,
                 'title' => 'My title Article B',
-                'body' => 'My body Article B',
+                'body'  => 'My body Article B',
             ],
         ];
 
         $this->elastic->getClient()->shouldReceive('bulk')
             ->with([
                 'refresh' => true,
-                'body' => implode(PHP_EOL, [
+                'body'    => implode(PHP_EOL, [
                     json_encode(['index' => ['_index' => 'article', '_id' => 123]]),
                     json_encode(['id' => 123, 'title' => 'My title Article A', 'body' => 'My body Article A']),
                     json_encode(['index' => ['_index' => 'article', '_id' => 456]]),
@@ -138,18 +138,18 @@ class IndexDocumentsTest extends TestCase
                 'items' => [
                     [
                         'index' => [
-                            'result' => 'updated',
-                            '_shards' => ['success' => 1],
+                            'result'   => 'updated',
+                            '_shards'  => ['success' => 1],
                             '_version' => 1,
-                            '_index' => 'article',
+                            '_index'   => 'article',
                         ],
                     ],
                     [
                         'index' => [
-                            'result' => 'updated',
-                            '_shards' => ['success' => 1],
+                            'result'   => 'updated',
+                            '_shards'  => ['success' => 1],
                             '_version' => 1,
-                            '_index' => 'article',
+                            '_index'   => 'article',
                         ],
                     ],
                 ],
@@ -167,12 +167,12 @@ class IndexDocumentsTest extends TestCase
         Elasticsearch::enableEvents();
 
         $articles = [
-            new class {
+            new class() {
                 public $id = 123;
                 public $title = 'My title Article A';
                 public $body = 'My body Article A';
             },
-            new class {
+            new class() {
                 public $id = 456;
                 public $title = 'My title Article B';
                 public $body = 'My body Article B';
@@ -182,7 +182,7 @@ class IndexDocumentsTest extends TestCase
         $this->elastic->getClient()->shouldReceive('bulk')
             ->with([
                 'refresh' => true,
-                'body' => implode(PHP_EOL, [
+                'body'    => implode(PHP_EOL, [
                     json_encode(['index' => ['_index' => 'article', '_id' => 123]]),
                     json_encode(['id' => 123, 'title' => 'My title Article A', 'body' => 'My body Article A']),
                     json_encode(['index' => ['_index' => 'article', '_id' => 456]]),
@@ -194,18 +194,18 @@ class IndexDocumentsTest extends TestCase
                 'items' => [
                     [
                         'index' => [
-                            'result' => 'updated',
-                            '_shards' => ['success' => 1],
+                            'result'   => 'updated',
+                            '_shards'  => ['success' => 1],
                             '_version' => 1,
-                            '_index' => 'article',
+                            '_index'   => 'article',
                         ],
                     ],
                     [
                         'index' => [
-                            'result' => 'updated',
-                            '_shards' => ['success' => 1],
+                            'result'   => 'updated',
+                            '_shards'  => ['success' => 1],
                             '_version' => 1,
-                            '_index' => 'article',
+                            '_index'   => 'article',
                         ],
                     ],
                 ],
@@ -228,18 +228,18 @@ class IndexDocumentsTest extends TestCase
 
         $this->elastic->getClient()->shouldReceive('index')
             ->with([
-                'id' => 456,
+                'id'    => 456,
                 'index' => 'article',
-                'body' => [
+                'body'  => [
                     'id' => 456,
                 ],
             ])
             ->once()
             ->andReturn([
-                'result' => 'created',
-                '_shards' => ['success' => 1],
+                'result'   => 'created',
+                '_shards'  => ['success' => 1],
                 '_version' => 1,
-                '_index' => 'article',
+                '_index'   => 'article',
             ]);
 
         $this->assertTrue($articleA->elastic()->add($articleB));
@@ -263,9 +263,9 @@ class IndexDocumentsTest extends TestCase
         // This only occurs if the settings "action.auto_create_index" is set to false in elastic.
         $this->elastic->getClient()->shouldReceive('index')
             ->with([
-                'id' => 123,
+                'id'    => 123,
                 'index' => 'article',
-                'body' => [
+                'body'  => [
                     'id' => 123,
                 ],
             ])
@@ -273,17 +273,17 @@ class IndexDocumentsTest extends TestCase
             ->andThrow(new Missing404Exception(json_encode([
                 'error' => [
                     'root_cause' => [
-                        'type' => 'index_not_found_exception',
-                        'reason' => 'no such index [article]',
+                        'type'          => 'index_not_found_exception',
+                        'reason'        => 'no such index [article]',
                         'resource.type' => 'index_or_alias',
-                        'resource.id' => 'article',
-                        'index' => 'article',
+                        'resource.id'   => 'article',
+                        'index'         => 'article',
                     ],
-                    'type' => 'index_not_found_exception',
-                    'reason' => 'no such index [article]',
+                    'type'          => 'index_not_found_exception',
+                    'reason'        => 'no such index [article]',
                     'resource.type' => 'index_or_alias',
-                    'resource.id' => 'article',
-                    'index' => 'article',
+                    'resource.id'   => 'article',
+                    'index'         => 'article',
                 ],
                 'status' => 404,
             ])));
@@ -302,9 +302,9 @@ class IndexDocumentsTest extends TestCase
         Elasticsearch::enableEvents();
 
         $data = [
-            'id' => 123,
+            'id'    => 123,
             'title' => 'My title',
-            'body' => 'My body',
+            'body'  => 'My body',
         ];
 
         $article = new Article();
@@ -312,16 +312,16 @@ class IndexDocumentsTest extends TestCase
 
         $this->elastic->getClient()->shouldReceive('index')
             ->with([
-                'id' => 123,
+                'id'    => 123,
                 'index' => 'article',
-                'body' => $data,
+                'body'  => $data,
             ])
             ->once()
             ->andReturn([
-                'result' => 'created',
-                '_shards' => ['success' => 1],
+                'result'   => 'created',
+                '_shards'  => ['success' => 1],
                 '_version' => 1,
-                '_index' => 'article',
+                '_index'   => 'article',
             ]);
 
         $this->assertTrue($article->elastic()->add());
@@ -332,9 +332,9 @@ class IndexDocumentsTest extends TestCase
     public function it_can_reindex_a_model()
     {
         $data = [
-            'id' => 123,
+            'id'    => 123,
             'title' => 'My title',
-            'body' => 'My body',
+            'body'  => 'My body',
         ];
 
         $article = new Article();
@@ -342,16 +342,16 @@ class IndexDocumentsTest extends TestCase
 
         $this->elastic->getClient()->shouldReceive('index')
             ->with([
-                'id' => 123,
+                'id'    => 123,
                 'index' => 'article',
-                'body' => $data,
+                'body'  => $data,
             ])
             ->once()
             ->andReturn([
-                'result' => 'updated',
-                '_shards' => ['success' => 1],
+                'result'   => 'updated',
+                '_shards'  => ['success' => 1],
                 '_version' => 1,
-                '_index' => 'article',
+                '_index'   => 'article',
             ]);
 
         $this->assertTrue($article->elastic()->update());
@@ -365,21 +365,21 @@ class IndexDocumentsTest extends TestCase
 
         $articles = collect([
             new Article([
-                'id' => 123,
+                'id'    => 123,
                 'title' => 'My title Article A',
-                'body' => 'My body Article A',
+                'body'  => 'My body Article A',
             ]),
             new Article([
-                'id' => 456,
+                'id'    => 456,
                 'title' => 'My title Article B',
-                'body' => 'My body Article B',
+                'body'  => 'My body Article B',
             ]),
         ]);
 
         $this->elastic->getClient()->shouldReceive('bulk')
             ->with([
                 'refresh' => true,
-                'body' => implode(PHP_EOL, [
+                'body'    => implode(PHP_EOL, [
                     json_encode(['index' => ['_index' => 'article', '_id' => 123]]),
                     json_encode(['id' => 123, 'title' => 'My title Article A', 'body' => 'My body Article A']),
                     json_encode(['index' => ['_index' => 'article', '_id' => 456]]),
@@ -391,18 +391,18 @@ class IndexDocumentsTest extends TestCase
                 'items' => [
                     [
                         'index' => [
-                            'result' => 'updated',
-                            '_shards' => ['success' => 1],
+                            'result'   => 'updated',
+                            '_shards'  => ['success' => 1],
                             '_version' => 1,
-                            '_index' => 'article',
+                            '_index'   => 'article',
                         ],
                     ],
                     [
                         'index' => [
-                            'result' => 'updated',
-                            '_shards' => ['success' => 1],
+                            'result'   => 'updated',
+                            '_shards'  => ['success' => 1],
                             '_version' => 1,
-                            '_index' => 'article',
+                            '_index'   => 'article',
                         ],
                     ],
                 ],

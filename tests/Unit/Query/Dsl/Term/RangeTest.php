@@ -47,7 +47,7 @@ class RangeTest extends TestCase
         $this->assertEquals([
             'range' => [
                 'age' => [
-                    'gte' => 20,
+                    'gte'   => 20,
                     'boost' => 2.0,
                 ],
             ],
@@ -62,7 +62,7 @@ class RangeTest extends TestCase
         $this->assertEquals([
             'range' => [
                 'age' => [
-                    'gte' => 20,
+                    'gte'   => 20,
                     'boost' => 2.0,
                 ],
             ],

@@ -32,8 +32,8 @@ class Terms implements Arrayable
     /**
      * Terms constructor.
      *
-     * @param string $field
-     * @param array $values
+     * @param string     $field
+     * @param array      $values
      * @param float|null $boost
      */
     public function __construct(string $field, array $values, ?float $boost = null)

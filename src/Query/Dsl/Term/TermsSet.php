@@ -24,6 +24,7 @@ class TermsSet implements Arrayable
 
     /**
      * Extra options.
+     *
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-terms-set-query.html#terms-set-field-params
      *
      * @var array
@@ -32,9 +33,10 @@ class TermsSet implements Arrayable
 
     /**
      * TermsSet constructor.
+     *
      * @param string $field
-     * @param array $values
-     * @param array $options
+     * @param array  $values
+     * @param array  $options
      */
     public function __construct(string $field, array $values, array $options = [])
     {

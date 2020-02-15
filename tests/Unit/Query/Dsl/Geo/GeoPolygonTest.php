@@ -182,7 +182,7 @@ class GeoPolygonTest extends TestCase
                         ['lat' => 53.3, 'lon' => 6.3],
                     ],
                     'validation_method' => 'strict',
-                    'ignore_unmapped' => true,
+                    'ignore_unmapped'   => true,
                 ],
             ],
         ], $geo->toArray());

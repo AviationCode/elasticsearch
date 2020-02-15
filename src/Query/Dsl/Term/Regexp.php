@@ -24,6 +24,7 @@ class Regexp implements Arrayable
 
     /**
      * Extra options given to elasticsearch.
+     *
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-regexp-query.html#regexp-query-field-params
      *
      * @var array
@@ -34,8 +35,8 @@ class Regexp implements Arrayable
      * Regexp constructor.
      *
      * @param string $field
-     * @param mixed $value
-     * @param array $options
+     * @param mixed  $value
+     * @param array  $options
      */
     public function __construct(string $field, $value, array $options = [])
     {

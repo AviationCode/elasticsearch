@@ -27,7 +27,7 @@ class DateRangeTest extends TestCase
 
         /** Assertions */
         $this->assertEquals([
-            'range' => ['date_range' => ['field' => 'date', 'ranges' => $ranges]],
+            'range'            => ['date_range' => ['field' => 'date', 'ranges' => $ranges]],
             'updated_at_range' => ['date_range' => ['field' => 'updated_at', 'ranges' => $ranges, 'format' => 'MM-yyyy']],
             'deleted_at_range' => ['date_range' => ['field' => 'deleted_at', 'ranges' => $ranges, 'time_zone' => 'CET']],
             'created_at_range' => ['date_range' => ['field' => 'created_at', 'ranges' => $ranges, 'keyed' => true]],

@@ -95,12 +95,13 @@ class Elasticsearch
      * Index a model into elastic search.
      *
      * @param null|ElasticSearchable $model
-     * @param null $data
-     * @param string $key
-     * @return bool
+     * @param null                   $data
+     * @param string                 $key
      *
      * @throws BaseElasticsearchException
      * @throws \Throwable
+     *
+     * @return bool
      */
     public function add($model = null, $data = null, $key = 'id')
     {
@@ -116,9 +117,9 @@ class Elasticsearch
 
         try {
             $response = $this->getClient()->index([
-                'id' => $model->getKey(),
+                'id'    => $model->getKey(),
                 'index' => $model->getIndexName(),
-                'body' => $model->toSearchable(),
+                'body'  => $model->toSearchable(),
             ]);
 
             if ($response['result'] === 'created') {
@@ -138,18 +139,18 @@ class Elasticsearch
     /**
      * Index native php objects / arrays.
      *
-     * @param string $index
+     * @param string                      $index
      * @param array|\stdClass|\stdClass[] $data
-     * @param string $key
-     *
-     * @return bool
+     * @param string                      $key
      *
      * @throws BaseElasticsearchException
      * @throws \Throwable
+     *
+     * @return bool
      */
     private function addRaw(string $index, $data, $key = 'id')
     {
-        $data = (array)$data;
+        $data = (array) $data;
 
         if (!Arr::isAssoc($data)) {
             return $this->bulkRaw($index, $data, $key);
@@ -157,9 +158,9 @@ class Elasticsearch
 
         try {
             $response = $this->getClient()->index([
-                'id' => $data[$key],
+                'id'    => $data[$key],
                 'index' => $index,
-                'body' => $data,
+                'body'  => $data,
             ]);
 
             if ($response['result'] === 'created') {
@@ -178,12 +179,13 @@ class Elasticsearch
 
     /**
      * @param null|ElasticSearchable $model
-     * @param null $data
-     * @param string $key
-     * @return bool
+     * @param null                   $data
+     * @param string                 $key
      *
      * @throws BaseElasticsearchException
      * @throws \Throwable
+     *
+     * @return bool
      */
     public function update($model = null, $data = null, $key = 'id')
     {
@@ -194,8 +196,9 @@ class Elasticsearch
      * Bulk index models.
      *
      * @param Collection|ElasticSearchable[] $models
-     * @param null $data
-     * @param string $key
+     * @param null                           $data
+     * @param string                         $key
+     *
      * @return bool
      */
     public function bulk($models, $data = null, $key = 'id')
@@ -206,12 +209,12 @@ class Elasticsearch
 
         $response = $this->getClient()->bulk([
             'refresh' => true,
-            'body' => $models->map(function ($model) {
+            'body'    => $models->map(function ($model) {
                 /* @var ElasticSearchable $model */
                 return $this->toNdJson($model, [
                     'index' => [
                         '_index' => $model->getIndexName(),
-                        '_id' => $model->getKey(),
+                        '_id'    => $model->getKey(),
                     ],
                 ]);
             })->implode(''),
@@ -227,22 +230,23 @@ class Elasticsearch
     /**
      * Bulk index raw php objects.
      *
-     * @param string $index
+     * @param string            $index
      * @param array|\stdClass[] $data
-     * @param string $key
+     * @param string            $key
+     *
      * @return bool
      */
     private function bulkRaw(string $index, $data, $key = 'id')
     {
         $response = $this->getClient()->bulk([
             'refresh' => true,
-            'body' => implode(array_map(function ($item) use ($index, $key) {
-                $item = (array)$item;
+            'body'    => implode(array_map(function ($item) use ($index, $key) {
+                $item = (array) $item;
 
                 return implode(PHP_EOL, [
-                        json_encode(['index' => ['_index' => $index, '_id' => $key !== null ? $item[$key] : null]]),
-                        json_encode($item),
-                    ]) . PHP_EOL;
+                    json_encode(['index' => ['_index' => $index, '_id' => $key !== null ? $item[$key] : null]]),
+                    json_encode($item),
+                ]).PHP_EOL;
             }, $data)),
         ]);
 
@@ -267,8 +271,10 @@ class Elasticsearch
      * Create a query builder.
      *
      * @param $model
-     * @return Builder
+     *
      * @throws \Throwable
+     *
+     * @return Builder
      */
     public function query($model = null): Builder
     {
@@ -297,8 +303,10 @@ class Elasticsearch
      * If index is provided use it as param or use the model.
      *
      * @param null|ElasticSearchable $model
-     * @return ElasticSearchable|Model
+     *
      * @throws InvalidArgumentException
+     *
+     * @return ElasticSearchable|Model
      */
     protected function getModel($model = null)
     {
@@ -329,14 +337,15 @@ class Elasticsearch
      * Convert the model to a index ndjson record.
      *
      * @param ElasticsearchModel $model
-     * @param array $meta
+     * @param array              $meta
+     *
      * @return string
      */
     private function toNdJson($model, $meta = []): string
     {
         return implode(PHP_EOL, [
-                json_encode($meta),
-                json_encode($model->toSearchable()),
-            ]) . PHP_EOL;
+            json_encode($meta),
+            json_encode($model->toSearchable()),
+        ]).PHP_EOL;
     }
 }

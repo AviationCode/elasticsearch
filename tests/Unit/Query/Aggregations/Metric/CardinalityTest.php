@@ -19,8 +19,8 @@ class CardinalityTest extends TestCase
         $aggs->cardinality('tag_cardinality', 'tag', ['missing' => 'N/A']);
 
         $this->assertEquals([
-            'type_count' => ['cardinality' => ['field' => 'type']],
-            'grade_count' => ['cardinality' => ['field' => 'grade', 'precision_threshold' => 4000]],
+            'type_count'      => ['cardinality' => ['field' => 'type']],
+            'grade_count'     => ['cardinality' => ['field' => 'grade', 'precision_threshold' => 4000]],
             'tag_cardinality' => ['cardinality' => ['field' => 'tag', 'missing' => 'N/A']],
         ], $aggs->toArray());
     }

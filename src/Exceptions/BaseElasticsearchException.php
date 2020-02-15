@@ -9,6 +9,7 @@ class BaseElasticsearchException extends \RuntimeException
 {
     /**
      * ElasticsearchException constructor.
+     *
      * @param BaseElasticException|\Exception|array $exception
      */
     public function __construct($exception)

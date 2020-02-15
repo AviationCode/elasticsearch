@@ -12,43 +12,43 @@ class ElasticCollectionTest extends TestCase
     public function it_builds_up_elastic_collection()
     {
         $response = [
-            'took' => 1,
+            'took'      => 1,
             'timed_out' => false,
-            '_shards' => [
-                'total' => 1,
+            '_shards'   => [
+                'total'      => 1,
                 'successful' => 1,
-                'skipped' => 0,
-                'failed' => 0,
+                'skipped'    => 0,
+                'failed'     => 0,
             ],
             'hits' => [
                 'total' => [
-                    'value' => 10000,
+                    'value'    => 10000,
                     'relation' => 'gte',
                 ],
                 'max_score' => 1.0,
-                'hits' => [
+                'hits'      => [
                     [
-                        '_index' => 'article',
-                        '_type' => '_doc',
-                        '_id' => 1,
-                        '_score' => 1.0,
+                        '_index'  => 'article',
+                        '_type'   => '_doc',
+                        '_id'     => 1,
+                        '_score'  => 1.0,
                         '_source' => [
-                            'id' => 1,
-                            'title' => 'My first title',
-                            'body' => 'My first body',
+                            'id'         => 1,
+                            'title'      => 'My first title',
+                            'body'       => 'My first body',
                             'created_at' => '2019-12-20 12:00:00',
                             'updated_at' => '2019-12-20 12:00:00',
                         ],
                     ],
                     [
-                        '_index' => 'article',
-                        '_type' => '_doc',
-                        '_id' => 2,
-                        '_score' => 1.0,
+                        '_index'  => 'article',
+                        '_type'   => '_doc',
+                        '_id'     => 2,
+                        '_score'  => 1.0,
                         '_source' => [
-                            'id' => 2,
-                            'title' => 'My second title',
-                            'body' => 'My second body',
+                            'id'         => 2,
+                            'title'      => 'My second title',
+                            'body'       => 'My second body',
                             'created_at' => '2019-12-21 12:00:00',
                             'updated_at' => '2019-12-21 12:00:00',
                         ],
@@ -57,7 +57,7 @@ class ElasticCollectionTest extends TestCase
             ],
         ];
 
-        $result = ElasticCollection::parse($response, new ArticleTestModel);
+        $result = ElasticCollection::parse($response, new ArticleTestModel());
 
         $this->assertEquals(1, $result->took);
         $this->assertEquals(1.0, $result->max_score);
@@ -74,17 +74,17 @@ class ElasticCollectionTest extends TestCase
     public function it_maps_aggregations()
     {
         $response = [
-            'took' => 1,
+            'took'      => 1,
             'timed_out' => false,
-            '_shards' => [
-                'total' => 1,
+            '_shards'   => [
+                'total'      => 1,
                 'successful' => 1,
-                'skipped' => 0,
-                'failed' => 0,
+                'skipped'    => 0,
+                'failed'     => 0,
             ],
             'hits' => [
                 'total' => [
-                    'value' => 75,
+                    'value'    => 75,
                     'relation' => 'eq',
                 ],
             ],
@@ -94,40 +94,40 @@ class ElasticCollectionTest extends TestCase
                 ],
                 'sterms#users' => [
                     'doc_count_error_upper_bound' => 0,
-                    'sum_other_doc_count' => 75,
-                    'buckets' => [
+                    'sum_other_doc_count'         => 75,
+                    'buckets'                     => [
                         [
-                            'key' => 'jeffreyway',
-                            'doc_count' => 50,
+                            'key'                           => 'jeffreyway',
+                            'doc_count'                     => 50,
                             'date_histogram#tweets_per_day' => [
                                 'buckets' => [
                                     [
                                         'key_as_string' => '2019-12-08 00:00:00',
-                                        'key' => 1575763200000,
-                                        'doc_count' => 13,
+                                        'key'           => 1575763200000,
+                                        'doc_count'     => 13,
                                     ],
                                     [
                                         'key_as_string' => '2019-12-09 00:00:00',
-                                        'key' => 1575849600000,
-                                        'doc_count' => 37,
+                                        'key'           => 1575849600000,
+                                        'doc_count'     => 37,
                                     ],
                                 ],
                             ],
                         ],
                         [
-                            'key' => 'adamwatham',
-                            'doc_count' => 25,
+                            'key'                           => 'adamwatham',
+                            'doc_count'                     => 25,
                             'date_histogram#tweets_per_day' => [
                                 'buckets' => [
                                     [
                                         'key_as_string' => '2019-12-08 00:00:00',
-                                        'key' => 1575763200000,
-                                        'doc_count' => 12,
+                                        'key'           => 1575763200000,
+                                        'doc_count'     => 12,
                                     ],
                                     [
                                         'key_as_string' => '2019-12-09 00:00:00',
-                                        'key' => 1575849600000,
-                                        'doc_count' => 13,
+                                        'key'           => 1575849600000,
+                                        'doc_count'     => 13,
                                     ],
                                 ],
                             ],

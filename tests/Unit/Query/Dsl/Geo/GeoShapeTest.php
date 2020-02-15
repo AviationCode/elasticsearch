@@ -29,7 +29,7 @@ class GeoShapeTest extends TestCase
         $this->assertEquals([
             'geo_shape' => [
                 'location' => [
-                    'shape' => ['type' => 'envelope', 'coordinates' => [[13.0, 53.0], [14.0, 52.0]]],
+                    'shape'    => ['type' => 'envelope', 'coordinates' => [[13.0, 53.0], [14.0, 52.0]]],
                     'relation' => 'intersects',
                 ],
             ],
@@ -44,7 +44,7 @@ class GeoShapeTest extends TestCase
         $this->assertEquals([
             'geo_shape' => [
                 'location' => [
-                    'shape' => ['type' => 'envelope', 'coordinates' => [[13.0, 53.0], [14.0, 52.0]]],
+                    'shape'    => ['type' => 'envelope', 'coordinates' => [[13.0, 53.0], [14.0, 52.0]]],
                     'relation' => 'disjoint',
                 ],
             ],
@@ -59,7 +59,7 @@ class GeoShapeTest extends TestCase
         $this->assertEquals([
             'geo_shape' => [
                 'location' => [
-                    'shape' => ['type' => 'envelope', 'coordinates' => [[13.0, 53.0], [14.0, 52.0]]],
+                    'shape'    => ['type' => 'envelope', 'coordinates' => [[13.0, 53.0], [14.0, 52.0]]],
                     'relation' => 'within',
                 ],
             ],
@@ -74,7 +74,7 @@ class GeoShapeTest extends TestCase
         $this->assertEquals([
             'geo_shape' => [
                 'location' => [
-                    'shape' => ['type' => 'envelope', 'coordinates' => [[13.0, 53.0], [14.0, 52.0]]],
+                    'shape'    => ['type' => 'envelope', 'coordinates' => [[13.0, 53.0], [14.0, 52.0]]],
                     'relation' => 'contains',
                 ],
             ],
@@ -103,7 +103,7 @@ class GeoShapeTest extends TestCase
         $this->assertEquals([
             'geo_shape' => [
                 'location' => [
-                    'indexed_shape' => ['index' => 'shapes', 'id' => 'abc', 'path' => 'location'],
+                    'indexed_shape'    => ['index' => 'shapes', 'id' => 'abc', 'path' => 'location'],
                     'ignored_unmapped' => true,
                 ],
             ],

@@ -21,7 +21,7 @@ class GeoBounds extends Fluent
     public function __construct(array $attributes = [])
     {
         parent::__construct([
-            'topLeft' => new Fluent(Arr::get($attributes, 'bounds.top_left')),
+            'topLeft'     => new Fluent(Arr::get($attributes, 'bounds.top_left')),
             'bottomRight' => new Fluent(Arr::get($attributes, 'bounds.bottom_right')),
         ]);
     }

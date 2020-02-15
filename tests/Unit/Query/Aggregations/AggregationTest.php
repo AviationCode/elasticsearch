@@ -18,7 +18,7 @@ class AggregationTest extends TestCase
         $this->assertEquals([
             'users' => [
                 'terms' => ['field' => 'users'],
-                'aggs' => [
+                'aggs'  => [
                     'tweets_per_day' => [
                         'date_histogram' => ['field' => 'created_at', 'fixed_interval' => '1d'],
                     ],

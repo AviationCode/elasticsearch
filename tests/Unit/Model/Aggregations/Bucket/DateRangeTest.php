@@ -14,16 +14,16 @@ class DateRangeTest extends TestCase
         $dateRange = new DateRange([
             'buckets' => [
                 [
-                    'to' => 1.4436576E12,
+                    'to'           => 1.4436576E12,
                     'to_as_string' => '10-2015',
-                    'doc_count' => 7,
-                    'key' => '*-10-2015',
+                    'doc_count'    => 7,
+                    'key'          => '*-10-2015',
                 ],
                 [
-                    'from' => 1.4436576E12,
+                    'from'           => 1.4436576E12,
                     'from_as_string' => '10-2015',
-                    'doc_count' => 0,
-                    'key' => '10-2015-*',
+                    'doc_count'      => 0,
+                    'key'            => '10-2015-*',
                 ],
             ],
         ]);
@@ -40,14 +40,14 @@ class DateRangeTest extends TestCase
         $dateRange = new DateRange([
             'buckets' => [
                 '*-10-2015' => [
-                    'to' => 1.4436576E12,
+                    'to'           => 1.4436576E12,
                     'to_as_string' => '10-2015',
-                    'doc_count' => 7,
+                    'doc_count'    => 7,
                 ],
                 '10-2015-*' => [
-                    'from' => 1.4436576E12,
+                    'from'           => 1.4436576E12,
                     'from_as_string' => '10-2015',
-                    'doc_count' => 0,
+                    'doc_count'      => 0,
                 ],
             ],
         ]);

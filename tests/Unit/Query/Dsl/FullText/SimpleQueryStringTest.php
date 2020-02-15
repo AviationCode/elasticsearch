@@ -26,7 +26,7 @@ class SimpleQueryStringTest extends TestCase
 
         $this->assertEquals([
             'simple_query_string' => [
-                'query' => 'this is a test',
+                'query'  => 'this is a test',
                 'fields' => ['title', 'body'],
             ],
         ], $queryString->toArray());

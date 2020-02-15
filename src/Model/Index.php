@@ -28,7 +28,7 @@ class Index extends Fluent
     public function __construct($attributes = [])
     {
         foreach ($attributes as $key => $value) {
-            if (strpos($key, '.')) {
+            if (is_string($key) && strpos($key, '.')) {
                 unset($attributes[$key]);
 
                 $attributes[str_replace('.', '_', $key)] = $value;
@@ -43,7 +43,7 @@ class Index extends Fluent
      *
      * @return bool
      */
-    public function isInternal()
+    public function isInternal(): bool
     {
         return substr($this->index, 0, 1) === '.';
     }

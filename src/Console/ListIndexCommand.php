@@ -14,7 +14,7 @@ class ListIndexCommand extends Command
 
     protected $description = 'List available indices';
 
-    public function handle(Elasticsearch $elastic)
+    public function handle(Elasticsearch $elastic): void
     {
         $indices = $elastic->index()->list();
 
@@ -25,7 +25,7 @@ class ListIndexCommand extends Command
         $this->formatTable($indices->reject->isInternal()->sortByDesc->docs_count);
     }
 
-    private function formatTable(Collection $data)
+    private function formatTable(Collection $data): void
     {
         $headers = ['index', 'status', 'health', 'document count', 'size'];
 

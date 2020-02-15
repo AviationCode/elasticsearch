@@ -3,6 +3,7 @@
 namespace AviationCode\Elasticsearch;
 
 use AviationCode\Elasticsearch\Console\CreateIndexCommand;
+use AviationCode\Elasticsearch\Console\DeleteIndexCommand;
 use AviationCode\Elasticsearch\Console\ListIndexCommand;
 use Elasticsearch\ClientBuilder;
 use Illuminate\Support\ServiceProvider;
@@ -24,6 +25,7 @@ class ElasticsearchServiceProvider extends ServiceProvider
             $this->commands([
                 CreateIndexCommand::class,
                 ListIndexCommand::class,
+                DeleteIndexCommand::class,
             ]);
         }
     }

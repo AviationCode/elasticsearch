@@ -82,7 +82,7 @@ class Index extends Schema
     /**
      * Delete an index and it's data.
      *
-     * @param null $index
+     * @param null|string $index
      * @return void
      *
      * @throws BaseElasticsearchException

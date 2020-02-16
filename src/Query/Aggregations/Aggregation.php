@@ -3,6 +3,7 @@
 namespace AviationCode\Elasticsearch\Query\Aggregations;
 
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\DateHistogram;
+use AviationCode\Elasticsearch\Query\Aggregations\Bucket\GeoDistance;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
@@ -37,7 +38,7 @@ use Illuminate\Support\Str;
  * @todo diversifiedSampler
  * @todo filter
  * @todo filters
- * @todo geoDistance
+ * @method self geoDistance(string $key, string $field, float $lat, float $lon, $ranges = [], ?string $unit = GeoDistance::M)
  * @todo geoHashGrid
  * @todo geoTileGrid
  * @todo global

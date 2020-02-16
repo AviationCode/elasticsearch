@@ -22,7 +22,7 @@ abstract class Bucket implements Arrayable
      * @param string $key
      * @param string $model
      */
-    public function __construct(string $key, string $model)
+    public function __construct(string $key, ?string $model)
     {
         $this->key = $key;
         $this->model = $model;

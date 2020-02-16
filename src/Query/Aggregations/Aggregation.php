@@ -59,7 +59,7 @@ use Illuminate\Support\Str;
  * Pipeline Aggregations
  * =====================
  * @todo avgBucket
- * @todo derivative
+ * @method self derivative(string $key, $bucket, ?string $gap = null, ?string $format = null, ?string $unit = null)
  * @todo maxBucket
  * @todo minBucket
  * @todo sumBucket

@@ -2,16 +2,25 @@
 
 namespace AviationCode\Elasticsearch\Model\Aggregations\Bucket;
 
+use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Traits\ForwardsCalls;
 
-abstract class Bucket extends Collection implements \JsonSerializable
+abstract class Bucket implements \JsonSerializable, Jsonable, \ArrayAccess, \Countable
 {
+    use ForwardsCalls;
+
     /**
      * Meta information attached to the bucket.
      *
      * @var array
      */
     protected $attributes = [];
+
+    /**
+     * @var Collection
+     */
+    protected $items;
 
     /**
      * Bucket constructor.
@@ -28,7 +37,7 @@ abstract class Bucket extends Collection implements \JsonSerializable
             }
         }
 
-        parent::__construct(array_map(function ($bucket) {
+        $this->items = new Collection(array_map(function ($bucket) {
             return $this->newBucketItem($bucket);
         }, $aggregation['buckets']));
     }
@@ -70,13 +79,79 @@ abstract class Bucket extends Collection implements \JsonSerializable
     }
 
     /**
+     * @param string $method
+     * @param array $arguments
+     *
+     * @return mixed
+     */
+    public function __call($method, $arguments)
+    {
+        return $this->forwardCallTo($this->items, $method, $arguments);
+    }
+
+    /**
+     * @param mixed $offset
+     * @return bool
+     */
+    public function offsetExists($offset)
+    {
+        return isset($this->items[$offset]);
+    }
+
+    /**
+     * @param mixed $offset
+     * @return mixed
+     */
+    public function offsetGet($offset)
+    {
+        return $this->items[$offset];
+    }
+
+    /**
+     * @param mixed $offset
+     * @param mixed $value
+     */
+    public function offsetSet($offset, $value)
+    {
+        throw new \LogicException('Cannot set into a read only array.');
+    }
+
+    /**
+     * @param mixed $offset
+     *
+     * @throws \LogicException
+     */
+    public function offsetUnset($offset)
+    {
+        throw new \LogicException('Cannot unset from read only array.');
+    }
+
+    /**
+     * @return int
+     */
+    public function count()
+    {
+        return $this->items->count();
+    }
+
+    /**
+     * @param int $options
+     *
+     * @return false|string
+     */
+    public function toJson($options = 0)
+    {
+        return json_encode($this->jsonSerialize(), $options);
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function jsonSerialize()
     {
         return [
             'meta' => $this->attributes,
-            'data' => parent::jsonSerialize(),
+            'data' => $this->items->toArray(),
         ];
     }
 }

@@ -62,10 +62,12 @@ class TermsTest extends TestCase
         $this->assertNull($terms->non_existing_key);
 
         $this->assertCount(2, $terms);
+        $this->assertTrue(isset($terms[0]));
         $this->assertEquals('jeffreyway', $terms->get(0)->key);
         $this->assertEquals(50, $terms->get(0)->doc_count);
         $this->assertCount(2, $terms->get(0)->tweets_per_day);
 
+        $this->assertTrue(isset($terms[1]));
         $this->assertEquals('adamwatham', $terms->get(1)->key);
         $this->assertEquals(25, $terms->get(1)->doc_count);
         $this->assertCount(2, $terms->get(1)->tweets_per_day);
@@ -74,5 +76,49 @@ class TermsTest extends TestCase
         $this->assertEquals(0, $jsonData['meta']['doc_count_error_upper_bound']);
         $this->assertEquals(75, $jsonData['meta']['sum_other_doc_count']);
         $this->assertCount(2, $jsonData['data']);
+    }
+
+    /** @test **/
+    public function it_throws_exception_when_using_unset_on_read_only_array()
+    {
+        $query = new TermsQuery('users');
+        $query->dateHistogram('tweets_per_day', 'created_at', '1d');
+
+        $terms = new Terms([
+            'doc_count_error_upper_bound' => 0,
+            'sum_other_doc_count' => 75,
+            'buckets' => [
+                [
+                    'key' => 'jeffreyway',
+                    'doc_count' => 50,
+                ],
+            ],
+        ], $query);
+
+        $this->expectException(\LogicException::class);
+
+        unset($terms[0]);
+    }
+
+    /** @test **/
+    public function it_throws_exception_when_using_setting_a_value_on_read_only_array()
+    {
+        $query = new TermsQuery('users');
+        $query->dateHistogram('tweets_per_day', 'created_at', '1d');
+
+        $terms = new Terms([
+            'doc_count_error_upper_bound' => 0,
+            'sum_other_doc_count' => 75,
+            'buckets' => [
+                [
+                    'key' => 'jeffreyway',
+                    'doc_count' => 50,
+                ],
+            ],
+        ], $query);
+
+        $this->expectException(\LogicException::class);
+
+        $terms[0] = ['foo' => 'bar'];
     }
 }

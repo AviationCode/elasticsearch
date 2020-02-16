@@ -67,7 +67,7 @@ use Illuminate\Support\Str;
  * @todo extendedStatsBucket
  * @todo percentilesBucket
  * @method self movingAverage(string $key, $buckets, array $options = [])
- * @todo movingFunction
+ * @method self movingFunction(string $key, $buckets, int $window, string $script, ?int $shift = null)
  * @todo cumaltiveSum
  * @todo cumaltiveCardinality
  * @todo bucketSelector

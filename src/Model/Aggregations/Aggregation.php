@@ -14,6 +14,7 @@ class Aggregation extends Fluent
      * @var array
      */
     public static $namespaces = [
+        '\AviationCode\Elasticsearch\Model\Aggregations\Common',
         '\AviationCode\Elasticsearch\Model\Aggregations\Metric',
         '\AviationCode\Elasticsearch\Model\Aggregations\Bucket',
         '\AviationCode\Elasticsearch\Model\Aggregations\Pipeline',

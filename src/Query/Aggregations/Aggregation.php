@@ -7,21 +7,75 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 /**
- * @method self terms(string $key, string $field, array $options = [])
- * @method self dateHistogram(string $key, string $field, string $interval, string $intervalType = DateHistogram::FIXED, array $options = [])
- * @method self dateRange(string $key, string $field, array $ranges, array $options = [])
- * @method self cardinality(string $key, string $field, array $options = [])
- * @method self min(string $key, string $field, array $options = [])
- * @method self max(string $key, string $field, array $options = [])
- * @method self stats(string $key, string $field, array $options = [])
- * @method self extendedStats(string $key, string $field, array $options = [])
+ * Metric Aggregations
+ * ===================
  * @method self avg(string $key, string $field, array $options = [])
  * @method self weightedAvg(string $key, array $value, array $weight)
+ * @method self cardinality(string $key, string $field, array $options = [])
+ * @method self extendedStats(string $key, string $field, array $options = [])
  * @method self geoBounds(string $key, string $field, array $options = [])
  * @method self geoCentroid(string $key, string $field)
+ * @method self min(string $key, string $field, array $options = [])
+ * @method self max(string $key, string $field, array $options = [])
+ * @todo percentiles
+ * @todo percentilesRanks
+ * @method self stats(string $key, string $field, array $options = [])
+ * @todo stringStats
  * @method self sum(string $key, string $field, array $options = [])
+ * @todo topHits
  * @method self valueCount(string $key, string $field)
+ * @todo medianAbsoluteDeviation
  *
+ * Bucket Aggregations
+ * ===================
+ * @todo adjacencyMatrix
+ * @todo autoIntervalDateHistogram
+ * @todo children
+ * @todo composite
+ * @method self dateHistogram(string $key, string $field, string $interval, string $intervalType = DateHistogram::FIXED, array $options = [])
+ * @method self dateRange(string $key, string $field, array $ranges, array $options = [])
+ * @todo diversifiedSampler
+ * @todo filter
+ * @todo filters
+ * @todo geoDistance
+ * @todo geoHashGrid
+ * @todo geoTileGrid
+ * @todo global
+ * @todo histogram
+ * @todo ipRange
+ * @todo missing
+ * @todo nested
+ * @todo parent
+ * @todo range
+ * @todo rare
+ * @todo reverseNested
+ * @todo sampler
+ * @todo significantTerms
+ * @todo significantText
+ * @method self terms(string $key, string $field, array $options = [])
+ * @todo subtletiesOfBucketRange
+ *
+ *
+ * Pipeline Aggregations
+ * =====================
+ * @todo avgBucket
+ * @todo derivative
+ * @todo maxBucket
+ * @todo minBucket
+ * @todo sumBucket
+ * @todo statsBucket
+ * @todo extendedStatsBucket
+ * @todo percentilesBucket
+ * @todo movingAverage
+ * @todo movingFunction
+ * @todo cumaltiveSum
+ * @todo cumaltiveCardinality
+ * @todo bucketSelector
+ * @todo bucketSort
+ * @todo serialDifferencing
+ *
+ * Aggregation Methods
+ * ===================
  * @method mixed get(string $key, $default = null)
  * @method mixed first(string $key, $default = null)
  * @method bool has(string $key)

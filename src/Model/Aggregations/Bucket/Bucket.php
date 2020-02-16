@@ -5,8 +5,9 @@ namespace AviationCode\Elasticsearch\Model\Aggregations\Bucket;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Traits\ForwardsCalls;
+use Traversable;
 
-abstract class Bucket implements \JsonSerializable, Jsonable, \ArrayAccess, \Countable
+abstract class Bucket implements \JsonSerializable, Jsonable, \ArrayAccess, \Countable, \IteratorAggregate
 {
     use ForwardsCalls;
 
@@ -95,7 +96,11 @@ abstract class Bucket implements \JsonSerializable, Jsonable, \ArrayAccess, \Cou
      */
     public function offsetExists($offset)
     {
-        return isset($this->items[$offset]);
+        if (! isset($this->items[$offset])) {
+            return $this->items->firstWhere('key', $offset) !== null;
+        }
+
+        return true;
     }
 
     /**
@@ -104,7 +109,7 @@ abstract class Bucket implements \JsonSerializable, Jsonable, \ArrayAccess, \Cou
      */
     public function offsetGet($offset)
     {
-        return $this->items[$offset];
+        return $this->items[$offset] ?? $this->items->firstWhere('key', $offset);
     }
 
     /**
@@ -132,6 +137,14 @@ abstract class Bucket implements \JsonSerializable, Jsonable, \ArrayAccess, \Cou
     public function count()
     {
         return $this->items->count();
+    }
+
+    /**
+     * @return \ArrayIterator
+     */
+    public function getIterator()
+    {
+        return $this->items->getIterator();
     }
 
     /**

@@ -13,8 +13,8 @@ class Derivative implements Arrayable
 {
     use HasAggregations;
 
-    const GAP_SKIP = 'skip';
-    const GAP_INSERT_ZEROS = 'insert_zeros';
+    public const GAP_SKIP = 'skip';
+    public const GAP_INSERT_ZEROS = 'insert_zeros';
 
     /**
      * This path to the buckets we wish to find the derivative.

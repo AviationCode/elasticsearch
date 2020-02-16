@@ -37,7 +37,7 @@ class TermsTest extends TestCase
                     ],
                 ],
                 [
-                    'key' => 'adamwatham',
+                    'key' => 'adamwathan',
                     'doc_count' => 25,
                     'date_histogram#tweets_per_day' => [
                         'buckets' => [
@@ -63,12 +63,14 @@ class TermsTest extends TestCase
 
         $this->assertCount(2, $terms);
         $this->assertTrue(isset($terms[0]));
+        $this->assertTrue(isset($terms['jeffreyway']));
         $this->assertEquals('jeffreyway', $terms->get(0)->key);
         $this->assertEquals(50, $terms->get(0)->doc_count);
         $this->assertCount(2, $terms->get(0)->tweets_per_day);
 
         $this->assertTrue(isset($terms[1]));
-        $this->assertEquals('adamwatham', $terms->get(1)->key);
+        $this->assertTrue(isset($terms['adamwathan']));
+        $this->assertEquals('adamwathan', $terms->get(1)->key);
         $this->assertEquals(25, $terms->get(1)->doc_count);
         $this->assertCount(2, $terms->get(1)->tweets_per_day);
 

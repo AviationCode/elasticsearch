@@ -7,6 +7,7 @@ use AviationCode\Elasticsearch\Model\ElasticCollection;
 use AviationCode\Elasticsearch\Model\ElasticHit;
 use AviationCode\Elasticsearch\Model\ElasticSearchable;
 use AviationCode\Elasticsearch\Query\Aggregations\Aggregation;
+use AviationCode\Elasticsearch\Query\Dsl\Boolean\Filter;
 use AviationCode\Elasticsearch\Query\Dsl\Query;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -191,6 +192,21 @@ class Builder
      */
     public function chunk(int $count, callable $callback, string $column = 'id'): bool
     {
+        return $this->chunkById($count, $callback, $column);
+    }
+
+    /**
+     * Chunk the results of a query by comparing IDs.
+     * Bypasses the doc count limit.
+     *
+     * @param int $count
+     * @param callable $callback
+     * @param string $column
+     *
+     * @return bool
+     */
+    public function chunkById(int $count, callable $callback, string $column = 'id'): bool
+    {
         $lastId = null;
 
         do {
@@ -202,7 +218,7 @@ class Builder
             $clone->limit($count);
 
             if (! is_null($lastId)) {
-                $clone->filter(function ($filter) use ($lastId) {
+                $clone->filter(function (Filter $filter) use ($lastId) {
                     $filter->range('id', 'gt', $lastId);
                 });
             }
@@ -228,6 +244,26 @@ class Builder
         } while ($countResults == $count);
 
         return true;
+    }
+
+    /**
+     * Using chunk by id loop over all records.
+     *
+     * @param callable $callback
+     * @param int $count
+     * @param string $column
+     *
+     * @return bool
+     */
+    public function eachById(callable $callback, $count = 1000, $column = 'id'): bool
+    {
+        return $this->chunkById($count, function ($results) use ($callback) {
+            foreach ($results as $key => $value) {
+                if ($callback($value, $key) === false) {
+                    return false;
+                }
+            }
+        }, $column);
     }
 
     /**
@@ -271,5 +307,15 @@ class Builder
             'sort' => $this->sort,
             'aggs' => $this->aggregations->toArray(),
         ], $this->model->getIndexName(), ['typed_keys' => true]), $this->model);
+    }
+
+    /**
+     * Force a clone of the underlying query builder when cloning.
+     *
+     * @return void
+     */
+    public function __clone()
+    {
+        $this->query = clone $this->query;
     }
 }

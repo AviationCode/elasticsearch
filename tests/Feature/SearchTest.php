@@ -431,6 +431,270 @@ class SearchTest extends TestCase
         $this->assertEquals(2, $results->count());
     }
 
+    /** @test **/
+    public function it_chunks_over_large_data_set()
+    {
+        $this->client->shouldReceive('search')
+            ->with([
+                'index' => 'article',
+                'body' => [
+                    'size' => 2,
+                    'sort' => [
+                        ['id' => 'asc']
+                    ],
+                ],
+                'typed_keys' => true,
+            ])
+            ->andReturn($this->successResponse());
+
+        $this->client->shouldReceive('search')
+            ->with([
+                'index' => 'article',
+                'typed_keys' => true,
+                'body' => [
+                    'size' => 2,
+                    'query' => [
+                        'bool' => [
+                            'filter' => [
+                                [
+                                    'range' => [
+                                        'id' => [
+                                            'gt' => 2,
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    'sort' => [
+                        ['id' => 'asc']
+                    ]
+                ],
+            ])
+            ->once()
+            ->andReturn($this->successResponse());
+
+        $this->client->shouldReceive('search')
+            ->with([
+                'index' => 'article',
+                'typed_keys' => true,
+                'body' => [
+                    'size' => 2,
+                    'query' => [
+                        'bool' => [
+                            'filter' => [
+                                [
+                                    'range' => [
+                                        'id' => [
+                                            'gt' => 2,
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    'sort' => [
+                        ['id' => 'asc']
+                    ]
+                ],
+            ])
+            ->once()
+            ->andReturn([
+                'took' => 1,
+                'timed_out' => false,
+                '_shards' => [
+                    'total' => 1,
+                    'successful' => 1,
+                    'skipped' => 0,
+                    'failed' => 0,
+                ],
+                'hits' => [
+                    'total' => [
+                        'value' => 0,
+                        'relation' => 'eq',
+                    ],
+                    'max_score' => 1.0,
+                    'hits' => [],
+                ],
+            ]);
+
+        $qb = $this->elastic->query(Article::class);
+
+        $times = 0;
+        $total = 0;
+
+        $qb->chunk(2, function ($hits) use (&$times, &$total) {
+            $this->assertInstanceOf(ElasticCollection::class, $hits);
+            $total += $hits->count();
+
+            $times++;
+        });
+
+        $this->assertEquals(4, $total);
+        $this->assertEquals(2, $times);
+    }
+
+    /** @test **/
+    public function it_can_each_by_id_through_all_records()
+    {
+        $this->client->shouldReceive('search')
+            ->with([
+                'index' => 'article',
+                'body' => [
+                    'size' => 2,
+                    'sort' => [
+                        ['id' => 'asc']
+                    ],
+                ],
+                'typed_keys' => true,
+            ])
+            ->andReturn($this->successResponse());
+
+        $this->client->shouldReceive('search')
+            ->with([
+                'index' => 'article',
+                'typed_keys' => true,
+                'body' => [
+                    'size' => 2,
+                    'query' => [
+                        'bool' => [
+                            'filter' => [
+                                [
+                                    'range' => [
+                                        'id' => [
+                                            'gt' => 2,
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    'sort' => [
+                        ['id' => 'asc']
+                    ]
+                ],
+            ])
+            ->once()
+            ->andReturn($this->successResponse());
+
+        $this->client->shouldReceive('search')
+            ->with([
+                'index' => 'article',
+                'typed_keys' => true,
+                'body' => [
+                    'size' => 2,
+                    'query' => [
+                        'bool' => [
+                            'filter' => [
+                                [
+                                    'range' => [
+                                        'id' => [
+                                            'gt' => 2,
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    'sort' => [
+                        ['id' => 'asc']
+                    ]
+                ],
+            ])
+            ->once()
+            ->andReturn([
+                'took' => 1,
+                'timed_out' => false,
+                '_shards' => [
+                    'total' => 1,
+                    'successful' => 1,
+                    'skipped' => 0,
+                    'failed' => 0,
+                ],
+                'hits' => [
+                    'total' => [
+                        'value' => 0,
+                        'relation' => 'eq',
+                    ],
+                    'max_score' => 1.0,
+                    'hits' => [],
+                ],
+            ]);
+
+        $qb = $this->elastic->query(Article::class);
+
+        $total = 0;
+
+        $qb->eachById(function ($hit) use (&$total) {
+            $this->assertInstanceOf(Article::class, $hit);
+            $total++;
+        }, 2);
+
+        $this->assertEquals(4, $total);
+    }
+
+    /** @test **/
+    public function it_can_early_return_from_each_method()
+    {
+        $this->client->shouldReceive('search')
+            ->with([
+                'index' => 'article',
+                'body' => [
+                    'size' => 2,
+                    'sort' => [
+                        ['id' => 'asc']
+                    ],
+                ],
+                'typed_keys' => true,
+            ])
+            ->andReturn($this->successResponse());
+
+
+        $qb = $this->elastic->query(Article::class);
+
+        $total = 0;
+
+        $qb->eachById(function ($hit) use (&$total) {
+            $this->assertInstanceOf(Article::class, $hit);
+            $total++;
+
+            return false;
+        }, 2);
+
+        $this->assertEquals(1, $total);
+    }
+
+    /** @test **/
+    public function it_can_early_return_from_chunk()
+    {
+        $this->client->shouldReceive('search')
+            ->with([
+                'index' => 'article',
+                'body' => [
+                    'size' => 2,
+                    'sort' => [
+                        ['id' => 'asc']
+                    ],
+                ],
+                'typed_keys' => true,
+            ])
+            ->andReturn($this->successResponse());
+
+
+        $qb = $this->elastic->query(Article::class);
+
+        $total = 0;
+
+        $qb->chunk(2, function ($hits) use (&$total) {
+            $this->assertInstanceOf(ElasticCollection::class, $hits);
+            $total += $hits->count();
+
+            return false;
+        });
+
+        $this->assertEquals(2, $total);
+    }
+
     private function successResponse()
     {
         return [

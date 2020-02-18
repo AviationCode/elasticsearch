@@ -122,4 +122,17 @@ class Query implements Arrayable
             return [$key => $value[$key]];
         })->filter()->toArray();
     }
+
+
+    /**
+     * @return void
+     */
+    public function __clone()
+    {
+        $this->boolean = clone $this->boolean;
+        $this->boosting = clone $this->boosting;
+        $this->constantScore = clone $this->constantScore;
+        $this->disMax = clone $this->disMax;
+        $this->functionScore = clone $this->functionScore;
+    }
 }

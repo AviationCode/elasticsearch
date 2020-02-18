@@ -180,6 +180,57 @@ class Builder
     }
 
     /**
+     * Chunk the results of a query by comparing IDs.
+     * Bypasses the doc count limit.
+     *
+     * @param int $count
+     * @param callable $callback
+     * @param string $column
+     *
+     * @return bool
+     */
+    public function chunk(int $count, callable $callback, string $column = 'id'): bool
+    {
+        $lastId = null;
+
+        do {
+            $clone = clone $this;
+
+            // Reset sort
+            $clone->sort = [];
+            $clone->orderBy(optional($this->model->getKeyName()) ?? $column, 'asc');
+            $clone->limit($count);
+
+            if (! is_null($lastId)) {
+                $clone->filter(function ($filter) use ($lastId) {
+                    $filter->range('id', 'gt', $lastId);
+                });
+            }
+
+            $results = $clone->get();
+
+            $countResults = $results->count();
+
+            if ($countResults == 0) {
+                break;
+            }
+
+            // On each chunk result set, we will pass them to the callback and then let the
+            // developer take care of everything within the callback, which allows us to
+            // keep the memory low for spinning through large result sets for working.
+            if ($callback($results) === false) {
+                return false;
+            }
+
+            $lastId = $results->last()->$column;
+
+            unset($results);
+        } while ($countResults == $count);
+
+        return true;
+    }
+
+    /**
      * Start building aggregations.
      *
      * @return Aggregation

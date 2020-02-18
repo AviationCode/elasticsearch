@@ -198,7 +198,7 @@ class Builder
 
             // Reset sort
             $clone->sort = [];
-            $clone->orderBy(optional($this->model->getKeyName()) ?? $column, 'asc');
+            $clone->orderBy(optional($this->model)->getKeyName() ?? $column, 'asc');
             $clone->limit($count);
 
             if (! is_null($lastId)) {

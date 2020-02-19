@@ -27,7 +27,7 @@ class Elasticsearch extends Facade
      */
     public static function fake(): FakeElasticsearch
     {
-        static::swap($fake = new FakeElasticsearch());
+        static::swap($fake = new FakeElasticsearch(static::$app));
 
         return $fake;
     }

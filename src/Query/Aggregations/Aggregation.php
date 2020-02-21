@@ -51,7 +51,7 @@ use Illuminate\Support\Str;
  * @todo rare
  * @todo reverseNested
  * @todo sampler
- * @todo significantTerms
+ * @method self significantTerms(string $key, string $field, array $options = [])
  * @todo significantText
  * @method self terms(string $key, string $field, array $options = [])
  * @todo subtletiesOfBucketRange

@@ -29,6 +29,7 @@ class Aggregation extends Fluent
     public static $specialTypes = [
         'sterms' => 'terms',
         'lterms' => 'terms',
+        'sigsterms' => 'significant_terms',
     ];
 
     /**

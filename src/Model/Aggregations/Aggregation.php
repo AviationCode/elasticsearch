@@ -31,6 +31,7 @@ class Aggregation extends Fluent
         'lterms' => 'terms',
         'sigsterms' => 'significant_terms',
         'tdigest_percentiles' => 'percentiles',
+        'tdigest_percentile_ranks' => 'percentiles',
     ];
 
     /**

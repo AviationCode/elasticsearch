@@ -19,7 +19,7 @@ use Illuminate\Support\Str;
  * @method self min(string $key, string $field, array $options = [])
  * @method self max(string $key, string $field, array $options = [])
  * @method self percentiles(string $key, string $field, array $options = [])
- * @todo percentilesRanks
+ * @method self percentileRanks(string $key, string $field, array $values, array $options = [])
  * @method self stats(string $key, string $field, array $options = [])
  * @todo stringStats
  * @method self sum(string $key, string $field, array $options = [])

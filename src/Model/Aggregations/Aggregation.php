@@ -32,6 +32,7 @@ class Aggregation extends Fluent
         'sigsterms' => 'significant_terms',
         'tdigest_percentiles' => 'percentiles',
         'tdigest_percentile_ranks' => 'percentiles',
+        'median_absolute_deviation' => 'simple_value',
     ];
 
     /**

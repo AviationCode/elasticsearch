@@ -25,7 +25,7 @@ use Illuminate\Support\Str;
  * @method self sum(string $key, string $field, array $options = [])
  * @todo topHits
  * @method self valueCount(string $key, string $field)
- * @todo medianAbsoluteDeviation
+ * @method medianAbsoluteDeviation(string $key, string $field, array $options = [])
  *
  * Bucket Aggregations
  * ===================

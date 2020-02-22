@@ -37,7 +37,7 @@ use Illuminate\Support\Str;
  * @method self dateRange(string $key, string $field, array $ranges, array $options = [])
  * @todo diversifiedSampler
  * @method self filter(string $key, callable $callback)
- * @todo filters
+ * @method self filters(string $key, array $filters, array $options = [])
  * @method self geoDistance(string $key, string $field, float $lat, float $lon, $ranges = [], ?string $unit = GeoDistance::M)
  * @todo geoHashGrid
  * @todo geoTileGrid

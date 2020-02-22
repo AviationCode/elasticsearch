@@ -22,9 +22,10 @@ use AviationCode\Elasticsearch\Query\Dsl\Term\Regexp;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Term;
 use AviationCode\Elasticsearch\Query\Dsl\Term\TermsSet;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Wildcard;
+use Countable;
 use Illuminate\Contracts\Support\Arrayable;
 
-abstract class Boolean implements Arrayable
+abstract class Boolean implements Arrayable, Countable
 {
     /**
      * Clauses to apply.
@@ -376,6 +377,14 @@ abstract class Boolean implements Arrayable
         $this->clauses[] = new GeoBoundingBox($field, $topLeft, $bottomRight, $options);
 
         return $this;
+    }
+
+    /**
+     * @return int|void
+     */
+    public function count()
+    {
+        return count($this->clauses);
     }
 
     /**

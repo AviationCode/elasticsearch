@@ -33,6 +33,7 @@ class Aggregation extends Fluent
         'tdigest_percentiles' => 'percentiles',
         'tdigest_percentile_ranks' => 'percentiles',
         'median_absolute_deviation' => 'simple_value',
+        'filter' => 'bucket_item',
     ];
 
     /**

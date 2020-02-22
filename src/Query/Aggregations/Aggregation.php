@@ -36,7 +36,7 @@ use Illuminate\Support\Str;
  * @method self dateHistogram(string $key, string $field, string $interval, string $intervalType = DateHistogram::FIXED, array $options = [])
  * @method self dateRange(string $key, string $field, array $ranges, array $options = [])
  * @todo diversifiedSampler
- * @todo filter
+ * @method self filter(string $key, callable $callback)
  * @todo filters
  * @method self geoDistance(string $key, string $field, float $lat, float $lon, $ranges = [], ?string $unit = GeoDistance::M)
  * @todo geoHashGrid

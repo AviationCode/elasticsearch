@@ -18,7 +18,7 @@ use Illuminate\Support\Str;
  * @method self geoCentroid(string $key, string $field)
  * @method self min(string $key, string $field, array $options = [])
  * @method self max(string $key, string $field, array $options = [])
- * @todo percentiles
+ * @method self percentiles(string $key, string $field, array $options = [])
  * @todo percentilesRanks
  * @method self stats(string $key, string $field, array $options = [])
  * @todo stringStats

@@ -20,9 +20,9 @@ abstract class Metric implements Arrayable
      * Bucket constructor.
      *
      * @param string $key
-     * @param string $model
+     * @param string|null $model
      */
-    public function __construct(string $key, string $model)
+    public function __construct(string $key, ?string $model = null)
     {
         $this->key = $key;
         $this->model = $model;

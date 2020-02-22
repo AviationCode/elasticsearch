@@ -21,7 +21,7 @@ use Illuminate\Support\Str;
  * @method self percentiles(string $key, string $field, array $options = [])
  * @method self percentileRanks(string $key, string $field, array $values, array $options = [])
  * @method self stats(string $key, string $field, array $options = [])
- * @todo stringStats
+ * @method self stringStats(string $key, string $field, array $options = [])
  * @method self sum(string $key, string $field, array $options = [])
  * @todo topHits
  * @method self valueCount(string $key, string $field)

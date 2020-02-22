@@ -5,7 +5,7 @@ namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Metric;
 use AviationCode\Elasticsearch\Query\Aggregations\Aggregation;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class StatsAggregationTest extends TestCase
+class StatTest extends TestCase
 {
     /** @test **/
     public function it_builds_a_stats_aggregation()

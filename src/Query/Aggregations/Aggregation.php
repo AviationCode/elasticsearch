@@ -2,48 +2,48 @@
 
 namespace AviationCode\Elasticsearch\Query\Aggregations;
 
-use AviationCode\Elasticsearch\Query\Aggregations\Bucket\DateHistogram;
-use AviationCode\Elasticsearch\Query\Aggregations\Bucket\GeoDistance;
+use AviationCode\Elasticsearch\Query\Aggregations\Bucket;
+use AviationCode\Elasticsearch\Query\Aggregations\Metric;
+use AviationCode\Elasticsearch\Query\Aggregations\Pipeline;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 /**
  * Metric Aggregations
  * ===================
- * @method self avg(string $key, string $field, array $options = [])
- * @method self weightedAvg(string $key, array $value, array $weight)
- * @method self cardinality(string $key, string $field, array $options = [])
- * @method self extendedStats(string $key, string $field, array $options = [])
- * @method self geoBounds(string $key, string $field, array $options = [])
- * @method self geoCentroid(string $key, string $field)
- * @method self min(string $key, string $field, array $options = [])
- * @method self max(string $key, string $field, array $options = [])
- * @method self percentiles(string $key, string $field, array $options = [])
- * @method self percentileRanks(string $key, string $field, array $values, array $options = [])
- * @method self stats(string $key, string $field, array $options = [])
- * @method self stringStats(string $key, string $field, array $options = [])
- * @method self sum(string $key, string $field, array $options = [])
+ * @method Metric\Avg avg(string $key, string $field, array $options = [])
+ * @method Metric\WeightedAvg weightedAvg(string $key, array $value, array $weight)
+ * @method Metric\Cardinality cardinality(string $key, string $field, array $options = [])
+ * @method Metric\ExtendedStats extendedStats(string $key, string $field, array $options = [])
+ * @method Metric\GeoBounds geoBounds(string $key, string $field, array $options = [])
+ * @method Metric\GeoCentroid geoCentroid(string $key, string $field)
+ * @method Metric\Min min(string $key, string $field, array $options = [])
+ * @method Metric\Max max(string $key, string $field, array $options = [])
+ * @method Metric\Percentiles percentiles(string $key, string $field, array $options = [])
+ * @method Metric\PercentileRanks percentileRanks(string $key, string $field, array $values, array $options = [])
+ * @method Metric\Stats stats(string $key, string $field, array $options = [])
+ * @method Metric\StringStats stringStats(string $key, string $field, array $options = [])
+ * @method Metric\Sum sum(string $key, string $field, array $options = [])
  * @todo topHits
- * @method self valueCount(string $key, string $field)
- * @method medianAbsoluteDeviation(string $key, string $field, array $options = [])
+ * @method Metric\ValueCount valueCount(string $key, string $field)
+ * @method Metric\MedianAbsoluteDeviation medianAbsoluteDeviation(string $key, string $field, array $options = [])
  *
  * Bucket Aggregations
  * ===================
  * @todo adjacencyMatrix
- * @method self autoDateHistogram(string $key, string $field, array $options = [])
+ * @method Bucket\AutoDateHistogram autoDateHistogram(string $key, string $field, array $options = [])
  * @todo children
  * @todo composite
- * @method self dateHistogram(string $key, string $field, string $interval, string $intervalType = DateHistogram::FIXED, array $options = [])
- * @method self dateRange(string $key, string $field, array $ranges, array $options = [])
+ * @method Bucket\DateHistogram dateHistogram(string $key, string $field, string $interval, string $intervalType = DateHistogram::FIXED, array $options = [])
+ * @method Bucket\DateRange dateRange(string $key, string $field, array $ranges, array $options = [])
  * @todo diversifiedSampler
- * @method self filter(string $key, callable $callback)
- * @method self filters(string $key, array $filters, array $options = [])
- * @method self geoDistance(string $key, string $field, float $lat, float $lon, $ranges = [], ?string $unit = GeoDistance::M)
- * @method self geohashGrid(string $key, string $field, array $options = [])
- * @method self geotileGrid(string $key, string $field, array $options = [])
- * @method self global(string $key)
- * @method self histogram(string $key, int $interval, array $options = [])
- * @todo ipRange
+ * @method Bucket\Filter filter(string $key, callable $callback)
+ * @method Bucket\Filters filters(string $key, array $filters, array $options = [])
+ * @method Bucket\GeoDistance geoDistance(string $key, string $field, float $lat, float $lon, $ranges = [], ?string $unit = Bucket\GeoDistance::M)
+ * @method Bucket\GeohashGrid geohashGrid(string $key, string $field, array $options = [])
+ * @method Bucket\GeotileGrid geotileGrid(string $key, string $field, array $options = [])
+ * @method Bucket\GlobalBucket global(string $key)
+ * @method Bucket\Histogram histogram(string $key, int $interval, array $options = [])
  * @method Bucket\IpRange ipRange(string $key, array $options = [])
  * @todo missing
  * @todo nested
@@ -52,24 +52,24 @@ use Illuminate\Support\Str;
  * @todo rare
  * @todo reverseNested
  * @todo sampler
- * @method self significantTerms(string $key, string $field, array $options = [])
+ * @method Bucket\SignificantTerms significantTerms(string $key, string $field, array $options = [])
  * @todo significantText
- * @method self terms(string $key, string $field, array $options = [])
+ * @method Bucket\Terms terms(string $key, string $field, array $options = [])
  * @todo subtletiesOfBucketRange
  *
  *
  * Pipeline Aggregations
  * =====================
  * @todo avgBucket
- * @method self derivative(string $key, $bucket, ?string $gap = null, ?string $format = null, ?string $unit = null)
+ * @method Pipeline\Derivative derivative(string $key, $bucket, ?string $gap = null, ?string $format = null, ?string $unit = null)
  * @todo maxBucket
  * @todo minBucket
  * @todo sumBucket
  * @todo statsBucket
  * @todo extendedStatsBucket
  * @todo percentilesBucket
- * @method self movingAverage(string $key, $buckets, array $options = [])
- * @method self movingFunction(string $key, $buckets, int $window, string $script, ?int $shift = null)
+ * @method Pipeline\MovingAverage movingAverage(string $key, $buckets, array $options = [])
+ * @method Pipeline\MovingFunction movingFunction(string $key, $buckets, int $window, string $script, ?int $shift = null)
  * @todo cumaltiveSum
  * @todo cumaltiveCardinality
  * @todo bucketSelector
@@ -130,9 +130,9 @@ class Aggregation
      * @param string $method
      * @param array $arguments
      *
-     * @return $this
+     * @return HasAggregations
      */
-    private function addAggregation(string $class, string $method, array $arguments): self
+    private function addAggregation(string $class, string $method, array $arguments)
     {
         if (!isset($arguments[0])) {
             throw new \InvalidArgumentException('Missing argument $key.');
@@ -155,14 +155,12 @@ class Aggregation
                 );
             }
 
-            $this->get($parts->first())->$method(implode('.', $parts->except(0)->toArray()), ...$arguments);
-
-            return $this;
+            return $this->get($parts->first())->$method(implode('.', $parts->except(0)->toArray()), ...$arguments);
         }
 
-        $this->put($parts->first(), new $class(...$arguments));
+        $this->put($parts->first(), $instance = new $class(...$arguments));
 
-        return $this;
+        return $instance;
     }
 
     /**

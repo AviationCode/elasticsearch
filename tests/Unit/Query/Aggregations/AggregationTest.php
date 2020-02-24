@@ -13,7 +13,22 @@ class AggregationTest extends TestCase
         $aggs = new Aggregation();
 
         $aggs->terms('users', 'users')
-            ->dateHistogram('users.tweets_per_day', 'created_at', '1d');
+            ->dateHistogram('tweets_per_day', 'created_at', '1d');
+
+        $this->assertEquals([
+            'users' => [
+                'terms' => ['field' => 'users'],
+                'aggs' => [
+                    'tweets_per_day' => [
+                        'date_histogram' => ['field' => 'created_at', 'fixed_interval' => '1d'],
+                    ],
+                ],
+            ],
+        ], $aggs->toArray());
+
+        $aggs = new Aggregation();
+        $aggs->terms('users', 'users');
+        $aggs->dateHistogram('users.tweets_per_day', 'created_at', '1d');
 
         $this->assertEquals([
             'users' => [
@@ -46,8 +61,8 @@ class AggregationTest extends TestCase
 
         $aggs = new Aggregation();
 
-        $aggs->dateHistogram('users.tweets_per_day', 'created_at', '1d')
-            ->terms('users', 'users');
+        $aggs->dateHistogram('users.tweets_per_day', 'created_at', '1d');
+        $aggs->terms('users', 'users');
 
         $this->markSuccessfull();
     }

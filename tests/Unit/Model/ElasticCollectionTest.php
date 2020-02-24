@@ -138,10 +138,9 @@ class ElasticCollectionTest extends TestCase
         ];
 
         $builder = new Builder();
-        $builder->aggregations()
-            ->valueCount('total', 'users')
-            ->terms('users', 'user')
-            ->dateHistogram('users.tweets_per_day', 'created_at', '1d');
+        $builder->aggregations()->valueCount('total', 'users');
+        $builder->aggregations()->terms('users', 'user')
+            ->dateHistogram('tweets_per_day', 'created_at', '1d');
 
         $result = ElasticCollection::parse($response);
         $this->assertEquals(75, $result->aggregations->total->value());

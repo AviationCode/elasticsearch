@@ -45,7 +45,7 @@ use Illuminate\Support\Str;
  * @method Bucket\GlobalBucket global(string $key)
  * @method Bucket\Histogram histogram(string $key, int $interval, array $options = [])
  * @method Bucket\IpRange ipRange(string $key, array $options = [])
- * @todo missing
+ * @method Bucket\Missing missing(string $key, string $field)
  * @todo nested
  * @todo parent
  * @todo range

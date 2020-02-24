@@ -42,7 +42,7 @@ use Illuminate\Support\Str;
  * @method self geohashGrid(string $key, string $field, array $options = [])
  * @method self geotileGrid(string $key, string $field, array $options = [])
  * @method self global(string $key)
- * @todo histogram
+ * @method self histogram(string $key, int $interval, array $options = [])
  * @todo ipRange
  * @todo missing
  * @todo nested

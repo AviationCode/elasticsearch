@@ -10,8 +10,8 @@ class NestedTest extends TestCase
     /** @test **/
     public function it_adds_nested_aggregation()
     {
-        $missing = new Nested('resellers');
+        $nested = new Nested('resellers');
 
-        $this->assertEquals(['nested' => ['path' => 'resellers']], $missing->toArray());
+        $this->assertEquals(['nested' => ['path' => 'resellers']], $nested->toArray());
     }
 }

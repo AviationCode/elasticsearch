@@ -41,7 +41,7 @@ use Illuminate\Support\Str;
  * @method self geoDistance(string $key, string $field, float $lat, float $lon, $ranges = [], ?string $unit = GeoDistance::M)
  * @method self geohashGrid(string $key, string $field, array $options = [])
  * @method self geotileGrid(string $key, string $field, array $options = [])
- * @todo global
+ * @method self global(string $key)
  * @todo histogram
  * @todo ipRange
  * @todo missing
@@ -96,6 +96,15 @@ class Aggregation
         '\AviationCode\Elasticsearch\Query\Aggregations\Bucket',
         '\AviationCode\Elasticsearch\Query\Aggregations\Pipeline',
         '\AviationCode\Elasticsearch\Query\Aggregations\Matrix',
+    ];
+
+    /**
+     * Special types either name is reserved in PHP or other restrictions apply.
+     *
+     * @var array
+     */
+    private static $specialTypes = [
+        'global' => 'global_bucket',
     ];
 
     /**
@@ -163,7 +172,7 @@ class Aggregation
      */
     public function __call($method, $arguments)
     {
-        $class = Str::studly($method);
+        $class = Str::studly($this->transformSpecialTypes($method));
 
         foreach (static::$namespaces as $namespace) {
             $fqn = "$namespace\\$class";
@@ -174,5 +183,14 @@ class Aggregation
         }
 
         return $this->aggregations->$method(...$arguments);
+    }
+
+    private function transformSpecialTypes(string $method): string
+    {
+        if (isset(static::$specialTypes[$method])) {
+            return static::$specialTypes[$method];
+        }
+
+        return $method;
     }
 }

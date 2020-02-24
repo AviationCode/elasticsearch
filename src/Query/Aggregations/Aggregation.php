@@ -24,7 +24,7 @@ use Illuminate\Support\Str;
  * @method Metric\Stats stats(string $key, string $field, array $options = [])
  * @method Metric\StringStats stringStats(string $key, string $field, array $options = [])
  * @method Metric\Sum sum(string $key, string $field, array $options = [])
- * @todo topHits
+ * @method Metric\ValueCount topHits(string $key, array $options = [])
  * @method Metric\ValueCount valueCount(string $key, string $field)
  * @method Metric\MedianAbsoluteDeviation medianAbsoluteDeviation(string $key, string $field, array $options = [])
  *

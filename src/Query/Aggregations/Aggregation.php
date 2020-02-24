@@ -44,6 +44,7 @@ use Illuminate\Support\Str;
  * @method self global(string $key)
  * @method self histogram(string $key, int $interval, array $options = [])
  * @todo ipRange
+ * @method Bucket\IpRange ipRange(string $key, array $options = [])
  * @todo missing
  * @todo nested
  * @todo parent

@@ -53,7 +53,7 @@ use Illuminate\Support\Str;
  * @method Bucket\ReverseNested reverseNested(string $key, string $path)
  * @method Bucket\Sampler sampler(string $key, ?int $shardSize = null)
  * @method Bucket\SignificantTerms significantTerms(string $key, string $field, array $options = [])
- * @todo significantText
+ * @method Bucket\SignificantText significantText(string $key, string $field, array $options = [])
  * @method Bucket\Terms terms(string $key, string $field, array $options = [])
  * @todo subtletiesOfBucketRange
  *

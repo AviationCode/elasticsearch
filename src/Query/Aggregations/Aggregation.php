@@ -51,7 +51,7 @@ use Illuminate\Support\Str;
  * @method Bucket\Range range(string $key, string $field, array $ranges)
  * @method Bucket\RareTerms rareTerms(string $key, string $field, array $options = [])
  * @method Bucket\ReverseNested reverseNested(string $key, string $path)
- * @todo sampler
+ * @method Bucket\Sampler sampler(string $key, ?int $shardSize = null)
  * @method Bucket\SignificantTerms significantTerms(string $key, string $field, array $options = [])
  * @todo significantText
  * @method Bucket\Terms terms(string $key, string $field, array $options = [])

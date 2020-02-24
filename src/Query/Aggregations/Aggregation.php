@@ -48,7 +48,7 @@ use Illuminate\Support\Str;
  * @method Bucket\Missing missing(string $key, string $field)
  * @method Bucket\Nested nested(string $key, string $path)
  * @method Bucket\ParentBucket parent(string $key, string $type)
- * @todo range
+ * @method Bucket\Range range(string $key, string $field, array $ranges)
  * @todo rare
  * @todo reverseNested
  * @todo sampler

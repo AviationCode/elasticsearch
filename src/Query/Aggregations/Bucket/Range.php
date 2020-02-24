@@ -2,7 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Query\Aggregations\Bucket;
 
-class IpRange extends Bucket
+class Range extends Bucket
 {
     /**
      * The field you wish to search.
@@ -17,14 +17,14 @@ class IpRange extends Bucket
     private $ranges = [];
 
     /**
-     * IpRange constructor.
+     * Range constructor.
      *
      * @param string $field
      * @param array $ranges
      */
     public function __construct(string $field, $ranges = [])
     {
-        parent::__construct('ip_range', null);
+        parent::__construct('range', null);
 
         $this->field = $field;
         $this->ranges = $ranges;

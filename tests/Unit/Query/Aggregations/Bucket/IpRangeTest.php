@@ -10,7 +10,7 @@ class IpRangeTest extends TestCase
     /** @test **/
     public function it_builds_a_ip_range_bucket_aggregation()
     {
-        $geoDistance = new IpRange('ip', [
+        $range = new IpRange('ip', [
             ['to' => '10.0.0.5'],
             ['from' => '10.0.0.5', 'to' => '10.0.0.128'],
             ['from' => '10.0.0.128'],
@@ -26,16 +26,16 @@ class IpRangeTest extends TestCase
                     ['from' => '10.0.0.128'],
                 ],
             ],
-        ], $geoDistance->toArray());
+        ], $range->toArray());
     }
 
     /** @test **/
     public function it_can_add_ranges_dynamically()
     {
-        $geoDistance = new IpRange('ip');
-        $geoDistance->to('10.0.0.5');
-        $geoDistance->range('10.0.0.5', '10.0.0.128');
-        $geoDistance->from('10.0.0.128');
+        $range = new IpRange('ip');
+        $range->to('10.0.0.5');
+        $range->range('10.0.0.5', '10.0.0.128');
+        $range->from('10.0.0.128');
 
         $this->assertEquals([
             'ip_range' => [
@@ -47,16 +47,16 @@ class IpRangeTest extends TestCase
                     ['from' => '10.0.0.128'],
                 ],
             ],
-        ], $geoDistance->toArray());
+        ], $range->toArray());
     }
 
     /** @test **/
     public function it_can_define_custom_keys()
     {
-        $geoDistance = new IpRange('ip');
-        $geoDistance->to('10.0.0.5', 'first');
-        $geoDistance->range('10.0.0.5', '10.0.0.128', 'second');
-        $geoDistance->from('10.0.0.128', 'third');
+        $range = new IpRange('ip');
+        $range->to('10.0.0.5', 'first');
+        $range->range('10.0.0.5', '10.0.0.128', 'second');
+        $range->from('10.0.0.128', 'third');
 
         $this->assertEquals([
             'ip_range' => [
@@ -68,6 +68,6 @@ class IpRangeTest extends TestCase
                     ['from' => '10.0.0.128', 'key' => 'third'],
                 ],
             ],
-        ], $geoDistance->toArray());
+        ], $range->toArray());
     }
 }

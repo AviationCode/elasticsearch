@@ -49,7 +49,7 @@ use Illuminate\Support\Str;
  * @method Bucket\Nested nested(string $key, string $path)
  * @method Bucket\ParentBucket parent(string $key, string $type)
  * @method Bucket\Range range(string $key, string $field, array $ranges)
- * @todo rare
+ * @method Bucket\RareTerms rareTerms(string $key, string $field, array $options = [])
  * @todo reverseNested
  * @todo sampler
  * @method Bucket\SignificantTerms significantTerms(string $key, string $field, array $options = [])

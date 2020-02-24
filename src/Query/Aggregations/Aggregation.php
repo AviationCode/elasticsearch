@@ -40,7 +40,7 @@ use Illuminate\Support\Str;
  * @method self filters(string $key, array $filters, array $options = [])
  * @method self geoDistance(string $key, string $field, float $lat, float $lon, $ranges = [], ?string $unit = GeoDistance::M)
  * @method self geohashGrid(string $key, string $field, array $options = [])
- * @todo geoTileGrid
+ * @method self geotileGrid(string $key, string $field, array $options = [])
  * @todo global
  * @todo histogram
  * @todo ipRange

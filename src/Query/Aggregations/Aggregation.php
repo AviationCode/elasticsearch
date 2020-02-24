@@ -47,7 +47,7 @@ use Illuminate\Support\Str;
  * @method Bucket\IpRange ipRange(string $key, array $options = [])
  * @method Bucket\Missing missing(string $key, string $field)
  * @method Bucket\Nested nested(string $key, string $path)
- * @todo parent
+ * @method Bucket\ParentBucket parent(string $key, string $type)
  * @todo range
  * @todo rare
  * @todo reverseNested
@@ -100,12 +100,13 @@ class Aggregation
     ];
 
     /**
-     * Special types either name is reserved in PHP or other restrictions apply.
+     * Special types / Aliases, These include reserved PHP class names or common aliases.
      *
      * @var array
      */
     private static $specialTypes = [
         'global' => 'global_bucket',
+        'parent' => 'parent_bucket',
     ];
 
     /**

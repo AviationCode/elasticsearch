@@ -35,6 +35,7 @@ class Aggregation extends Fluent
         'median_absolute_deviation' => 'simple_value',
         'filter' => 'bucket_item',
         'global' => 'global_bucket',
+        'parent' => 'parent_bucket',
     ];
 
     /**

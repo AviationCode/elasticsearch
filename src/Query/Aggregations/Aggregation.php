@@ -32,9 +32,9 @@ use Illuminate\Support\Str;
  * ===================
  * @method Bucket\AdjacencyMatrix adjacencyMatrix(string $key, array $filters = [])
  * @method Bucket\AutoDateHistogram autoDateHistogram(string $key, string $field, array $options = [])
- * @todo children
+ * @method Bucket\Children children(string $key, string $type)
  * @todo composite
- * @method Bucket\DateHistogram dateHistogram(string $key, string $field, string $interval, string $intervalType = DateHistogram::FIXED, array $options = [])
+ * @method Bucket\DateHistogram dateHistogram(string $key, string $field, string $interval, string $intervalType = Bucket\DateHistogram::FIXED, array $options = [])
  * @method Bucket\DateRange dateRange(string $key, string $field, array $ranges, array $options = [])
  * @todo diversifiedSampler
  * @method Bucket\Filter filter(string $key, callable $callback)

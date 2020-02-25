@@ -30,7 +30,7 @@ use Illuminate\Support\Str;
  *
  * Bucket Aggregations
  * ===================
- * @todo adjacencyMatrix
+ * @method Bucket\AdjacencyMatrix adjacencyMatrix(string $key, array $filters = [])
  * @method Bucket\AutoDateHistogram autoDateHistogram(string $key, string $field, array $options = [])
  * @todo children
  * @todo composite

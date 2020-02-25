@@ -36,7 +36,7 @@ use Illuminate\Support\Str;
  * @todo composite
  * @method Bucket\DateHistogram dateHistogram(string $key, string $field, string $interval, string $intervalType = Bucket\DateHistogram::FIXED, array $options = [])
  * @method Bucket\DateRange dateRange(string $key, string $field, array $ranges, array $options = [])
- * @todo diversifiedSampler
+ * @method Bucket\DiversifiedSampler diversifiedSampler(string $key, ?int $shardSize = null, ?string $field = null, ?int $maxDocsPerValue = null))
  * @method Bucket\Filter filter(string $key, callable $callback)
  * @method Bucket\Filters filters(string $key, array $filters, array $options = [])
  * @method Bucket\GeoDistance geoDistance(string $key, string $field, float $lat, float $lon, $ranges = [], ?string $unit = Bucket\GeoDistance::M)

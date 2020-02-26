@@ -55,12 +55,11 @@ use Illuminate\Support\Str;
  * @method Bucket\SignificantTerms significantTerms(string $key, string $field, array $options = [])
  * @method Bucket\SignificantText significantText(string $key, string $field, array $options = [])
  * @method Bucket\Terms terms(string $key, string $field, array $options = [])
- * @todo subtletiesOfBucketRange
  *
  *
  * Pipeline Aggregations
  * =====================
- * @todo avgBucket
+ * @method Pipeline\AvgBucket avgBucket(string $key, $bucket, ?string $gap = null, ?string $format = null, ?string $unit = null)
  * @method Pipeline\Derivative derivative(string $key, $bucket, ?string $gap = null, ?string $format = null, ?string $unit = null)
  * @todo maxBucket
  * @todo minBucket

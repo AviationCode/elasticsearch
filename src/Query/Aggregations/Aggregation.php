@@ -69,8 +69,8 @@ use Illuminate\Support\Str;
  * @todo percentilesBucket
  * @method Pipeline\MovingAverage movingAverage(string $key, $buckets, array $options = [])
  * @method Pipeline\MovingFunction movingFunction(string $key, $buckets, int $window, string $script, ?int $shift = null)
- * @todo cumaltiveSum
  * @todo cumaltiveCardinality
+ * @method Pipeline\CumulativeSum cumulativeSum(string $key, $bucket, ?string $format = null)
  * @todo bucketSelector
  * @todo bucketSort
  * @todo serialDifferencing

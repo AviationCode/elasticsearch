@@ -61,11 +61,11 @@ use Illuminate\Support\Str;
  * =====================
  * @method Pipeline\AvgBucket avgBucket(string $key, $bucket, ?string $gap = null, ?string $format = null, ?string $unit = null)
  * @method Pipeline\Derivative derivative(string $key, $bucket, ?string $gap = null, ?string $format = null, ?string $unit = null)
- * @todo extendedStatsBucket
  * @method Pipeline\MaxBucket maxBucket(string $key, $bucket, ?string $gap = null, ?string $format = null)
  * @method Pipeline\MinBucket minBucket(string $key, $bucket, ?string $gap = null, ?string $format = null)
  * @method Pipeline\SumBucket sumBucket(string $key, $bucket, ?string $gap = null, ?string $format = null)
  * @method Pipeline\StatsBucket statsBucket(string $key, $bucket, ?string $gap = null, ?string $format = null)
+ * @method Pipeline\ExtendedStatsBucket extendedStatsBucket(string $key, $bucket, ?string $gap = null, ?string $format = null, ?int $sigma = null)
  * @todo percentilesBucket
  * @method Pipeline\MovingAverage movingAverage(string $key, $buckets, array $options = [])
  * @method Pipeline\MovingFunction movingFunction(string $key, $buckets, int $window, string $script, ?int $shift = null)

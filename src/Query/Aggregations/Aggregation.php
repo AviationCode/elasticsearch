@@ -66,7 +66,7 @@ use Illuminate\Support\Str;
  * @method Pipeline\SumBucket sumBucket(string $key, $bucket, ?string $gap = null, ?string $format = null)
  * @method Pipeline\StatsBucket statsBucket(string $key, $bucket, ?string $gap = null, ?string $format = null)
  * @method Pipeline\ExtendedStatsBucket extendedStatsBucket(string $key, $bucket, ?string $gap = null, ?string $format = null, ?int $sigma = null)
- * @todo percentilesBucket
+ * @method Pipeline\PercentilesBucket percentilesBucket(string $key, $bucket, ?string $gap = null, ?string $format = null, ?array $percentiles = null)
  * @method Pipeline\MovingAverage movingAverage(string $key, $buckets, array $options = [])
  * @method Pipeline\MovingFunction movingFunction(string $key, $buckets, int $window, string $script, ?int $shift = null)
  * @method Pipeline\CumulativeSum cumulativeSum(string $key, $bucket, ?string $format = null)

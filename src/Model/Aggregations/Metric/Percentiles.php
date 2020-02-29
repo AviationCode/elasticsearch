@@ -2,10 +2,9 @@
 
 namespace AviationCode\Elasticsearch\Model\Aggregations\Metric;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Fluent;
+use AviationCode\Elasticsearch\Model\Aggregations\Common\Item;
 
-class Percentiles extends Fluent
+class Percentiles extends Item
 {
     /**
      * Percentiles constructor.
@@ -14,6 +13,6 @@ class Percentiles extends Fluent
      */
     public function __construct($attributes = [])
     {
-        parent::__construct(Arr::get($attributes, 'values', []));
+        parent::__construct($attributes['values']);
     }
 }

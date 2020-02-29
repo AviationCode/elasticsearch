@@ -72,7 +72,7 @@ use Illuminate\Support\Str;
  * @method Pipeline\CumulativeSum cumulativeSum(string $key, $bucket, ?string $format = null)
  * @method Pipeline\CumulativeCardinality cumulativeCardinality(string $key, $bucket, ?string $format = null)
  * @method Pipeline\BucketSelector bucketSelector(string $key, array $buckets, string $script, ?string $gapPolicy = null)
- * @todo bucketSort
+ * @method Pipeline\BucketSort bucketSort(string $key, ?array $sort = null, ?int $size = null, ?int $from = null, ?string $gap = null)
  * @todo serialDifferencing
  *
  * Aggregation Methods

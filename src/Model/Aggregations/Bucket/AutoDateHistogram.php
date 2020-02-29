@@ -2,6 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Model\Aggregations\Bucket;
 
+use AviationCode\Elasticsearch\Model\Aggregations\Common\Item;
 use Carbon\Carbon;
 
 class AutoDateHistogram extends Bucket
@@ -9,9 +10,9 @@ class AutoDateHistogram extends Bucket
     /**
      * {@inheritDoc}
      */
-    protected function newBucketItem($item): BucketItem
+    protected function newItem($item): Item
     {
-        $bucketItem = parent::newBucketItem($item);
+        $bucketItem = parent::newItem($item);
 
         $bucketItem->date = Carbon::createFromTimestampMs($bucketItem->key);
 

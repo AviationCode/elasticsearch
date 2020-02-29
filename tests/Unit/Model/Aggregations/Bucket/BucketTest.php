@@ -2,19 +2,15 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Model\Aggregations\Bucket;
 
-use AviationCode\Elasticsearch\Model\Aggregations\Bucket\Terms;
-use AviationCode\Elasticsearch\Query\Aggregations\Bucket\Terms as TermsQuery;
+use AviationCode\Elasticsearch\Model\Aggregations\Bucket\Bucket;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class TermsTest extends TestCase
+class BucketTest extends TestCase
 {
     /** @test **/
-    public function it_can_build_a_terms_aggregation()
+    public function it_can_build_a_bucket_aggregation()
     {
-        $query = new TermsQuery('users');
-        $query->dateHistogram('tweets_per_day', 'created_at', '1d');
-
-        $terms = new Terms([
+        $bucket = new Bucket([
             'doc_count_error_upper_bound' => 0,
             'sum_other_doc_count' => 75,
             'buckets' => [
@@ -55,26 +51,26 @@ class TermsTest extends TestCase
                     ],
                 ],
             ],
-        ], $query);
+        ]);
 
-        $this->assertSame(0, $terms->doc_count_error_upper_bound);
-        $this->assertSame(75, $terms->sum_other_doc_count);
-        $this->assertNull($terms->non_existing_key);
+        $this->assertSame(0, $bucket->doc_count_error_upper_bound);
+        $this->assertSame(75, $bucket->sum_other_doc_count);
+        $this->assertNull($bucket->non_existing_key);
 
-        $this->assertCount(2, $terms);
-        $this->assertTrue(isset($terms[0]));
-        $this->assertTrue(isset($terms['jeffreyway']));
-        $this->assertEquals('jeffreyway', $terms->get(0)->key);
-        $this->assertEquals(50, $terms->get(0)->doc_count);
-        $this->assertCount(2, $terms->get(0)->tweets_per_day);
+        $this->assertCount(2, $bucket);
+        $this->assertTrue(isset($bucket[0]));
+        $this->assertTrue(isset($bucket['jeffreyway']));
+        $this->assertEquals('jeffreyway', $bucket->get(0)->key);
+        $this->assertEquals(50, $bucket->get(0)->doc_count);
+        $this->assertCount(2, $bucket->get(0)->tweets_per_day);
 
-        $this->assertTrue(isset($terms[1]));
-        $this->assertTrue(isset($terms['adamwathan']));
-        $this->assertEquals('adamwathan', $terms->get(1)->key);
-        $this->assertEquals(25, $terms->get(1)->doc_count);
-        $this->assertCount(2, $terms->get(1)->tweets_per_day);
+        $this->assertTrue(isset($bucket[1]));
+        $this->assertTrue(isset($bucket['adamwathan']));
+        $this->assertEquals('adamwathan', $bucket->get(1)->key);
+        $this->assertEquals(25, $bucket->get(1)->doc_count);
+        $this->assertCount(2, $bucket->get(1)->tweets_per_day);
 
-        $jsonData = json_decode($terms->toJson(), true);
+        $jsonData = json_decode($bucket->toJson(), true);
         $this->assertEquals(0, $jsonData['meta']['doc_count_error_upper_bound']);
         $this->assertEquals(75, $jsonData['meta']['sum_other_doc_count']);
         $this->assertCount(2, $jsonData['data']);
@@ -83,10 +79,7 @@ class TermsTest extends TestCase
     /** @test **/
     public function it_throws_exception_when_using_unset_on_read_only_array()
     {
-        $query = new TermsQuery('users');
-        $query->dateHistogram('tweets_per_day', 'created_at', '1d');
-
-        $terms = new Terms([
+        $bucket = new Bucket([
             'doc_count_error_upper_bound' => 0,
             'sum_other_doc_count' => 75,
             'buckets' => [
@@ -95,20 +88,17 @@ class TermsTest extends TestCase
                     'doc_count' => 50,
                 ],
             ],
-        ], $query);
+        ]);
 
         $this->expectException(\LogicException::class);
 
-        unset($terms[0]);
+        unset($bucket[0]);
     }
 
     /** @test **/
     public function it_throws_exception_when_using_setting_a_value_on_read_only_array()
     {
-        $query = new TermsQuery('users');
-        $query->dateHistogram('tweets_per_day', 'created_at', '1d');
-
-        $terms = new Terms([
+        $bucket = new Bucket([
             'doc_count_error_upper_bound' => 0,
             'sum_other_doc_count' => 75,
             'buckets' => [
@@ -117,10 +107,46 @@ class TermsTest extends TestCase
                     'doc_count' => 50,
                 ],
             ],
-        ], $query);
+        ]);
 
         $this->expectException(\LogicException::class);
 
-        $terms[0] = ['foo' => 'bar'];
+        $bucket[0] = ['foo' => 'bar'];
+    }
+
+    /** @test * */
+    public function it_builds_geo_distance_response()
+    {
+        $geoDistance = new Bucket([
+            'buckets' => [
+                '*-100000.0' => [
+                    "from" => 0.0,
+                    "to" => 100000.0,
+                    "doc_count" => 3
+                ],
+                "100000.0-300000.0" => [
+                    "from" => 100000.0,
+                    "to" => 300000.0,
+                    "doc_count" => 1
+                ],
+                "300000.0-*" => [
+                    "from" => 300000.0,
+                    "doc_count" => 2
+                ],
+            ],
+        ]);
+
+        $this->assertCount(3, $geoDistance);
+        $this->assertEquals(0.0, $geoDistance['*-100000.0']->from);
+        $this->assertEquals(100000.0, $geoDistance['*-100000.0']->to);
+        $this->assertEquals(3, $geoDistance['*-100000.0']->doc_count);
+
+        $this->assertEquals(100000.0, $geoDistance['100000.0-300000.0']->from);
+        $this->assertEquals(300000.0, $geoDistance['100000.0-300000.0']->to);
+        $this->assertEquals(1, $geoDistance['100000.0-300000.0']->doc_count);
+
+        $this->assertEquals(300000.0, $geoDistance['300000.0-*']->from);
+        $this->assertNull($geoDistance['300000.0-*']->to);
+        $this->assertEquals(2, $geoDistance['300000.0-*']->doc_count);
     }
 }

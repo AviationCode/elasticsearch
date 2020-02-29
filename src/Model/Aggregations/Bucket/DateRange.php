@@ -2,6 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Model\Aggregations\Bucket;
 
+use AviationCode\Elasticsearch\Model\Aggregations\Common\Item;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
 
@@ -10,9 +11,9 @@ class DateRange extends Bucket
     /**
      * {@inheritDoc}
      */
-    protected function newBucketItem($item): BucketItem
+    protected function newItem($item): Item
     {
-        $bucketItem = parent::newBucketItem($item);
+        $bucketItem = parent::newItem($item);
 
         /**
          * Use Carbon to map/parse timestamp(s) of milliseconds

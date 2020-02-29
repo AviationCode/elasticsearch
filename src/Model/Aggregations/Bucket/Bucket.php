@@ -2,12 +2,12 @@
 
 namespace AviationCode\Elasticsearch\Model\Aggregations\Bucket;
 
+use AviationCode\Elasticsearch\Model\Aggregations\Common\Item;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Traits\ForwardsCalls;
-use Traversable;
 
-abstract class Bucket implements \JsonSerializable, Jsonable, \ArrayAccess, \Countable, \IteratorAggregate
+class Bucket implements \JsonSerializable, Jsonable, \ArrayAccess, \Countable, \IteratorAggregate
 {
     use ForwardsCalls;
 
@@ -39,7 +39,7 @@ abstract class Bucket implements \JsonSerializable, Jsonable, \ArrayAccess, \Cou
         }
 
         $this->items = new Collection(array_map(function ($bucket) {
-            return $this->newBucketItem($bucket);
+            return $this->newItem($bucket);
         }, $aggregation['buckets']));
     }
 
@@ -47,11 +47,11 @@ abstract class Bucket implements \JsonSerializable, Jsonable, \ArrayAccess, \Cou
      * Create a new bucket item.
      *
      * @param array $item
-     * @return BucketItem
+     * @return Item
      */
-    protected function newBucketItem($item): BucketItem
+    protected function newItem($item): Item
     {
-        return new BucketItem($item);
+        return new Item($item);
     }
 
     /**

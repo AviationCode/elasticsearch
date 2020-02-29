@@ -1,12 +1,13 @@
 <?php
 
-namespace AviationCode\Elasticsearch\Model\Aggregations\Bucket;
+namespace AviationCode\Elasticsearch\Model\Aggregations\Common;
 
 use AviationCode\Elasticsearch\Model\Aggregations\Aggregation;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Fluent;
 
-class BucketItem extends Fluent
+class Item extends Fluent
 {
     public function __construct($attributes = [])
     {
@@ -15,7 +16,7 @@ class BucketItem extends Fluent
                 return Aggregation::aggregationModel($key, $value);
             }
 
-            return [$key => $value];
+            return [$key => (is_array($value) && Arr::isAssoc($value)) ? new Item($value) : $value];
         }));
     }
 }

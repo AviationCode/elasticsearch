@@ -52,9 +52,9 @@ final class ElasticCollection extends Collection
      */
     public function mapMeta(array $response): self
     {
-        $this->took = $response['took'];
-        $this->timed_out = $response['timed_out'];
-        $this->shards = $response['_shards'];
+        $this->took = $response['took'] ?? null;
+        $this->timed_out = $response['timed_out'] ?? null;
+        $this->shards = $response['_shards'] ?? null;
         $this->max_score = Arr::get($response, 'hits.max_score');
         $this->total = Arr::get($response, 'hits.total.value');
         $this->total_relation = Arr::get($response, 'hits.total.relation');

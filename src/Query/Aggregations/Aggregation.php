@@ -71,7 +71,7 @@ use Illuminate\Support\Str;
  * @method Pipeline\MovingFunction movingFunction(string $key, $buckets, int $window, string $script, ?int $shift = null)
  * @method Pipeline\CumulativeSum cumulativeSum(string $key, $bucket, ?string $format = null)
  * @method Pipeline\CumulativeCardinality cumulativeCardinality(string $key, $bucket, ?string $format = null)
- * @todo bucketSelector
+ * @method Pipeline\BucketSelector bucketSelector(string $key, array $buckets, string $script, ?string $gapPolicy = null)
  * @todo bucketSort
  * @todo serialDifferencing
  *

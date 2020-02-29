@@ -2,6 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Model\Aggregations;
 
+use AviationCode\Elasticsearch\Model\Aggregations\Common\SimpleValue;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Str;
@@ -101,7 +102,16 @@ class Aggregation extends Fluent
                 continue;
             }
 
-            return [$key => new $fqn($value)];
+            $model = new $fqn($value);
+
+            // If the model is a simple value let's directly map the value
+            // Onto the object this allows the key to equal the value
+            // instead having to use $item->value
+            if ($model instanceof SimpleValue) {
+                $model = $model->value;
+            }
+
+            return [$key => $model];
         }
 
         throw new \InvalidArgumentException(

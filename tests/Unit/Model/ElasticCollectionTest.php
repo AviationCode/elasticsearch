@@ -143,7 +143,7 @@ class ElasticCollectionTest extends TestCase
             ->dateHistogram('tweets_per_day', 'created_at', '1d');
 
         $result = ElasticCollection::parse($response);
-        $this->assertEquals(75, $result->aggregations->total->value);
+        $this->assertEquals(75, $result->aggregations->total);
         $this->assertEquals(2, $result->aggregations->users->count());
         $this->assertEquals(2, $result->aggregations->users->first()->tweets_per_day->count());
         $this->assertEquals(13, $result->aggregations->users->first()->tweets_per_day->first()->doc_count);

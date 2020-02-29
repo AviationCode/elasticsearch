@@ -2,16 +2,15 @@
 
 namespace AviationCode\Elasticsearch\Model\Aggregations\Metric;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Fluent;
+use AviationCode\Elasticsearch\Model\Aggregations\Common\Item;
 
 /**
  * Class GeoBounds.
  *
- * @property Fluent $topLeft;
- * @property Fluent $bottomRight;
+ * @property Item $top_left;
+ * @property Item $bottom_right;
  */
-class GeoBounds extends Fluent
+class GeoBounds extends Item
 {
     /**
      * GeoBounds Aggregation constructor.
@@ -20,9 +19,6 @@ class GeoBounds extends Fluent
      */
     public function __construct(array $attributes = [])
     {
-        parent::__construct([
-            'topLeft' => new Fluent(Arr::get($attributes, 'bounds.top_left')),
-            'bottomRight' => new Fluent(Arr::get($attributes, 'bounds.bottom_right')),
-        ]);
+        parent::__construct($attributes['bounds']);
     }
 }

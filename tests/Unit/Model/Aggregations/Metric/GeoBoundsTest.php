@@ -25,9 +25,9 @@ class GeoBoundsTest extends TestCase
 
         $geoBounds = new GeoBounds($value);
 
-        $this->assertEquals(48.86111099738628, $geoBounds->topLeft->lat);
-        $this->assertEquals(2.3269999679178, $geoBounds->topLeft->lon);
-        $this->assertEquals(48.85999997612089, $geoBounds->bottomRight->lat);
-        $this->assertEquals(2.3363889567553997, $geoBounds->bottomRight->lon);
+        $this->assertEquals(48.86111099738628, $geoBounds->top_left->lat);
+        $this->assertEquals(2.3269999679178, $geoBounds->top_left->lon);
+        $this->assertEquals(48.85999997612089, $geoBounds->bottom_right->lat);
+        $this->assertEquals(2.3363889567553997, $geoBounds->bottom_right->lon);
     }
 }

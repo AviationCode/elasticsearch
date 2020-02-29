@@ -2,7 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Model\Aggregations\Metric;
 
-use AviationCode\Elasticsearch\Model\Aggregations\Metric\ExtendedStats;
+use AviationCode\Elasticsearch\Model\Aggregations\Common\Item;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 use Illuminate\Support\Arr;
 
@@ -26,7 +26,7 @@ class ExtendedStatsTest extends TestCase
             ],
         ];
 
-        $extendedStats = new ExtendedStats($values);
+        $extendedStats = new Item($values);
 
         foreach (Arr::except($values, 'std_deviation_bounds') as $attribute => $value) {
             $this->assertEquals($value, $extendedStats->$attribute);

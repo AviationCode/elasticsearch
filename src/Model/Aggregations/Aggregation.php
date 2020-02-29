@@ -32,6 +32,7 @@ class Aggregation extends Fluent
         'cardinality' => 'simple_value',
         'children' => 'bucket',
         'derivative' => 'item',
+        'extended_stats' => 'item',
         'extended_stats_bucket' => 'item',
         'filter' => 'item',
         'filters' => 'bucket',

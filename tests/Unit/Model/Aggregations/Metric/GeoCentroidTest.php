@@ -2,7 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Model\Aggregations\Metric;
 
-use AviationCode\Elasticsearch\Model\Aggregations\Metric\GeoCentroid;
+use AviationCode\Elasticsearch\Model\Aggregations\Common\Item;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class GeoCentroidTest extends TestCase
@@ -18,7 +18,7 @@ class GeoCentroidTest extends TestCase
             'count' => 6,
         ];
 
-        $geoCentroid = new GeoCentroid($value);
+        $geoCentroid = new Item($value);
 
         $this->assertEquals(6, $geoCentroid->count);
         $this->assertEquals(51.00982965203002, $geoCentroid->location->lat);

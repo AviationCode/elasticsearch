@@ -36,6 +36,7 @@ class Aggregation extends Fluent
         'extended_stats_bucket' => 'item',
         'filter' => 'item',
         'filters' => 'bucket',
+        'geo_centroid' => 'item',
         'geo_distance' => 'bucket',
         'geohash_grid' => 'bucket',
         'geotile_grid' => 'bucket',

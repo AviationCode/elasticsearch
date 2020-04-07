@@ -2,6 +2,13 @@
 
 All notable changes to `Elasticsearch` will be documented in this file.
 
+## Version 0.6.1
+
+### Fixes
+
+* Fix: publish vendor config ([PR-56](https://github.com/AviationCode/elasticsearch/pull/56)) 
+
+
 ## Version 0.6.0
 ### Breaking changes
 

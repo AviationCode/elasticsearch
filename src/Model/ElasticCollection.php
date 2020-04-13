@@ -3,9 +3,9 @@
 namespace AviationCode\Elasticsearch\Model;
 
 use AviationCode\Elasticsearch\Model\Aggregations\Aggregation;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 
 final class ElasticCollection extends Collection
 {

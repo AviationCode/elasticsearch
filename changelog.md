@@ -2,6 +2,12 @@
 
 All notable changes to `Elasticsearch` will be documented in this file.
 
+## Version 0.6.2
+
+### Fixes
+
+* Fix: Include path eloquent collection ([PR-57](https://github.com/AviationCode/elasticsearch/pull/57)) 
+
 ## Version 0.6.1
 
 ### Fixes

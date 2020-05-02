@@ -19,7 +19,7 @@ All notable changes to `Elasticsearch` will be documented in this file.
 ### Breaking changes
 
 Any value type aggregation (sum, value_count, avg, ...) which returned a `SimpleValue` object having `value()` method
-and `value` property on it's fluent class, no longer turn `SimpleValue`
+and `value` property on its fluent class, no longer turn `SimpleValue`
 
 ```php
 // Old 
@@ -60,8 +60,8 @@ $aggs->sum('total_sales', 'item_count');
 
 
 ### Changes
-* Make SimpleValue no longer return a object instead return value
-* Aggregation return the aggregation object to add chaining
+* Make SimpleValue no longer return an object instead return value
+* Aggregation returns the aggregation object to add chaining
 
 ### Added
 * Add Significant Terms bucket aggregation

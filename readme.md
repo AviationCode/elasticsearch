@@ -16,7 +16,7 @@ $ composer require aviationcode/elasticsearch
 ```
 ## Configuration
 
-By default we use `localhost:9200` to search your elasticsearch instance. If this is the case no configuration is required at all.
+By default, we use `localhost:9200` to search your elasticsearch instance. If this is the case no configuration is required at all.
 You can use the following `.env` settings to configure how we connect to your elasticsearch instance.
 
 | Name             | Type      | Default     | Description
@@ -84,7 +84,7 @@ class Article extends Model
 
 ### Custom index name
 
-You may want to use a custom name or use existing index name with your eloquent model. Just like you can define the database table used you can also define the index named used
+You may want to use a custom name or use existing index name with your eloquent model. Just like you can define the database table used you can also define the index named used.
 
 ```php
 use AviationCode\Elasticsearch\Model\ElasticSearchable;

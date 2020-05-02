@@ -31,6 +31,7 @@ class SearchTest extends TestCase
                 'index' => 'article',
                 'typed_keys' => true,
                 'body' => [
+                    'from' => 0,
                     'size' => 2,
                 ],
             ])
@@ -143,6 +144,7 @@ class SearchTest extends TestCase
                 'index' => 'article',
                 'typed_keys' => true,
                 'body' => [
+                    'from' => 0,
                     'size' => 2,
                 ],
             ])
@@ -350,6 +352,7 @@ class SearchTest extends TestCase
                 'index' => 'article',
                 'typed_keys' => true,
                 'body' => [
+                    'from' => 0,
                     'size' => 100,
                     'sort' => [['created_at' => 'desc']],
                 ],
@@ -372,6 +375,7 @@ class SearchTest extends TestCase
                 'index' => 'article',
                 'typed_keys' => true,
                 'body' => [
+                    'from' => 0,
                     'size' => 1,
                 ],
             ])
@@ -401,6 +405,7 @@ class SearchTest extends TestCase
                 'index' => 'article',
                 'typed_keys' => true,
                 'body' => [
+                    'from' => 0,
                     'size' => 100,
                     'query' => [
                         'bool' => [
@@ -438,6 +443,7 @@ class SearchTest extends TestCase
             ->with([
                 'index' => 'article',
                 'body' => [
+                    'from' => 0,
                     'size' => 2,
                     'sort' => [
                         ['id' => 'asc']
@@ -452,6 +458,7 @@ class SearchTest extends TestCase
                 'index' => 'article',
                 'typed_keys' => true,
                 'body' => [
+                    'from' => 0,
                     'size' => 2,
                     'query' => [
                         'bool' => [
@@ -479,6 +486,7 @@ class SearchTest extends TestCase
                 'index' => 'article',
                 'typed_keys' => true,
                 'body' => [
+                    'from' => 0,
                     'size' => 2,
                     'query' => [
                         'bool' => [
@@ -541,6 +549,7 @@ class SearchTest extends TestCase
             ->with([
                 'index' => 'article',
                 'body' => [
+                    'from' => 0,
                     'size' => 2,
                     'sort' => [
                         ['id' => 'asc']
@@ -555,6 +564,7 @@ class SearchTest extends TestCase
                 'index' => 'article',
                 'typed_keys' => true,
                 'body' => [
+                    'from' => 0,
                     'size' => 2,
                     'query' => [
                         'bool' => [
@@ -582,6 +592,7 @@ class SearchTest extends TestCase
                 'index' => 'article',
                 'typed_keys' => true,
                 'body' => [
+                    'from' => 0,
                     'size' => 2,
                     'query' => [
                         'bool' => [
@@ -640,6 +651,7 @@ class SearchTest extends TestCase
             ->with([
                 'index' => 'article',
                 'body' => [
+                    'from' => 0,
                     'size' => 2,
                     'sort' => [
                         ['id' => 'asc']
@@ -671,6 +683,7 @@ class SearchTest extends TestCase
             ->with([
                 'index' => 'article',
                 'body' => [
+                    'from' => 0,
                     'size' => 2,
                     'sort' => [
                         ['id' => 'asc']

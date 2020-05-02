@@ -6,11 +6,13 @@ use AviationCode\Elasticsearch\ElasticsearchClient;
 use AviationCode\Elasticsearch\Model\ElasticCollection;
 use AviationCode\Elasticsearch\Model\ElasticHit;
 use AviationCode\Elasticsearch\Model\ElasticSearchable;
+use AviationCode\Elasticsearch\Pagination\SimplePaginator;
 use AviationCode\Elasticsearch\Query\Aggregations\Aggregation;
 use AviationCode\Elasticsearch\Query\Dsl\Boolean\Filter;
 use AviationCode\Elasticsearch\Query\Dsl\Query;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Pagination\Paginator;
 
 class Builder
 {
@@ -27,6 +29,13 @@ class Builder
      * @var int
      */
     private $size = 100;
+
+    /**
+     * The offset to use limited to max-window size.
+     *
+     * @var int
+     */
+    private $from = 0;
 
     /**
      * Sorting fields.
@@ -143,6 +152,26 @@ class Builder
     }
 
     /**
+     * @param int $offset
+     * @return $this
+     */
+    public function skip(int $offset)
+    {
+        return $this->from($offset);
+    }
+
+    /**
+     * @param int $from
+     * @return $this
+     */
+    public function from(int $from)
+    {
+        $this->from = $from;
+
+        return $this;
+    }
+
+    /**
      * Get first result.
      *
      * @return Model|null
@@ -150,6 +179,24 @@ class Builder
     public function first()
     {
         return $this->limit(1)->get()[0] ?? null;
+    }
+
+    /**
+     * @param null $perPage
+     * @param string[] $columns
+     * @param string $pageName
+     * @param null $page
+     * @return mixed|object
+     */
+    public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null)
+    {
+        $perPage = $perPage ?: ($this->model ? $this->model->getPerPage() : 100);
+        $currentPage = $page ?: Paginator::resolveCurrentPage($pageName);
+        $items = $this->skip($perPage * $currentPage)
+            ->limit($perPage)
+            ->get();
+
+        return new SimplePaginator($items, $perPage, $currentPage, $pageName);
     }
 
     /**
@@ -302,6 +349,7 @@ class Builder
     public function get()
     {
         return ElasticCollection::parse($this->raw([
+            'from' => $this->from,
             'size' => $this->size,
             'query' => $this->query->toArray(),
             'sort' => $this->sort,

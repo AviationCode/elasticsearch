@@ -2,6 +2,14 @@
 
 All notable changes to `Elasticsearch` will be documented in this file.
 
+## Version 0.7.0
+
+## Added
+
+ * Skip method on query builder (alias)
+ * From method to offset a query by X records. Is limited by the max-window size on your elastic configuration (default: 10.000)
+ * Add paginate method on query builder compatible with Eloquent Builder paginator
+
 ## Version 0.6.2
 
 ### Fixes

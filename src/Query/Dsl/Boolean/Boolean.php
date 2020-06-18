@@ -20,10 +20,12 @@ use AviationCode\Elasticsearch\Query\Dsl\Term\Prefix;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Range;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Regexp;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Term;
+use AviationCode\Elasticsearch\Query\Dsl\Term\Terms;
 use AviationCode\Elasticsearch\Query\Dsl\Term\TermsSet;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Wildcard;
 use Countable;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Support\Collection;
 
 abstract class Boolean implements Arrayable, Countable
 {
@@ -158,6 +160,22 @@ abstract class Boolean implements Arrayable, Countable
     public function term(string $field, string $value, ?float $boost = null): self
     {
         $this->clauses[] = new Term($field, $value, $boost);
+
+        return $this;
+    }
+
+    /**
+     * Returns documents that contain an exact terms in a provided field.
+     *
+     * @param string $field
+     * @param array|Collection $values
+     * @param float|null $boost
+     *
+     * @return $this
+     */
+    public function terms(string $field, $values, ?float $boost = null): self
+    {
+        $this->clauses[] = new Terms($field, $values, $boost);
 
         return $this;
     }

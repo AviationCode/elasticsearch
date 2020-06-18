@@ -10,6 +10,9 @@ All notable changes to `Elasticsearch` will be documented in this file.
  * From method to offset a query by X records. Is limited by the max-window size on your elastic configuration (default: 10.000)
  * Add paginate method on query builder compatible with Eloquent Builder paginator
 
+## Fixed
+ * Add missing terms query
+
 ## Version 0.6.2
 
 ### Fixes

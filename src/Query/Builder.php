@@ -59,6 +59,11 @@ class Builder
     private $aggregations;
 
     /**
+     * @var array|string[]|null
+     */
+    private $fields;
+
+    /**
      * Builder constructor.
      * @param ElasticSearchable|mixed|string|null $model
      */
@@ -134,6 +139,21 @@ class Builder
     public function orderBy(string $field, $direction = 'asc')
     {
         $this->sort[] = [$field => $direction];
+
+        return $this;
+    }
+
+    /**
+     * @param array|string[] $fields
+     * @return Builder
+     */
+    public function select(array $fields = ['*'])
+    {
+        if (in_array('*', $fields)) {
+            $this->fields = null;
+        }
+
+        $this->fields = $fields;
 
         return $this;
     }
@@ -354,6 +374,7 @@ class Builder
             'query' => $this->query->toArray(),
             'sort' => $this->sort,
             'aggs' => $this->aggregations->toArray(),
+            '_source' => $this->fields,
         ], $this->model->getIndexName(), ['typed_keys' => true]), $this->model);
     }
 

@@ -2,6 +2,12 @@
 
 All notable changes to `Elasticsearch` will be documented in this file.
 
+## Version 0.8.0
+
+## Added
+
+* `select($fields)` to query builder filtering results down subset of fields.
+
 ## Version 0.7.0
 
 ## Added

@@ -2,6 +2,16 @@
 
 All notable changes to `Elasticsearch` will be documented in this file.
 
+## Version 0.9.0
+
+## Added
+
+* Add Laravel 8 support
+
+## Removed
+
+* Remove Laravel 5.X support
+
 ## Version 0.8.0
 
 ## Added

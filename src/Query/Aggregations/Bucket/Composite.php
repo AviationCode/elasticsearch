@@ -58,6 +58,13 @@ class Composite extends Bucket
         return $this;
     }
 
+    public function options(array $options = []): self
+    {
+        $this->options = array_merge($this->options, $this->allowedOptions($options));
+
+        return $this;
+    }
+
     protected function toElastic(): array
     {
         $mappedSources = [];

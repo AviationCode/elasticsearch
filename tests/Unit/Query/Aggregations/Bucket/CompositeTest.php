@@ -115,17 +115,17 @@ class CompositeTest extends TestCase
 
         $agg
             ->composite('composite_test')
-            ->addTermsSource('street_source', new Terms('street_field'))
+            ->addTermsSource('street_field', new Terms('street_field'))
             ->addHistogramSource(
-                'histogram_source',
+                'histogram_field',
                 new Histogram('histogram_field', 2, ['order' => 'desc'])
             )
             ->addDateHistogramSource(
-                'date_histogram_source',
+                'date_histogram_field',
                 new DateHistogram('date_histogram_field', '1d')
             )
             ->addGeoTileGridSource(
-                'geo_tile_grid_source',
+                'geo_tile_grid_field',
                 new GeotileGrid('geo_tile_grid_field')
             );
 
@@ -135,14 +135,14 @@ class CompositeTest extends TestCase
                     'composite' => [
                         'sources' => [
                             [
-                                'street_source' => [
+                                'street_field' => [
                                     'terms' => [
                                         'field' => 'street_field',
                                     ],
                                 ],
                             ],
                             [
-                                'histogram_source' => [
+                                'histogram_field' => [
                                     'histogram' => [
                                         'field' => 'histogram_field',
                                         'interval' => 2,
@@ -151,7 +151,7 @@ class CompositeTest extends TestCase
                                 ],
                             ],
                             [
-                                'date_histogram_source' => [
+                                'date_histogram_field' => [
                                     'date_histogram' => [
                                         'field' => 'date_histogram_field',
                                         'fixed_interval' => '1d',
@@ -159,13 +159,45 @@ class CompositeTest extends TestCase
                                 ],
                             ],
                             [
-                                'geo_tile_grid_source' => [
+                                'geo_tile_grid_field' => [
                                     'geotile_grid' => [
                                         'field' => 'geo_tile_grid_field',
                                     ],
                                 ],
                             ],
                         ],
+                    ],
+                ],
+            ],
+            $agg->toArray()
+        );
+    }
+
+    /** @test */
+    public function it_can_add_options_dynamically()
+    {
+        $agg = new Aggregation();
+
+        $agg
+            ->composite('composite_1', [], ['size' => 10])
+            ->addTermsSource('terms_field', new Terms('terms_field'))
+            ->options(['size' => 200, 'after' => ['terms_field' => 'terms_value'], 'invalid_key' => 'value']);
+
+        $this->assertEquals(
+            [
+                'composite_1' => [
+                    'composite' => [
+                        'sources' => [
+                            [
+                                'terms_field' => [
+                                    'terms' => [
+                                        'field' => 'terms_field',
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'size' => 200,
+                        'after' => ['terms_field' => 'terms_value'],
                     ],
                 ],
             ],

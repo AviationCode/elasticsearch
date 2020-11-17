@@ -33,7 +33,7 @@ use Illuminate\Support\Str;
  * @method Bucket\AdjacencyMatrix adjacencyMatrix(string $key, array $filters = [])
  * @method Bucket\AutoDateHistogram autoDateHistogram(string $key, string $field, array $options = [])
  * @method Bucket\Children children(string $key, string $type)
- * @todo composite
+ * @method Bucket\Composite composite(string $key, array $sources = [], array $options = [])
  * @method Bucket\DateHistogram dateHistogram(string $key, string $field, string $interval, string $intervalType = Bucket\DateHistogram::FIXED, array $options = [])
  * @method Bucket\DateRange dateRange(string $key, string $field, array $ranges, array $options = [])
  * @method Bucket\DiversifiedSampler diversifiedSampler(string $key, ?int $shardSize = null, ?string $field = null, ?int $maxDocsPerValue = null))

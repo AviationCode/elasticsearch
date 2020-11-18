@@ -2,6 +2,13 @@
 
 All notable changes to `Elasticsearch` will be documented in this file.
 
+## Version 0.10.0
+
+## Added
+
+* Add composite bucket support
+
+
 ## Version 0.9.0
 
 ## Added

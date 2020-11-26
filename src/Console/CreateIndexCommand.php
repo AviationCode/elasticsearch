@@ -41,7 +41,7 @@ class CreateIndexCommand extends Command
         $this->table(
             ['Field', 'Type', 'Options'],
             collect($model->getSearchMapping())->map(function ($mapping, $field) {
-                $type = $mapping['type'];
+                $type = $mapping['type'] ?? '-';
                 unset($mapping['type']);
 
                 return [$field, $type, json_encode($mapping)];

@@ -212,7 +212,7 @@ class Builder
     {
         $perPage = $perPage ?: ($this->model ? $this->model->getPerPage() : 100);
         $currentPage = $page ?: Paginator::resolveCurrentPage($pageName);
-        $items = $this->skip($perPage * $currentPage)
+        $items = $this->skip($perPage * ($currentPage - 1))
             ->limit($perPage)
             ->get();
 

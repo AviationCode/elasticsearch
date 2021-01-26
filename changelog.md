@@ -2,6 +2,18 @@
 
 All notable changes to `Elasticsearch` will be documented in this file.
 
+
+## Version 0.11.0
+
+## Added
+
+* Add support for Count API
+
+## Fixed
+
+* Don't skip the first x documents equal to `$perPage`
+
+
 ## Version 0.10.0
 
 ## Added

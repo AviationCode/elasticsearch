@@ -344,6 +344,16 @@ class Builder
     }
 
     /**
+     * Return the Dsl Query object.
+     *
+     * @return \AviationCode\Elasticsearch\Query\Dsl\Query
+     */
+    public function query(): Query
+    {
+        return $this->query;
+    }
+
+    /**
      * Perform a raw elastic query.
      *
      * @param array $query
@@ -376,6 +386,16 @@ class Builder
             'aggs' => $this->aggregations->toArray(),
             '_source' => $this->fields,
         ], $this->model->getIndexName(), ['typed_keys' => true]), $this->model);
+    }
+
+    public function count(): int
+    {
+        return (int) ($this->getClient()->count(
+            [
+                'index' => $this->model->getIndexName(),
+                'body' => array_filter(['query' => $this->query->toArray()]),
+            ]
+        )['count']);
     }
 
     /**

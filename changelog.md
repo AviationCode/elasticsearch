@@ -2,6 +2,11 @@
 
 All notable changes to `Elasticsearch` will be documented in this file.
 
+## Version 0.12.0
+
+## Added
+
+* Fetch aggregations from SimplePaginator
 
 ## Version 0.11.0
 

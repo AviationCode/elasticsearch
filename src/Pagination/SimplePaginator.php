@@ -2,6 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Pagination;
 
+use AviationCode\Elasticsearch\Model\Aggregations\Aggregation;
 use AviationCode\Elasticsearch\Model\ElasticCollection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
@@ -32,5 +33,10 @@ class SimplePaginator extends LengthAwarePaginator
         if ($this->items->total_relation == 'gte') {
             $this->lastPage--;
         }
+    }
+
+    public function aggregations(): Aggregation
+    {
+        return $this->items->aggregations;
     }
 }

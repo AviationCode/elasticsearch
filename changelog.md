@@ -2,71 +2,79 @@
 
 All notable changes to `Elasticsearch` will be documented in this file.
 
+## Version 0.13.0
+
+### Fixed
+
+* Rename `AviationCode\Elasticsearch\Query\Dsl\FullText\Match`
+  to `AviationCode\Elasticsearch\Query\Dsl\FullText\MatchQuery` to respect the new `match` preserved keyword as of PHP8.
+  See [https://www.php.net/manual/en/reserved.keywords.php](https://www.php.net/manual/en/reserved.keywords.php)
+
 ## Version 0.12.0
 
-## Added
+### Added
 
 * Fetch aggregations from SimplePaginator
 
 ## Version 0.11.0
 
-## Added
+### Added
 
 * Add support for Count API
 
-## Fixed
+### Fixed
 
 * Don't skip the first x documents equal to `$perPage`
 
-
 ## Version 0.10.0
 
-## Added
+### Added
 
 * Add composite bucket support
 
-
 ## Version 0.9.0
 
-## Added
+### Added
 
 * Add Laravel 8 support
 
-## Removed
+### Removed
 
 * Remove Laravel 5.X support
 
 ## Version 0.8.0
 
-## Added
+### Added
 
 * `select($fields)` to query builder filtering results down subset of fields.
 
 ## Version 0.7.0
 
-## Added
+### Added
 
- * Skip method on query builder (alias)
- * From method to offset a query by X records. Is limited by the max-window size on your elastic configuration (default: 10.000)
- * Add paginate method on query builder compatible with Eloquent Builder paginator
+* Skip method on query builder (alias)
+* From method to offset a query by X records. Is limited by the max-window size on your elastic configuration (default:
+  10.000)
+* Add paginate method on query builder compatible with Eloquent Builder paginator
 
-## Fixed
- * Add missing terms query
+### Fixed
+
+* Add missing terms query
 
 ## Version 0.6.2
 
 ### Fixes
 
-* Fix: Include path eloquent collection ([PR-57](https://github.com/AviationCode/elasticsearch/pull/57)) 
+* Fix: Include path eloquent collection ([PR-57](https://github.com/AviationCode/elasticsearch/pull/57))
 
 ## Version 0.6.1
 
 ### Fixes
 
-* Fix: publish vendor config ([PR-56](https://github.com/AviationCode/elasticsearch/pull/56)) 
-
+* Fix: publish vendor config ([PR-56](https://github.com/AviationCode/elasticsearch/pull/56))
 
 ## Version 0.6.0
+
 ### Breaking changes
 
 Any value type aggregation (sum, value_count, avg, ...) which returned a `SimpleValue` object having `value()` method
@@ -83,7 +91,7 @@ $result->aggregation->total;
 Chaining aggregations will place them on the parent aggregation.
 
 Expected aggregation structure:
- 
+
 * categories
     * sales
 * total_sales
@@ -107,14 +115,13 @@ $aggs->terms('categories', 'category')
 $aggs->sum('total_sales', 'item_count');
 ```
 
-
-
-
 ### Changes
+
 * Make SimpleValue no longer return an object instead return value
 * Aggregation returns the aggregation object to add chaining
 
 ### Added
+
 * Add Significant Terms bucket aggregation
 * Add Perecentiles metric aggregation
 * Add percentile ranks metric aggregation
@@ -158,9 +165,10 @@ $aggs->sum('total_sales', 'item_count');
 ### Added
 
 * Add `elastic:create-index` command to interactively create index
-* Serialize aggregations to array / json. 
+* Serialize aggregations to array / json.
 
 ### Fixes
+
 * Fix search threw exception when requesting empty filter
 * Fix zero size ignored in query
 * Fix incorrect index name taken from eloquent models
@@ -168,6 +176,7 @@ $aggs->sum('total_sales', 'item_count');
 ## Version 0.3.0
 
 ### Added
+
 * Use new extended config format (support https, basic auth...)
 
 ### Fixes

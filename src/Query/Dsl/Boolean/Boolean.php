@@ -2,7 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Query\Dsl\Boolean;
 
-use AviationCode\Elasticsearch\Query\Dsl\FullText\Match;
+use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchQuery;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchBoolPrefix;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchPhrase;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchPhrasePrefix;
@@ -224,7 +224,7 @@ abstract class Boolean implements Arrayable, Countable
      */
     public function match(string $key, $query, array $options = []): self
     {
-        $this->clauses[] = new Match($key, $query, $options);
+        $this->clauses[] = new MatchQuery($key, $query, $options);
 
         return $this;
     }

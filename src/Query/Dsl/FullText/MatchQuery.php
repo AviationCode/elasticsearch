@@ -9,7 +9,7 @@ use Illuminate\Contracts\Support\Arrayable;
  *
  * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-match-query.html
  */
-class Match implements Arrayable
+class MatchQuery implements Arrayable
 {
     public const KEY = 'match';
 

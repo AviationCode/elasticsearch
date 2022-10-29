@@ -47,5 +47,10 @@
                 "Elasticsearch": "AviationCode\\Elasticsearch\\Facades\\Elasticsearch"
             }
         }
+    },
+    "scripts": {
+        "test": [
+            "vendor/bin/phpunit"
+        ]
     }
 }

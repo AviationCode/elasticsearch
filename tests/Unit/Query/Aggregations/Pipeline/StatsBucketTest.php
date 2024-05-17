@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\StatsBucket;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class StatsBucketTest extends TestCase
+final class StatsBucketTest extends TestCase
 {
     #[Test]
     public function it_builds_stats_bucket_aggregation(): void

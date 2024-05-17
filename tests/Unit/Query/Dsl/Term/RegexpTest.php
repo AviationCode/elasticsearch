@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Regexp;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class RegexpTest extends TestCase
+final class RegexpTest extends TestCase
 {
     #[Test]
     public function it_builds_simple_regexp(): void

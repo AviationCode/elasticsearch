@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoShape;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class GeoShapeTest extends TestCase
+final class GeoShapeTest extends TestCase
 {
     #[Test]
     public function it_builds_geo_shape_query(): void

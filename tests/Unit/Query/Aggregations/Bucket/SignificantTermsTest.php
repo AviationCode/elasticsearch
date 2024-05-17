@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\SignificantTerms;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class SignificantTermsTest extends TestCase
+final class SignificantTermsTest extends TestCase
 {
     #[Test]
     public function it_builds_a_significant_terms_aggregation(): void

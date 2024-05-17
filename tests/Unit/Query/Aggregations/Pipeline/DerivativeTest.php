@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\Derivative;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class DerivativeTest extends TestCase
+final class DerivativeTest extends TestCase
 {
     #[Test]
     public function it_builds_derivative_aggregation(): void

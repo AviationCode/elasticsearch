@@ -7,7 +7,7 @@ use AviationCode\Elasticsearch\Model\Aggregations\Bucket\DateRange;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 use Carbon\Carbon;
 
-class DateRangeTest extends TestCase
+final class DateRangeTest extends TestCase
 {
     #[Test]
     public function it_successfully_translates_a_date_range(): void

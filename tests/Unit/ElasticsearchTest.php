@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Elasticsearch;
 use Elasticsearch\Client;
 
-class ElasticsearchTest extends TestCase
+final class ElasticsearchTest extends TestCase
 {
     /** @var Client|\Mockery\LegacyMockInterface|\Mockery\MockInterface Moc */
     protected $client;

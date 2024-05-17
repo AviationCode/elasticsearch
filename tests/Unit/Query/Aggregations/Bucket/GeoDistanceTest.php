@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\GeoDistance;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class GeoDistanceTest extends TestCase
+final class GeoDistanceTest extends TestCase
 {
     #[Test]
     public function it_builds_a_geo_distance_bucket_aggregation(): void

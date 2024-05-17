@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchPhrase;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class MatchPhraseTest extends TestCase
+final class MatchPhraseTest extends TestCase
 {
     #[Test]
     public function it_matches_phrase_query(): void

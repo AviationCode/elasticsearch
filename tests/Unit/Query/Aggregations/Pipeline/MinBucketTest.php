@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\MinBucket;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class MinBucketTest extends TestCase
+final class MinBucketTest extends TestCase
 {
     #[Test]
     public function it_builds_min_bucket_aggregation(): void

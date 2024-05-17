@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Metric\MedianAbsoluteDeviation;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class MedianAbsoluteDeviationTest extends TestCase
+final class MedianAbsoluteDeviationTest extends TestCase
 {
     #[Test]
     public function it_builds_a_median_absolute_deviation_aggregation(): void

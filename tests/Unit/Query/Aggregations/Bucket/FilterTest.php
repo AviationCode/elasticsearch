@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\Filter;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class FilterTest extends TestCase
+final class FilterTest extends TestCase
 {
     #[Test]
     public function it_adds_filter_aggregation(): void

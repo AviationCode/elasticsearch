@@ -7,7 +7,7 @@ use AviationCode\Elasticsearch\Model\ElasticCollection;
 use AviationCode\Elasticsearch\Query\Builder;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class ElasticCollectionTest extends TestCase
+final class ElasticCollectionTest extends TestCase
 {
     #[Test]
     public function it_builds_up_elastic_collection(): void

@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchBoolPrefix;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class MatchBoolPrefixTest extends TestCase
+final class MatchBoolPrefixTest extends TestCase
 {
     #[Test]
     public function it_builds_match_bool_prefix(): void

@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\SumBucket;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class SumBucketTest extends TestCase
+final class SumBucketTest extends TestCase
 {
     #[Test]
     public function it_builds_sum_bucket_aggregation(): void

@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\Term\TermsSet;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class TermsSetTest extends TestCase
+final class TermsSetTest extends TestCase
 {
     #[Test]
     public function it_builds_terms_set(): void

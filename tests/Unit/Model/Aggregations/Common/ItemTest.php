@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\Aggregations\Common\Item;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class ItemTest extends TestCase
+final class ItemTest extends TestCase
 {
     #[Test]
     public function it_maps_key_values(): void

@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\SimpleQueryString;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class SimpleQueryStringTest extends TestCase
+final class SimpleQueryStringTest extends TestCase
 {
     #[Test]
     public function it_adds_query_string_clause(): void

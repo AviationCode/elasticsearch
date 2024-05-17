@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\ElasticCollection;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class ElasticSearchableTest extends TestCase
+final class ElasticSearchableTest extends TestCase
 {
     #[Test]
     public function it_builds_eloquent_model_from_elastic_results(): void

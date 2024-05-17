@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\AvgBucket;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class AvgBucketTest extends TestCase
+final class AvgBucketTest extends TestCase
 {
     #[Test]
     public function it_builds_avg_bucket_aggregation(): void

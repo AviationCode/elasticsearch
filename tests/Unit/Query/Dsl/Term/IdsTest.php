@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Ids;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class IdsTest extends TestCase
+final class IdsTest extends TestCase
 {
     #[Test]
     public function it_builds_ids_clause(): void

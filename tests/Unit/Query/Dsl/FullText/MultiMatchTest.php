@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MultiMatch;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class MultiMatchTest extends TestCase
+final class MultiMatchTest extends TestCase
 {
     #[Test]
     public function it_builds_match_phrase_prefix_query(): void

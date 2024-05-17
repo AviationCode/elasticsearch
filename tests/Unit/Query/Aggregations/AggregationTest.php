@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Aggregation;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class AggregationTest extends TestCase
+final class AggregationTest extends TestCase
 {
     #[Test]
     public function it_builds_a_complete_nested_example(): void

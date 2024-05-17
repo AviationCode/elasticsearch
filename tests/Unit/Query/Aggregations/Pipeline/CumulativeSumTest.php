@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\CumulativeSum;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class CumulativeSumTest extends TestCase
+final class CumulativeSumTest extends TestCase
 {
     #[Test]
     public function it_builds_cumulative_sum_aggregation(): void

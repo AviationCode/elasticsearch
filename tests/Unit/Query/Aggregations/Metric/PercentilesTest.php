@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Metric\Percentiles;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class PercentilesTest extends TestCase
+final class PercentilesTest extends TestCase
 {
     #[Test]
     public function it_builds_a_percentiles_aggregation(): void

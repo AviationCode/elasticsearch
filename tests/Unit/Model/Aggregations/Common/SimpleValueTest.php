@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\Aggregations\Common\SimpleValue;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class SimpleValueTest extends TestCase
+final class SimpleValueTest extends TestCase
 {
     #[Test]
     public function it_translates_simple_value(): void

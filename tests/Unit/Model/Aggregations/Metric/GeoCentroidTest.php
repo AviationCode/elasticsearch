@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\Aggregations\Common\Item;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class GeoCentroidTest extends TestCase
+final class GeoCentroidTest extends TestCase
 {
     #[Test]
     public function it_translates_geo_centroid_aggregation(): void

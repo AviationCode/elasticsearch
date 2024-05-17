@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoPolygon;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class GeoPolygonTest extends TestCase
+final class GeoPolygonTest extends TestCase
 {
     #[Test]
     public function it_builds_a_geo_polygon(): void

@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Prefix;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class PrefixTest extends TestCase
+final class PrefixTest extends TestCase
 {
     #[Test]
     public function it_builds_prefix_clause(): void

@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Aggregation;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class ValueCountTest extends TestCase
+final class ValueCountTest extends TestCase
 {
     #[Test]
     public function it_builds_a_value_count_aggregation(): void

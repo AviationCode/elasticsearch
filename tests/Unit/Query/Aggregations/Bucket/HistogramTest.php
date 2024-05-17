@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\Histogram;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class HistogramTest extends TestCase
+final class HistogramTest extends TestCase
 {
     #[Test]
     public function it_builds_histogram_aggregation(): void

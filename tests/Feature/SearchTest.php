@@ -11,7 +11,7 @@ use Carbon\Carbon;
 use Elasticsearch\Client;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class SearchTest extends TestCase
+final class SearchTest extends TestCase
 {
     /**
      * @var Client|\Mockery\LegacyMockInterface|\Mockery\MockInterface

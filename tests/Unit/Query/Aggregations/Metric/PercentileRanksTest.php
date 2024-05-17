@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Metric\PercentileRanks;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class PercentileRanksTest extends TestCase
+final class PercentileRanksTest extends TestCase
 {
     #[Test]
     public function it_builds_a_percentile_ranks_aggregation(): void

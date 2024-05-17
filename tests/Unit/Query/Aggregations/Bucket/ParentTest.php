@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\ParentBucket;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class ParentTest extends TestCase
+final class ParentTest extends TestCase
 {
     #[Test]
     public function it_adds_parent_aggregation(): void

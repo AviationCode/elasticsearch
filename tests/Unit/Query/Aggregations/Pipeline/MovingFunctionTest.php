@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\MovingFunction;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class MovingFunctionTest extends TestCase
+final class MovingFunctionTest extends TestCase
 {
     #[Test]
     public function it_builds_moving_fn_aggregation(): void

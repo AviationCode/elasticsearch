@@ -10,7 +10,7 @@ use AviationCode\Elasticsearch\Query\Dsl\Boolean\Should;
 use AviationCode\Elasticsearch\Query\Dsl\Compound\Boolean;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class BooleanTest extends TestCase
+final class BooleanTest extends TestCase
 {
     #[Test]
     public function it_builds_all_possible_query_objects(): void

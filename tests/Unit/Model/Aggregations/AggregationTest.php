@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\Aggregations\Aggregation;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class AggregationTest extends TestCase
+final class AggregationTest extends TestCase
 {
     #[Test]
     public function it_handles_special_string_terms_model(): void

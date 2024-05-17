@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\GeotileGrid;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class GeotileGridTest extends TestCase
+final class GeotileGridTest extends TestCase
 {
     #[Test]
     public function it_builds_a_geotile_grid_aggregation(): void

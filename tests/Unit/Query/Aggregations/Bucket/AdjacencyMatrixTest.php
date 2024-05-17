@@ -7,7 +7,7 @@ use AviationCode\Elasticsearch\Query\Aggregations\Bucket\AdjacencyMatrix;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Terms;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class AdjacencyMatrixTest extends TestCase
+final class AdjacencyMatrixTest extends TestCase
 {
     #[Test]
     public function it_builds_matrix_aggregation(): void

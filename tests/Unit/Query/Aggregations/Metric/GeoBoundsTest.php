@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Aggregation;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class GeoBoundsTest extends TestCase
+final class GeoBoundsTest extends TestCase
 {
     #[Test]
     public function it_builds_a_geo_bounds_aggregation(): void

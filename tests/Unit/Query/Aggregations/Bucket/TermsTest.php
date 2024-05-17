@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Aggregation;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class TermsTest extends TestCase
+final class TermsTest extends TestCase
 {
     #[Test]
     public function it_builds_a_terms_aggregation(): void

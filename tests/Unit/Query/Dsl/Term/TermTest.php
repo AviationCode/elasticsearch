@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Term;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class TermTest extends TestCase
+final class TermTest extends TestCase
 {
     #[Test]
     public function it_builds_term_clause(): void

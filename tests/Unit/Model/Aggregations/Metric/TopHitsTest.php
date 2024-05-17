@@ -7,7 +7,7 @@ use AviationCode\Elasticsearch\Model\Aggregations\Metric\TopHits;
 use AviationCode\Elasticsearch\Model\ElasticHit;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class TopHitsTest extends TestCase
+final class TopHitsTest extends TestCase
 {
     #[Test]
     public function it_maps_top_hits_model(): void

@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchQuery;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class MatchQueryTest extends TestCase
+final class MatchQueryTest extends TestCase
 {
     #[Test]
     public function it_builds_match_clause(): void

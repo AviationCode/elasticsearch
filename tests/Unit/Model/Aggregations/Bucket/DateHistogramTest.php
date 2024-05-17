@@ -8,7 +8,7 @@ use AviationCode\Elasticsearch\Query\Aggregations\Bucket\DateHistogram as DateHi
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 use Carbon\Carbon;
 
-class DateHistogramTest extends TestCase
+final class DateHistogramTest extends TestCase
 {
     #[Test]
     public function it_builds_a_date_histogram(): void

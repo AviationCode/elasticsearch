@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Metric\TopHits;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class TopHitsTest extends TestCase
+final class TopHitsTest extends TestCase
 {
     #[Test]
     public function it_adds_top_hits_aggregations(): void

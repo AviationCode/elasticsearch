@@ -7,7 +7,7 @@ use AviationCode\Elasticsearch\Query\Dsl\Boolean\Must;
 use AviationCode\Elasticsearch\Tests\Feature\TestModels\Article;
 use Elasticsearch\Client;
 
-class CountTest extends TestCase
+final class CountTest extends TestCase
 {
     /**
      * @var Client|\Mockery\LegacyMockInterface|\Mockery\MockInterface

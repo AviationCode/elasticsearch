@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\CumulativeCardinality;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class CumulativeCardinalityTest extends TestCase
+final class CumulativeCardinalityTest extends TestCase
 {
     #[Test]
     public function it_builds_cumulative_cardinality_aggregation(): void

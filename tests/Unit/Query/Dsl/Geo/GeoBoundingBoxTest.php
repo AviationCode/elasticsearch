@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoBoundingBox;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class GeoBoundingBoxTest extends TestCase
+final class GeoBoundingBoxTest extends TestCase
 {
     #[Test]
     public function it_builds_a_geo_bounding_box_query(): void

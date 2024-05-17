@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Aggregation;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class StatTest extends TestCase
+final class StatTest extends TestCase
 {
     #[Test]
     public function it_builds_a_stats_aggregation(): void

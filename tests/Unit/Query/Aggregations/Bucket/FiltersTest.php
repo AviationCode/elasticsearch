@@ -7,7 +7,7 @@ use AviationCode\Elasticsearch\Query\Aggregations\Bucket\Filters;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Term;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class FiltersTest extends TestCase
+final class FiltersTest extends TestCase
 {
     #[Test]
     public function it_adds_filters_aggregation(): void

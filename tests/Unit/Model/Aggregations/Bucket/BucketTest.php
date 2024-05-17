@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\Aggregations\Bucket\Bucket;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class BucketTest extends TestCase
+final class BucketTest extends TestCase
 {
     #[Test]
     public function it_can_build_a_bucket_aggregation(): void

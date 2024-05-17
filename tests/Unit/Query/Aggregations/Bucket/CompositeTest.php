@@ -11,7 +11,7 @@ use AviationCode\Elasticsearch\Query\Aggregations\Bucket\Terms;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Range;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class CompositeTest extends TestCase
+final class CompositeTest extends TestCase
 {
     #[Test]
     public function it_builds_a_composite_aggregation(): void

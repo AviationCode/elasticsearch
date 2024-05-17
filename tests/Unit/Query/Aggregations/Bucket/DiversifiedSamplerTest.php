@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\DiversifiedSampler;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class DiversifiedSamplerTest extends TestCase
+final class DiversifiedSamplerTest extends TestCase
 {
     #[Test]
     public function it_builds_a_sampler_aggregation(): void

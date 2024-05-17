@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\RareTerms;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class RareTermsTest extends TestCase
+final class RareTermsTest extends TestCase
 {
     #[Test]
     public function it_builds_a_rare_terms_aggregations(): void

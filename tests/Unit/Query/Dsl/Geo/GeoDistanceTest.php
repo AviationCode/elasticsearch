@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoDistance;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class GeoDistanceTest extends TestCase
+final class GeoDistanceTest extends TestCase
 {
     #[Test]
     public function it_builds_geo_distance_query(): void

@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\BucketSelector;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class BucketSelectorTest extends TestCase
+final class BucketSelectorTest extends TestCase
 {
     #[Test]
     public function it_builds_bucket_selector_aggregation(): void

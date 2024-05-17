@@ -7,7 +7,7 @@ use AviationCode\Elasticsearch\Model\Aggregations\Bucket\AutoDateHistogram;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 use Carbon\Carbon;
 
-class AutoDateHistogramTest extends TestCase
+final class AutoDateHistogramTest extends TestCase
 {
     #[Test]
     public function it_builds_a_date_histogram(): void

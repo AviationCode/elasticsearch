@@ -11,7 +11,7 @@ use AviationCode\Elasticsearch\Tests\Feature\TestModels\Article;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
 use Illuminate\Support\Facades\Event;
 
-class IndexDocumentsTest extends TestCase
+final class IndexDocumentsTest extends TestCase
 {
     #[Test]
     public function it_can_index_a_model(): void

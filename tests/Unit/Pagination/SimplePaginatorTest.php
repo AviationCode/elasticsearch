@@ -11,7 +11,7 @@ use AviationCode\Elasticsearch\Query\Aggregations\Bucket\Terms;
 use AviationCode\Elasticsearch\Tests\Feature\TestCase;
 use ReflectionMethod;
 
-class SimplePaginatorTest extends TestCase
+final class SimplePaginatorTest extends TestCase
 {
     #[Test]
     public function it_builds_a_simple_paginator(): void

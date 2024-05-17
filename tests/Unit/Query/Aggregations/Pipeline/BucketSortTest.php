@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\BucketSort;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class BucketSortTest extends TestCase
+final class BucketSortTest extends TestCase
 {
     #[Test]
     public function it_creates_basic_bucket_sort(): void

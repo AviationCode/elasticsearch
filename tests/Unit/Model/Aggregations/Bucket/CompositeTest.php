@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\Aggregations\Bucket\Composite;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class CompositeTest extends TestCase
+final class CompositeTest extends TestCase
 {
     #[Test]
     public function it_can_construct_a_composite_instance(): void

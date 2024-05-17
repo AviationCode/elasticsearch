@@ -17,7 +17,7 @@ use Elasticsearch\Namespaces\CatNamespace;
 use Elasticsearch\Namespaces\IndicesNamespace;
 use InvalidArgumentException;
 
-class IndexTest extends TestCase
+final class IndexTest extends TestCase
 {
     /** @var Client|\Mockery\LegacyMockInterface|\Mockery\MockInterface Moc */
     protected $client;

@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\IpRange;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class IpRangeTest extends TestCase
+final class IpRangeTest extends TestCase
 {
     #[Test]
     public function it_builds_a_ip_range_bucket_aggregation(): void

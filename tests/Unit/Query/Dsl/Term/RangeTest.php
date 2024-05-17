@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Range;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class RangeTest extends TestCase
+final class RangeTest extends TestCase
 {
     #[Test]
     public function it_builds_a_simple_range(): void

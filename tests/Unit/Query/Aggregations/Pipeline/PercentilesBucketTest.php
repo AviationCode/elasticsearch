@@ -6,7 +6,7 @@ use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\PercentilesBucket;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class PercentilesBucketTest extends TestCase
+final class PercentilesBucketTest extends TestCase
 {
     #[Test]
     public function it_builds_percentiles_bucket_aggregation(): void

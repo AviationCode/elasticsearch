@@ -2,6 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Tests\Feature;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Events\BulkDocumentsEvent;
 use AviationCode\Elasticsearch\Events\DocumentCreatedEvent;
 use AviationCode\Elasticsearch\Exceptions\IndexNotFoundException;
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Event;
 
 class IndexDocumentsTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_can_index_a_model()
     {
         Event::fake();
@@ -44,7 +45,7 @@ class IndexDocumentsTest extends TestCase
         Event::assertNotDispatched(DocumentCreatedEvent::class);
     }
 
-    /** @test **/
+    #[Test]
     public function it_indexes_a_php_array()
     {
         Event::fake();
@@ -75,7 +76,7 @@ class IndexDocumentsTest extends TestCase
         Event::assertNotDispatched(DocumentCreatedEvent::class);
     }
 
-    /** @test **/
+    #[Test]
     public function it_indexes_a_stdClass()
     {
         Event::fake();
@@ -105,7 +106,7 @@ class IndexDocumentsTest extends TestCase
         Event::assertNotDispatched(DocumentCreatedEvent::class);
     }
 
-    /** @test **/
+    #[Test]
     public function it_indexes_multiple_php_arrays_in_bulk()
     {
         Event::fake();
@@ -160,7 +161,7 @@ class IndexDocumentsTest extends TestCase
         Event::assertDispatchedTimes(BulkDocumentsEvent::class, 1);
     }
 
-    /** @test **/
+    #[Test]
     public function it_indexes_multiple_classes_in_bulk()
     {
         Event::fake();
@@ -216,7 +217,7 @@ class IndexDocumentsTest extends TestCase
         Event::assertDispatchedTimes(BulkDocumentsEvent::class, 1);
     }
 
-    /** @test **/
+    #[Test]
     public function it_can_index_a_model_given_as_param()
     {
         Event::fake();
@@ -247,7 +248,7 @@ class IndexDocumentsTest extends TestCase
         Event::assertNotDispatched(DocumentCreatedEvent::class);
     }
 
-    /** @test **/
+    #[Test]
     public function it_throws_exception_if_no_model_is_given()
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -257,7 +258,7 @@ class IndexDocumentsTest extends TestCase
         $this->elastic->add();
     }
 
-    /** @test **/
+    #[Test]
     public function it_throws_exception_if_the_index_does_not_exist()
     {
         // This only occurs if the settings "action.auto_create_index" is set to false in elastic.
@@ -295,7 +296,7 @@ class IndexDocumentsTest extends TestCase
         $article->elastic()->add();
     }
 
-    /** @test **/
+    #[Test]
     public function it_fires_document_created_event()
     {
         Event::fake();
@@ -328,7 +329,7 @@ class IndexDocumentsTest extends TestCase
         Event::assertDispatchedTimes(DocumentCreatedEvent::class, 1);
     }
 
-    /** @test **/
+    #[Test]
     public function it_can_reindex_a_model()
     {
         $data = [
@@ -357,7 +358,7 @@ class IndexDocumentsTest extends TestCase
         $this->assertTrue($article->elastic()->update());
     }
 
-    /** @test */
+    #[Test]
     public function it_bulk_indexes_models()
     {
         Event::fake();

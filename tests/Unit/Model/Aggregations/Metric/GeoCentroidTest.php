@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Model\Aggregations\Metric;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\Aggregations\Common\Item;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class GeoCentroidTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_translates_geo_centroid_aggregation()
     {
         $value = [

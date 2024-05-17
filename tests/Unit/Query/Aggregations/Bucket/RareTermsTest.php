@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\RareTerms;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class RareTermsTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_a_rare_terms_aggregations()
     {
         $rare = new RareTerms('genre');
@@ -19,7 +20,7 @@ class RareTermsTest extends TestCase
         ], $rare->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_a_rare_terms_aggregations_with_valid_options()
     {
         $rare = new RareTerms('genre', [
@@ -42,7 +43,7 @@ class RareTermsTest extends TestCase
         ], $rare->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_a_rare_terms_aggregations_with_invalid_options()
     {
         $rare = new RareTerms('genre', [

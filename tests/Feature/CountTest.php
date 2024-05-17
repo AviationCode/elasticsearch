@@ -2,6 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Tests\Feature;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\Boolean\Must;
 use AviationCode\Elasticsearch\Tests\Feature\TestModels\Article;
 use Elasticsearch\Client;
@@ -19,7 +20,7 @@ class CountTest extends TestCase
         $this->app->instance('elasticsearch.client', $this->client = \Mockery::mock(Client::class));
     }
 
-    /** @test */
+    #[Test]
     public function it_can_count_the_documents_without_filtering()
     {
         $this->client
@@ -40,7 +41,7 @@ class CountTest extends TestCase
         $this->assertSame(122, $this->elastic->query(Article::class)->count());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_count_the_documents_without_an_eloquent_model()
     {
         $this->client
@@ -61,7 +62,7 @@ class CountTest extends TestCase
         $this->assertSame(6, $this->elastic->query('article')->count());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_count_the_matching_documents_with_filter()
     {
         $this->client

@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Metric;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Metric\MedianAbsoluteDeviation;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class MedianAbsoluteDeviationTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_a_median_absolute_deviation_aggregation()
     {
         $median = new MedianAbsoluteDeviation('rating');
@@ -19,7 +20,7 @@ class MedianAbsoluteDeviationTest extends TestCase
         ], $median->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_a_median_absolute_deviation_aggregation_with_options()
     {
         $median = new MedianAbsoluteDeviation('rating', [
@@ -39,7 +40,7 @@ class MedianAbsoluteDeviationTest extends TestCase
         ], $median->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_a_median_absolute_deviation_aggregation_with_invalid_options()
     {
         $median = new MedianAbsoluteDeviation('rating', ['invalid' => 'value']);

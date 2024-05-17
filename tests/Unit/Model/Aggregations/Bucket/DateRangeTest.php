@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Model\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\Aggregations\Bucket\DateRange;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 use Carbon\Carbon;
 
 class DateRangeTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_successfully_translates_a_date_range()
     {
         $dateRange = new DateRange([
@@ -34,7 +35,7 @@ class DateRangeTest extends TestCase
         $this->assertInstanceOf(Carbon::class, $dateRange->last()->from);
     }
 
-    /** @test */
+    #[Test]
     public function it_successfully_translates_a_date_range_with_keyed_response()
     {
         $dateRange = new DateRange([

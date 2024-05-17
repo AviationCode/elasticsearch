@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Pipeline;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\CumulativeCardinality;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class CumulativeCardinalityTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_cumulative_cardinality_aggregation()
     {
         $bucket = new CumulativeCardinality('the_sum');
@@ -19,7 +20,7 @@ class CumulativeCardinalityTest extends TestCase
         ], $bucket->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_cumulative_cardinality_aggregation_format()
     {
         $bucket = new CumulativeCardinality('the_sum', '000.00');

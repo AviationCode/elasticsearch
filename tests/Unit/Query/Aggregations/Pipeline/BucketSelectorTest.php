@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Pipeline;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\BucketSelector;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class BucketSelectorTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_bucket_selector_aggregation()
     {
         $bucket = new BucketSelector([
@@ -26,7 +27,7 @@ class BucketSelectorTest extends TestCase
         ], $bucket->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_bucket_selector_aggregation_with_gap_policy()
     {
         $bucket = new BucketSelector([

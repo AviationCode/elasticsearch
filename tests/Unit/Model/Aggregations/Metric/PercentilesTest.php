@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Model\Aggregations\Metric;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\Aggregations\Metric\Percentiles;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class PercentilesTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_translates_percentiles_aggregation()
     {
         $value = [

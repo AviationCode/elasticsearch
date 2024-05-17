@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Model\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\Aggregations\Bucket\Bucket;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class BucketTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_can_build_a_bucket_aggregation()
     {
         $bucket = new Bucket([
@@ -76,7 +77,7 @@ class BucketTest extends TestCase
         $this->assertCount(2, $jsonData['data']);
     }
 
-    /** @test **/
+    #[Test]
     public function it_throws_exception_when_using_unset_on_read_only_array()
     {
         $bucket = new Bucket([
@@ -95,7 +96,7 @@ class BucketTest extends TestCase
         unset($bucket[0]);
     }
 
-    /** @test **/
+    #[Test]
     public function it_throws_exception_when_using_setting_a_value_on_read_only_array()
     {
         $bucket = new Bucket([
@@ -114,7 +115,7 @@ class BucketTest extends TestCase
         $bucket[0] = ['foo' => 'bar'];
     }
 
-    /** @test * */
+    #[Test]
     public function it_builds_geo_distance_response()
     {
         $geoDistance = new Bucket([

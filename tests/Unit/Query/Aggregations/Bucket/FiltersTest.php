@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\Filters;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Term;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class FiltersTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_adds_filters_aggregation()
     {
         $filters = new Filters([
@@ -26,7 +27,7 @@ class FiltersTest extends TestCase
         ], $filters->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_adds_filters_aggregation_must_have_at_least_one_filters()
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -34,7 +35,7 @@ class FiltersTest extends TestCase
         new Filters([]);
     }
 
-    /** @test **/
+    #[Test]
     public function it_adds_filters_aggregation_with_options()
     {
         $filters = new Filters([

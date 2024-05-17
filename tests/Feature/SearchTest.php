@@ -2,6 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Tests\Feature;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\ElasticCollection;
 use AviationCode\Elasticsearch\Query\Dsl\Boolean\Filter;
 use AviationCode\Elasticsearch\Query\Dsl\Boolean\Must;
@@ -23,7 +24,7 @@ class SearchTest extends TestCase
         $this->app->instance('elasticsearch.client', $this->client = \Mockery::mock(Client::class));
     }
 
-    /** @test **/
+    #[Test]
     public function it_performs_search()
     {
         $this->client->shouldReceive('search')
@@ -136,7 +137,7 @@ class SearchTest extends TestCase
         });
     }
 
-    /** @test **/
+    #[Test]
     public function it_performs_search_without_eloquent_model()
     {
         $this->client->shouldReceive('search')
@@ -249,7 +250,7 @@ class SearchTest extends TestCase
         });
     }
 
-    /** @test */
+    #[Test]
     public function it_finds_by_id()
     {
         $this->client->shouldReceive('get')
@@ -295,7 +296,7 @@ class SearchTest extends TestCase
         $this->assertEquals($model, $qb->findOrFail(1));
     }
 
-    /** @test **/
+    #[Test]
     public function it_returns_null_when_find_does_not_return_result()
     {
         $this->client->shouldReceive('get')
@@ -318,7 +319,7 @@ class SearchTest extends TestCase
         $this->assertNull($result);
     }
 
-    /** @test **/
+    #[Test]
     public function it_throws_model_not_found_exception_when_findOrFail_does_not_yield_a_result()
     {
         $this->expectException(ModelNotFoundException::class);
@@ -343,7 +344,7 @@ class SearchTest extends TestCase
         $this->markSuccessfull();
     }
 
-    /** @test **/
+    #[Test]
     public function it_orders_by_latest_created_at()
     {
         $this->client->shouldReceive('search')
@@ -366,7 +367,7 @@ class SearchTest extends TestCase
         $this->assertEquals(2, $results->count());
     }
 
-    /** @test **/
+    #[Test]
     public function it_gets_first_result()
     {
         $this->client->shouldReceive('search')
@@ -394,9 +395,8 @@ class SearchTest extends TestCase
      *
      * This example wraps match query search string in "query" object to make request consistent with other
      * elasticsearch requests.
-     *
-     * @test
      */
+    #[Test]
     public function complex_query()
     {
         $this->client->shouldReceive('search')
@@ -436,7 +436,7 @@ class SearchTest extends TestCase
         $this->assertEquals(2, $results->count());
     }
 
-    /** @test **/
+    #[Test]
     public function it_chunks_over_large_data_set()
     {
         $this->client->shouldReceive('search')
@@ -542,7 +542,7 @@ class SearchTest extends TestCase
         $this->assertEquals(2, $times);
     }
 
-    /** @test **/
+    #[Test]
     public function it_can_each_by_id_through_all_records()
     {
         $this->client->shouldReceive('search')
@@ -644,7 +644,7 @@ class SearchTest extends TestCase
         $this->assertEquals(4, $total);
     }
 
-    /** @test **/
+    #[Test]
     public function it_can_early_return_from_each_method()
     {
         $this->client->shouldReceive('search')
@@ -676,7 +676,7 @@ class SearchTest extends TestCase
         $this->assertEquals(1, $total);
     }
 
-    /** @test **/
+    #[Test]
     public function it_can_early_return_from_chunk()
     {
         $this->client->shouldReceive('search')

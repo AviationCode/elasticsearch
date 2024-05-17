@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\GeoDistance;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class GeoDistanceTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_a_geo_distance_bucket_aggregation()
     {
         $geoDistance = new GeoDistance('location', 52.3760, 4.894, [
@@ -31,7 +32,7 @@ class GeoDistanceTest extends TestCase
         ], $geoDistance->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_can_add_unit()
     {
         $geoDistance = new GeoDistance('location', 52.3760, 4.894, [
@@ -55,7 +56,7 @@ class GeoDistanceTest extends TestCase
         ], $geoDistance->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_can_add_ranges_dynamically()
     {
         $geoDistance = new GeoDistance('location', 52.3760, 4.894, GeoDistance::CM);
@@ -78,7 +79,7 @@ class GeoDistanceTest extends TestCase
         ], $geoDistance->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_can_define_custom_keys()
     {
         $geoDistance = new GeoDistance('location', 52.3760, 4.894);

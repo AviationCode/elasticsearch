@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Model\Aggregations\Metric;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\Aggregations\Metric\TopHits;
 use AviationCode\Elasticsearch\Model\ElasticHit;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class TopHitsTest extends TestCase
 {
-    /** @test * */
+    #[Test]
     public function it_maps_top_hits_model()
     {
         $topHits = new TopHits([
@@ -43,7 +44,7 @@ class TopHitsTest extends TestCase
         $this->assertEquals('sales', $topHits[0]->elastic['index']);
     }
 
-    /** @test * */
+    #[Test]
     public function it_cannot_modify_the_results()
     {
         $topHits = new TopHits([
@@ -75,7 +76,7 @@ class TopHitsTest extends TestCase
         $topHits[0] = 'value';
     }
 
-    /** @test * */
+    #[Test]
     public function it_cannot_remove_results()
     {
         $topHits = new TopHits([

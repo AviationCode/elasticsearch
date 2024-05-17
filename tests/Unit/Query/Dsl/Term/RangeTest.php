@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Dsl\Term;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Range;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class RangeTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_a_simple_range()
     {
         $range = new Range('age', '>=', 20);
@@ -21,7 +22,7 @@ class RangeTest extends TestCase
         ], $range->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_range_using_callback()
     {
         $range = new Range('age', function (Range $range) {
@@ -37,7 +38,7 @@ class RangeTest extends TestCase
         ], $range->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function optionally_range_can_include_options()
     {
         $range = new Range('age', function (Range $range) {
@@ -54,7 +55,7 @@ class RangeTest extends TestCase
         ], $range->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function optionally_range_can_include_simple_options()
     {
         $range = new Range('age', 'gte', 20, ['boost' => 2.0]);
@@ -69,7 +70,7 @@ class RangeTest extends TestCase
         ], $range->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_can_build_inclusive_range()
     {
         $expected = ['range' => ['age' => [
@@ -84,7 +85,7 @@ class RangeTest extends TestCase
         $this->assertEquals($expected, $range->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_can_build_exclusive_range()
     {
         $expected = ['range' => ['age' => [
@@ -99,7 +100,7 @@ class RangeTest extends TestCase
         $this->assertEquals($expected, $range->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_gt_range()
     {
         $expected = ['range' => ['age' => [
@@ -113,7 +114,7 @@ class RangeTest extends TestCase
         }))->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_gte_range()
     {
         $expected = ['range' => ['age' => [
@@ -127,7 +128,7 @@ class RangeTest extends TestCase
         }))->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_lt_range()
     {
         $expected = ['range' => ['age' => [
@@ -141,7 +142,7 @@ class RangeTest extends TestCase
         }))->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_lte_range()
     {
         $expected = ['range' => ['age' => [
@@ -155,7 +156,7 @@ class RangeTest extends TestCase
         }))->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function combining_lt_and_lte_throws_exception()
     {
         try {
@@ -179,7 +180,7 @@ class RangeTest extends TestCase
         $this->markSuccessfull();
     }
 
-    /** @test **/
+    #[Test]
     public function combining_gt_and_gte_throws_exception()
     {
         try {

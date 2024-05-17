@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\SignificantTerms;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class SignificantTermsTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_a_significant_terms_aggregation()
     {
         $terms = new SignificantTerms('crime_type');
@@ -19,7 +20,7 @@ class SignificantTermsTest extends TestCase
         ], $terms->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_a_significant_terms_aggregation_with_options()
     {
         $terms = new SignificantTerms('crime_type', [
@@ -56,7 +57,7 @@ class SignificantTermsTest extends TestCase
         ], $terms->toArray());
     }
     
-    /** @test **/
+    #[Test]
     public function it_builds_a_significant_terms_aggregation_with_invalid_options()
     {
         $terms = new SignificantTerms('crime_type', [

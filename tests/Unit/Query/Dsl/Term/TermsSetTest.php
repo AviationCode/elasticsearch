@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Dsl\Term;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\Term\TermsSet;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class TermsSetTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_terms_set()
     {
         $termsSet = new TermsSet('programming_languages', ['php', 'java']);
@@ -21,7 +22,7 @@ class TermsSetTest extends TestCase
         ], $termsSet->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_terms_set_with_options()
     {
         $termsSet = new TermsSet('programming_languages', ['php', 'java'], [

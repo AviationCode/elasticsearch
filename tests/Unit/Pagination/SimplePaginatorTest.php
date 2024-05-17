@@ -2,6 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Pagination;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\Aggregations\Aggregation;
 use AviationCode\Elasticsearch\Model\Aggregations\Bucket\Bucket;
 use AviationCode\Elasticsearch\Model\ElasticCollection;
@@ -12,7 +13,7 @@ use ReflectionMethod;
 
 class SimplePaginatorTest extends TestCase
 {
-    /** @test * */
+    #[Test]
     public function it_builds_a_simple_paginator()
     {
         $response = [
@@ -70,7 +71,7 @@ class SimplePaginatorTest extends TestCase
         $this->assertEquals(9, $paginator->lastPage());
     }
 
-    /** @test */
+    #[Test]
     public function it_has_a_method_to_retrieve_the_aggregations_from_the_elastic_collection()
     {
         $aggregationsMethod = new ReflectionMethod(SimplePaginator::class, 'aggregations');
@@ -80,7 +81,7 @@ class SimplePaginatorTest extends TestCase
         $this->assertSame(0, $aggregationsMethod->getNumberOfParameters());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_retrieve_the_aggregations()
     {
         $response = [

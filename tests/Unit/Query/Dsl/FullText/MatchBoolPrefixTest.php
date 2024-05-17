@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Dsl\FullText;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchBoolPrefix;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class MatchBoolPrefixTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_match_bool_prefix()
     {
         $matchBoolPrefix = new MatchBoolPrefix('message', 'quick brown f');
@@ -21,7 +22,7 @@ class MatchBoolPrefixTest extends TestCase
         ], $matchBoolPrefix->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_match_bool_prefix_with_options()
     {
         $matchBoolPrefix = new MatchBoolPrefix('message', 'quick brown f', ['analyzer' => 'keyword']);

@@ -2,6 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Schema;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Elasticsearch;
 use AviationCode\Elasticsearch\Exceptions\BadRequestException;
 use AviationCode\Elasticsearch\Exceptions\BaseElasticsearchException;
@@ -46,7 +47,7 @@ class IndexTest extends TestCase
         return $search->index();
     }
 
-    /** @test **/
+    #[Test]
     public function it_checks_if_index_from_given_parameter()
     {
         $this->indices->shouldReceive('exists')
@@ -57,7 +58,7 @@ class IndexTest extends TestCase
         $this->assertFalse($this->getSchema()->exists('index_does_not_exist'));
     }
 
-    /** @test **/
+    #[Test]
     public function it_checks_index_exists_from_a_model_class()
     {
         $this->indices->shouldReceive('exists')
@@ -68,7 +69,7 @@ class IndexTest extends TestCase
         $this->assertFalse($this->getSchema(ArticleTestModel::class)->exists());
     }
 
-    /** @test **/
+    #[Test]
     public function it_checks_index_exists_from_a_model_instance()
     {
         $this->indices->shouldReceive('exists')
@@ -79,7 +80,7 @@ class IndexTest extends TestCase
         $this->assertFalse($this->getSchema(new ArticleTestModel())->exists());
     }
 
-    /** @test **/
+    #[Test]
     public function it_throws_exception_when_no_model_or_index_is_given()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -87,7 +88,7 @@ class IndexTest extends TestCase
         $this->getSchema()->exists();
     }
 
-    /** @test **/
+    #[Test]
     public function it_creates_an_index_given_as_param()
     {
         $this->indices->shouldReceive('create')
@@ -104,7 +105,7 @@ class IndexTest extends TestCase
         $this->markSuccessfull();
     }
 
-    /** @test **/
+    #[Test]
     public function it_creates_index_using_model_and_configures_known_fields()
     {
         $this->indices->shouldReceive('create')
@@ -145,7 +146,7 @@ class IndexTest extends TestCase
         $this->markSuccessfull();
     }
 
-    /** @test **/
+    #[Test]
     public function it_throws_exceptions_when_creating_index_when_model_is_already_provided()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -153,7 +154,7 @@ class IndexTest extends TestCase
         $this->getSchema(ArticleTestModel::class)->create('my_index');
     }
 
-    /** @test **/
+    #[Test]
     public function it_creating_a_duplicate_index_throws_an_exception()
     {
         $this->indices->shouldReceive('create')
@@ -180,7 +181,7 @@ class IndexTest extends TestCase
         $this->getSchema()->create('my_index');
     }
 
-    /** @test **/
+    #[Test]
     public function it_deletes_index()
     {
         $this->indices->shouldReceive('delete')
@@ -193,7 +194,7 @@ class IndexTest extends TestCase
         $this->markSuccessfull();
     }
 
-    /** @test **/
+    #[Test]
     public function it_throws_exception_if_index_does_not_exist()
     {
         $this->indices->shouldReceive('delete')
@@ -221,7 +222,7 @@ class IndexTest extends TestCase
         $this->getSchema()->delete('my_index');
     }
 
-    /** @test **/
+    #[Test]
     public function it_throws_exception_if_no_model_or_index_is_provided()
     {
         $this->expectException(InvalidArgumentException::class);
@@ -229,7 +230,7 @@ class IndexTest extends TestCase
         $this->getSchema()->delete();
     }
 
-    /** @test **/
+    #[Test]
     public function it_puts_index_mapping()
     {
         $this->indices->shouldReceive('putMapping')
@@ -253,7 +254,7 @@ class IndexTest extends TestCase
         $this->markSuccessfull();
     }
 
-    /** @test **/
+    #[Test]
     public function it_puts_invalid_mapping()
     {
         $this->expectException(BaseElasticsearchException::class);
@@ -277,7 +278,7 @@ class IndexTest extends TestCase
         ], 'my-index');
     }
 
-    /** @test **/
+    #[Test]
     public function it_can_request_index_info()
     {
         $info = [
@@ -301,7 +302,7 @@ class IndexTest extends TestCase
         $this->assertEquals($info, $result);
     }
 
-    /** @test **/
+    #[Test]
     public function it_can_request_index_info_from_a_model()
     {
         $info = [
@@ -325,7 +326,7 @@ class IndexTest extends TestCase
         $this->assertEquals($info, $result);
     }
 
-    /** @test **/
+    #[Test]
     public function it_can_request_index_info_handle_exceptions()
     {
         $this->indices->shouldReceive('get')
@@ -354,7 +355,7 @@ class IndexTest extends TestCase
         $this->getSchema()->info('my_index');
     }
 
-    /** @test */
+    #[Test]
     public function it_can_request_a_list_of_indices()
     {
         $this->cat->shouldReceive('indices')->andReturn([

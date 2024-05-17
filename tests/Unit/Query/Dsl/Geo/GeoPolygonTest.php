@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Dsl\Geo;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoPolygon;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class GeoPolygonTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_a_geo_polygon()
     {
         $geo = new GeoPolygon('location', [
@@ -29,7 +30,7 @@ class GeoPolygonTest extends TestCase
         ], $geo->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_a_geo_polygon_lon_lat_array()
     {
         $geo = new GeoPolygon('location', [
@@ -51,7 +52,7 @@ class GeoPolygonTest extends TestCase
         ], $geo->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_a_geo_polygon_lat_lon_string()
     {
         $geo = new GeoPolygon('location', [
@@ -73,7 +74,7 @@ class GeoPolygonTest extends TestCase
         ], $geo->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_a_geo_polygon_geohash()
     {
         $geo = new GeoPolygon('location', [
@@ -95,7 +96,7 @@ class GeoPolygonTest extends TestCase
         ], $geo->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_a_geo_polygon_validation_method()
     {
         $geo = new GeoPolygon('location', [
@@ -118,7 +119,7 @@ class GeoPolygonTest extends TestCase
         ], $geo->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_a_geo_polygon_validation_method_coerce()
     {
         $geo = new GeoPolygon('location', [
@@ -141,7 +142,7 @@ class GeoPolygonTest extends TestCase
         ], $geo->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_a_geo_polygon_validation_method_strict()
     {
         $geo = new GeoPolygon('location', [
@@ -164,7 +165,7 @@ class GeoPolygonTest extends TestCase
         ], $geo->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_a_geo_polygon_ignore_unmapped()
     {
         $geo = new GeoPolygon('location', [

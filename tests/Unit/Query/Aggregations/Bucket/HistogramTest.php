@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\Histogram;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class HistogramTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_histogram_aggregation()
     {
         $histogram = new Histogram('price', 50);
@@ -20,7 +21,7 @@ class HistogramTest extends TestCase
         ], $histogram->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_histogram_aggregation_with_valid_options()
     {
         $histogram = new Histogram('price', 50, [
@@ -40,7 +41,7 @@ class HistogramTest extends TestCase
         ], $histogram->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_histogram_aggregation_with_invalid_options()
     {
         $histogram = new Histogram('price', 50, [

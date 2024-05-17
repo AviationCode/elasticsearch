@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Dsl\Term;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Fuzzy;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class FuzzyTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_simple_fuzzy_clause()
     {
         $fuzzy = new Fuzzy('user', 'ki');
@@ -15,7 +16,7 @@ class FuzzyTest extends TestCase
         $this->assertEquals(['fuzzy' => ['user' => ['value' => 'ki']]], $fuzzy->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_advanced_fuzzy_clause()
     {
         $fuzzy = new Fuzzy('user', 'ki', [

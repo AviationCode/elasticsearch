@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\SignificantText;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class SignificantTextTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_significant_text_aggregation()
     {
         $significant = new SignificantText('content');
@@ -19,7 +20,7 @@ class SignificantTextTest extends TestCase
         ], $significant->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_significant_text_aggregation_with_valid_options()
     {
         $significant = new SignificantText('content', [
@@ -36,7 +37,7 @@ class SignificantTextTest extends TestCase
         ], $significant->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_significant_text_aggregation_with_invalid_options()
     {
         $significant = new SignificantText('content', [

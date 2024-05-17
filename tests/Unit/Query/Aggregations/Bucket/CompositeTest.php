@@ -2,6 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Aggregation;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\DateHistogram;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\GeotileGrid;
@@ -12,7 +13,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class CompositeTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_builds_a_composite_aggregation()
     {
         $agg = new Aggregation();
@@ -69,7 +70,7 @@ class CompositeTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_filters_out_invalid_sources()
     {
         $agg = new Aggregation();
@@ -100,7 +101,7 @@ class CompositeTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_throw_an_invalid_argument_exception()
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -108,7 +109,7 @@ class CompositeTest extends TestCase
         (new Aggregation())->composite('test_composite')->toArray();
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_sources_dynamically()
     {
         $agg = new Aggregation();
@@ -173,7 +174,7 @@ class CompositeTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_can_add_options_dynamically()
     {
         $agg = new Aggregation();

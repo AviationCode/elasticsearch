@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Dsl\Term;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Wildcard;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class WildcardTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_wildcard()
     {
         $wildcard = new Wildcard('user', 'ki.*y');
@@ -21,7 +22,7 @@ class WildcardTest extends TestCase
         ], $wildcard->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_wildcard_with_boost()
     {
         $wildcard = new Wildcard('user', 'ki.*y', [
@@ -38,7 +39,7 @@ class WildcardTest extends TestCase
         ], $wildcard->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_wildcard_with_rewrite()
     {
         $wildcard = new Wildcard('user', 'ki.*y', [

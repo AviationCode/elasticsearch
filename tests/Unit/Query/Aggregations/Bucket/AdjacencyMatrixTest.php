@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\AdjacencyMatrix;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Terms;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class AdjacencyMatrixTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_matrix_aggregation()
     {
         $this->assertEquals([

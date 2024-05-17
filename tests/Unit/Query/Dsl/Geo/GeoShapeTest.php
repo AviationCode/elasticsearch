@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Dsl\Geo;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoShape;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class GeoShapeTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_geo_shape_query()
     {
         $geo = new GeoShape('location', ['type' => 'envelope', 'coordinates' => [[13.0, 53.0], [14.0, 52.0]]]);
@@ -21,7 +22,7 @@ class GeoShapeTest extends TestCase
         ], $geo->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_geo_shape_query_with_relation_intersects()
     {
         $geo = new GeoShape('location', ['type' => 'envelope', 'coordinates' => [[13.0, 53.0], [14.0, 52.0]]], GeoShape::INTERSECTS);
@@ -36,7 +37,7 @@ class GeoShapeTest extends TestCase
         ], $geo->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_geo_shape_query_with_relation_disjoint()
     {
         $geo = new GeoShape('location', ['type' => 'envelope', 'coordinates' => [[13.0, 53.0], [14.0, 52.0]]], GeoShape::DISJOINT);
@@ -51,7 +52,7 @@ class GeoShapeTest extends TestCase
         ], $geo->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_geo_shape_query_with_relation_within()
     {
         $geo = new GeoShape('location', ['type' => 'envelope', 'coordinates' => [[13.0, 53.0], [14.0, 52.0]]], GeoShape::WITHIN);
@@ -66,7 +67,7 @@ class GeoShapeTest extends TestCase
         ], $geo->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_geo_shape_query_with_relation_contains()
     {
         $geo = new GeoShape('location', ['type' => 'envelope', 'coordinates' => [[13.0, 53.0], [14.0, 52.0]]], GeoShape::CONTAINS);
@@ -81,7 +82,7 @@ class GeoShapeTest extends TestCase
         ], $geo->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_geo_shape_query_with_indexed_shape()
     {
         $geo = new GeoShape('location', ['index' => 'shapes', 'id' => 'abc', 'path' => 'location'], GeoShape::INDEXED_SHAPE);
@@ -95,7 +96,7 @@ class GeoShapeTest extends TestCase
         ], $geo->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_geo_shape_query_with_indexed_shape_ignore_unmapped()
     {
         $geo = new GeoShape('location', ['index' => 'shapes', 'id' => 'abc', 'path' => 'location'], GeoShape::INDEXED_SHAPE, true);

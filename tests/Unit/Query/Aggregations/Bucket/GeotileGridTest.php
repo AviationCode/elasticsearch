@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\GeotileGrid;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class GeotileGridTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_a_geotile_grid_aggregation()
     {
         $grid = new GeotileGrid('geo');
@@ -19,7 +20,7 @@ class GeotileGridTest extends TestCase
         ], $grid->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_a_geotile_grid_aggregation_with_valid_options()
     {
         $grid = new GeotileGrid('geo', [
@@ -46,7 +47,7 @@ class GeotileGridTest extends TestCase
         ], $grid->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_a_geotile_grid_aggregation_with_invalid_options()
     {
         $grid = new GeotileGrid('geo', [

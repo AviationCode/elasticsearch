@@ -2,6 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Dsl;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\Boolean\Filter;
 use AviationCode\Elasticsearch\Query\Dsl\Boolean\Must;
 use AviationCode\Elasticsearch\Query\Dsl\Boolean\MustNot;
@@ -11,7 +12,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class QueryTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_can_add_must()
     {
         $query = new Query();
@@ -29,7 +30,7 @@ class QueryTest extends TestCase
         ], $query->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_can_add_filter()
     {
         $query = new Query();
@@ -47,7 +48,7 @@ class QueryTest extends TestCase
         ], $query->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_can_add_should()
     {
         $query = new Query();
@@ -65,7 +66,7 @@ class QueryTest extends TestCase
         ], $query->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_can_add_must_not()
     {
         $query = new Query();
@@ -83,7 +84,7 @@ class QueryTest extends TestCase
         ], $query->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_can_build_empty_query()
     {
         $query = new Query();

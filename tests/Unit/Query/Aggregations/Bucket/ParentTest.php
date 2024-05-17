@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\ParentBucket;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class ParentTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_adds_parent_aggregation()
     {
         $missing = new ParentBucket('answer');

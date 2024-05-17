@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Model\Aggregations;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\Aggregations\Aggregation;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class AggregationTest extends TestCase
 {
-    /** @test * */
+    #[Test]
     public function it_handles_special_string_terms_model()
     {
         $aggregations = new Aggregation([
@@ -41,7 +42,7 @@ class AggregationTest extends TestCase
         $this->assertSame(2, $aggregations->genres[2]->doc_count);
     }
 
-    /** @test * */
+    #[Test]
     public function it_handles_special_long_terms_model()
     {
         $aggregations = new Aggregation([
@@ -75,7 +76,7 @@ class AggregationTest extends TestCase
         $this->assertSame(2, $aggregations->genres[2]->doc_count);
     }
 
-    /** @test **/
+    #[Test]
     public function it_throws_exception_when_aggregation_does_not_exist()
     {
         $this->expectException(\InvalidArgumentException::class);

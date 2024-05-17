@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Model\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\Aggregations\Bucket\AutoDateHistogram;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 use Carbon\Carbon;
 
 class AutoDateHistogramTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_a_date_histogram()
     {
         $histogram = new AutoDateHistogram([

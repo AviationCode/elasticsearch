@@ -2,6 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Dsl\Compound;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\Boolean\Filter;
 use AviationCode\Elasticsearch\Query\Dsl\Boolean\Must;
 use AviationCode\Elasticsearch\Query\Dsl\Boolean\MustNot;
@@ -11,7 +12,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class BooleanTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_all_possible_query_objects()
     {
         $boolean = new Boolean();
@@ -46,7 +47,7 @@ class BooleanTest extends TestCase
         ], $boolean->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_throws_error_when_calling_invalid_driver()
     {
         $this->expectException(\BadMethodCallException::class);
@@ -58,7 +59,7 @@ class BooleanTest extends TestCase
         $this->markSuccessfull();
     }
 
-    /** @test **/
+    #[Test]
     public function it_can_build_a_nested_complex_query()
     {
         $boolean = new Boolean();

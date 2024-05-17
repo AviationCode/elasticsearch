@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Dsl\FullText;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchPhrasePrefix;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class MatchPhrasePrefixTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_match_phrase_prefix_query()
     {
         $match = new MatchPhrasePrefix('message', 'quick brown f');
@@ -21,7 +22,7 @@ class MatchPhrasePrefixTest extends TestCase
         ], $match->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_match_phrase_prefix_query_with_options()
     {
         $match = new MatchPhrasePrefix('message', 'quick brown f', ['max_expansions' => 10]);

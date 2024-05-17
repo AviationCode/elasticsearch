@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\DiversifiedSampler;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class DiversifiedSamplerTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_a_sampler_aggregation()
     {
         $sampler = new DiversifiedSampler();
@@ -15,7 +16,7 @@ class DiversifiedSamplerTest extends TestCase
         $this->assertEquals(['diversified_sampler' => new \stdClass()], $sampler->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_a_sampler_aggregation_with_field_and_shard()
     {
         $sampler = new DiversifiedSampler(100, 'author');
@@ -23,7 +24,7 @@ class DiversifiedSamplerTest extends TestCase
         $this->assertEquals(['diversified_sampler' => ['field' => 'author', 'shard_size' => 100]], $sampler->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_a_sampler_aggregation_with_field_and_shard_and_max_doc_per_value()
     {
         $sampler = new DiversifiedSampler(100, 'author', 3);
@@ -35,7 +36,7 @@ class DiversifiedSamplerTest extends TestCase
         ]], $sampler->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_a_sampler_aggregation_with_shard()
     {
         $sampler = new DiversifiedSampler(100);

@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Pipeline;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\ExtendedStatsBucket;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class ExtendedStatsBucketTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_extended_stats_bucket_aggregation()
     {
         $bucket = new ExtendedStatsBucket('the_sum');
@@ -19,7 +20,7 @@ class ExtendedStatsBucketTest extends TestCase
         ], $bucket->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_extended_stats_bucket_aggregation_gap_policy()
     {
         $bucket = new ExtendedStatsBucket('the_sum', ExtendedStatsBucket::GAP_INSERT_ZEROS);
@@ -41,7 +42,7 @@ class ExtendedStatsBucketTest extends TestCase
         ], $bucket->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_extended_stats_bucket_aggregation_format()
     {
         $bucket = new ExtendedStatsBucket('the_sum', null, '000.00');
@@ -54,7 +55,7 @@ class ExtendedStatsBucketTest extends TestCase
         ], $bucket->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_extended_stats_bucket_aggregation_sigma()
     {
         $bucket = new ExtendedStatsBucket('the_sum', null, null, 2);

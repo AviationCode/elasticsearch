@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Aggregation;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class AggregationTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_a_complete_nested_example()
     {
         $aggs = new Aggregation();
@@ -42,7 +43,7 @@ class AggregationTest extends TestCase
         ], $aggs->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_throws_exception_when_aggregation_does_not_exist()
     {
         $this->expectException(\BadMethodCallException::class);
@@ -54,7 +55,7 @@ class AggregationTest extends TestCase
         $this->markSuccessfull();
     }
 
-    /** @test **/
+    #[Test]
     public function it_throws_exception_when_using_nested_aggregation_before_it_is_defined()
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -67,7 +68,7 @@ class AggregationTest extends TestCase
         $this->markSuccessfull();
     }
 
-    /** @test **/
+    #[Test]
     public function it_throws_exception_when_key_is_not_set()
     {
         $this->expectException(\InvalidArgumentException::class);

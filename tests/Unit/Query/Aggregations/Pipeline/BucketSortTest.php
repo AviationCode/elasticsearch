@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Pipeline;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\BucketSort;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class BucketSortTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_creates_basic_bucket_sort()
     {
         $bucket = new BucketSort();
@@ -17,7 +18,7 @@ class BucketSortTest extends TestCase
         ], $bucket->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_creates_basic_bucket_with_sort_options()
     {
         $bucket = new BucketSort([
@@ -35,7 +36,7 @@ class BucketSortTest extends TestCase
         ], $bucket->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_creates_basic_bucket_with_all_options()
     {
         $bucket = new BucketSort([

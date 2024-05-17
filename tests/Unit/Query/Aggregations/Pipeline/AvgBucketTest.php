@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Pipeline;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\AvgBucket;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class AvgBucketTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_avg_bucket_aggregation()
     {
         $avgBucket = new AvgBucket('the_avg');
@@ -19,7 +20,7 @@ class AvgBucketTest extends TestCase
         ], $avgBucket->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_avg_bucket_aggregation_gap_policy()
     {
         $avgBucket = new AvgBucket('the_avg', AvgBucket::GAP_INSERT_ZEROS);
@@ -41,7 +42,7 @@ class AvgBucketTest extends TestCase
         ], $avgBucket->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_avg_bucket_aggregation_format()
     {
         $avgBucket = new AvgBucket('the_avg', null, '000.00');
@@ -54,7 +55,7 @@ class AvgBucketTest extends TestCase
         ], $avgBucket->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_avg_bucket_aggregation_unit()
     {
         $avgBucket = new AvgBucket('the_avg', null, null, 'day');

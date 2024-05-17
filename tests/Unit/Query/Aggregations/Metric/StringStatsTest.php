@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Metric;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Metric\StringStats;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class StringStatsTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_builds_a_stats_aggregation()
     {
         $stats = new StringStats('message.keyword');
@@ -19,7 +20,7 @@ class StringStatsTest extends TestCase
         ], $stats->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_a_stats_aggregation_with_options()
     {
         $stats = new StringStats('message.keyword', [
@@ -38,7 +39,7 @@ class StringStatsTest extends TestCase
         ], $stats->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_builds_a_stats_aggregation_with_invalid_options()
     {
         $stats = new StringStats('message.keyword', [

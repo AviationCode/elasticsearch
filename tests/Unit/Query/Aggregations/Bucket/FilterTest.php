@@ -2,12 +2,13 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\Filter;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class FilterTest extends TestCase
 {
-    /** @test **/
+    #[Test]
     public function it_adds_filter_aggregation()
     {
         $filter = new Filter(function ($filter) {
@@ -17,7 +18,7 @@ class FilterTest extends TestCase
         $this->assertEquals(['filter' => ['term' => ['type' => ['value' => 't-shirt']]]], $filter->toArray());
     }
 
-    /** @test **/
+    #[Test]
     public function it_adds_filter_aggregation_must_have_at_least_one_filter()
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -25,7 +26,7 @@ class FilterTest extends TestCase
         new Filter(function ($filter) {});
     }
 
-    /** @test **/
+    #[Test]
     public function it_adds_filter_aggregation_cannot_have_multiple_filter()
     {
         $this->expectException(\InvalidArgumentException::class);

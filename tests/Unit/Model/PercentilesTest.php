@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class PercentilesTest extends TestCase
 {
     #[Test]
-    public function it_can_access_values_by_key()
+    public function it_can_access_values_by_key(): void
     {
         $percentiles = new Percentiles([
             'values' => [

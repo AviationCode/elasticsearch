@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class FuzzyTest extends TestCase
 {
     #[Test]
-    public function it_builds_simple_fuzzy_clause()
+    public function it_builds_simple_fuzzy_clause(): void
     {
         $fuzzy = new Fuzzy('user', 'ki');
 
@@ -17,7 +17,7 @@ class FuzzyTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_advanced_fuzzy_clause()
+    public function it_builds_advanced_fuzzy_clause(): void
     {
         $fuzzy = new Fuzzy('user', 'ki', [
             'fuzziness' => Fuzzy::FUZZINESS_AUTO,

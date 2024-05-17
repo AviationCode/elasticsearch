@@ -10,7 +10,7 @@ use Carbon\Carbon;
 class DateRangeTest extends TestCase
 {
     #[Test]
-    public function it_successfully_translates_a_date_range()
+    public function it_successfully_translates_a_date_range(): void
     {
         $dateRange = new DateRange([
             'buckets' => [
@@ -36,7 +36,7 @@ class DateRangeTest extends TestCase
     }
 
     #[Test]
-    public function it_successfully_translates_a_date_range_with_keyed_response()
+    public function it_successfully_translates_a_date_range_with_keyed_response(): void
     {
         $dateRange = new DateRange([
             'buckets' => [

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Event;
 class IndexDocumentsTest extends TestCase
 {
     #[Test]
-    public function it_can_index_a_model()
+    public function it_can_index_a_model(): void
     {
         Event::fake();
 
@@ -46,7 +46,7 @@ class IndexDocumentsTest extends TestCase
     }
 
     #[Test]
-    public function it_indexes_a_php_array()
+    public function it_indexes_a_php_array(): void
     {
         Event::fake();
 
@@ -77,7 +77,7 @@ class IndexDocumentsTest extends TestCase
     }
 
     #[Test]
-    public function it_indexes_a_stdClass()
+    public function it_indexes_a_stdClass(): void
     {
         Event::fake();
 
@@ -107,7 +107,7 @@ class IndexDocumentsTest extends TestCase
     }
 
     #[Test]
-    public function it_indexes_multiple_php_arrays_in_bulk()
+    public function it_indexes_multiple_php_arrays_in_bulk(): void
     {
         Event::fake();
         Elasticsearch::enableEvents();
@@ -162,7 +162,7 @@ class IndexDocumentsTest extends TestCase
     }
 
     #[Test]
-    public function it_indexes_multiple_classes_in_bulk()
+    public function it_indexes_multiple_classes_in_bulk(): void
     {
         Event::fake();
         Elasticsearch::enableEvents();
@@ -218,7 +218,7 @@ class IndexDocumentsTest extends TestCase
     }
 
     #[Test]
-    public function it_can_index_a_model_given_as_param()
+    public function it_can_index_a_model_given_as_param(): void
     {
         Event::fake();
 
@@ -249,7 +249,7 @@ class IndexDocumentsTest extends TestCase
     }
 
     #[Test]
-    public function it_throws_exception_if_no_model_is_given()
+    public function it_throws_exception_if_no_model_is_given(): void
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -259,7 +259,7 @@ class IndexDocumentsTest extends TestCase
     }
 
     #[Test]
-    public function it_throws_exception_if_the_index_does_not_exist()
+    public function it_throws_exception_if_the_index_does_not_exist(): void
     {
         // This only occurs if the settings "action.auto_create_index" is set to false in elastic.
         $this->elastic->getClient()->shouldReceive('index')
@@ -297,7 +297,7 @@ class IndexDocumentsTest extends TestCase
     }
 
     #[Test]
-    public function it_fires_document_created_event()
+    public function it_fires_document_created_event(): void
     {
         Event::fake();
         Elasticsearch::enableEvents();
@@ -330,7 +330,7 @@ class IndexDocumentsTest extends TestCase
     }
 
     #[Test]
-    public function it_can_reindex_a_model()
+    public function it_can_reindex_a_model(): void
     {
         $data = [
             'id' => 123,
@@ -359,7 +359,7 @@ class IndexDocumentsTest extends TestCase
     }
 
     #[Test]
-    public function it_bulk_indexes_models()
+    public function it_bulk_indexes_models(): void
     {
         Event::fake();
         Elasticsearch::enableEvents();

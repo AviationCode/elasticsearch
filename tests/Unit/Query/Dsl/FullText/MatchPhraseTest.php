@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class MatchPhraseTest extends TestCase
 {
     #[Test]
-    public function it_matches_phrase_query()
+    public function it_matches_phrase_query(): void
     {
         $match = new MatchPhrase('message', 'this is a test');
 
@@ -23,7 +23,7 @@ class MatchPhraseTest extends TestCase
     }
 
     #[Test]
-    public function it_matches_phrase_query_with_options()
+    public function it_matches_phrase_query_with_options(): void
     {
         $match = new MatchPhrase('message', 'this is a test', ['analyzer' => 'my_analyzer']);
 

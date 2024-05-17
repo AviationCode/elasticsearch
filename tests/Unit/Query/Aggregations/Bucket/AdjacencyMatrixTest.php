@@ -10,7 +10,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class AdjacencyMatrixTest extends TestCase
 {
     #[Test]
-    public function it_builds_matrix_aggregation()
+    public function it_builds_matrix_aggregation(): void
     {
         $this->assertEquals([
             'adjacency_matrix' => [

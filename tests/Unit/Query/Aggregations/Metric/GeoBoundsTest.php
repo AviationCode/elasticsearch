@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class GeoBoundsTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_geo_bounds_aggregation()
+    public function it_builds_a_geo_bounds_aggregation(): void
     {
         $aggs = new Aggregation();
 

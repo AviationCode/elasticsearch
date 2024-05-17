@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class MissingTest extends TestCase
 {
     #[Test]
-    public function it_adds_missing_aggregation()
+    public function it_adds_missing_aggregation(): void
     {
         $missing = new Missing('price');
 

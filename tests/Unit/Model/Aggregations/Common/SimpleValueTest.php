@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class SimpleValueTest extends TestCase
 {
     #[Test]
-    public function it_translates_simple_value()
+    public function it_translates_simple_value(): void
     {
         $simpleValue = new SimpleValue(['value' => -0.25]);
 

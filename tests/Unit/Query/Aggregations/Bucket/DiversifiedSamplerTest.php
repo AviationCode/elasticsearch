@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class DiversifiedSamplerTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_sampler_aggregation()
+    public function it_builds_a_sampler_aggregation(): void
     {
         $sampler = new DiversifiedSampler();
 
@@ -17,7 +17,7 @@ class DiversifiedSamplerTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_sampler_aggregation_with_field_and_shard()
+    public function it_builds_a_sampler_aggregation_with_field_and_shard(): void
     {
         $sampler = new DiversifiedSampler(100, 'author');
 
@@ -25,7 +25,7 @@ class DiversifiedSamplerTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_sampler_aggregation_with_field_and_shard_and_max_doc_per_value()
+    public function it_builds_a_sampler_aggregation_with_field_and_shard_and_max_doc_per_value(): void
     {
         $sampler = new DiversifiedSampler(100, 'author', 3);
 
@@ -37,7 +37,7 @@ class DiversifiedSamplerTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_sampler_aggregation_with_shard()
+    public function it_builds_a_sampler_aggregation_with_shard(): void
     {
         $sampler = new DiversifiedSampler(100);
 

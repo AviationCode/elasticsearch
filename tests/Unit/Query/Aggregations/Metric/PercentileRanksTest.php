@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class PercentileRanksTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_percentile_ranks_aggregation()
+    public function it_builds_a_percentile_ranks_aggregation(): void
     {
         $percentiles = new PercentileRanks('load_time', [500, 600]);
 
@@ -22,7 +22,7 @@ class PercentileRanksTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_percentile_ranks_aggregation_with_options()
+    public function it_builds_a_percentile_ranks_aggregation_with_options(): void
     {
         $percentiles = new PercentileRanks('load_time', [500, 600], [
             'script' => ['lang' => 'painless'],
@@ -42,7 +42,7 @@ class PercentileRanksTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_percentile_ranks_aggregation_with_invalid_options()
+    public function it_builds_a_percentile_ranks_aggregation_with_invalid_options(): void
     {
         $percentiles = new PercentileRanks('load_time', [500, 600], ['invalid' => 'value']);
 

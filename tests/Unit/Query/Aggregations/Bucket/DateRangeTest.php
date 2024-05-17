@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class DateRangeTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_date_range_aggregation()
+    public function it_builds_a_date_range_aggregation(): void
     {
         $aggs = new Aggregation();
         $ranges = [

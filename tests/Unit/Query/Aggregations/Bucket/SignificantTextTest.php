@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class SignificantTextTest extends TestCase
 {
     #[Test]
-    public function it_builds_significant_text_aggregation()
+    public function it_builds_significant_text_aggregation(): void
     {
         $significant = new SignificantText('content');
 
@@ -21,7 +21,7 @@ class SignificantTextTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_significant_text_aggregation_with_valid_options()
+    public function it_builds_significant_text_aggregation_with_valid_options(): void
     {
         $significant = new SignificantText('content', [
             'filter_duplicate_text' => true,
@@ -38,7 +38,7 @@ class SignificantTextTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_significant_text_aggregation_with_invalid_options()
+    public function it_builds_significant_text_aggregation_with_invalid_options(): void
     {
         $significant = new SignificantText('content', [
             'invalid' => 'option',

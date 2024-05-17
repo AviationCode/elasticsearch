@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class SamplerTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_sampler_aggregation()
+    public function it_builds_a_sampler_aggregation(): void
     {
         $sampler = new Sampler();
 
@@ -17,7 +17,7 @@ class SamplerTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_sampler_aggregation_with_shard_size()
+    public function it_builds_a_sampler_aggregation_with_shard_size(): void
     {
         $sampler = new Sampler(100);
 

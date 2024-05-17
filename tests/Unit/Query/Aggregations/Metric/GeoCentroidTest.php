@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class GeoCentroidTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_geo_centroid_aggregation()
+    public function it_builds_a_geo_centroid_aggregation(): void
     {
         $aggs = new Aggregation();
 

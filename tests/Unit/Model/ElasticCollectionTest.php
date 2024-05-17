@@ -10,7 +10,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class ElasticCollectionTest extends TestCase
 {
     #[Test]
-    public function it_builds_up_elastic_collection()
+    public function it_builds_up_elastic_collection(): void
     {
         $response = [
             'took' => 1,
@@ -72,7 +72,7 @@ class ElasticCollectionTest extends TestCase
     }
 
     #[Test]
-    public function it_maps_aggregations()
+    public function it_maps_aggregations(): void
     {
         $response = [
             'took' => 1,

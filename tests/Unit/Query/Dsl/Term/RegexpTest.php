@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class RegexpTest extends TestCase
 {
     #[Test]
-    public function it_builds_simple_regexp()
+    public function it_builds_simple_regexp(): void
     {
         $regexp = new Regexp('user', 'k.*y');
 
@@ -17,7 +17,7 @@ class RegexpTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_advanced_regexp()
+    public function it_builds_advanced_regexp(): void
     {
         $regexp = new Regexp('user', 'k.*y', [
             'flags' => 'ALL',

@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class MaxBucketTest extends TestCase
 {
     #[Test]
-    public function it_builds_max_bucket_aggregation()
+    public function it_builds_max_bucket_aggregation(): void
     {
         $bucket = new MaxBucket('the_sum');
 
@@ -21,7 +21,7 @@ class MaxBucketTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_max_bucket_aggregation_gap_policy()
+    public function it_builds_max_bucket_aggregation_gap_policy(): void
     {
         $bucket = new MaxBucket('the_sum', MaxBucket::GAP_INSERT_ZEROS);
 
@@ -43,7 +43,7 @@ class MaxBucketTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_max_bucket_aggregation_format()
+    public function it_builds_max_bucket_aggregation_format(): void
     {
         $bucket = new MaxBucket('the_sum', null, '000.00');
 

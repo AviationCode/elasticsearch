@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class AvgTest extends TestCase
 {
     #[Test]
-    public function it_builds_an_avg_aggregation()
+    public function it_builds_an_avg_aggregation(): void
     {
         $aggs = new Aggregation();
 

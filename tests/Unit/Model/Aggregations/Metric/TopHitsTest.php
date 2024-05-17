@@ -10,7 +10,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class TopHitsTest extends TestCase
 {
     #[Test]
-    public function it_maps_top_hits_model()
+    public function it_maps_top_hits_model(): void
     {
         $topHits = new TopHits([
             'hits' => [
@@ -45,7 +45,7 @@ class TopHitsTest extends TestCase
     }
 
     #[Test]
-    public function it_cannot_modify_the_results()
+    public function it_cannot_modify_the_results(): void
     {
         $topHits = new TopHits([
             'hits' => [
@@ -77,7 +77,7 @@ class TopHitsTest extends TestCase
     }
 
     #[Test]
-    public function it_cannot_remove_results()
+    public function it_cannot_remove_results(): void
     {
         $topHits = new TopHits([
             'hits' => [

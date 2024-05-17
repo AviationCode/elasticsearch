@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class MultiMatchTest extends TestCase
 {
     #[Test]
-    public function it_builds_match_phrase_prefix_query()
+    public function it_builds_match_phrase_prefix_query(): void
     {
         $match = new MultiMatch(['title', 'message'], 'this is a test');
 
@@ -22,7 +22,7 @@ class MultiMatchTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_match_phrase_prefix_query_with_options()
+    public function it_builds_match_phrase_prefix_query_with_options(): void
     {
         $match = new MultiMatch(['title', '*_name'], 'Will Smith', ['type' => 'best_fields']);
 

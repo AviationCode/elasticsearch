@@ -13,7 +13,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class QueryTest extends TestCase
 {
     #[Test]
-    public function it_can_add_must()
+    public function it_can_add_must(): void
     {
         $query = new Query();
 
@@ -31,7 +31,7 @@ class QueryTest extends TestCase
     }
 
     #[Test]
-    public function it_can_add_filter()
+    public function it_can_add_filter(): void
     {
         $query = new Query();
 
@@ -49,7 +49,7 @@ class QueryTest extends TestCase
     }
 
     #[Test]
-    public function it_can_add_should()
+    public function it_can_add_should(): void
     {
         $query = new Query();
 
@@ -67,7 +67,7 @@ class QueryTest extends TestCase
     }
 
     #[Test]
-    public function it_can_add_must_not()
+    public function it_can_add_must_not(): void
     {
         $query = new Query();
 
@@ -85,7 +85,7 @@ class QueryTest extends TestCase
     }
 
     #[Test]
-    public function it_can_build_empty_query()
+    public function it_can_build_empty_query(): void
     {
         $query = new Query();
 

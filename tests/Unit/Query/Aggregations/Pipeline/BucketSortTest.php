@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class BucketSortTest extends TestCase
 {
     #[Test]
-    public function it_creates_basic_bucket_sort()
+    public function it_creates_basic_bucket_sort(): void
     {
         $bucket = new BucketSort();
 
@@ -19,7 +19,7 @@ class BucketSortTest extends TestCase
     }
 
     #[Test]
-    public function it_creates_basic_bucket_with_sort_options()
+    public function it_creates_basic_bucket_with_sort_options(): void
     {
         $bucket = new BucketSort([
             'sort_field_1' => 'asc',
@@ -37,7 +37,7 @@ class BucketSortTest extends TestCase
     }
 
     #[Test]
-    public function it_creates_basic_bucket_with_all_options()
+    public function it_creates_basic_bucket_with_all_options(): void
     {
         $bucket = new BucketSort([
             'sort_field_1' => 'asc',

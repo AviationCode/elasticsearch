@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class FilterTest extends TestCase
 {
     #[Test]
-    public function it_adds_filter_aggregation()
+    public function it_adds_filter_aggregation(): void
     {
         $filter = new Filter(function ($filter) {
             return $filter->term('type', 't-shirt');
@@ -19,7 +19,7 @@ class FilterTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_filter_aggregation_must_have_at_least_one_filter()
+    public function it_adds_filter_aggregation_must_have_at_least_one_filter(): void
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -27,7 +27,7 @@ class FilterTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_filter_aggregation_cannot_have_multiple_filter()
+    public function it_adds_filter_aggregation_cannot_have_multiple_filter(): void
     {
         $this->expectException(\InvalidArgumentException::class);
 

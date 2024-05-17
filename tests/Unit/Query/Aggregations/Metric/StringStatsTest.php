@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class StringStatsTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_stats_aggregation()
+    public function it_builds_a_stats_aggregation(): void
     {
         $stats = new StringStats('message.keyword');
 
@@ -21,7 +21,7 @@ class StringStatsTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_stats_aggregation_with_options()
+    public function it_builds_a_stats_aggregation_with_options(): void
     {
         $stats = new StringStats('message.keyword', [
             'show_distribution' => true,
@@ -40,7 +40,7 @@ class StringStatsTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_stats_aggregation_with_invalid_options()
+    public function it_builds_a_stats_aggregation_with_invalid_options(): void
     {
         $stats = new StringStats('message.keyword', [
             'invalid' => 'option',

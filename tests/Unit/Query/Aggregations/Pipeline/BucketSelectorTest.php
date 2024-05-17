@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class BucketSelectorTest extends TestCase
 {
     #[Test]
-    public function it_builds_bucket_selector_aggregation()
+    public function it_builds_bucket_selector_aggregation(): void
     {
         $bucket = new BucketSelector([
             'my_var1' => 'the_sum',
@@ -28,7 +28,7 @@ class BucketSelectorTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_bucket_selector_aggregation_with_gap_policy()
+    public function it_builds_bucket_selector_aggregation_with_gap_policy(): void
     {
         $bucket = new BucketSelector([
             'my_var1' => 'the_sum',

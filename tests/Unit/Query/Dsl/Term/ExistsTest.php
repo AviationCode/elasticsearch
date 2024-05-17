@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class ExistsTest extends TestCase
 {
     #[Test]
-    public function it_builds_exist_clause()
+    public function it_builds_exist_clause(): void
     {
         $exists = new Exists('user');
 

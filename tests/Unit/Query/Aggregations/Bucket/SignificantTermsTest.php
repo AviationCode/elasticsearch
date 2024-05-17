@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class SignificantTermsTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_significant_terms_aggregation()
+    public function it_builds_a_significant_terms_aggregation(): void
     {
         $terms = new SignificantTerms('crime_type');
 
@@ -21,7 +21,7 @@ class SignificantTermsTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_significant_terms_aggregation_with_options()
+    public function it_builds_a_significant_terms_aggregation_with_options(): void
     {
         $terms = new SignificantTerms('crime_type', [
             'jlh' => [],
@@ -58,7 +58,7 @@ class SignificantTermsTest extends TestCase
     }
     
     #[Test]
-    public function it_builds_a_significant_terms_aggregation_with_invalid_options()
+    public function it_builds_a_significant_terms_aggregation_with_invalid_options(): void
     {
         $terms = new SignificantTerms('crime_type', [
             'invalid_option' => 'test',

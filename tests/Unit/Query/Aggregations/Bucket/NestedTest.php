@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class NestedTest extends TestCase
 {
     #[Test]
-    public function it_adds_nested_aggregation()
+    public function it_adds_nested_aggregation(): void
     {
         $nested = new Nested('resellers');
 

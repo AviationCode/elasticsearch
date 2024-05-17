@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class HistogramTest extends TestCase
 {
     #[Test]
-    public function it_builds_histogram_aggregation()
+    public function it_builds_histogram_aggregation(): void
     {
         $histogram = new Histogram('price', 50);
 
@@ -22,7 +22,7 @@ class HistogramTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_histogram_aggregation_with_valid_options()
+    public function it_builds_histogram_aggregation_with_valid_options(): void
     {
         $histogram = new Histogram('price', 50, [
             'order' => ['key' => 'desc'],
@@ -42,7 +42,7 @@ class HistogramTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_histogram_aggregation_with_invalid_options()
+    public function it_builds_histogram_aggregation_with_invalid_options(): void
     {
         $histogram = new Histogram('price', 50, [
             'invalid_options'

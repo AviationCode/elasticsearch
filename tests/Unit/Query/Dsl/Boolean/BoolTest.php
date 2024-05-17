@@ -15,7 +15,7 @@ abstract class BoolTest extends TestCase
     abstract protected function newBooleanClass(): Boolean;
 
     #[Test]
-    public function empty_filter_clause()
+    public function empty_filter_clause(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -23,7 +23,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_multiple_clauses()
+    public function it_adds_multiple_clauses(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -49,7 +49,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_exists_query()
+    public function it_adds_exists_query(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -66,7 +66,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_fuzzy_query()
+    public function it_adds_fuzzy_query(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -83,7 +83,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_fuzzy_query_with_options()
+    public function it_adds_fuzzy_query_with_options(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -103,7 +103,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_ids_query()
+    public function it_ids_query(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -116,7 +116,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_prefix_query()
+    public function it_adds_prefix_query(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -129,7 +129,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_prefix_query_with_rewrite()
+    public function it_adds_prefix_query_with_rewrite(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -149,7 +149,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_range_query()
+    public function it_adds_range_query(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -169,7 +169,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_regexp_query()
+    public function it_adds_regexp_query(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -188,7 +188,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_regexp_query_with_options()
+    public function it_adds_regexp_query_with_options(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -208,7 +208,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_terms_set_query()
+    public function it_adds_terms_set_query(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -227,7 +227,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_terms_set_query_with_options()
+    public function it_adds_terms_set_query_with_options(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -247,7 +247,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_term_query()
+    public function it_adds_term_query(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -266,7 +266,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_term_query_with_boost()
+    public function it_adds_term_query_with_boost(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -286,7 +286,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_wildcard_query()
+    public function it_adds_wildcard_query(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -305,7 +305,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_wildcard_query_with_options()
+    public function it_adds_wildcard_query_with_options(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -325,7 +325,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_match_query()
+    public function it_adds_match_query(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -343,7 +343,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_match_bool_prefix_query()
+    public function it_adds_match_bool_prefix_query(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -361,7 +361,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_match_bool_prefix_query_with_options()
+    public function it_adds_match_bool_prefix_query_with_options(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -380,7 +380,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_match_phrase_query()
+    public function it_adds_match_phrase_query(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -398,7 +398,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_match_phrase_query_with_options()
+    public function it_adds_match_phrase_query_with_options(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -417,7 +417,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_match_phrase_prefix_query()
+    public function it_adds_match_phrase_prefix_query(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -435,7 +435,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_match_phrase_prefix_query_with_options()
+    public function it_adds_match_phrase_prefix_query_with_options(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -454,7 +454,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_multi_match_query()
+    public function it_adds_multi_match_query(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -471,7 +471,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_multi_match_query_with_options()
+    public function it_adds_multi_match_query_with_options(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -489,7 +489,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_query_string_query()
+    public function it_adds_query_string_query(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -505,7 +505,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_query_string_query_with_options()
+    public function it_adds_query_string_query_with_options(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -522,7 +522,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_simple_query_string_query()
+    public function it_adds_simple_query_string_query(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -538,7 +538,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_simple_query_string_query_with_options()
+    public function it_adds_simple_query_string_query_with_options(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -555,7 +555,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_geo_shape()
+    public function it_adds_geo_shape(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -574,7 +574,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_geo_polygon()
+    public function it_adds_geo_polygon(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -602,7 +602,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_geo_distance()
+    public function it_adds_geo_distance(): void
     {
         $boolean = $this->newBooleanClass();
 
@@ -620,7 +620,7 @@ abstract class BoolTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_geo_bounding_box()
+    public function it_adds_geo_bounding_box(): void
     {
         $boolean = $this->newBooleanClass();
 

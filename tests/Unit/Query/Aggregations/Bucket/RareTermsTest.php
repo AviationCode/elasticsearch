@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class RareTermsTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_rare_terms_aggregations()
+    public function it_builds_a_rare_terms_aggregations(): void
     {
         $rare = new RareTerms('genre');
 
@@ -21,7 +21,7 @@ class RareTermsTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_rare_terms_aggregations_with_valid_options()
+    public function it_builds_a_rare_terms_aggregations_with_valid_options(): void
     {
         $rare = new RareTerms('genre', [
             'max_doc_count' => 1,
@@ -44,7 +44,7 @@ class RareTermsTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_rare_terms_aggregations_with_invalid_options()
+    public function it_builds_a_rare_terms_aggregations_with_invalid_options(): void
     {
         $rare = new RareTerms('genre', [
             'invalid' => 'option',

@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class CardinalityTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_cardinality_aggregation()
+    public function it_builds_a_cardinality_aggregation(): void
     {
         $aggs = new Aggregation();
 

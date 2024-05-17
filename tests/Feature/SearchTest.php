@@ -25,7 +25,7 @@ class SearchTest extends TestCase
     }
 
     #[Test]
-    public function it_performs_search()
+    public function it_performs_search(): void
     {
         $this->client->shouldReceive('search')
             ->with([
@@ -138,7 +138,7 @@ class SearchTest extends TestCase
     }
 
     #[Test]
-    public function it_performs_search_without_eloquent_model()
+    public function it_performs_search_without_eloquent_model(): void
     {
         $this->client->shouldReceive('search')
             ->with([
@@ -251,7 +251,7 @@ class SearchTest extends TestCase
     }
 
     #[Test]
-    public function it_finds_by_id()
+    public function it_finds_by_id(): void
     {
         $this->client->shouldReceive('get')
             ->with([
@@ -297,7 +297,7 @@ class SearchTest extends TestCase
     }
 
     #[Test]
-    public function it_returns_null_when_find_does_not_return_result()
+    public function it_returns_null_when_find_does_not_return_result(): void
     {
         $this->client->shouldReceive('get')
             ->once()
@@ -320,7 +320,7 @@ class SearchTest extends TestCase
     }
 
     #[Test]
-    public function it_throws_model_not_found_exception_when_findOrFail_does_not_yield_a_result()
+    public function it_throws_model_not_found_exception_when_findOrFail_does_not_yield_a_result(): void
     {
         $this->expectException(ModelNotFoundException::class);
 
@@ -345,7 +345,7 @@ class SearchTest extends TestCase
     }
 
     #[Test]
-    public function it_orders_by_latest_created_at()
+    public function it_orders_by_latest_created_at(): void
     {
         $this->client->shouldReceive('search')
             ->once()
@@ -368,7 +368,7 @@ class SearchTest extends TestCase
     }
 
     #[Test]
-    public function it_gets_first_result()
+    public function it_gets_first_result(): void
     {
         $this->client->shouldReceive('search')
             ->once()
@@ -397,7 +397,7 @@ class SearchTest extends TestCase
      * elasticsearch requests.
      */
     #[Test]
-    public function complex_query()
+    public function complex_query(): void
     {
         $this->client->shouldReceive('search')
             ->once()
@@ -437,7 +437,7 @@ class SearchTest extends TestCase
     }
 
     #[Test]
-    public function it_chunks_over_large_data_set()
+    public function it_chunks_over_large_data_set(): void
     {
         $this->client->shouldReceive('search')
             ->with([
@@ -543,7 +543,7 @@ class SearchTest extends TestCase
     }
 
     #[Test]
-    public function it_can_each_by_id_through_all_records()
+    public function it_can_each_by_id_through_all_records(): void
     {
         $this->client->shouldReceive('search')
             ->with([
@@ -645,7 +645,7 @@ class SearchTest extends TestCase
     }
 
     #[Test]
-    public function it_can_early_return_from_each_method()
+    public function it_can_early_return_from_each_method(): void
     {
         $this->client->shouldReceive('search')
             ->with([
@@ -677,7 +677,7 @@ class SearchTest extends TestCase
     }
 
     #[Test]
-    public function it_can_early_return_from_chunk()
+    public function it_can_early_return_from_chunk(): void
     {
         $this->client->shouldReceive('search')
             ->with([

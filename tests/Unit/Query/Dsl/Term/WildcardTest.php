@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class WildcardTest extends TestCase
 {
     #[Test]
-    public function it_builds_wildcard()
+    public function it_builds_wildcard(): void
     {
         $wildcard = new Wildcard('user', 'ki.*y');
 
@@ -23,7 +23,7 @@ class WildcardTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_wildcard_with_boost()
+    public function it_builds_wildcard_with_boost(): void
     {
         $wildcard = new Wildcard('user', 'ki.*y', [
             'boost' => 2.0,
@@ -40,7 +40,7 @@ class WildcardTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_wildcard_with_rewrite()
+    public function it_builds_wildcard_with_rewrite(): void
     {
         $wildcard = new Wildcard('user', 'ki.*y', [
             'rewrite' => 'constant_score',

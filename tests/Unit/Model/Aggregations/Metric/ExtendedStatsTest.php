@@ -10,7 +10,7 @@ use Illuminate\Support\Arr;
 class ExtendedStatsTest extends TestCase
 {
     #[Test]
-    public function it_translates_extended_stats_aggregation()
+    public function it_translates_extended_stats_aggregation(): void
     {
         $values = [
             'count' => 2,

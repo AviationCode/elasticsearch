@@ -10,7 +10,7 @@ use Carbon\Carbon;
 class AutoDateHistogramTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_date_histogram()
+    public function it_builds_a_date_histogram(): void
     {
         $histogram = new AutoDateHistogram([
             'buckets' => [

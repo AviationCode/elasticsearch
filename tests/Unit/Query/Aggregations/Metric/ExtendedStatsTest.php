@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class ExtendedStatsTest extends TestCase
 {
     #[Test]
-    public function it_builds_an_extended_stats_aggregation()
+    public function it_builds_an_extended_stats_aggregation(): void
     {
         $aggs = new Aggregation();
 

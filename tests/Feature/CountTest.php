@@ -21,7 +21,7 @@ class CountTest extends TestCase
     }
 
     #[Test]
-    public function it_can_count_the_documents_without_filtering()
+    public function it_can_count_the_documents_without_filtering(): void
     {
         $this->client
             ->shouldReceive('count')
@@ -42,7 +42,7 @@ class CountTest extends TestCase
     }
 
     #[Test]
-    public function it_can_count_the_documents_without_an_eloquent_model()
+    public function it_can_count_the_documents_without_an_eloquent_model(): void
     {
         $this->client
             ->shouldReceive('count')
@@ -63,7 +63,7 @@ class CountTest extends TestCase
     }
 
     #[Test]
-    public function it_can_count_the_matching_documents_with_filter()
+    public function it_can_count_the_matching_documents_with_filter(): void
     {
         $this->client
             ->shouldReceive('count')

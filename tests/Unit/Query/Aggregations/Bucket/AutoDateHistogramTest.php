@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class AutoDateHistogramTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_auto_date_histogram_aggregation()
+    public function it_builds_a_auto_date_histogram_aggregation(): void
     {
         $histogram = new AutoDateHistogram('date');
 
@@ -21,7 +21,7 @@ class AutoDateHistogramTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_auto_date_histogram_aggregation_with_options()
+    public function it_builds_a_auto_date_histogram_aggregation_with_options(): void
     {
         $histogram = new AutoDateHistogram('date', [
             'buckets' => 10,
@@ -44,7 +44,7 @@ class AutoDateHistogramTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_auto_date_histogram_aggregation_with_invalid_options()
+    public function it_builds_a_auto_date_histogram_aggregation_with_invalid_options(): void
     {
         $histogram = new AutoDateHistogram('date', [
             'invalid' => 'option',

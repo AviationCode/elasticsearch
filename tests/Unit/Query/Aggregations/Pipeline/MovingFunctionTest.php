@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class MovingFunctionTest extends TestCase
 {
     #[Test]
-    public function it_builds_moving_fn_aggregation()
+    public function it_builds_moving_fn_aggregation(): void
     {
         $moving = new Movingfunction('the_sum', 10, 'MovingFunctions.min(values)');
 
@@ -23,7 +23,7 @@ class MovingFunctionTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_moving_fn_with_shift()
+    public function it_builds_moving_fn_with_shift(): void
     {
         $moving = new Movingfunction('the_sum', 10, 'MovingFunctions.min(values)', 5);
 

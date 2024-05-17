@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class MaxTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_max_aggregation()
+    public function it_builds_a_max_aggregation(): void
     {
         $aggs = new Aggregation();
 

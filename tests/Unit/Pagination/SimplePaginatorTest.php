@@ -14,7 +14,7 @@ use ReflectionMethod;
 class SimplePaginatorTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_simple_paginator()
+    public function it_builds_a_simple_paginator(): void
     {
         $response = [
             'took' => 1,
@@ -72,7 +72,7 @@ class SimplePaginatorTest extends TestCase
     }
 
     #[Test]
-    public function it_has_a_method_to_retrieve_the_aggregations_from_the_elastic_collection()
+    public function it_has_a_method_to_retrieve_the_aggregations_from_the_elastic_collection(): void
     {
         $aggregationsMethod = new ReflectionMethod(SimplePaginator::class, 'aggregations');
 
@@ -82,7 +82,7 @@ class SimplePaginatorTest extends TestCase
     }
 
     #[Test]
-    public function it_can_retrieve_the_aggregations()
+    public function it_can_retrieve_the_aggregations(): void
     {
         $response = [
             'took' => 1,

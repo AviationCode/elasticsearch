@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class ChildrenTest extends TestCase
 {
     #[Test]
-    public function it_adds_parent_aggregation()
+    public function it_adds_parent_aggregation(): void
     {
         $children = new Children('answer');
 

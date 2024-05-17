@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class IndexTest extends TestCase
 {
     #[Test]
-    public function it_builds_index()
+    public function it_builds_index(): void
     {
         $elasticResult = [
             'health' => 'yellow',
@@ -39,14 +39,14 @@ class IndexTest extends TestCase
     }
 
     #[Test]
-    public function it_marks_indices_with_a_dot_as_internal()
+    public function it_marks_indices_with_a_dot_as_internal(): void
     {
         $this->assertFalse((new Index(['index' => 'addresses']))->isInternal());
         $this->assertTrue((new Index(['index' => '.kibana']))->isInternal());
     }
 
     #[Test]
-    public function it_replaces_dot_syntax_with_underscores()
+    public function it_replaces_dot_syntax_with_underscores(): void
     {
         $index = new Index(['docs.count' => 100]);
 

@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class CumulativeCardinalityTest extends TestCase
 {
     #[Test]
-    public function it_builds_cumulative_cardinality_aggregation()
+    public function it_builds_cumulative_cardinality_aggregation(): void
     {
         $bucket = new CumulativeCardinality('the_sum');
 
@@ -21,7 +21,7 @@ class CumulativeCardinalityTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_cumulative_cardinality_aggregation_format()
+    public function it_builds_cumulative_cardinality_aggregation_format(): void
     {
         $bucket = new CumulativeCardinality('the_sum', '000.00');
 

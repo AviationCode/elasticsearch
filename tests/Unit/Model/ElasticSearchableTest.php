@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class ElasticSearchableTest extends TestCase
 {
     #[Test]
-    public function it_builds_eloquent_model_from_elastic_results()
+    public function it_builds_eloquent_model_from_elastic_results(): void
     {
         $article = (new ArticleTestModel())->newFromElasticBuilder([
             '_id' => 123,
@@ -26,7 +26,7 @@ class ElasticSearchableTest extends TestCase
     }
 
     #[Test]
-    public function the_indexed_model_defaults_to_toArray()
+    public function the_indexed_model_defaults_to_toArray(): void
     {
         $article = new ArticleTestModel();
         $article->fill([
@@ -41,7 +41,7 @@ class ElasticSearchableTest extends TestCase
     }
 
     #[Test]
-    public function it_uses_elasticcollection()
+    public function it_uses_elasticcollection(): void
     {
         $collection = (new ArticleTestModel())->newCollection();
 

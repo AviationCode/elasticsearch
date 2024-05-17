@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class GeoDistanceTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_geo_distance_bucket_aggregation()
+    public function it_builds_a_geo_distance_bucket_aggregation(): void
     {
         $geoDistance = new GeoDistance('location', 52.3760, 4.894, [
             ['to' => 100000],
@@ -33,7 +33,7 @@ class GeoDistanceTest extends TestCase
     }
 
     #[Test]
-    public function it_can_add_unit()
+    public function it_can_add_unit(): void
     {
         $geoDistance = new GeoDistance('location', 52.3760, 4.894, [
             ['to' => 100000],
@@ -57,7 +57,7 @@ class GeoDistanceTest extends TestCase
     }
 
     #[Test]
-    public function it_can_add_ranges_dynamically()
+    public function it_can_add_ranges_dynamically(): void
     {
         $geoDistance = new GeoDistance('location', 52.3760, 4.894, GeoDistance::CM);
         $geoDistance->to(100000);
@@ -80,7 +80,7 @@ class GeoDistanceTest extends TestCase
     }
 
     #[Test]
-    public function it_can_define_custom_keys()
+    public function it_can_define_custom_keys(): void
     {
         $geoDistance = new GeoDistance('location', 52.3760, 4.894);
         $geoDistance->to(100000, 'first');

@@ -15,7 +15,7 @@ use AviationCode\Elasticsearch\ElasticsearchServiceProvider;
 final class ElasticsearchServiceProviderTest extends TestCase
 {
     #[Test]
-    public function it_can_publish_the_configuration()
+    public function it_can_publish_the_configuration(): void
     {
         $configPath = base_path('config/elasticsearch.php');
         $this->artisan('vendor:publish', ['--provider' => ElasticsearchServiceProvider::class]);

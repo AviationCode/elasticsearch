@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class TermTest extends TestCase
 {
     #[Test]
-    public function it_builds_term_clause()
+    public function it_builds_term_clause(): void
     {
         $term = new Term('status', 'published');
 
@@ -19,7 +19,7 @@ class TermTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_term_clause_with_boost()
+    public function it_builds_term_clause_with_boost(): void
     {
         $term = new Term('status', 'published', 2.0);
 

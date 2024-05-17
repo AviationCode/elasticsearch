@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class GeohashGridTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_geohash_grid_aggregation()
+    public function it_builds_a_geohash_grid_aggregation(): void
     {
         $grid = new GeohashGrid('geo');
 
@@ -21,7 +21,7 @@ class GeohashGridTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_geohash_grid_aggregation_with_valid_options()
+    public function it_builds_a_geohash_grid_aggregation_with_valid_options(): void
     {
         $grid = new GeohashGrid('geo', [
             'precision' => 3,
@@ -48,7 +48,7 @@ class GeohashGridTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_geohash_grid_aggregation_with_invalid_options()
+    public function it_builds_a_geohash_grid_aggregation_with_invalid_options(): void
     {
         $grid = new GeohashGrid('geo', [
             'invalid' => 'options'

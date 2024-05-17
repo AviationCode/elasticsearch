@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class QueryStringTest extends TestCase
 {
     #[Test]
-    public function it_adds_query_string_clause()
+    public function it_adds_query_string_clause(): void
     {
         $queryString = new QueryString('this is a test');
 
@@ -21,7 +21,7 @@ class QueryStringTest extends TestCase
     }
 
     #[Test]
-    public function it_adds_query_string_clause_with_options()
+    public function it_adds_query_string_clause_with_options(): void
     {
         $queryString = new QueryString('this is a test', ['default_field' => 'body']);
 

@@ -48,7 +48,7 @@ class IndexTest extends TestCase
     }
 
     #[Test]
-    public function it_checks_if_index_from_given_parameter()
+    public function it_checks_if_index_from_given_parameter(): void
     {
         $this->indices->shouldReceive('exists')
             ->with(['index' => 'index_does_not_exist'])
@@ -59,7 +59,7 @@ class IndexTest extends TestCase
     }
 
     #[Test]
-    public function it_checks_index_exists_from_a_model_class()
+    public function it_checks_index_exists_from_a_model_class(): void
     {
         $this->indices->shouldReceive('exists')
             ->with(['index' => 'article_test_model'])
@@ -70,7 +70,7 @@ class IndexTest extends TestCase
     }
 
     #[Test]
-    public function it_checks_index_exists_from_a_model_instance()
+    public function it_checks_index_exists_from_a_model_instance(): void
     {
         $this->indices->shouldReceive('exists')
             ->with(['index' => 'article_test_model'])
@@ -81,7 +81,7 @@ class IndexTest extends TestCase
     }
 
     #[Test]
-    public function it_throws_exception_when_no_model_or_index_is_given()
+    public function it_throws_exception_when_no_model_or_index_is_given(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
@@ -89,7 +89,7 @@ class IndexTest extends TestCase
     }
 
     #[Test]
-    public function it_creates_an_index_given_as_param()
+    public function it_creates_an_index_given_as_param(): void
     {
         $this->indices->shouldReceive('create')
             ->with(['index' => 'my_index'])
@@ -106,7 +106,7 @@ class IndexTest extends TestCase
     }
 
     #[Test]
-    public function it_creates_index_using_model_and_configures_known_fields()
+    public function it_creates_index_using_model_and_configures_known_fields(): void
     {
         $this->indices->shouldReceive('create')
             ->with(['index' => 'article_test_model'])
@@ -147,7 +147,7 @@ class IndexTest extends TestCase
     }
 
     #[Test]
-    public function it_throws_exceptions_when_creating_index_when_model_is_already_provided()
+    public function it_throws_exceptions_when_creating_index_when_model_is_already_provided(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
@@ -155,7 +155,7 @@ class IndexTest extends TestCase
     }
 
     #[Test]
-    public function it_creating_a_duplicate_index_throws_an_exception()
+    public function it_creating_a_duplicate_index_throws_an_exception(): void
     {
         $this->indices->shouldReceive('create')
             ->with(['index' => 'my_index'])
@@ -182,7 +182,7 @@ class IndexTest extends TestCase
     }
 
     #[Test]
-    public function it_deletes_index()
+    public function it_deletes_index(): void
     {
         $this->indices->shouldReceive('delete')
             ->with(['index' => 'my_index'])
@@ -195,7 +195,7 @@ class IndexTest extends TestCase
     }
 
     #[Test]
-    public function it_throws_exception_if_index_does_not_exist()
+    public function it_throws_exception_if_index_does_not_exist(): void
     {
         $this->indices->shouldReceive('delete')
             ->with(['index' => 'my_index'])
@@ -223,7 +223,7 @@ class IndexTest extends TestCase
     }
 
     #[Test]
-    public function it_throws_exception_if_no_model_or_index_is_provided()
+    public function it_throws_exception_if_no_model_or_index_is_provided(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
@@ -231,7 +231,7 @@ class IndexTest extends TestCase
     }
 
     #[Test]
-    public function it_puts_index_mapping()
+    public function it_puts_index_mapping(): void
     {
         $this->indices->shouldReceive('putMapping')
             ->with([
@@ -255,7 +255,7 @@ class IndexTest extends TestCase
     }
 
     #[Test]
-    public function it_puts_invalid_mapping()
+    public function it_puts_invalid_mapping(): void
     {
         $this->expectException(BaseElasticsearchException::class);
 
@@ -279,7 +279,7 @@ class IndexTest extends TestCase
     }
 
     #[Test]
-    public function it_can_request_index_info()
+    public function it_can_request_index_info(): void
     {
         $info = [
             'mappings' => ['properties' => ['city' => ['type' => 'keyword']]],
@@ -303,7 +303,7 @@ class IndexTest extends TestCase
     }
 
     #[Test]
-    public function it_can_request_index_info_from_a_model()
+    public function it_can_request_index_info_from_a_model(): void
     {
         $info = [
             'mappings' => ['properties' => ['city' => ['type' => 'keyword']]],
@@ -327,7 +327,7 @@ class IndexTest extends TestCase
     }
 
     #[Test]
-    public function it_can_request_index_info_handle_exceptions()
+    public function it_can_request_index_info_handle_exceptions(): void
     {
         $this->indices->shouldReceive('get')
             ->with(['index' => 'my_index'])
@@ -356,7 +356,7 @@ class IndexTest extends TestCase
     }
 
     #[Test]
-    public function it_can_request_a_list_of_indices()
+    public function it_can_request_a_list_of_indices(): void
     {
         $this->cat->shouldReceive('indices')->andReturn([
             [

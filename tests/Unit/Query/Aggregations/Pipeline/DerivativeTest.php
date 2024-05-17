@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class DerivativeTest extends TestCase
 {
     #[Test]
-    public function it_builds_derivative_aggregation()
+    public function it_builds_derivative_aggregation(): void
     {
         $derivative = new Derivative('the_sum');
 
@@ -21,7 +21,7 @@ class DerivativeTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_derivative_aggregation_gap_policy()
+    public function it_builds_derivative_aggregation_gap_policy(): void
     {
         $derivative = new Derivative('the_sum', Derivative::GAP_INSERT_ZEROS);
 
@@ -43,7 +43,7 @@ class DerivativeTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_derivative_aggregation_format()
+    public function it_builds_derivative_aggregation_format(): void
     {
         $derivative = new Derivative('the_sum', null, '000.00');
 
@@ -56,7 +56,7 @@ class DerivativeTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_derivative_aggregation_unit()
+    public function it_builds_derivative_aggregation_unit(): void
     {
         $derivative = new Derivative('the_sum', null, null, 'day');
 

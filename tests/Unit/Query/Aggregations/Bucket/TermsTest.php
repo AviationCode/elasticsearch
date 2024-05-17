@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class TermsTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_terms_aggregation()
+    public function it_builds_a_terms_aggregation(): void
     {
         $agg = new Aggregation();
         $agg->terms('test_1', 'user');

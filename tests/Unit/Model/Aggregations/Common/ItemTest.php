@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class ItemTest extends TestCase
 {
     #[Test]
-    public function it_maps_key_values()
+    public function it_maps_key_values(): void
     {
         $item = new Item([
             'key' => 'value',
@@ -19,7 +19,7 @@ class ItemTest extends TestCase
     }
 
     #[Test]
-    public function it_maps_nested_elements()
+    public function it_maps_nested_elements(): void
     {
         $item = new Item([
             'key' => 'jeffreyway',
@@ -47,7 +47,7 @@ class ItemTest extends TestCase
     }
 
     #[Test]
-    public function it_maps_nested_simple_values_to_the_key()
+    public function it_maps_nested_simple_values_to_the_key(): void
     {
         $item = new Item([
             'key' => 'jeffreyway',

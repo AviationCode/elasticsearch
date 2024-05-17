@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class MatchQueryTest extends TestCase
 {
     #[Test]
-    public function it_builds_match_clause()
+    public function it_builds_match_clause(): void
     {
         $match = new MatchQuery('message', 'this is a test');
 
@@ -23,7 +23,7 @@ class MatchQueryTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_match_clause_with_options()
+    public function it_builds_match_clause_with_options(): void
     {
         $match = new MatchQuery('message', 'this is a test', ['operator' => 'and']);
 

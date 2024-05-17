@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class MatchBoolPrefixTest extends TestCase
 {
     #[Test]
-    public function it_builds_match_bool_prefix()
+    public function it_builds_match_bool_prefix(): void
     {
         $matchBoolPrefix = new MatchBoolPrefix('message', 'quick brown f');
 
@@ -23,7 +23,7 @@ class MatchBoolPrefixTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_match_bool_prefix_with_options()
+    public function it_builds_match_bool_prefix_with_options(): void
     {
         $matchBoolPrefix = new MatchBoolPrefix('message', 'quick brown f', ['analyzer' => 'keyword']);
 

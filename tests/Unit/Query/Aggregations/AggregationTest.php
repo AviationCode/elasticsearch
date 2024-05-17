@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class AggregationTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_complete_nested_example()
+    public function it_builds_a_complete_nested_example(): void
     {
         $aggs = new Aggregation();
 
@@ -44,7 +44,7 @@ class AggregationTest extends TestCase
     }
 
     #[Test]
-    public function it_throws_exception_when_aggregation_does_not_exist()
+    public function it_throws_exception_when_aggregation_does_not_exist(): void
     {
         $this->expectException(\BadMethodCallException::class);
 
@@ -56,7 +56,7 @@ class AggregationTest extends TestCase
     }
 
     #[Test]
-    public function it_throws_exception_when_using_nested_aggregation_before_it_is_defined()
+    public function it_throws_exception_when_using_nested_aggregation_before_it_is_defined(): void
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -69,7 +69,7 @@ class AggregationTest extends TestCase
     }
 
     #[Test]
-    public function it_throws_exception_when_key_is_not_set()
+    public function it_throws_exception_when_key_is_not_set(): void
     {
         $this->expectException(\InvalidArgumentException::class);
 

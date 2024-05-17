@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Feature\TestModels\Article;
 class ManageIndexTest extends TestCase
 {
     #[Test]
-    public function it_creates_index_from_model()
+    public function it_creates_index_from_model(): void
     {
         $elastic = Elasticsearch::fake();
         $elastic->indicesClient

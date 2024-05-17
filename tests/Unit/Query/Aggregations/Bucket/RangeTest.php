@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class RangeTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_range_bucket_aggregation()
+    public function it_builds_a_range_bucket_aggregation(): void
     {
         $range = new Range('price', [
             ['to' => 100],
@@ -31,7 +31,7 @@ class RangeTest extends TestCase
     }
 
     #[Test]
-    public function it_can_add_ranges_dynamically()
+    public function it_can_add_ranges_dynamically(): void
     {
         $range = new Range('price');
         $range->to(100);
@@ -52,7 +52,7 @@ class RangeTest extends TestCase
     }
 
     #[Test]
-    public function it_can_define_custom_keys()
+    public function it_can_define_custom_keys(): void
     {
         $range = new Range('price');
         $range->to(100, 'first');

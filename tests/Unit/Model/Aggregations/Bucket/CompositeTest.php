@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class CompositeTest extends TestCase
 {
     #[Test]
-    public function it_can_construct_a_composite_instance()
+    public function it_can_construct_a_composite_instance(): void
     {
         $composite = new Composite(
             [
@@ -39,7 +39,7 @@ class CompositeTest extends TestCase
     }
 
     #[Test]
-    public function it_parses_the_after_key()
+    public function it_parses_the_after_key(): void
     {
         $composite = new Composite(
             [

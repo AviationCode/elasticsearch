@@ -13,7 +13,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class BooleanTest extends TestCase
 {
     #[Test]
-    public function it_builds_all_possible_query_objects()
+    public function it_builds_all_possible_query_objects(): void
     {
         $boolean = new Boolean();
         $boolean->must(function (Must $must) {
@@ -48,7 +48,7 @@ class BooleanTest extends TestCase
     }
 
     #[Test]
-    public function it_throws_error_when_calling_invalid_driver()
+    public function it_throws_error_when_calling_invalid_driver(): void
     {
         $this->expectException(\BadMethodCallException::class);
 
@@ -60,7 +60,7 @@ class BooleanTest extends TestCase
     }
 
     #[Test]
-    public function it_can_build_a_nested_complex_query()
+    public function it_can_build_a_nested_complex_query(): void
     {
         $boolean = new Boolean();
 

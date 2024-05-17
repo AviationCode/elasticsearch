@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class PercentilesTest extends TestCase
 {
     #[Test]
-    public function it_translates_percentiles_aggregation()
+    public function it_translates_percentiles_aggregation(): void
     {
         $value = [
             'values' => [

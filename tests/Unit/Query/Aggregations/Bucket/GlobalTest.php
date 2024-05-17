@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class GlobalTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_global_aggregation()
+    public function it_builds_a_global_aggregation(): void
     {
         $global = new GlobalBucket();
 

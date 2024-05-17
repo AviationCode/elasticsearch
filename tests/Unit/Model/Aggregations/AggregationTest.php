@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class AggregationTest extends TestCase
 {
     #[Test]
-    public function it_handles_special_string_terms_model()
+    public function it_handles_special_string_terms_model(): void
     {
         $aggregations = new Aggregation([
             'sterms#genres' => [
@@ -43,7 +43,7 @@ class AggregationTest extends TestCase
     }
 
     #[Test]
-    public function it_handles_special_long_terms_model()
+    public function it_handles_special_long_terms_model(): void
     {
         $aggregations = new Aggregation([
             'lterms#genres' => [
@@ -77,7 +77,7 @@ class AggregationTest extends TestCase
     }
 
     #[Test]
-    public function it_throws_exception_when_aggregation_does_not_exist()
+    public function it_throws_exception_when_aggregation_does_not_exist(): void
     {
         $this->expectException(\InvalidArgumentException::class);
 

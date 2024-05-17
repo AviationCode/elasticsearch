@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class MatchPhrasePrefixTest extends TestCase
 {
     #[Test]
-    public function it_builds_match_phrase_prefix_query()
+    public function it_builds_match_phrase_prefix_query(): void
     {
         $match = new MatchPhrasePrefix('message', 'quick brown f');
 
@@ -23,7 +23,7 @@ class MatchPhrasePrefixTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_match_phrase_prefix_query_with_options()
+    public function it_builds_match_phrase_prefix_query_with_options(): void
     {
         $match = new MatchPhrasePrefix('message', 'quick brown f', ['max_expansions' => 10]);
 

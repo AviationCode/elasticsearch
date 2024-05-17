@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class BucketTest extends TestCase
 {
     #[Test]
-    public function it_can_build_a_bucket_aggregation()
+    public function it_can_build_a_bucket_aggregation(): void
     {
         $bucket = new Bucket([
             'doc_count_error_upper_bound' => 0,
@@ -78,7 +78,7 @@ class BucketTest extends TestCase
     }
 
     #[Test]
-    public function it_throws_exception_when_using_unset_on_read_only_array()
+    public function it_throws_exception_when_using_unset_on_read_only_array(): void
     {
         $bucket = new Bucket([
             'doc_count_error_upper_bound' => 0,
@@ -97,7 +97,7 @@ class BucketTest extends TestCase
     }
 
     #[Test]
-    public function it_throws_exception_when_using_setting_a_value_on_read_only_array()
+    public function it_throws_exception_when_using_setting_a_value_on_read_only_array(): void
     {
         $bucket = new Bucket([
             'doc_count_error_upper_bound' => 0,
@@ -116,7 +116,7 @@ class BucketTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_geo_distance_response()
+    public function it_builds_geo_distance_response(): void
     {
         $geoDistance = new Bucket([
             'buckets' => [

@@ -20,7 +20,7 @@ class ElasticsearchTest extends TestCase
     }
 
     #[Test]
-    public function it_can_enable_firing_events()
+    public function it_can_enable_firing_events(): void
     {
         $this->assertFalse(Elasticsearch::shouldSentEvents());
 

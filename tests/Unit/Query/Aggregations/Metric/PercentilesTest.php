@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class PercentilesTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_percentiles_aggregation()
+    public function it_builds_a_percentiles_aggregation(): void
     {
         $percentiles = new Percentiles('load_time');
 
@@ -21,7 +21,7 @@ class PercentilesTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_percentiles_aggregation_with_options()
+    public function it_builds_a_percentiles_aggregation_with_options(): void
     {
         $percentiles = new Percentiles('load_time', [
             'script' => ['lang' => 'painless'],
@@ -42,7 +42,7 @@ class PercentilesTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_percentiles_aggregation_with_invalid_options()
+    public function it_builds_a_percentiles_aggregation_with_invalid_options(): void
     {
         $percentiles = new Percentiles('load_time', ['invalid' => 'value']);
 

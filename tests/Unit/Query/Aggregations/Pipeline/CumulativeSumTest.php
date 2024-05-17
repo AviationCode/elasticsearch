@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class CumulativeSumTest extends TestCase
 {
     #[Test]
-    public function it_builds_cumulative_sum_aggregation()
+    public function it_builds_cumulative_sum_aggregation(): void
     {
         $bucket = new CumulativeSum('the_sum');
 
@@ -21,7 +21,7 @@ class CumulativeSumTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_cumulative_sum_aggregation_format()
+    public function it_builds_cumulative_sum_aggregation_format(): void
     {
         $bucket = new CumulativeSum('the_sum', '000.00');
 

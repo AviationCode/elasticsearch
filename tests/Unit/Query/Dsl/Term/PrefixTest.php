@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class PrefixTest extends TestCase
 {
     #[Test]
-    public function it_builds_prefix_clause()
+    public function it_builds_prefix_clause(): void
     {
         $prefix = new Prefix('user', 'ki');
 
@@ -17,7 +17,7 @@ class PrefixTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_prefix_clause_with_rewrite()
+    public function it_builds_prefix_clause_with_rewrite(): void
     {
         $prefix = new Prefix('user', 'ki', 'constant_score');
 

@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class AvgBucketTest extends TestCase
 {
     #[Test]
-    public function it_builds_avg_bucket_aggregation()
+    public function it_builds_avg_bucket_aggregation(): void
     {
         $avgBucket = new AvgBucket('the_avg');
 
@@ -21,7 +21,7 @@ class AvgBucketTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_avg_bucket_aggregation_gap_policy()
+    public function it_builds_avg_bucket_aggregation_gap_policy(): void
     {
         $avgBucket = new AvgBucket('the_avg', AvgBucket::GAP_INSERT_ZEROS);
 
@@ -43,7 +43,7 @@ class AvgBucketTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_avg_bucket_aggregation_format()
+    public function it_builds_avg_bucket_aggregation_format(): void
     {
         $avgBucket = new AvgBucket('the_avg', null, '000.00');
 
@@ -56,7 +56,7 @@ class AvgBucketTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_avg_bucket_aggregation_unit()
+    public function it_builds_avg_bucket_aggregation_unit(): void
     {
         $avgBucket = new AvgBucket('the_avg', null, null, 'day');
 

@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class SumBucketTest extends TestCase
 {
     #[Test]
-    public function it_builds_sum_bucket_aggregation()
+    public function it_builds_sum_bucket_aggregation(): void
     {
         $bucket = new SumBucket('the_sum');
 
@@ -21,7 +21,7 @@ class SumBucketTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_sum_bucket_aggregation_gap_policy()
+    public function it_builds_sum_bucket_aggregation_gap_policy(): void
     {
         $bucket = new SumBucket('the_sum', SumBucket::GAP_INSERT_ZEROS);
 
@@ -43,7 +43,7 @@ class SumBucketTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_sum_bucket_aggregation_format()
+    public function it_builds_sum_bucket_aggregation_format(): void
     {
         $bucket = new SumBucket('the_sum', null, '000.00');
 

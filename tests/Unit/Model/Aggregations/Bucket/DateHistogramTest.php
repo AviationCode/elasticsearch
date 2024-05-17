@@ -11,7 +11,7 @@ use Carbon\Carbon;
 class DateHistogramTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_date_histogram()
+    public function it_builds_a_date_histogram(): void
     {
         $query = new DateHistogramQuery('created_at', '1d');
 

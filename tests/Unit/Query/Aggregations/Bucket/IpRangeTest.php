@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class IpRangeTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_ip_range_bucket_aggregation()
+    public function it_builds_a_ip_range_bucket_aggregation(): void
     {
         $range = new IpRange('ip', [
             ['to' => '10.0.0.5'],
@@ -31,7 +31,7 @@ class IpRangeTest extends TestCase
     }
 
     #[Test]
-    public function it_can_add_ranges_dynamically()
+    public function it_can_add_ranges_dynamically(): void
     {
         $range = new IpRange('ip');
         $range->to('10.0.0.5');
@@ -52,7 +52,7 @@ class IpRangeTest extends TestCase
     }
 
     #[Test]
-    public function it_can_define_custom_keys()
+    public function it_can_define_custom_keys(): void
     {
         $range = new IpRange('ip');
         $range->to('10.0.0.5', 'first');

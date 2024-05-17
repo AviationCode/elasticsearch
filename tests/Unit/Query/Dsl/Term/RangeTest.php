@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class RangeTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_simple_range()
+    public function it_builds_a_simple_range(): void
     {
         $range = new Range('age', '>=', 20);
 
@@ -23,7 +23,7 @@ class RangeTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_range_using_callback()
+    public function it_builds_range_using_callback(): void
     {
         $range = new Range('age', function (Range $range) {
             return $range->gte(20);
@@ -39,7 +39,7 @@ class RangeTest extends TestCase
     }
 
     #[Test]
-    public function optionally_range_can_include_options()
+    public function optionally_range_can_include_options(): void
     {
         $range = new Range('age', function (Range $range) {
             return $range->gte(20);
@@ -56,7 +56,7 @@ class RangeTest extends TestCase
     }
 
     #[Test]
-    public function optionally_range_can_include_simple_options()
+    public function optionally_range_can_include_simple_options(): void
     {
         $range = new Range('age', 'gte', 20, ['boost' => 2.0]);
 
@@ -71,7 +71,7 @@ class RangeTest extends TestCase
     }
 
     #[Test]
-    public function it_can_build_inclusive_range()
+    public function it_can_build_inclusive_range(): void
     {
         $expected = ['range' => ['age' => [
             'gte' => 1,
@@ -86,7 +86,7 @@ class RangeTest extends TestCase
     }
 
     #[Test]
-    public function it_can_build_exclusive_range()
+    public function it_can_build_exclusive_range(): void
     {
         $expected = ['range' => ['age' => [
             'gt' => 1,
@@ -101,7 +101,7 @@ class RangeTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_gt_range()
+    public function it_builds_gt_range(): void
     {
         $expected = ['range' => ['age' => [
             'gt' => 10,
@@ -115,7 +115,7 @@ class RangeTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_gte_range()
+    public function it_builds_gte_range(): void
     {
         $expected = ['range' => ['age' => [
             'gte' => 10,
@@ -129,7 +129,7 @@ class RangeTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_lt_range()
+    public function it_builds_lt_range(): void
     {
         $expected = ['range' => ['age' => [
             'lt' => 10,
@@ -143,7 +143,7 @@ class RangeTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_lte_range()
+    public function it_builds_lte_range(): void
     {
         $expected = ['range' => ['age' => [
             'lte' => 10,
@@ -157,7 +157,7 @@ class RangeTest extends TestCase
     }
 
     #[Test]
-    public function combining_lt_and_lte_throws_exception()
+    public function combining_lt_and_lte_throws_exception(): void
     {
         try {
             new Range('age', function (Range $range) {
@@ -181,7 +181,7 @@ class RangeTest extends TestCase
     }
 
     #[Test]
-    public function combining_gt_and_gte_throws_exception()
+    public function combining_gt_and_gte_throws_exception(): void
     {
         try {
             new Range('age', function (Range $range) {

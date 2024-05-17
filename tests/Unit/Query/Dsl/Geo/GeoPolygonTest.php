@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class GeoPolygonTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_geo_polygon()
+    public function it_builds_a_geo_polygon(): void
     {
         $geo = new GeoPolygon('location', [
             ['lat' => 51.1, 'lon' => 4.1],
@@ -31,7 +31,7 @@ class GeoPolygonTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_geo_polygon_lon_lat_array()
+    public function it_builds_a_geo_polygon_lon_lat_array(): void
     {
         $geo = new GeoPolygon('location', [
             [-70, 40],
@@ -53,7 +53,7 @@ class GeoPolygonTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_geo_polygon_lat_lon_string()
+    public function it_builds_a_geo_polygon_lat_lon_string(): void
     {
         $geo = new GeoPolygon('location', [
             '40, -70',
@@ -75,7 +75,7 @@ class GeoPolygonTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_geo_polygon_geohash()
+    public function it_builds_a_geo_polygon_geohash(): void
     {
         $geo = new GeoPolygon('location', [
             'drn5x1g8cu2y',
@@ -97,7 +97,7 @@ class GeoPolygonTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_geo_polygon_validation_method()
+    public function it_builds_a_geo_polygon_validation_method(): void
     {
         $geo = new GeoPolygon('location', [
             ['lat' => 51.1, 'lon' => 4.1],
@@ -120,7 +120,7 @@ class GeoPolygonTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_geo_polygon_validation_method_coerce()
+    public function it_builds_a_geo_polygon_validation_method_coerce(): void
     {
         $geo = new GeoPolygon('location', [
             ['lat' => 51.1, 'lon' => 4.1],
@@ -143,7 +143,7 @@ class GeoPolygonTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_geo_polygon_validation_method_strict()
+    public function it_builds_a_geo_polygon_validation_method_strict(): void
     {
         $geo = new GeoPolygon('location', [
             ['lat' => 51.1, 'lon' => 4.1],
@@ -166,7 +166,7 @@ class GeoPolygonTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_geo_polygon_ignore_unmapped()
+    public function it_builds_a_geo_polygon_ignore_unmapped(): void
     {
         $geo = new GeoPolygon('location', [
             ['lat' => 51.1, 'lon' => 4.1],

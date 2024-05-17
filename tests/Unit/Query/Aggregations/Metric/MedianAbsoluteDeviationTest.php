@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class MedianAbsoluteDeviationTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_median_absolute_deviation_aggregation()
+    public function it_builds_a_median_absolute_deviation_aggregation(): void
     {
         $median = new MedianAbsoluteDeviation('rating');
 
@@ -21,7 +21,7 @@ class MedianAbsoluteDeviationTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_median_absolute_deviation_aggregation_with_options()
+    public function it_builds_a_median_absolute_deviation_aggregation_with_options(): void
     {
         $median = new MedianAbsoluteDeviation('rating', [
             'field' => 'rating',
@@ -41,7 +41,7 @@ class MedianAbsoluteDeviationTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_median_absolute_deviation_aggregation_with_invalid_options()
+    public function it_builds_a_median_absolute_deviation_aggregation_with_invalid_options(): void
     {
         $median = new MedianAbsoluteDeviation('rating', ['invalid' => 'value']);
 

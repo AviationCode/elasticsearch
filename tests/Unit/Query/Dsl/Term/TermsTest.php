@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class TermsTest extends TestCase
 {
     #[Test]
-    public function it_builds_terms()
+    public function it_builds_terms(): void
     {
         $terms = new Terms('user', ['kimchy', 'elasticsearch']);
 
@@ -21,7 +21,7 @@ class TermsTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_terms_with_boost()
+    public function it_builds_terms_with_boost(): void
     {
         $terms = new Terms('user', ['kimchy', 'elasticsearch'], 2.0);
 

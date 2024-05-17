@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class ValueCountTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_value_count_aggregation()
+    public function it_builds_a_value_count_aggregation(): void
     {
         $aggs = new Aggregation();
 

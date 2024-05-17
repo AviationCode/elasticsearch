@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class GeotileGridTest extends TestCase
 {
     #[Test]
-    public function it_builds_a_geotile_grid_aggregation()
+    public function it_builds_a_geotile_grid_aggregation(): void
     {
         $grid = new GeotileGrid('geo');
 
@@ -21,7 +21,7 @@ class GeotileGridTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_geotile_grid_aggregation_with_valid_options()
+    public function it_builds_a_geotile_grid_aggregation_with_valid_options(): void
     {
         $grid = new GeotileGrid('geo', [
             'precision' => 3,
@@ -48,7 +48,7 @@ class GeotileGridTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_a_geotile_grid_aggregation_with_invalid_options()
+    public function it_builds_a_geotile_grid_aggregation_with_invalid_options(): void
     {
         $grid = new GeotileGrid('geo', [
             'invalid' => 'options'

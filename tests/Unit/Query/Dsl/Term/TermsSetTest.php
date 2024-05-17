@@ -9,7 +9,7 @@ use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 class TermsSetTest extends TestCase
 {
     #[Test]
-    public function it_builds_terms_set()
+    public function it_builds_terms_set(): void
     {
         $termsSet = new TermsSet('programming_languages', ['php', 'java']);
 
@@ -23,7 +23,7 @@ class TermsSetTest extends TestCase
     }
 
     #[Test]
-    public function it_builds_terms_set_with_options()
+    public function it_builds_terms_set_with_options(): void
     {
         $termsSet = new TermsSet('programming_languages', ['php', 'java'], [
             'minimum_should_match_field' => 'required_matches',

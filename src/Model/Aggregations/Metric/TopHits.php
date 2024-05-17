@@ -39,7 +39,7 @@ class TopHits implements \ArrayAccess
     /**
      * @inheritDoc
      */
-    public function offsetExists($offset)
+    public function offsetExists(mixed $offset): bool
     {
         return $this->hits->offsetExists($offset);
     }
@@ -47,7 +47,7 @@ class TopHits implements \ArrayAccess
     /**
      * @inheritDoc
      */
-    public function offsetGet($offset)
+    public function offsetGet(mixed $offset): mixed
     {
         return $this->hits->offsetGet($offset);
     }
@@ -55,7 +55,7 @@ class TopHits implements \ArrayAccess
     /**
      * @inheritDoc
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet(mixed $offset, $value): void
     {
         throw new \LogicException('Unable modify to read only collection');
     }
@@ -63,7 +63,7 @@ class TopHits implements \ArrayAccess
     /**
      * @inheritDoc
      */
-    public function offsetUnset($offset)
+    public function offsetUnset(mixed $offset): void
     {
         throw new \LogicException('Unable modify to read only collection');
     }

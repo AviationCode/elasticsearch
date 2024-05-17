@@ -94,7 +94,7 @@ class Bucket implements \JsonSerializable, Jsonable, \ArrayAccess, \Countable, \
      * @param mixed $offset
      * @return bool
      */
-    public function offsetExists($offset)
+    public function offsetExists(mixed $offset): bool
     {
         if (! isset($this->items[$offset])) {
             return $this->items->firstWhere('key', $offset) !== null;
@@ -107,7 +107,7 @@ class Bucket implements \JsonSerializable, Jsonable, \ArrayAccess, \Countable, \
      * @param mixed $offset
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet(mixed $offset): mixed
     {
         return $this->items[$offset] ?? $this->items->firstWhere('key', $offset);
     }
@@ -116,7 +116,7 @@ class Bucket implements \JsonSerializable, Jsonable, \ArrayAccess, \Countable, \
      * @param mixed $offset
      * @param mixed $value
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet(mixed $offset, mixed $value): void
     {
         throw new \LogicException('Cannot set into a read only array.');
     }
@@ -126,7 +126,7 @@ class Bucket implements \JsonSerializable, Jsonable, \ArrayAccess, \Countable, \
      *
      * @throws \LogicException
      */
-    public function offsetUnset($offset)
+    public function offsetUnset(mixed $offset): void
     {
         throw new \LogicException('Cannot unset from read only array.');
     }
@@ -134,7 +134,7 @@ class Bucket implements \JsonSerializable, Jsonable, \ArrayAccess, \Countable, \
     /**
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return $this->items->count();
     }
@@ -142,7 +142,7 @@ class Bucket implements \JsonSerializable, Jsonable, \ArrayAccess, \Countable, \
     /**
      * @return \ArrayIterator
      */
-    public function getIterator()
+    public function getIterator(): \ArrayIterator
     {
         return $this->items->getIterator();
     }
@@ -160,7 +160,7 @@ class Bucket implements \JsonSerializable, Jsonable, \ArrayAccess, \Countable, \
     /**
      * {@inheritdoc}
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return [
             'meta' => $this->attributes,

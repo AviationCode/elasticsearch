@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Model\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\Aggregations\Bucket\Bucket;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class BucketTest extends TestCase
+final class BucketTest extends TestCase
 {
-    /** @test **/
-    public function it_can_build_a_bucket_aggregation()
+    #[Test]
+    public function it_can_build_a_bucket_aggregation(): void
     {
         $bucket = new Bucket([
             'doc_count_error_upper_bound' => 0,
@@ -76,8 +77,8 @@ class BucketTest extends TestCase
         $this->assertCount(2, $jsonData['data']);
     }
 
-    /** @test **/
-    public function it_throws_exception_when_using_unset_on_read_only_array()
+    #[Test]
+    public function it_throws_exception_when_using_unset_on_read_only_array(): void
     {
         $bucket = new Bucket([
             'doc_count_error_upper_bound' => 0,
@@ -95,8 +96,8 @@ class BucketTest extends TestCase
         unset($bucket[0]);
     }
 
-    /** @test **/
-    public function it_throws_exception_when_using_setting_a_value_on_read_only_array()
+    #[Test]
+    public function it_throws_exception_when_using_setting_a_value_on_read_only_array(): void
     {
         $bucket = new Bucket([
             'doc_count_error_upper_bound' => 0,
@@ -114,8 +115,8 @@ class BucketTest extends TestCase
         $bucket[0] = ['foo' => 'bar'];
     }
 
-    /** @test * */
-    public function it_builds_geo_distance_response()
+    #[Test]
+    public function it_builds_geo_distance_response(): void
     {
         $geoDistance = new Bucket([
             'buckets' => [

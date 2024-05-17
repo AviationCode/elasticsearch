@@ -2,6 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Pagination;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\Aggregations\Aggregation;
 use AviationCode\Elasticsearch\Model\Aggregations\Bucket\Bucket;
 use AviationCode\Elasticsearch\Model\ElasticCollection;
@@ -10,10 +11,10 @@ use AviationCode\Elasticsearch\Query\Aggregations\Bucket\Terms;
 use AviationCode\Elasticsearch\Tests\Feature\TestCase;
 use ReflectionMethod;
 
-class SimplePaginatorTest extends TestCase
+final class SimplePaginatorTest extends TestCase
 {
-    /** @test * */
-    public function it_builds_a_simple_paginator()
+    #[Test]
+    public function it_builds_a_simple_paginator(): void
     {
         $response = [
             'took' => 1,
@@ -70,8 +71,8 @@ class SimplePaginatorTest extends TestCase
         $this->assertEquals(9, $paginator->lastPage());
     }
 
-    /** @test */
-    public function it_has_a_method_to_retrieve_the_aggregations_from_the_elastic_collection()
+    #[Test]
+    public function it_has_a_method_to_retrieve_the_aggregations_from_the_elastic_collection(): void
     {
         $aggregationsMethod = new ReflectionMethod(SimplePaginator::class, 'aggregations');
 
@@ -80,8 +81,8 @@ class SimplePaginatorTest extends TestCase
         $this->assertSame(0, $aggregationsMethod->getNumberOfParameters());
     }
 
-    /** @test */
-    public function it_can_retrieve_the_aggregations()
+    #[Test]
+    public function it_can_retrieve_the_aggregations(): void
     {
         $response = [
             'took' => 1,

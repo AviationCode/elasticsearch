@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Model;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\ElasticCollection;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class ElasticSearchableTest extends TestCase
+final class ElasticSearchableTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_eloquent_model_from_elastic_results()
+    #[Test]
+    public function it_builds_eloquent_model_from_elastic_results(): void
     {
         $article = (new ArticleTestModel())->newFromElasticBuilder([
             '_id' => 123,
@@ -24,8 +25,8 @@ class ElasticSearchableTest extends TestCase
         $this->assertEquals('Article body', $article->body);
     }
 
-    /** @test **/
-    public function the_indexed_model_defaults_to_toArray()
+    #[Test]
+    public function the_indexed_model_defaults_to_toArray(): void
     {
         $article = new ArticleTestModel();
         $article->fill([
@@ -39,8 +40,8 @@ class ElasticSearchableTest extends TestCase
         ], $article->toSearchable());
     }
 
-    /** @test **/
-    public function it_uses_elasticcollection()
+    #[Test]
+    public function it_uses_elasticcollection(): void
     {
         $collection = (new ArticleTestModel())->newCollection();
 

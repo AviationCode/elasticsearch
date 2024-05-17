@@ -10,14 +10,17 @@
         }
     ],
     "homepage": "https://github.com/aviationcode/elasticsearch",
-    "keywords": ["Laravel", "Elasticsearch"],
+    "keywords": [
+        "Laravel",
+        "Elasticsearch"
+    ],
     "require": {
         "ext-json": "*",
         "illuminate/support": "~8|^9.0|^10.0",
         "elasticsearch/elasticsearch": "~6.0|~7.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~8.0",
+        "phpunit/phpunit": "^10.0",
         "mockery/mockery": "^1.1",
         "orchestra/testbench": "~5.0|^6.0|^7.0",
         "sempro/phpunit-pretty-print": "^1.0",

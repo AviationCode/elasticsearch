@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Dsl\Geo;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoBoundingBox;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class GeoBoundingBoxTest extends TestCase
+final class GeoBoundingBoxTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_a_geo_bounding_box_query()
+    #[Test]
+    public function it_builds_a_geo_bounding_box_query(): void
     {
         $geo = new GeoBoundingBox('location', ['lat' => 40.73, 'lon' => -74.1], ['lat' => 40.01, 'lon' => -71.12], [
             'validation_method' => GeoboundingBox::IGNORE_MALFORMED,
@@ -29,8 +30,8 @@ class GeoBoundingBoxTest extends TestCase
         ], $geo->toArray());
     }
 
-    /** @test **/
-    public function it_builds_a_geo_bounding_box_query_as_array()
+    #[Test]
+    public function it_builds_a_geo_bounding_box_query_as_array(): void
     {
         $geo = new GeoBoundingBox('location', [-74.1, 40.73], [-71.12, 40.01], [
             'validation_method' => GeoboundingBox::STRICT,
@@ -49,8 +50,8 @@ class GeoBoundingBoxTest extends TestCase
         ], $geo->toArray());
     }
 
-    /** @test **/
-    public function it_builds_a_geo_bounding_box_query_as_string()
+    #[Test]
+    public function it_builds_a_geo_bounding_box_query_as_string(): void
     {
         $geo = new GeoBoundingBox('location', '40.73, -74.1', '40.01, -71.12');
 
@@ -64,8 +65,8 @@ class GeoBoundingBoxTest extends TestCase
         ], $geo->toArray());
     }
 
-    /** @test **/
-    public function it_builds_a_geo_bounding_box_query_as_geo_hash()
+    #[Test]
+    public function it_builds_a_geo_bounding_box_query_as_geo_hash(): void
     {
         $geo = new GeoBoundingBox('location', 'dr5r9ydj2y73', 'drj7teegpus6');
 
@@ -79,8 +80,8 @@ class GeoBoundingBoxTest extends TestCase
         ], $geo->toArray());
     }
 
-    /** @test **/
-    public function it_builds_a_geo_bounding_box_query_as_wkt()
+    #[Test]
+    public function it_builds_a_geo_bounding_box_query_as_wkt(): void
     {
         $geo = new GeoBoundingBox('location', 'BBOX (-74.1, -71.12, 40.73, 40.01)');
 
@@ -93,8 +94,8 @@ class GeoBoundingBoxTest extends TestCase
         ], $geo->toArray());
     }
 
-    /** @test **/
-    public function it_builds_a_geo_bounding_box_query_as_wkt_with_options()
+    #[Test]
+    public function it_builds_a_geo_bounding_box_query_as_wkt_with_options(): void
     {
         $geo = new GeoBoundingBox('location', 'BBOX (-74.1, -71.12, 40.73, 40.01)', [
             'validation_method' => GeoboundingBox::IGNORE_MALFORMED,

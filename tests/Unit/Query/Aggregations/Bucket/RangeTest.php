@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\Range;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class RangeTest extends TestCase
+final class RangeTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_a_range_bucket_aggregation()
+    #[Test]
+    public function it_builds_a_range_bucket_aggregation(): void
     {
         $range = new Range('price', [
             ['to' => 100],
@@ -29,8 +30,8 @@ class RangeTest extends TestCase
         ], $range->toArray());
     }
 
-    /** @test **/
-    public function it_can_add_ranges_dynamically()
+    #[Test]
+    public function it_can_add_ranges_dynamically(): void
     {
         $range = new Range('price');
         $range->to(100);
@@ -50,8 +51,8 @@ class RangeTest extends TestCase
         ], $range->toArray());
     }
 
-    /** @test **/
-    public function it_can_define_custom_keys()
+    #[Test]
+    public function it_can_define_custom_keys(): void
     {
         $range = new Range('price');
         $range->to(100, 'first');

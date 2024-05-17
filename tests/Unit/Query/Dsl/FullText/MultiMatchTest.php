@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Dsl\FullText;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MultiMatch;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class MultiMatchTest extends TestCase
+final class MultiMatchTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_match_phrase_prefix_query()
+    #[Test]
+    public function it_builds_match_phrase_prefix_query(): void
     {
         $match = new MultiMatch(['title', 'message'], 'this is a test');
 
@@ -20,8 +21,8 @@ class MultiMatchTest extends TestCase
         ], $match->toArray());
     }
 
-    /** @test **/
-    public function it_builds_match_phrase_prefix_query_with_options()
+    #[Test]
+    public function it_builds_match_phrase_prefix_query_with_options(): void
     {
         $match = new MultiMatch(['title', '*_name'], 'Will Smith', ['type' => 'best_fields']);
 

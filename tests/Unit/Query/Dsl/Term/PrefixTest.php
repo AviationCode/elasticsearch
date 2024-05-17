@@ -2,21 +2,22 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Dsl\Term;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Prefix;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class PrefixTest extends TestCase
+final class PrefixTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_prefix_clause()
+    #[Test]
+    public function it_builds_prefix_clause(): void
     {
         $prefix = new Prefix('user', 'ki');
 
         $this->assertEquals(['prefix' => ['user' => ['value' => 'ki']]], $prefix->toArray());
     }
 
-    /** @test **/
-    public function it_builds_prefix_clause_with_rewrite()
+    #[Test]
+    public function it_builds_prefix_clause_with_rewrite(): void
     {
         $prefix = new Prefix('user', 'ki', 'constant_score');
 

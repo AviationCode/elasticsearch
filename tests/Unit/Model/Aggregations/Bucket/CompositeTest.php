@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Model\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\Aggregations\Bucket\Composite;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class CompositeTest extends TestCase
+final class CompositeTest extends TestCase
 {
-    /** @test */
-    public function it_can_construct_a_composite_instance()
+    #[Test]
+    public function it_can_construct_a_composite_instance(): void
     {
         $composite = new Composite(
             [
@@ -37,8 +38,8 @@ class CompositeTest extends TestCase
         $this->assertNull($composite->after_key);
     }
 
-    /** @test */
-    public function it_parses_the_after_key()
+    #[Test]
+    public function it_parses_the_after_key(): void
     {
         $composite = new Composite(
             [

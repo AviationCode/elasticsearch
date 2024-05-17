@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Model\Aggregations\Common;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\Aggregations\Common\Item;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class ItemTest extends TestCase
+final class ItemTest extends TestCase
 {
-    /** @test * */
-    public function it_maps_key_values()
+    #[Test]
+    public function it_maps_key_values(): void
     {
         $item = new Item([
             'key' => 'value',
@@ -17,8 +18,8 @@ class ItemTest extends TestCase
         $this->assertEquals('value', $item->key);
     }
 
-    /** @test * */
-    public function it_maps_nested_elements()
+    #[Test]
+    public function it_maps_nested_elements(): void
     {
         $item = new Item([
             'key' => 'jeffreyway',
@@ -45,8 +46,8 @@ class ItemTest extends TestCase
         $this->assertEquals(37, $item->tweets_per_day[1]->doc_count);
     }
 
-    /** @test **/
-    public function it_maps_nested_simple_values_to_the_key()
+    #[Test]
+    public function it_maps_nested_simple_values_to_the_key(): void
     {
         $item = new Item([
             'key' => 'jeffreyway',

@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Dsl\Term;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Term;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class TermTest extends TestCase
+final class TermTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_term_clause()
+    #[Test]
+    public function it_builds_term_clause(): void
     {
         $term = new Term('status', 'published');
 
@@ -17,8 +18,8 @@ class TermTest extends TestCase
         ], $term->toArray());
     }
 
-    /** @test **/
-    public function it_builds_term_clause_with_boost()
+    #[Test]
+    public function it_builds_term_clause_with_boost(): void
     {
         $term = new Term('status', 'published', 2.0);
 

@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Metric;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Aggregation;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class GeoBoundsTest extends TestCase
+final class GeoBoundsTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_a_geo_bounds_aggregation()
+    #[Test]
+    public function it_builds_a_geo_bounds_aggregation(): void
     {
         $aggs = new Aggregation();
 

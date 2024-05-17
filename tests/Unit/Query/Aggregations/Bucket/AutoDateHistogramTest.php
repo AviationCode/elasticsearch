@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\AutoDateHistogram;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class AutoDateHistogramTest extends TestCase
+final class AutoDateHistogramTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_a_auto_date_histogram_aggregation()
+    #[Test]
+    public function it_builds_a_auto_date_histogram_aggregation(): void
     {
         $histogram = new AutoDateHistogram('date');
 
@@ -19,8 +20,8 @@ class AutoDateHistogramTest extends TestCase
         ], $histogram->toArray());
     }
 
-    /** @test **/
-    public function it_builds_a_auto_date_histogram_aggregation_with_options()
+    #[Test]
+    public function it_builds_a_auto_date_histogram_aggregation_with_options(): void
     {
         $histogram = new AutoDateHistogram('date', [
             'buckets' => 10,
@@ -42,8 +43,8 @@ class AutoDateHistogramTest extends TestCase
         ], $histogram->toArray());
     }
 
-    /** @test **/
-    public function it_builds_a_auto_date_histogram_aggregation_with_invalid_options()
+    #[Test]
+    public function it_builds_a_auto_date_histogram_aggregation_with_invalid_options(): void
     {
         $histogram = new AutoDateHistogram('date', [
             'invalid' => 'option',

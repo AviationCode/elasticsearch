@@ -2,6 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Dsl;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\Boolean\Filter;
 use AviationCode\Elasticsearch\Query\Dsl\Boolean\Must;
 use AviationCode\Elasticsearch\Query\Dsl\Boolean\MustNot;
@@ -9,10 +10,10 @@ use AviationCode\Elasticsearch\Query\Dsl\Boolean\Should;
 use AviationCode\Elasticsearch\Query\Dsl\Query;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class QueryTest extends TestCase
+final class QueryTest extends TestCase
 {
-    /** @test **/
-    public function it_can_add_must()
+    #[Test]
+    public function it_can_add_must(): void
     {
         $query = new Query();
 
@@ -29,8 +30,8 @@ class QueryTest extends TestCase
         ], $query->toArray());
     }
 
-    /** @test **/
-    public function it_can_add_filter()
+    #[Test]
+    public function it_can_add_filter(): void
     {
         $query = new Query();
 
@@ -47,8 +48,8 @@ class QueryTest extends TestCase
         ], $query->toArray());
     }
 
-    /** @test **/
-    public function it_can_add_should()
+    #[Test]
+    public function it_can_add_should(): void
     {
         $query = new Query();
 
@@ -65,8 +66,8 @@ class QueryTest extends TestCase
         ], $query->toArray());
     }
 
-    /** @test **/
-    public function it_can_add_must_not()
+    #[Test]
+    public function it_can_add_must_not(): void
     {
         $query = new Query();
 
@@ -83,8 +84,8 @@ class QueryTest extends TestCase
         ], $query->toArray());
     }
 
-    /** @test **/
-    public function it_can_build_empty_query()
+    #[Test]
+    public function it_can_build_empty_query(): void
     {
         $query = new Query();
 

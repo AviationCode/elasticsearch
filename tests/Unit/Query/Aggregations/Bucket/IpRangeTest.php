@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\IpRange;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class IpRangeTest extends TestCase
+final class IpRangeTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_a_ip_range_bucket_aggregation()
+    #[Test]
+    public function it_builds_a_ip_range_bucket_aggregation(): void
     {
         $range = new IpRange('ip', [
             ['to' => '10.0.0.5'],
@@ -29,8 +30,8 @@ class IpRangeTest extends TestCase
         ], $range->toArray());
     }
 
-    /** @test **/
-    public function it_can_add_ranges_dynamically()
+    #[Test]
+    public function it_can_add_ranges_dynamically(): void
     {
         $range = new IpRange('ip');
         $range->to('10.0.0.5');
@@ -50,8 +51,8 @@ class IpRangeTest extends TestCase
         ], $range->toArray());
     }
 
-    /** @test **/
-    public function it_can_define_custom_keys()
+    #[Test]
+    public function it_can_define_custom_keys(): void
     {
         $range = new IpRange('ip');
         $range->to('10.0.0.5', 'first');

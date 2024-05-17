@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Dsl\Term;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Exists;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class ExistsTest extends TestCase
+final class ExistsTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_exist_clause()
+    #[Test]
+    public function it_builds_exist_clause(): void
     {
         $exists = new Exists('user');
 

@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Pipeline;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\MovingAverage;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
 class MovingAverageTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_moving_avg_aggregation()
+    #[Test]
+    public function it_builds_moving_avg_aggregation(): void
     {
         $movingAverage = new MovingAverage('the_sum');
 
@@ -19,8 +20,8 @@ class MovingAverageTest extends TestCase
         ], $movingAverage->toArray());
     }
 
-    /** @test **/
-    public function it_builds_moving_avg_with_options()
+    #[Test]
+    public function it_builds_moving_avg_with_options(): void
     {
         $movingAverage = new MovingAverage('the_sum', [
             'model' => MovingAverage::MODEL_HOLT,

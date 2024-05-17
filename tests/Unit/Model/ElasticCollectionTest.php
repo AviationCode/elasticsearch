@@ -2,14 +2,15 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Model;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\ElasticCollection;
 use AviationCode\Elasticsearch\Query\Builder;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class ElasticCollectionTest extends TestCase
+final class ElasticCollectionTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_up_elastic_collection()
+    #[Test]
+    public function it_builds_up_elastic_collection(): void
     {
         $response = [
             'took' => 1,
@@ -70,8 +71,8 @@ class ElasticCollectionTest extends TestCase
         $this->assertFalse($result->timed_out);
     }
 
-    /** @test **/
-    public function it_maps_aggregations()
+    #[Test]
+    public function it_maps_aggregations(): void
     {
         $response = [
             'took' => 1,

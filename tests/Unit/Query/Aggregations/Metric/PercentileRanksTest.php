@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Metric;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Metric\PercentileRanks;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class PercentileRanksTest extends TestCase
+final class PercentileRanksTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_a_percentile_ranks_aggregation()
+    #[Test]
+    public function it_builds_a_percentile_ranks_aggregation(): void
     {
         $percentiles = new PercentileRanks('load_time', [500, 600]);
 
@@ -20,8 +21,8 @@ class PercentileRanksTest extends TestCase
         ], $percentiles->toArray());
     }
 
-    /** @test **/
-    public function it_builds_a_percentile_ranks_aggregation_with_options()
+    #[Test]
+    public function it_builds_a_percentile_ranks_aggregation_with_options(): void
     {
         $percentiles = new PercentileRanks('load_time', [500, 600], [
             'script' => ['lang' => 'painless'],
@@ -40,8 +41,8 @@ class PercentileRanksTest extends TestCase
         ], $percentiles->toArray());
     }
 
-    /** @test **/
-    public function it_builds_a_percentile_ranks_aggregation_with_invalid_options()
+    #[Test]
+    public function it_builds_a_percentile_ranks_aggregation_with_invalid_options(): void
     {
         $percentiles = new PercentileRanks('load_time', [500, 600], ['invalid' => 'value']);
 

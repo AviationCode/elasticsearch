@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Aggregation;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class TermsTest extends TestCase
+final class TermsTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_a_terms_aggregation()
+    #[Test]
+    public function it_builds_a_terms_aggregation(): void
     {
         $agg = new Aggregation();
         $agg->terms('test_1', 'user');

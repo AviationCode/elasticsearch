@@ -2,6 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Tests\Feature;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Events\BulkDocumentsEvent;
 use AviationCode\Elasticsearch\Events\DocumentCreatedEvent;
 use AviationCode\Elasticsearch\Exceptions\IndexNotFoundException;
@@ -10,10 +11,10 @@ use AviationCode\Elasticsearch\Tests\Feature\TestModels\Article;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
 use Illuminate\Support\Facades\Event;
 
-class IndexDocumentsTest extends TestCase
+final class IndexDocumentsTest extends TestCase
 {
-    /** @test **/
-    public function it_can_index_a_model()
+    #[Test]
+    public function it_can_index_a_model(): void
     {
         Event::fake();
 
@@ -44,8 +45,8 @@ class IndexDocumentsTest extends TestCase
         Event::assertNotDispatched(DocumentCreatedEvent::class);
     }
 
-    /** @test **/
-    public function it_indexes_a_php_array()
+    #[Test]
+    public function it_indexes_a_php_array(): void
     {
         Event::fake();
 
@@ -75,8 +76,8 @@ class IndexDocumentsTest extends TestCase
         Event::assertNotDispatched(DocumentCreatedEvent::class);
     }
 
-    /** @test **/
-    public function it_indexes_a_stdClass()
+    #[Test]
+    public function it_indexes_a_stdClass(): void
     {
         Event::fake();
 
@@ -105,8 +106,8 @@ class IndexDocumentsTest extends TestCase
         Event::assertNotDispatched(DocumentCreatedEvent::class);
     }
 
-    /** @test **/
-    public function it_indexes_multiple_php_arrays_in_bulk()
+    #[Test]
+    public function it_indexes_multiple_php_arrays_in_bulk(): void
     {
         Event::fake();
         Elasticsearch::enableEvents();
@@ -160,8 +161,8 @@ class IndexDocumentsTest extends TestCase
         Event::assertDispatchedTimes(BulkDocumentsEvent::class, 1);
     }
 
-    /** @test **/
-    public function it_indexes_multiple_classes_in_bulk()
+    #[Test]
+    public function it_indexes_multiple_classes_in_bulk(): void
     {
         Event::fake();
         Elasticsearch::enableEvents();
@@ -216,8 +217,8 @@ class IndexDocumentsTest extends TestCase
         Event::assertDispatchedTimes(BulkDocumentsEvent::class, 1);
     }
 
-    /** @test **/
-    public function it_can_index_a_model_given_as_param()
+    #[Test]
+    public function it_can_index_a_model_given_as_param(): void
     {
         Event::fake();
 
@@ -247,8 +248,8 @@ class IndexDocumentsTest extends TestCase
         Event::assertNotDispatched(DocumentCreatedEvent::class);
     }
 
-    /** @test **/
-    public function it_throws_exception_if_no_model_is_given()
+    #[Test]
+    public function it_throws_exception_if_no_model_is_given(): void
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -257,8 +258,8 @@ class IndexDocumentsTest extends TestCase
         $this->elastic->add();
     }
 
-    /** @test **/
-    public function it_throws_exception_if_the_index_does_not_exist()
+    #[Test]
+    public function it_throws_exception_if_the_index_does_not_exist(): void
     {
         // This only occurs if the settings "action.auto_create_index" is set to false in elastic.
         $this->elastic->getClient()->shouldReceive('index')
@@ -295,8 +296,8 @@ class IndexDocumentsTest extends TestCase
         $article->elastic()->add();
     }
 
-    /** @test **/
-    public function it_fires_document_created_event()
+    #[Test]
+    public function it_fires_document_created_event(): void
     {
         Event::fake();
         Elasticsearch::enableEvents();
@@ -328,8 +329,8 @@ class IndexDocumentsTest extends TestCase
         Event::assertDispatchedTimes(DocumentCreatedEvent::class, 1);
     }
 
-    /** @test **/
-    public function it_can_reindex_a_model()
+    #[Test]
+    public function it_can_reindex_a_model(): void
     {
         $data = [
             'id' => 123,
@@ -357,8 +358,8 @@ class IndexDocumentsTest extends TestCase
         $this->assertTrue($article->elastic()->update());
     }
 
-    /** @test */
-    public function it_bulk_indexes_models()
+    #[Test]
+    public function it_bulk_indexes_models(): void
     {
         Event::fake();
         Elasticsearch::enableEvents();

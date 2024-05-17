@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\GeohashGrid;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class GeohashGridTest extends TestCase
+final class GeohashGridTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_a_geohash_grid_aggregation()
+    #[Test]
+    public function it_builds_a_geohash_grid_aggregation(): void
     {
         $grid = new GeohashGrid('geo');
 
@@ -19,8 +20,8 @@ class GeohashGridTest extends TestCase
         ], $grid->toArray());
     }
 
-    /** @test **/
-    public function it_builds_a_geohash_grid_aggregation_with_valid_options()
+    #[Test]
+    public function it_builds_a_geohash_grid_aggregation_with_valid_options(): void
     {
         $grid = new GeohashGrid('geo', [
             'precision' => 3,
@@ -46,8 +47,8 @@ class GeohashGridTest extends TestCase
         ], $grid->toArray());
     }
 
-    /** @test **/
-    public function it_builds_a_geohash_grid_aggregation_with_invalid_options()
+    #[Test]
+    public function it_builds_a_geohash_grid_aggregation_with_invalid_options(): void
     {
         $grid = new GeohashGrid('geo', [
             'invalid' => 'options'

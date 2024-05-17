@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Metric;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Metric\TopHits;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class TopHitsTest extends TestCase
+final class TopHitsTest extends TestCase
 {
-    /** @test **/
-    public function it_adds_top_hits_aggregations()
+    #[Test]
+    public function it_adds_top_hits_aggregations(): void
     {
         $top = new TopHits();
 
@@ -17,8 +18,8 @@ class TopHitsTest extends TestCase
         ], $top->toArray());
     }
 
-    /** @test **/
-    public function it_adds_top_hits_aggregations_with_options()
+    #[Test]
+    public function it_adds_top_hits_aggregations_with_options(): void
     {
         $top = new TopHits([
             'sort' => ['date' => ['order' => 'desc']],
@@ -49,8 +50,8 @@ class TopHitsTest extends TestCase
         ], $top->toArray());
     }
 
-    /** @test **/
-    public function it_adds_top_hits_aggregations_with_invalid_options()
+    #[Test]
+    public function it_adds_top_hits_aggregations_with_invalid_options(): void
     {
         $top = new TopHits([
             'invalid' => 'option',
@@ -61,8 +62,8 @@ class TopHitsTest extends TestCase
         ], $top->toArray());
     }
 
-    /** @test **/
-    public function it_adds_top_hits_aggregations_sort()
+    #[Test]
+    public function it_adds_top_hits_aggregations_sort(): void
     {
         $top = new TopHits();
         $top->orderBy('created_at', 'desc');
@@ -78,8 +79,8 @@ class TopHitsTest extends TestCase
         ], $top->toArray());
     }
 
-    /** @test **/
-    public function it_adds_top_hits_aggregations_explain()
+    #[Test]
+    public function it_adds_top_hits_aggregations_explain(): void
     {
         $top = new TopHits();
         $this->assertEquals(['top_hits' => new \stdClass()], $top->toArray());
@@ -91,8 +92,8 @@ class TopHitsTest extends TestCase
         $this->assertEquals(['top_hits' => ['explain' => false]], $top->toArray());
     }
 
-    /** @test **/
-    public function it_adds_top_hits_aggregations_version()
+    #[Test]
+    public function it_adds_top_hits_aggregations_version(): void
     {
         $top = new TopHits();
         $this->assertEquals(['top_hits' => new \stdClass()], $top->toArray());
@@ -104,8 +105,8 @@ class TopHitsTest extends TestCase
         $this->assertEquals(['top_hits' => ['version' => false]], $top->toArray());
     }
 
-    /** @test **/
-    public function it_adds_top_hits_aggregations_sequence_numbers()
+    #[Test]
+    public function it_adds_top_hits_aggregations_sequence_numbers(): void
     {
         $top = new TopHits();
         $this->assertEquals(['top_hits' => new \stdClass()], $top->toArray());
@@ -117,8 +118,8 @@ class TopHitsTest extends TestCase
         $this->assertEquals(['top_hits' => ['seq_no_primary_term' => false]], $top->toArray());
     }
 
-    /** @test **/
-    public function it_adds_top_hits_aggregations_size()
+    #[Test]
+    public function it_adds_top_hits_aggregations_size(): void
     {
         $top = new TopHits();
         $this->assertEquals(['top_hits' => new \stdClass()], $top->toArray());
@@ -130,8 +131,8 @@ class TopHitsTest extends TestCase
         $this->assertEquals(['top_hits' => ['size' => 500]], $top->toArray());
     }
 
-    /** @test **/
-    public function it_adds_top_hits_aggregations_scripted_fields()
+    #[Test]
+    public function it_adds_top_hits_aggregations_scripted_fields(): void
     {
         $top = new TopHits();
         $top->scriptedField('test1', "doc['price'].value * 2");
@@ -147,8 +148,8 @@ class TopHitsTest extends TestCase
         ], $top->toArray());
     }
 
-    /** @test **/
-    public function it_adds_top_hits_aggregations_scripted_source_fields()
+    #[Test]
+    public function it_adds_top_hits_aggregations_scripted_source_fields(): void
     {
         $top = new TopHits();
         $top->fields(['price', 'amount']);

@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Dsl\FullText;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\QueryString;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class QueryStringTest extends TestCase
+final class QueryStringTest extends TestCase
 {
-    /** @test **/
-    public function it_adds_query_string_clause()
+    #[Test]
+    public function it_adds_query_string_clause(): void
     {
         $queryString = new QueryString('this is a test');
 
@@ -19,8 +20,8 @@ class QueryStringTest extends TestCase
         ], $queryString->toArray());
     }
 
-    /** @test **/
-    public function it_adds_query_string_clause_with_options()
+    #[Test]
+    public function it_adds_query_string_clause_with_options(): void
     {
         $queryString = new QueryString('this is a test', ['default_field' => 'body']);
 

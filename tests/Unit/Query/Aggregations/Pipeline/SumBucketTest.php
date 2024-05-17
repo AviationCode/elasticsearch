@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Pipeline;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\SumBucket;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class SumBucketTest extends TestCase
+final class SumBucketTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_sum_bucket_aggregation()
+    #[Test]
+    public function it_builds_sum_bucket_aggregation(): void
     {
         $bucket = new SumBucket('the_sum');
 
@@ -19,8 +20,8 @@ class SumBucketTest extends TestCase
         ], $bucket->toArray());
     }
 
-    /** @test **/
-    public function it_builds_sum_bucket_aggregation_gap_policy()
+    #[Test]
+    public function it_builds_sum_bucket_aggregation_gap_policy(): void
     {
         $bucket = new SumBucket('the_sum', SumBucket::GAP_INSERT_ZEROS);
 
@@ -41,8 +42,8 @@ class SumBucketTest extends TestCase
         ], $bucket->toArray());
     }
 
-    /** @test **/
-    public function it_builds_sum_bucket_aggregation_format()
+    #[Test]
+    public function it_builds_sum_bucket_aggregation_format(): void
     {
         $bucket = new SumBucket('the_sum', null, '000.00');
 

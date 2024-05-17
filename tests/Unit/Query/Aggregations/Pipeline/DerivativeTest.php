@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Pipeline;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\Derivative;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class DerivativeTest extends TestCase
+final class DerivativeTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_derivative_aggregation()
+    #[Test]
+    public function it_builds_derivative_aggregation(): void
     {
         $derivative = new Derivative('the_sum');
 
@@ -19,8 +20,8 @@ class DerivativeTest extends TestCase
         ], $derivative->toArray());
     }
 
-    /** @test **/
-    public function it_builds_derivative_aggregation_gap_policy()
+    #[Test]
+    public function it_builds_derivative_aggregation_gap_policy(): void
     {
         $derivative = new Derivative('the_sum', Derivative::GAP_INSERT_ZEROS);
 
@@ -41,8 +42,8 @@ class DerivativeTest extends TestCase
         ], $derivative->toArray());
     }
 
-    /** @test **/
-    public function it_builds_derivative_aggregation_format()
+    #[Test]
+    public function it_builds_derivative_aggregation_format(): void
     {
         $derivative = new Derivative('the_sum', null, '000.00');
 
@@ -54,8 +55,8 @@ class DerivativeTest extends TestCase
         ], $derivative->toArray());
     }
 
-    /** @test **/
-    public function it_builds_derivative_aggregation_unit()
+    #[Test]
+    public function it_builds_derivative_aggregation_unit(): void
     {
         $derivative = new Derivative('the_sum', null, null, 'day');
 

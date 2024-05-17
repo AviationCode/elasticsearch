@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Pipeline;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\SerialDiff;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class SerialDiffTest extends TestCase
+final class SerialDiffTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_serial_diff_aggregation()
+    #[Test]
+    public function it_builds_serial_diff_aggregation(): void
     {
         $serial = new SerialDiff('the_sum');
 
@@ -19,8 +20,8 @@ class SerialDiffTest extends TestCase
         ], $serial->toArray());
     }
 
-    /** @test **/
-    public function it_builds_serial_diff_aggregation_with_options()
+    #[Test]
+    public function it_builds_serial_diff_aggregation_with_options(): void
     {
         $serial = new SerialDiff('the_sum', 7, 'epoch_second', SerialDiff::SKIP);
 

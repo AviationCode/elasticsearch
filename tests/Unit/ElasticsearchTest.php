@@ -2,10 +2,11 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Elasticsearch;
 use Elasticsearch\Client;
 
-class ElasticsearchTest extends TestCase
+final class ElasticsearchTest extends TestCase
 {
     /** @var Client|\Mockery\LegacyMockInterface|\Mockery\MockInterface Moc */
     protected $client;
@@ -18,8 +19,8 @@ class ElasticsearchTest extends TestCase
         $this->client = \Mockery::mock(Client::class);
     }
 
-    /** @test **/
-    public function it_can_enable_firing_events()
+    #[Test]
+    public function it_can_enable_firing_events(): void
     {
         $this->assertFalse(Elasticsearch::shouldSentEvents());
 

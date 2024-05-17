@@ -2,6 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Aggregation;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\DateHistogram;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\GeotileGrid;
@@ -10,10 +11,10 @@ use AviationCode\Elasticsearch\Query\Aggregations\Bucket\Terms;
 use AviationCode\Elasticsearch\Query\Dsl\Term\Range;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class CompositeTest extends TestCase
+final class CompositeTest extends TestCase
 {
-    /** @test */
-    public function it_builds_a_composite_aggregation()
+    #[Test]
+    public function it_builds_a_composite_aggregation(): void
     {
         $agg = new Aggregation();
 
@@ -69,8 +70,8 @@ class CompositeTest extends TestCase
         );
     }
 
-    /** @test */
-    public function it_filters_out_invalid_sources()
+    #[Test]
+    public function it_filters_out_invalid_sources(): void
     {
         $agg = new Aggregation();
 
@@ -100,16 +101,16 @@ class CompositeTest extends TestCase
         );
     }
 
-    /** @test */
-    public function it_can_throw_an_invalid_argument_exception()
+    #[Test]
+    public function it_can_throw_an_invalid_argument_exception(): void
     {
         $this->expectException(\InvalidArgumentException::class);
 
         (new Aggregation())->composite('test_composite')->toArray();
     }
 
-    /** @test */
-    public function it_can_add_sources_dynamically()
+    #[Test]
+    public function it_can_add_sources_dynamically(): void
     {
         $agg = new Aggregation();
 
@@ -173,8 +174,8 @@ class CompositeTest extends TestCase
         );
     }
 
-    /** @test */
-    public function it_can_add_options_dynamically()
+    #[Test]
+    public function it_can_add_options_dynamically(): void
     {
         $agg = new Aggregation();
 

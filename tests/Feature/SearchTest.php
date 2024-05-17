@@ -2,6 +2,7 @@
 
 namespace AviationCode\Elasticsearch\Tests\Feature;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\ElasticCollection;
 use AviationCode\Elasticsearch\Query\Dsl\Boolean\Filter;
 use AviationCode\Elasticsearch\Query\Dsl\Boolean\Must;
@@ -10,7 +11,7 @@ use Carbon\Carbon;
 use Elasticsearch\Client;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class SearchTest extends TestCase
+final class SearchTest extends TestCase
 {
     /**
      * @var Client|\Mockery\LegacyMockInterface|\Mockery\MockInterface
@@ -23,8 +24,8 @@ class SearchTest extends TestCase
         $this->app->instance('elasticsearch.client', $this->client = \Mockery::mock(Client::class));
     }
 
-    /** @test **/
-    public function it_performs_search()
+    #[Test]
+    public function it_performs_search(): void
     {
         $this->client->shouldReceive('search')
             ->with([
@@ -136,8 +137,8 @@ class SearchTest extends TestCase
         });
     }
 
-    /** @test **/
-    public function it_performs_search_without_eloquent_model()
+    #[Test]
+    public function it_performs_search_without_eloquent_model(): void
     {
         $this->client->shouldReceive('search')
             ->with([
@@ -249,8 +250,8 @@ class SearchTest extends TestCase
         });
     }
 
-    /** @test */
-    public function it_finds_by_id()
+    #[Test]
+    public function it_finds_by_id(): void
     {
         $this->client->shouldReceive('get')
             ->with([
@@ -295,8 +296,8 @@ class SearchTest extends TestCase
         $this->assertEquals($model, $qb->findOrFail(1));
     }
 
-    /** @test **/
-    public function it_returns_null_when_find_does_not_return_result()
+    #[Test]
+    public function it_returns_null_when_find_does_not_return_result(): void
     {
         $this->client->shouldReceive('get')
             ->once()
@@ -318,8 +319,8 @@ class SearchTest extends TestCase
         $this->assertNull($result);
     }
 
-    /** @test **/
-    public function it_throws_model_not_found_exception_when_findOrFail_does_not_yield_a_result()
+    #[Test]
+    public function it_throws_model_not_found_exception_when_findOrFail_does_not_yield_a_result(): void
     {
         $this->expectException(ModelNotFoundException::class);
 
@@ -343,8 +344,8 @@ class SearchTest extends TestCase
         $this->markSuccessfull();
     }
 
-    /** @test **/
-    public function it_orders_by_latest_created_at()
+    #[Test]
+    public function it_orders_by_latest_created_at(): void
     {
         $this->client->shouldReceive('search')
             ->once()
@@ -366,8 +367,8 @@ class SearchTest extends TestCase
         $this->assertEquals(2, $results->count());
     }
 
-    /** @test **/
-    public function it_gets_first_result()
+    #[Test]
+    public function it_gets_first_result(): void
     {
         $this->client->shouldReceive('search')
             ->once()
@@ -394,10 +395,9 @@ class SearchTest extends TestCase
      *
      * This example wraps match query search string in "query" object to make request consistent with other
      * elasticsearch requests.
-     *
-     * @test
      */
-    public function complex_query()
+    #[Test]
+    public function complex_query(): void
     {
         $this->client->shouldReceive('search')
             ->once()
@@ -436,8 +436,8 @@ class SearchTest extends TestCase
         $this->assertEquals(2, $results->count());
     }
 
-    /** @test **/
-    public function it_chunks_over_large_data_set()
+    #[Test]
+    public function it_chunks_over_large_data_set(): void
     {
         $this->client->shouldReceive('search')
             ->with([
@@ -542,8 +542,8 @@ class SearchTest extends TestCase
         $this->assertEquals(2, $times);
     }
 
-    /** @test **/
-    public function it_can_each_by_id_through_all_records()
+    #[Test]
+    public function it_can_each_by_id_through_all_records(): void
     {
         $this->client->shouldReceive('search')
             ->with([
@@ -644,8 +644,8 @@ class SearchTest extends TestCase
         $this->assertEquals(4, $total);
     }
 
-    /** @test **/
-    public function it_can_early_return_from_each_method()
+    #[Test]
+    public function it_can_early_return_from_each_method(): void
     {
         $this->client->shouldReceive('search')
             ->with([
@@ -676,8 +676,8 @@ class SearchTest extends TestCase
         $this->assertEquals(1, $total);
     }
 
-    /** @test **/
-    public function it_can_early_return_from_chunk()
+    #[Test]
+    public function it_can_early_return_from_chunk(): void
     {
         $this->client->shouldReceive('search')
             ->with([

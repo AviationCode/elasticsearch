@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Metric;
 
+use PHPUnit\Framework\Attributes\Test;
 use     AviationCode\Elasticsearch\Query\Aggregations\Aggregation;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class ExtendedStatsTest extends TestCase
+final class ExtendedStatsTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_an_extended_stats_aggregation()
+    #[Test]
+    public function it_builds_an_extended_stats_aggregation(): void
     {
         $aggs = new Aggregation();
 

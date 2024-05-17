@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\GlobalBucket;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class GlobalTest extends TestCase
+final class GlobalTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_a_global_aggregation()
+    #[Test]
+    public function it_builds_a_global_aggregation(): void
     {
         $global = new GlobalBucket();
 

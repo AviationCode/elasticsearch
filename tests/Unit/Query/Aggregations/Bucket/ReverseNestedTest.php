@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Bucket;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Bucket\ReverseNested;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class ReverseNestedTest extends TestCase
+final class ReverseNestedTest extends TestCase
 {
-    /** @test **/
-    public function it_adds_reverse_nested_aggregation()
+    #[Test]
+    public function it_adds_reverse_nested_aggregation(): void
     {
         $nested = new ReverseNested('issues');
 

@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Pipeline;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\BucketSelector;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class BucketSelectorTest extends TestCase
+final class BucketSelectorTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_bucket_selector_aggregation()
+    #[Test]
+    public function it_builds_bucket_selector_aggregation(): void
     {
         $bucket = new BucketSelector([
             'my_var1' => 'the_sum',
@@ -26,8 +27,8 @@ class BucketSelectorTest extends TestCase
         ], $bucket->toArray());
     }
 
-    /** @test **/
-    public function it_builds_bucket_selector_aggregation_with_gap_policy()
+    #[Test]
+    public function it_builds_bucket_selector_aggregation_with_gap_policy(): void
     {
         $bucket = new BucketSelector([
             'my_var1' => 'the_sum',

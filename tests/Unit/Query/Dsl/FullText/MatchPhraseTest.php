@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Dsl\FullText;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Dsl\FullText\MatchPhrase;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class MatchPhraseTest extends TestCase
+final class MatchPhraseTest extends TestCase
 {
-    /** @test **/
-    public function it_matches_phrase_query()
+    #[Test]
+    public function it_matches_phrase_query(): void
     {
         $match = new MatchPhrase('message', 'this is a test');
 
@@ -21,8 +22,8 @@ class MatchPhraseTest extends TestCase
         ], $match->toArray());
     }
 
-    /** @test **/
-    public function it_matches_phrase_query_with_options()
+    #[Test]
+    public function it_matches_phrase_query_with_options(): void
     {
         $match = new MatchPhrase('message', 'this is a test', ['analyzer' => 'my_analyzer']);
 

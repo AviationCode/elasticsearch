@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Metric;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Aggregation;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class WeightedAvgTest extends TestCase
+final class WeightedAvgTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_a_weighted_avg_aggregation()
+    #[Test]
+    public function it_builds_a_weighted_avg_aggregation(): void
     {
         $aggs = new Aggregation();
 

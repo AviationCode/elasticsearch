@@ -2,14 +2,15 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Model\Aggregations\Metric;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\Aggregations\Common\Item;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 use Illuminate\Support\Arr;
 
-class ExtendedStatsTest extends TestCase
+final class ExtendedStatsTest extends TestCase
 {
-    /** @test **/
-    public function it_translates_extended_stats_aggregation()
+    #[Test]
+    public function it_translates_extended_stats_aggregation(): void
     {
         $values = [
             'count' => 2,

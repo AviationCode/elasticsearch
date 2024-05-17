@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Pipeline;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\CumulativeSum;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class CumulativeSumTest extends TestCase
+final class CumulativeSumTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_cumulative_sum_aggregation()
+    #[Test]
+    public function it_builds_cumulative_sum_aggregation(): void
     {
         $bucket = new CumulativeSum('the_sum');
 
@@ -19,8 +20,8 @@ class CumulativeSumTest extends TestCase
         ], $bucket->toArray());
     }
 
-    /** @test **/
-    public function it_builds_cumulative_sum_aggregation_format()
+    #[Test]
+    public function it_builds_cumulative_sum_aggregation_format(): void
     {
         $bucket = new CumulativeSum('the_sum', '000.00');
 

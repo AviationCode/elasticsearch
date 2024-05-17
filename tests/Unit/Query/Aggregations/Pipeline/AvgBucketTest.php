@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Pipeline;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\AvgBucket;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class AvgBucketTest extends TestCase
+final class AvgBucketTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_avg_bucket_aggregation()
+    #[Test]
+    public function it_builds_avg_bucket_aggregation(): void
     {
         $avgBucket = new AvgBucket('the_avg');
 
@@ -19,8 +20,8 @@ class AvgBucketTest extends TestCase
         ], $avgBucket->toArray());
     }
 
-    /** @test **/
-    public function it_builds_avg_bucket_aggregation_gap_policy()
+    #[Test]
+    public function it_builds_avg_bucket_aggregation_gap_policy(): void
     {
         $avgBucket = new AvgBucket('the_avg', AvgBucket::GAP_INSERT_ZEROS);
 
@@ -41,8 +42,8 @@ class AvgBucketTest extends TestCase
         ], $avgBucket->toArray());
     }
 
-    /** @test **/
-    public function it_builds_avg_bucket_aggregation_format()
+    #[Test]
+    public function it_builds_avg_bucket_aggregation_format(): void
     {
         $avgBucket = new AvgBucket('the_avg', null, '000.00');
 
@@ -54,8 +55,8 @@ class AvgBucketTest extends TestCase
         ], $avgBucket->toArray());
     }
 
-    /** @test **/
-    public function it_builds_avg_bucket_aggregation_unit()
+    #[Test]
+    public function it_builds_avg_bucket_aggregation_unit(): void
     {
         $avgBucket = new AvgBucket('the_avg', null, null, 'day');
 

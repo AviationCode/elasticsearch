@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Pipeline;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\MinBucket;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class MinBucketTest extends TestCase
+final class MinBucketTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_min_bucket_aggregation()
+    #[Test]
+    public function it_builds_min_bucket_aggregation(): void
     {
         $bucket = new MinBucket('the_sum');
 
@@ -19,8 +20,8 @@ class MinBucketTest extends TestCase
         ], $bucket->toArray());
     }
 
-    /** @test **/
-    public function it_builds_min_bucket_aggregation_gap_policy()
+    #[Test]
+    public function it_builds_min_bucket_aggregation_gap_policy(): void
     {
         $bucket = new MinBucket('the_sum', MinBucket::GAP_INSERT_ZEROS);
 
@@ -41,8 +42,8 @@ class MinBucketTest extends TestCase
         ], $bucket->toArray());
     }
 
-    /** @test **/
-    public function it_builds_min_bucket_aggregation_format()
+    #[Test]
+    public function it_builds_min_bucket_aggregation_format(): void
     {
         $bucket = new MinBucket('the_sum', null, '000.00');
 

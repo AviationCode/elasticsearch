@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Model;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Model\Aggregations\Metric\Percentiles;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class PercentilesTest extends TestCase
+final class PercentilesTest extends TestCase
 {
-    /** @test **/
-    public function it_can_access_values_by_key()
+    #[Test]
+    public function it_can_access_values_by_key(): void
     {
         $percentiles = new Percentiles([
             'values' => [

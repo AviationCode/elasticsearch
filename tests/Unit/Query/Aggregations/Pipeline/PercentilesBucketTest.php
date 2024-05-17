@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Unit\Query\Aggregations\Pipeline;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Query\Aggregations\Pipeline\PercentilesBucket;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-class PercentilesBucketTest extends TestCase
+final class PercentilesBucketTest extends TestCase
 {
-    /** @test **/
-    public function it_builds_percentiles_bucket_aggregation()
+    #[Test]
+    public function it_builds_percentiles_bucket_aggregation(): void
     {
         $bucket = new PercentilesBucket('the_sum');
 
@@ -19,8 +20,8 @@ class PercentilesBucketTest extends TestCase
         ], $bucket->toArray());
     }
 
-    /** @test **/
-    public function it_builds_percentiles_bucket_aggregation_gap_policy()
+    #[Test]
+    public function it_builds_percentiles_bucket_aggregation_gap_policy(): void
     {
         $bucket = new PercentilesBucket('the_sum', PercentilesBucket::GAP_INSERT_ZEROS);
 
@@ -41,8 +42,8 @@ class PercentilesBucketTest extends TestCase
         ], $bucket->toArray());
     }
 
-    /** @test **/
-    public function it_builds_percentiles_bucket_aggregation_format()
+    #[Test]
+    public function it_builds_percentiles_bucket_aggregation_format(): void
     {
         $bucket = new PercentilesBucket('the_sum', null, '000.00');
 
@@ -54,8 +55,8 @@ class PercentilesBucketTest extends TestCase
         ], $bucket->toArray());
     }
 
-    /** @test **/
-    public function it_builds_percentiles_bucket_aggregation_percentiles()
+    #[Test]
+    public function it_builds_percentiles_bucket_aggregation_percentiles(): void
     {
         $bucket = new PercentilesBucket('the_sum', null, null, [25.0, 50.0, 75.0]);
 

@@ -2,13 +2,14 @@
 
 namespace AviationCode\Elasticsearch\Tests\Feature;
 
+use PHPUnit\Framework\Attributes\Test;
 use AviationCode\Elasticsearch\Facades\Elasticsearch;
 use AviationCode\Elasticsearch\Tests\Feature\TestModels\Article;
 
-class ManageIndexTest extends TestCase
+final class ManageIndexTest extends TestCase
 {
-    /** @test **/
-    public function it_creates_index_from_model()
+    #[Test]
+    public function it_creates_index_from_model(): void
     {
         $elastic = Elasticsearch::fake();
         $elastic->indicesClient

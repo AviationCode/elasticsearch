@@ -10,7 +10,7 @@ use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoPolygon;
 use AviationCode\Elasticsearch\Query\Dsl\Geo\GeoShape;
 use AviationCode\Elasticsearch\Tests\Unit\TestCase;
 
-abstract class BoolTest extends TestCase
+abstract class BoolTestCase extends TestCase
 {
     abstract protected function newBooleanClass(): Boolean;
 

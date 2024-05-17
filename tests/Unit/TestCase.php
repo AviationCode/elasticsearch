@@ -4,7 +4,7 @@ namespace AviationCode\Elasticsearch\Tests\Unit;
 
 use PHPUnit\Framework\TestCase as BaseTestCase;
 
-final class TestCase extends BaseTestCase
+class TestCase extends BaseTestCase
 {
     protected function setUp(): void
     {
